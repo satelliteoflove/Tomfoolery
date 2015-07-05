@@ -15,21 +15,29 @@ class Character(object):
 
 
 #Create a Pyglet Window with default values.
-window = pyglet.window.Window()
+main_window = pyglet.window.Window(caption='Main Window')
+message_window = pyglet.window.Window(caption='Message Window')
 
-#Create a "Label", which apparently is just rendered text on the screen.
 label = pyglet.text.Label('This is my first text.  I imagine it will wrap at least once,'
                           ' as this is a large amount of text for just a single line.',
                           font_name='Times New Roman',
-                          font_size=36, x=window.width//2, y=window.height//2,
+                          font_size=36, x=main_window.width//2, y=main_window.height//2,
                           anchor_x='center', anchor_y='center',multiline=True, width=500)
-@window.event()
-def onKeyPress(symbol, modifiers):
-    print('A key was pressed.')
 
-@window.event()
+message_label = pyglet.text.Label('This is for the message window.  This message will also'
+                                  ' automatically wrap due to length, but probably in a '
+                                  'different place.', font_name='Arial', font_size=18,
+                                  x=message_window.width//2, y=message_window.height//2,
+                                  anchor_x='center', anchor_y='center', multiline=True, width=500)
+
+@message_window.event()
 def on_draw():
-    window.clear()
+    message_window.clear()
+    message_label.draw()
+
+@main_window.event()
+def on_draw():
+    main_window.clear()
     label.draw()
 
 pyglet.app.run()
