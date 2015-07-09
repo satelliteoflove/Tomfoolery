@@ -1,0 +1,5 @@
+This is some text to scroll.  It is my hope, that the pyglet
+functionality built in to the ScrollableTextLayout thingy will
+not require the specific use of the newline character.  But, it
+probably will require that and much more.  Hard to say.  This
+however is a running paragraph that might as well be Latin.

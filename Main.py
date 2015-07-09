@@ -18,12 +18,19 @@ class Character(object):
 main_window = pyglet.window.Window(caption='Main Window')
 message_window = pyglet.window.Window(caption='Message Window')
 
-label = pyglet.text.Label('This is my first text.  I imagine it will wrap at least once,'
-                          ' as this is a large amount of text for just a single line.',
-                          font_name='Times New Roman',
-                          font_size=36, x=main_window.width//2, y=main_window.height//2,
-                          anchor_x='center', anchor_y='center',multiline=True, width=500)
+#label = pyglet.text.Label('This is my first text.  I imagine it will wrap at least once,'
+#                          ' as this is a large amount of text for just a single line.',
+#                          font_name='Times New Roman',
+#                          font_size=36, x=main_window.width//2, y=main_window.height//2,
+#                          anchor_x='center', anchor_y='center',multiline=True, width=500)
 
+scrolling_text = pyglet.text.layout.ScrollableTextLayout('This is some text to scroll.  It is my hope, '
+                                                         'that the pyglet functionality built in to the '
+                                                         'ScrollableTextLayout thingy will not require '
+                                                         'the specific use of the newline character.  But,'
+                                                         ' it probably will require that and much more.  '
+                                                         'Hard to say.  This however is a running paragraph that '
+                                                         'might as well be Latin.',500,500)
 message_label = pyglet.text.Label('This is for the message window.  This message will also'
                                   ' automatically wrap due to length, but probably in a '
                                   'different place.', font_name='Arial', font_size=18,
@@ -37,7 +44,9 @@ def on_draw():
 
 @main_window.event()
 def on_draw():
+
     main_window.clear()
-    label.draw()
+    #label.draw()
+    scrolling_text.draw()
 
 pyglet.app.run()
