@@ -3,7 +3,7 @@ __author__ = 'Chris'
 import random
 
 races = {
-    "elf" : {"strength":}
+    "elf" : {"strength":10}
 }
 
 class Character(object):
@@ -18,13 +18,18 @@ class Character(object):
         self.defense = 1
         self.inventory = []
 
-    def showStats(self):
+    def show_stats(self):
         print(self.name + " Statistics:")
         print("STR: " + str(self.strength))
         print("VIT: " + str(self.vitality))
         print("HP: " + str(self.hitPoints))
         print("ATK: " + str(self.attack))
         print("DEF: " + str(self.defense))
+
+    def show_inventory(self):
+        self.show_stats()
+        print("Inventory: " + str(self.inventory))
+        #list items, none if empty
 
 def showInstructions():
     '''print a (temporary) "main menu", and the available commands'''
@@ -33,21 +38,23 @@ def showInstructions():
     print("Commands:")
     print("'go [direction]'")
     print("'get [item]'")
+    print("'inventory'")
+    print("'status'")
 
 
-def showStatus(character):
+def view_surroundings(character):
     '''print the player's current status'''
     print("===================")
     print("You are in the " + rooms[currentRoom]["name"])
-    character.showStats()
-    print("Inventory: " + str(character.inventory))
-    #list items, none if empty
+    if "description" in rooms[currentRoom]:
+        print(rooms[currentRoom]["description"])
     if "item" in rooms[currentRoom]:
         print("In the room, you see a " + rooms[currentRoom]["item"])
 
 '''A dictionary representation of a single dungeon level'''
 rooms = {
     1: { "name":"Hall",
+         "description":"The hall is long, dark, and connects the Bedroom and Kitchen.",
          "east":2,
          "south":3},
     2: { "name":"Bedroom",
@@ -72,7 +79,7 @@ showInstructions()
 #loop
 while True:
 
-    showStatus(player)
+    view_surroundings(player)
 
     move = input(">").lower().split()
 
@@ -81,11 +88,16 @@ while True:
             currentRoom = rooms[currentRoom][move[1]]
         else:
             print("You can't go that way.")
-
-    if move[0] == "get":
+    elif move[0] == "get":
         if "item" in rooms[currentRoom] and move[1] in rooms[currentRoom]["item"]:
             player.inventory += [move[1]]
             print(move[1] + " taken.")
             del rooms[currentRoom]["item"]
         else:
             print("You can't take " + move[1] + ".")
+    elif move[0] == "inventory":
+        player.show_inventory()
+    elif move[0] == "status":
+        player.show_stats()
+    elif move[0] == "q" or move[0] == "quit":
+        break
