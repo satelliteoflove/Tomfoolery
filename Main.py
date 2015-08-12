@@ -62,6 +62,8 @@ rooms = {
          "south":4,
          "item":"sword"},
     3: { "name":"Kitchen",
+         "description":"The kitchen, which once must have been beautiful and modern, is now a dingy shadow of its "
+                       "former self.  Thick dust coats most surfaces, and motes of dust catch in your nose.",
          "north":1},
     4: { "name":"Bathroom",
          "north":2}
