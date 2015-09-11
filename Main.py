@@ -12,7 +12,7 @@ class Character(object):
         self.name = input("What is the player's name?\n")
         self.strength = 8
         self.vitality = 8
-        self.hitPoints = (self.vitality / 10) * random.randint(5,30)
+        self.hitPoints = int((self.vitality / 10) * random.randint(5,30))
         self.attack = 10
         self.bonusPoints = random.randint(5,25)
         self.defense = 1
@@ -27,7 +27,6 @@ class Character(object):
         print("DEF: " + str(self.defense))
 
     def show_inventory(self):
-        self.show_stats()
         print("Inventory: " + str(self.inventory))
         #list items, none if empty
 
@@ -49,9 +48,28 @@ def view_surroundings(character):
     if "description" in rooms[currentRoom]:
         print(rooms[currentRoom]["description"])
     if "item" in rooms[currentRoom]:
-        print("In the room, you see a " + rooms[currentRoom]["item"])
+        print("In the room, you see a " + rooms[currentRoom]["item"]["generic_name"])
 
-'''A dictionary representation of a single dungeon level'''
+#All possible items in the game.
+#generic_name:string value is what the item looks like to the player before it has been identified.
+#dmgtype can have the following values:"slicing","blunt","heat","cold","electric","all".  "All" could be any name
+#for a damage type that is not resistible.
+items = {
+    "short_sword":{ "description":"This is a short sword.",
+              "weapon":True,
+              "dmgtype":"slicing",
+              "damagemin":2,
+              "damagemax":6,
+              "generic_name":"sword"},
+    "heal_scroll":{ "description":"When read aloud, this scroll should heal the reader.",
+                    "dmgtype":"all",
+                    "damagemin":-1,
+                    "damagemax":-6,
+                    "generic_name":"scroll"}
+        }
+
+
+#A single "dungeon" level
 rooms = {
     1: { "name":"Hall",
          "description":"The hall is long, dark, and connects the Bedroom and Kitchen.",
@@ -60,7 +78,7 @@ rooms = {
     2: { "name":"Bedroom",
          "west":1,
          "south":4,
-         "item":"sword"},
+         "item":items["short_sword"]},
     3: { "name":"Kitchen",
          "description":"The kitchen, which once must have been beautiful and modern, is now a dingy shadow of its "
                        "former self.  Thick dust coats most surfaces, and motes of dust catch in your nose.",
@@ -68,6 +86,7 @@ rooms = {
     4: { "name":"Bathroom",
          "north":2}
          }
+
 
 #create character
 player = Character()
@@ -91,12 +110,15 @@ while True:
         else:
             print("You can't go that way.")
     elif move[0] == "get":
-        if "item" in rooms[currentRoom] and move[1] in rooms[currentRoom]["item"]:
-            player.inventory += [move[1]]
+        if "item" in rooms[currentRoom] and move[1] in rooms[currentRoom]["item"]["generic_name"]:
+            player.inventory += rooms[currentRoom]["item"]
             print(move[1] + " taken.")
             del rooms[currentRoom]["item"]
         else:
             print("You can't take " + move[1] + ".")
+    elif move[0] == "drop":
+        if move[1] in player.inventory:
+            print("You drop the " + move[1])
     elif move[0] == "inventory":
         player.show_inventory()
     elif move[0] == "status":
