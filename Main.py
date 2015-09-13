@@ -1,6 +1,6 @@
 __author__ = 'Chris'
 
-import random
+import random,items
 
 races = {
     "elf" : {"strength":10}
@@ -109,9 +109,10 @@ while True:
             currentRoom = rooms[currentRoom][move[1]]
         else:
             print("You can't go that way.")
+    #TODO: "get" functionality currently appends the tuple as a list of independent values, instead of a single tuple.
     elif move[0] == "get":
         if "item" in rooms[currentRoom] and move[1] in rooms[currentRoom]["item"]["generic_name"]:
-            player.inventory += rooms[currentRoom]["item"]
+            player.inventory.append((rooms[currentRoom]["item"]))
             print(move[1] + " taken.")
             del rooms[currentRoom]["item"]
         else:
