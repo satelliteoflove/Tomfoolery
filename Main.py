@@ -1,10 +1,30 @@
 __author__ = 'Chris'
 
-import random,items
+import random
 
 races = {
     "elf" : {"strength":10}
 }
+
+class Item:
+    def __init__(self):
+        self.weight = 1
+        self.description = ""
+        self.general_name = ""
+        self.name = ""
+
+class Weapon(Item):
+    def __init__(self):
+        self.isweapon = True
+
+class Sword(Weapon):
+    def __init__(self):
+        self.min_dmg = 1
+        self.max_dmg = 5
+        self.description = "It is a sword."
+        self.long_description = "This is a simple sword made of steel."
+        self.name = "sword"
+
 
 class Character(object):
     'Common base class for all PCs and NPCs.'
@@ -48,25 +68,9 @@ def view_surroundings(character):
     if "description" in rooms[currentRoom]:
         print(rooms[currentRoom]["description"])
     if "item" in rooms[currentRoom]:
-        print("In the room, you see a " + rooms[currentRoom]["item"]["generic_name"])
+        print("In the room, you see a " + rooms[currentRoom]["items"].name)
 
-#All possible items in the game.
-#generic_name:string value is what the item looks like to the player before it has been identified.
-#dmgtype can have the following values:"slicing","blunt","heat","cold","electric","all".  "All" could be any name
-#for a damage type that is not resistible.
-items = {
-    "short_sword":{ "description":"This is a short sword.",
-              "weapon":True,
-              "dmgtype":"slicing",
-              "damagemin":2,
-              "damagemax":6,
-              "generic_name":"sword"},
-    "heal_scroll":{ "description":"When read aloud, this scroll should heal the reader.",
-                    "dmgtype":"all",
-                    "damagemin":-1,
-                    "damagemax":-6,
-                    "generic_name":"scroll"}
-        }
+sword1 = Sword()
 
 
 #A single "dungeon" level
@@ -78,7 +82,7 @@ rooms = {
     2: { "name":"Bedroom",
          "west":1,
          "south":4,
-         "item":items["short_sword"]},
+         "items":[sword1]},
     3: { "name":"Kitchen",
          "description":"The kitchen, which once must have been beautiful and modern, is now a dingy shadow of its "
                        "former self.  Thick dust coats most surfaces, and motes of dust catch in your nose.",
@@ -111,10 +115,10 @@ while True:
             print("You can't go that way.")
     #TODO: "get" functionality currently appends the tuple as a list of independent values, instead of a single tuple.
     elif move[0] == "get":
-        if "item" in rooms[currentRoom] and move[1] in rooms[currentRoom]["item"]["generic_name"]:
-            player.inventory.append((rooms[currentRoom]["item"]))
-            print(move[1] + " taken.")
-            del rooms[currentRoom]["item"]
+        if "item" in rooms[currentRoom] and move[1] in rooms[currentRoom]["items"]:
+            player.inventory += rooms[currentRoom]["items"]
+            print(rooms[currentRoom]["items"].name + " taken.")
+            del rooms[currentRoom]["items"]
         else:
             print("You can't take " + move[1] + ".")
     elif move[0] == "drop":
