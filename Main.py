@@ -67,8 +67,9 @@ def view_surroundings(character):
     print("You are in the " + rooms[currentRoom]["name"])
     if "description" in rooms[currentRoom]:
         print(rooms[currentRoom]["description"])
-    if "item" in rooms[currentRoom]:
-        print("In the room, you see a " + rooms[currentRoom]["items"].name)
+    if "items" in rooms[currentRoom]:
+        for thing in rooms[currentRoom]["items"]:
+            print("In the room, you see a " + thing.name + ".")
 
 sword1 = Sword()
 
@@ -104,29 +105,36 @@ showInstructions()
 #loop
 while True:
 
-    view_surroundings(player)
-
     move = input(">").lower().split()
 
-    if move[0] == "go":
-        if move[1] in rooms[currentRoom]:
-            currentRoom = rooms[currentRoom][move[1]]
+    if len(move) == 0:
+        print("...")
+    if len(move) > 0:
+        if move[0] == "go":
+            if move[1] in rooms[currentRoom]:
+                currentRoom = rooms[currentRoom][move[1]]
+                view_surroundings(player)
+            else:
+                print("You can't go that way.")
+        #TODO: Get "get" functionality working!
+        elif move[0] == "get":
+            print(rooms[currentRoom]["items"][0].name)
+            if "items" in rooms[currentRoom] and move[1] in rooms[currentRoom]["items"]:
+                player.inventory += rooms[currentRoom]["items"]
+                print(move[1] + " taken.")
+                del rooms[currentRoom]["items"]
+            else:
+                print("You can't take " + move[1] + ".")
+        elif move[0] == "drop":
+            if move[1] in player.inventory:
+                print("You drop the " + move[1])
+        elif move[0] == "inventory":
+            player.show_inventory()
+        elif move[0] == "look":
+            view_surroundings(player)
+        elif move[0] == "status":
+            player.show_stats()
+        elif move[0] == "q" or move[0] == "quit":
+            break
         else:
-            print("You can't go that way.")
-    #TODO: "get" functionality currently appends the tuple as a list of independent values, instead of a single tuple.
-    elif move[0] == "get":
-        if "item" in rooms[currentRoom] and move[1] in rooms[currentRoom]["items"]:
-            player.inventory += rooms[currentRoom]["items"]
-            print(rooms[currentRoom]["items"].name + " taken.")
-            del rooms[currentRoom]["items"]
-        else:
-            print("You can't take " + move[1] + ".")
-    elif move[0] == "drop":
-        if move[1] in player.inventory:
-            print("You drop the " + move[1])
-    elif move[0] == "inventory":
-        player.show_inventory()
-    elif move[0] == "status":
-        player.show_stats()
-    elif move[0] == "q" or move[0] == "quit":
-        break
+            print("I have no idea what you're trying to do.")
