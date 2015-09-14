@@ -2,20 +2,18 @@ __author__ = 'Chris'
 
 import random
 
-races = {
-    "elf" : {"strength":10}
-}
-
-class Item:
+class Item(object):
     def __init__(self):
         self.weight = 1
         self.description = ""
         self.general_name = ""
-        self.name = ""
+        self.description = "It's an item"
+        self.name = "item"
 
 class Weapon(Item):
     def __init__(self):
         self.isweapon = True
+        self.name = "item"
 
 class Sword(Weapon):
     def __init__(self):
@@ -33,11 +31,11 @@ class Character(object):
         self.strength = 8
         self.vitality = 8
         self.hitPoints = int((self.vitality / 10) * random.randint(5,30))
-        self.attack = 10
+        self.attack = 3
         self.bonusPoints = random.randint(5,25)
         self.defense = 1
         self.inventory = []
-
+        #TODO: Equipment system
     def show_stats(self):
         print(self.name + " Statistics:")
         print("STR: " + str(self.strength))
@@ -45,10 +43,12 @@ class Character(object):
         print("HP: " + str(self.hitPoints))
         print("ATK: " + str(self.attack))
         print("DEF: " + str(self.defense))
-
     def show_inventory(self):
         print("Inventory: " + str(self.inventory))
         #list items, none if empty
+    def take_damage(self,damage):
+        self.hitPoints -= damage
+        print(self.name + " took " + str(damage) + " damage.")
 
 def showInstructions():
     '''print a (temporary) "main menu", and the available commands'''
@@ -71,8 +71,9 @@ def view_surroundings(character):
         for thing in rooms[currentRoom]["items"]:
             print("In the room, you see a " + thing.name + ".")
 
+#Item initialization
 sword1 = Sword()
-
+item1 = Item()
 
 #A single "dungeon" level
 rooms = {
@@ -83,7 +84,7 @@ rooms = {
     2: { "name":"Bedroom",
          "west":1,
          "south":4,
-         "items":[sword1]},
+         "items":[sword1,item1]},
     3: { "name":"Kitchen",
          "description":"The kitchen, which once must have been beautiful and modern, is now a dingy shadow of its "
                        "former self.  Thick dust coats most surfaces, and motes of dust catch in your nose.",
@@ -93,8 +94,11 @@ rooms = {
          }
 
 
-#create character
+#create characters, list of characters
 player = Character()
+enemy = Character()
+
+character_list = [player,enemy]
 
 #start the player off in a room
 currentRoom = 1
@@ -116,18 +120,24 @@ while True:
                 view_surroundings(player)
             else:
                 print("You can't go that way.")
-        #TODO: Get "get" functionality working!
         elif move[0] == "get":
-            print(rooms[currentRoom]["items"][0].name)
-            if "items" in rooms[currentRoom] and move[1] in rooms[currentRoom]["items"]:
-                player.inventory += rooms[currentRoom]["items"]
-                print(move[1] + " taken.")
-                del rooms[currentRoom]["items"]
+            #print(rooms[currentRoom]["items"][0].name)
+            temp_item_list = []
+            for item in rooms[currentRoom]["items"]:
+                temp_item_list.append(item.name)
+            if "items" in rooms[currentRoom] and move[1] in temp_item_list:
+                for item in rooms[currentRoom]["items"]:
+                    if move[1] == item.name:
+                        player.inventory.append(item)
+                        print(move[1] + " taken.")
+                        rooms[currentRoom]["items"].remove(item)
             else:
                 print("You can't take " + move[1] + ".")
         elif move[0] == "drop":
             if move[1] in player.inventory:
                 print("You drop the " + move[1])
+        elif move[0] == "attack":
+            player.take_damage(enemy.)
         elif move[0] == "inventory":
             player.show_inventory()
         elif move[0] == "look":
