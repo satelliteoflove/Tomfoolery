@@ -1,6 +1,6 @@
 __author__ = 'Chris'
 
-import random
+import random,gui
 
 class Item(object):
     def __init__(self):
@@ -25,7 +25,7 @@ class Sword(Weapon):
 
 
 class Character(object):
-    'Common base class for all PCs and NPCs.'
+    """Common base class for all PCs and NPCs."""
     def __init__(self):
         self.name = input("What is the player's name?\n")
         self.strength = 8
@@ -35,6 +35,7 @@ class Character(object):
         self.bonusPoints = random.randint(5,25)
         self.defense = 1
         self.inventory = []
+        self.currentRoom = 1
         #TODO: Equipment system
     def show_stats(self):
         print(self.name + " Statistics:")
@@ -44,36 +45,47 @@ class Character(object):
         print("ATK: " + str(self.attack))
         print("DEF: " + str(self.defense))
     def show_inventory(self):
-        print("Inventory: " + str(self.inventory))
+        for item in self.inventory:
+            print(item.name)
         #list items, none if empty
-    def take_damage(self,damage):
-        self.hitPoints -= damage
-        print(self.name + " took " + str(damage) + " damage.")
+    def place_random(self):
+        #start the player off in a room
+        self.currentRoom = random.randint(1,len(rooms))
+    def place_room(self, room:int):
+        if room > 0 and room <= len(rooms):
+            self.currentRoom = room
+    def view_surroundings(self):
+        """print the player's current status"""
+        currentRoom = self.currentRoom
+        print("===================")
+        print("You are in the " + rooms[currentRoom]["name"])
+        if "description" in rooms[currentRoom]:
+            print(rooms[currentRoom]["description"])
+        if "items" in rooms[currentRoom]:
+            for thing in rooms[currentRoom]["items"]:
+                print("In the room, you see a " + thing.name + ".")
+
 
 def showInstructions():
-    '''print a (temporary) "main menu", and the available commands'''
+    """print a (temporary) "main menu", and the available commands"""
     print("WizardryClone")
     print("=============")
     print("Commands:")
     print("'go [direction]'")
     print("'get [item]'")
+    print("'drop [item]'")
     print("'inventory'")
     print("'status'")
+    print("'look'")
+    print("'attack'")
 
-
-def view_surroundings(character):
-    '''print the player's current status'''
-    print("===================")
-    print("You are in the " + rooms[currentRoom]["name"])
-    if "description" in rooms[currentRoom]:
-        print(rooms[currentRoom]["description"])
-    if "items" in rooms[currentRoom]:
-        for thing in rooms[currentRoom]["items"]:
-            print("In the room, you see a " + thing.name + ".")
+def party_add_character(character_type,n):
+    """Creates a list of Character objects"""
 
 #Item initialization
 sword1 = Sword()
 item1 = Item()
+
 
 #A single "dungeon" level
 rooms = {
@@ -98,20 +110,16 @@ rooms = {
 player = Character()
 enemy = Character()
 
-character_list = [player,enemy]
 
-#start the player off in a room
-currentRoom = 1
 
 #display "main menu"
 showInstructions()
 
 #loop
 while True:
-
     move = input(">").lower().split()
 
-    if len(move) == 0:
+    '''    if len(move) == 0:
         print("...")
     if len(move) > 0:
         if move[0] == "go":
@@ -121,7 +129,6 @@ while True:
             else:
                 print("You can't go that way.")
         elif move[0] == "get":
-            #print(rooms[currentRoom]["items"][0].name)
             temp_item_list = []
             for item in rooms[currentRoom]["items"]:
                 temp_item_list.append(item.name)
@@ -134,10 +141,9 @@ while True:
             else:
                 print("You can't take " + move[1] + ".")
         elif move[0] == "drop":
-            if move[1] in player.inventory:
-                print("You drop the " + move[1])
+            print("Not yet implemented.")
         elif move[0] == "attack":
-            player.take_damage(enemy.)
+            print("Not yet implemented.")
         elif move[0] == "inventory":
             player.show_inventory()
         elif move[0] == "look":
@@ -148,3 +154,7 @@ while True:
             break
         else:
             print("I have no idea what you're trying to do.")
+    '''
+
+    if move[0] == "q" or move[0] == "quit":
+        break
