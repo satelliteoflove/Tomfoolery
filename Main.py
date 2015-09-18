@@ -2,6 +2,9 @@ __author__ = 'Chris'
 
 import random,gui
 
+#Globals
+world_characters = []
+
 class Item(object):
     def __init__(self):
         self.weight = 1
@@ -36,7 +39,13 @@ class Character(object):
         self.defense = 1
         self.inventory = []
         self.currentRoom = 1
+        self.add_to_room()
+        world_characters.append(self)
         #TODO: Equipment system
+    def add_to_room(self):
+        for chamber in rooms:
+            if chamber == self.currentRoom:
+                rooms[self.currentRoom]["characters"].append(self)
     def show_stats(self):
         print(self.name + " Statistics:")
         print("STR: " + str(self.strength))
@@ -55,7 +64,7 @@ class Character(object):
         if room > 0 and room <= len(rooms):
             self.currentRoom = room
     def view_surroundings(self):
-        """print the player's current status"""
+        """print what the player can see"""
         currentRoom = self.currentRoom
         print("===================")
         print("You are in the " + rooms[currentRoom]["name"])
@@ -64,6 +73,39 @@ class Character(object):
         if "items" in rooms[currentRoom]:
             for thing in rooms[currentRoom]["items"]:
                 print("In the room, you see a " + thing.name + ".")
+        for room_character in rooms[self.currentRoom]["characters"]:
+            current_room_character_list = []
+            current_room_character_list.append()
+    def go(self,newroom):
+        if move[1] in rooms[self.currentRoom]:
+            self.currentRoom = rooms[self.currentRoom][move[1]]
+            self.view_surroundings()
+        else:
+            print("You can't go that way.")
+    def get(self,item_to_get):
+        temp_item_list = []
+        for item in rooms[self.currentRoom]["items"]:
+            temp_item_list.append(item.name)
+        if "items" in rooms[self.currentRoom] and item_to_get in temp_item_list:
+            for item in rooms[self.currentRoom]["items"]:
+                if item_to_get == item.name:
+                    self.inventory.append(item)
+                    print(item.name + " taken.")
+                    rooms[self.currentRoom]["items"].remove(item)
+        else:
+            print("You can't take " + item_to_get + ".")
+    def drop(self,item_to_drop):
+        temp_item_list = []
+        for item in self.inventory:
+            temp_item_list.append(item.name)
+        if item_to_drop in temp_item_list:
+            for item in self.inventory:
+                if item_to_drop == item.name:
+                    rooms[self.currentRoom]["items"].append(item)
+                    print(item.name + " dropped.")
+                    self.inventory.remove(item)
+        else:
+            print("Drop what, again?")
 
 
 def showInstructions():
@@ -92,17 +134,24 @@ rooms = {
     1: { "name":"Hall",
          "description":"The hall is long, dark, and connects the Bedroom and Kitchen.",
          "east":2,
-         "south":3},
+         "south":3,
+         "items":[],
+         "characters":[]},
     2: { "name":"Bedroom",
          "west":1,
          "south":4,
-         "items":[sword1,item1]},
+         "items":[sword1,item1],
+         "characters":[]},
     3: { "name":"Kitchen",
          "description":"The kitchen, which once must have been beautiful and modern, is now a dingy shadow of its "
                        "former self.  Thick dust coats most surfaces, and motes of dust catch in your nose.",
-         "north":1},
+         "north":1,
+         "items":[],
+         "characters":[]},
     4: { "name":"Bathroom",
-         "north":2}
+         "north":2,
+         "items":[],
+         "characters":[]}
          }
 
 
@@ -117,35 +166,26 @@ showInstructions()
 
 #loop
 while True:
+
     move = input(">").lower().split()
 
-    '''    if len(move) == 0:
-        print("...")
-    if len(move) > 0:
-        if move[0] == "go":
-            if move[1] in rooms[currentRoom]:
-                currentRoom = rooms[currentRoom][move[1]]
-                view_surroundings(player)
-            else:
-                print("You can't go that way.")
-        elif move[0] == "get":
-            temp_item_list = []
-            for item in rooms[currentRoom]["items"]:
-                temp_item_list.append(item.name)
-            if "items" in rooms[currentRoom] and move[1] in temp_item_list:
-                for item in rooms[currentRoom]["items"]:
-                    if move[1] == item.name:
-                        player.inventory.append(item)
-                        print(move[1] + " taken.")
-                        rooms[currentRoom]["items"].remove(item)
-            else:
-                print("You can't take " + move[1] + ".")
-        elif move[0] == "drop":
-            print("Not yet implemented.")
+    if move[0] == "go":
+        player.go(move[1])
+    elif move[0] == "get":
+        player.get(move[1])
+    elif move[0] == "inventory":
+        player.show_inventory()
+    elif move[0] == "drop":
+        player.drop(move[1])
+    elif move[0] == "look":
+        player.view_surroundings()
+    elif move[0] == "list":
+        for character in world_characters:
+            print(character.name)
+
+    '''
         elif move[0] == "attack":
             print("Not yet implemented.")
-        elif move[0] == "inventory":
-            player.show_inventory()
         elif move[0] == "look":
             view_surroundings(player)
         elif move[0] == "status":
