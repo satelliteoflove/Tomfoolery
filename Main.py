@@ -92,6 +92,7 @@ class Character(object):
     def view_surroundings(self):
         """print what the player can see"""
         currentRoom = self.currentRoom
+        current_room_character_list = []
         print("===================")
         print("You are in the " + rooms[currentRoom]["name"])
         if "description" in rooms[currentRoom]:
@@ -100,11 +101,15 @@ class Character(object):
             for thing in rooms[currentRoom]["items"]:
                 print("In the room, you see a " + thing.name + ".")
         for room_character in rooms[self.currentRoom]["characters"]:
-            current_room_character_list = []
-            current_room_character_list.append()
+            current_room_character_list.append(room_character)
+        print("Nearby, you see " + str(len(current_room_character_list)) + " characters:")
+        for dude in current_room_character_list:
+            print(dude.name)
     def go(self,newroom):
         if move[1] in rooms[self.currentRoom]:
+            rooms[self.currentRoom]["characters"].remove(self)
             self.currentRoom = rooms[self.currentRoom][move[1]]
+            rooms[self.currentRoom]["characters"].append(self)
             self.view_surroundings()
         else:
             print("You can't go that way.")
