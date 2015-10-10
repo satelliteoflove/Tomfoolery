@@ -1,6 +1,6 @@
 __author__ = 'Chris'
 
-import random,gui
+import random
 
 #Globals
 world_characters = []
@@ -27,6 +27,29 @@ class Sword(Weapon):
         self.name = "sword"
 
 
+class Room(object):
+    def __init__(self):
+        self.exits = ["east", "west", "south", "north"]
+        self.name = "Room"
+        self.description = "A basic room."
+        self.long_description = "This base type room has no special description."
+        self.characters = []
+        self.items = []
+
+
+class T_Room(Room):
+    '''"T"-shaped room. Default has exits to the east, west, and south.'''
+
+    def __init__(self):
+        self.exits = ["east", "west", "south"]
+
+    def __init__(self, isReversed):
+        self.isReversed = isReversed
+        if isReversed == True:
+            self.exits = ["east", "west", "north"]
+
+
+
 class Character(object):
     """Common base class for all PCs and NPCs."""
     def __init__(self):
@@ -41,7 +64,7 @@ class Character(object):
         self.currentRoom = 1
         self.add_to_room()
         world_characters.append(self)
-        #TODO: Equipment system
+        self.equipment = []
     def add_to_room(self):
         for chamber in rooms:
             if chamber == self.currentRoom:
@@ -54,8 +77,11 @@ class Character(object):
         print("ATK: " + str(self.attack))
         print("DEF: " + str(self.defense))
     def show_inventory(self):
-        for item in self.inventory:
-            print(item.name)
+        if len(self.inventory) > 0:
+            for item in self.inventory:
+                print(item.name)
+        else:
+            print("You aren't carrying anything.")
         #list items, none if empty
     def place_random(self):
         #start the player off in a room
@@ -138,22 +164,25 @@ rooms = {
          "items":[],
          "characters":[]},
     2: { "name":"Bedroom",
+         "description": "The bedroom is a simple affair, with a chair in one corner and a bed in the middle of the "
+                        "east wall.",
          "west":1,
          "south":4,
          "items":[sword1,item1],
          "characters":[]},
     3: { "name":"Kitchen",
          "description":"The kitchen, which once must have been beautiful and modern, is now a dingy shadow of its "
-                       "former self.  Thick dust coats most surfaces, and motes of dust catch in your nose.",
+                       "former self.  Thick dust covers everything.",
          "north":1,
          "items":[],
          "characters":[]},
     4: { "name":"Bathroom",
+         "description": "This bathroom has seen better days.  The mirror on the vanity is cracked, the bathtub is "
+                        "irreversibly stained, and the tile is worn and filthy.",
          "north":2,
          "items":[],
          "characters":[]}
          }
-
 
 #create characters, list of characters
 player = Character()
@@ -163,6 +192,9 @@ enemy = Character()
 
 #display "main menu"
 showInstructions()
+
+# list of words understood by the game paired with their respective methods.
+words = ["go", "get", ""]
 
 #loop
 while True:
@@ -182,7 +214,10 @@ while True:
     elif move[0] == "list":
         for character in world_characters:
             print(character.name)
-
+    elif move[0] == "placeme":
+        player.place_random()
+    elif move[0] == "place" and move[1] in rooms:
+        player.place_room(move[1])
     '''
         elif move[0] == "attack":
             print("Not yet implemented.")
