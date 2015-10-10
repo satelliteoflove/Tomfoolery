@@ -160,6 +160,12 @@ sword1 = Sword()
 item1 = Item()
 
 
+def Generate_Rooms(object):
+    # Creates a randomly arranged grid of a pre-defined rooms.
+    Level = [[0 for x in range(5)] for x in range(5)]
+    for room in Level:
+        Level[]
+
 #A single "dungeon" level
 rooms = {
     1: { "name":"Hall",
