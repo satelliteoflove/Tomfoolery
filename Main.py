@@ -1,9 +1,19 @@
 __author__ = 'Chris'
 
 import random
+import math
+
+import numpy
 
 #Globals
 world_characters = []
+MAP_WIDTH = 50
+MAP_HEIGHT = 50
+
+min_room_width = 1
+min_room_height = 1
+max_room_width = 3
+max_room_height = 3
 
 class Item(object):
     def __init__(self):
@@ -27,15 +37,27 @@ class Sword(Weapon):
         self.name = "sword"
 
 
+numpy.rec
+
 class Room(object):
-    def __init__(self):
+    def __init__(self, x1, y1, width, height):
         self.exits = ["east", "west", "south", "north"]
         self.name = "Room"
         self.description = "A basic room."
         self.long_description = "This base type room has no special description."
         self.characters = []
         self.items = []
+        self.width = width
+        self.height = height
+        self.x1 = x1
+        self.x2 = x1 + self.width
+        self.y1 = y1
+        self.y2 = y1 + self.height
+        self.center = (round((math.floor(self.x1 + self.x2) / 2)), round((math.floor(self.y1 + self.y2) / 2)))
 
+    def intersects(self, room):
+        return (self.x1 <= room.x2 and self.x2 >= room.x1 and
+                self.y1 <= room.y2 and self.y2 >= room.y1)
 
 class T_Room(Room):
     '''"T"-shaped room. Default has exits to the east, west, and south.'''
@@ -160,11 +182,26 @@ sword1 = Sword()
 item1 = Item()
 
 
-def Generate_Rooms(object):
-    # Creates a randomly arranged grid of a pre-defined rooms.
-    Level = [[0 for x in range(5)] for x in range(5)]
-    for room in Level:
-        Level[]
+def Zero_Tiles():
+    # Creates a zeroed/impassible grid of tiles.
+    zeroed_tiles = [[0 for x in range(5)] for y in range(5)]
+    return zeroed_tiles
+
+
+print(Zero_Tiles())
+
+room1 = Room(1, 1, 2, 5)
+
+print(room1.center)
+
+
+def place_rooms():
+    rooms = [[Room(random.randint(1, MAP_WIDTH - 1), random.randint(1, MAP_HEIGHT - 1),
+                   random.randint(min_room_width, max_room_width),
+                   random.randint(min_room_height, max_room_height))
+              for x in range(MAP_WIDTH)] for y in range(MAP_HEIGHT)]
+
+
 
 #A single "dungeon" level
 rooms = {
@@ -197,9 +234,6 @@ rooms = {
 
 #create characters, list of characters
 player = Character()
-enemy = Character()
-
-
 
 #display "main menu"
 showInstructions()
