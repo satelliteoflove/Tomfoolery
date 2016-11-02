@@ -2,8 +2,10 @@ __author__ = 'Chris'
 
 import random
 import math
-
 import numpy
+import curses
+
+
 
 #Globals
 world_characters = []
@@ -14,6 +16,7 @@ min_room_width = 1
 min_room_height = 1
 max_room_width = 3
 max_room_height = 3
+
 
 class Item(object):
     def __init__(self):
@@ -35,9 +38,6 @@ class Sword(Weapon):
         self.description = "It is a sword."
         self.long_description = "This is a simple sword made of steel."
         self.name = "sword"
-
-
-numpy.rec
 
 class Room(object):
     def __init__(self, x1, y1, width, height):
