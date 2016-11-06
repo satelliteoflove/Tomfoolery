@@ -9,35 +9,14 @@ import curses
 
 #Globals
 world_characters = []
-MAP_WIDTH = 50
-MAP_HEIGHT = 50
+MAP_WIDTH = 0
+MAP_HEIGHT = 0
 
 min_room_width = 1
 min_room_height = 1
 max_room_width = 3
 max_room_height = 3
 
-
-class Item(object):
-    def __init__(self):
-        self.weight = 1
-        self.description = ""
-        self.general_name = ""
-        self.description = "It's an item"
-        self.name = "item"
-
-class Weapon(Item):
-    def __init__(self):
-        self.isweapon = True
-        self.name = "item"
-
-class Sword(Weapon):
-    def __init__(self):
-        self.min_dmg = 1
-        self.max_dmg = 5
-        self.description = "It is a sword."
-        self.long_description = "This is a simple sword made of steel."
-        self.name = "sword"
 
 class Room(object):
     def __init__(self, x1, y1, width, height):
@@ -59,18 +38,28 @@ class Room(object):
         return (self.x1 <= room.x2 and self.x2 >= room.x1 and
                 self.y1 <= room.y2 and self.y2 >= room.y1)
 
-class T_Room(Room):
-    '''"T"-shaped room. Default has exits to the east, west, and south.'''
-
+class Item(object):
     def __init__(self):
-        self.exits = ["east", "west", "south"]
+        self.weight = 1
+        self.description = ""
+        self.general_name = ""
+        self.description = "It's an item"
+        self.name = "item"
 
-    def __init__(self, isReversed):
-        self.isReversed = isReversed
-        if isReversed == True:
-            self.exits = ["east", "west", "north"]
+class Weapon(Item):
+    def __init__(self):
+        self.isweapon = True
+        self.name = "weapon"
+        self.min_dmg = 0
+        self.max_dmg = 0
 
-
+class Sword(Weapon):
+    def __init__(self):
+        self.min_dmg = 1
+        self.max_dmg = 5
+        self.description = "It is a sword."
+        self.long_description = "This is a simple sword made of steel."
+        self.name = "sword"
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
