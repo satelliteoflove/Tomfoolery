@@ -3,7 +3,7 @@ __author__ = 'Chris'
 import random
 import math
 import numpy
-import curses
+# import curses
 
 
 
@@ -12,32 +12,6 @@ world_characters = []
 MAP_WIDTH = 0
 MAP_HEIGHT = 0
 
-min_room_width = 1
-min_room_height = 1
-max_room_width = 3
-max_room_height = 3
-
-
-class Room(object):
-    def __init__(self, x1, y1, width, height):
-        self.exits = ["east", "west", "south", "north"]
-        self.name = "Room"
-        self.description = "A basic room."
-        self.long_description = "This base type room has no special description."
-        self.characters = []
-        self.items = []
-        self.width = width
-        self.height = height
-        self.x1 = x1
-        self.x2 = x1 + self.width
-        self.y1 = y1
-        self.y2 = y1 + self.height
-        self.center = (round((math.floor(self.x1 + self.x2) / 2)), round((math.floor(self.y1 + self.y2) / 2)))
-
-    def intersects(self, room):
-        return (self.x1 <= room.x2 and self.x2 >= room.x1 and
-                self.y1 <= room.y2 and self.y2 >= room.y1)
-
 class Item(object):
     def __init__(self):
         self.weight = 1
@@ -45,6 +19,8 @@ class Item(object):
         self.general_name = ""
         self.description = "It's an item"
         self.name = "item"
+        self.is_equipped = False
+        self.can_be_equipped = False
 
 class Weapon(Item):
     def __init__(self):
@@ -52,6 +28,7 @@ class Weapon(Item):
         self.name = "weapon"
         self.min_dmg = 0
         self.max_dmg = 0
+        self.can_be_equipped = True
 
 class Sword(Weapon):
     def __init__(self):
@@ -68,11 +45,11 @@ class Character(object):
         self.strength = 8
         self.vitality = 8
         self.hitPoints = int((self.vitality / 10) * random.randint(5,30))
-        self.attack = 3
+        self.attack = 0
         self.bonusPoints = random.randint(5,25)
         self.defense = 1
         self.inventory = []
-        self.currentRoom = 1
+        self.currentRoom = (0,0)
         self.add_to_room()
         world_characters.append(self)
         self.equipment = []
@@ -81,7 +58,8 @@ class Character(object):
             if chamber == self.currentRoom:
                 rooms[self.currentRoom]["characters"].append(self)
     def show_stats(self):
-        print(self.name + " Statistics:")
+        """Displays current character stats."""
+        print("Statistics for " + self.name)
         print("STR: " + str(self.strength))
         print("VIT: " + str(self.vitality))
         print("HP: " + str(self.hitPoints))
@@ -90,7 +68,10 @@ class Character(object):
     def show_inventory(self):
         if len(self.inventory) > 0:
             for item in self.inventory:
-                print(item.name)
+                if item.is_equipped == True:
+                    print("#" + item.name)
+                else:
+                    print(item.name)
         else:
             print("You aren't carrying anything.")
         #list items, none if empty
@@ -114,8 +95,17 @@ class Character(object):
         for room_character in rooms[self.currentRoom]["characters"]:
             current_room_character_list.append(room_character)
         print("Nearby, you see " + str(len(current_room_character_list)) + " characters:")
-        for dude in current_room_character_list:
-            print(dude.name)
+        for character in current_room_character_list:
+            print(character.name)
+        print("Exits:")
+        if "north" in rooms[currentRoom]:
+            print("North")
+        if "south" in rooms[currentRoom]:
+            print("South")
+        if "east" in rooms[currentRoom]:
+            print("East")
+        if "west" in rooms[currentRoom]:
+            print("West")
     def go(self,newroom):
         if move[1] in rooms[self.currentRoom]:
             rooms[self.currentRoom]["characters"].remove(self)
@@ -148,6 +138,15 @@ class Character(object):
                     self.inventory.remove(item)
         else:
             print("Drop what, again?")
+    def equip(self,item_to_equip):
+        temp_item_list = []
+        for item in self.inventory:
+            temp_item_list.append(item.name)
+        if item_to_equip in temp_item_list:
+            for item in self.inventory:
+                if item_to_equip == item.name and item.can_be_equipped is True:
+                    item.is_equipped = True
+
 
 
 def showInstructions():
@@ -166,60 +165,44 @@ def showInstructions():
 def party_add_character(character_type,n):
     """Creates a list of Character objects"""
 
-#Item initialization
+#Item initialization - item names are case sensitive for now
 sword1 = Sword()
 item1 = Item()
-
-
-def Zero_Tiles():
-    # Creates a zeroed/impassible grid of tiles.
-    zeroed_tiles = [[0 for x in range(5)] for y in range(5)]
-    return zeroed_tiles
-
-
-print(Zero_Tiles())
-
-room1 = Room(1, 1, 2, 5)
-
-print(room1.center)
-
-
-def place_rooms():
-    rooms = [[Room(random.randint(1, MAP_WIDTH - 1), random.randint(1, MAP_HEIGHT - 1),
-                   random.randint(min_room_width, max_room_width),
-                   random.randint(min_room_height, max_room_height))
-              for x in range(MAP_WIDTH)] for y in range(MAP_HEIGHT)]
 
 
 
 #A single "dungeon" level
 rooms = {
-    1: { "name":"Hall",
-         "description":"The hall is long, dark, and connects the Bedroom and Kitchen.",
-         "east":2,
-         "south":3,
+    (0,0): { "name":"0,0",
+         "description":"0,0",
+         "east":(1,0),
+         "north":(0,1),
          "items":[],
          "characters":[]},
-    2: { "name":"Bedroom",
-         "description": "The bedroom is a simple affair, with a chair in one corner and a bed in the middle of the "
-                        "east wall.",
-         "west":1,
-         "south":4,
+    (0,1): { "name":"0,1",
+         "description": "0,1",
+         "south":(0,0),
+         "east":(1,1),
          "items":[sword1,item1],
          "characters":[]},
-    3: { "name":"Kitchen",
-         "description":"The kitchen, which once must have been beautiful and modern, is now a dingy shadow of its "
-                       "former self.  Thick dust covers everything.",
-         "north":1,
+    (1,0): { "name":"1,0",
+         "description":"1,0",
+         "north":(1,1),
+         "west":(0,0),
          "items":[],
          "characters":[]},
-    4: { "name":"Bathroom",
-         "description": "This bathroom has seen better days.  The mirror on the vanity is cracked, the bathtub is "
-                        "irreversibly stained, and the tile is worn and filthy.",
-         "north":2,
+    (1,1): { "name":"1,1",
+         "description":"1,1",
+         "south":(1,0),
+         "west":(0,1),
          "items":[],
          "characters":[]}
          }
+
+#A list of weapons
+weapons = {
+    "sword01":{"name":"Short Sword"}
+}
 
 #create characters, list of characters
 player = Character()
@@ -237,10 +220,12 @@ while True:
 
     if move[0] == "go":
         player.go(move[1])
-    elif move[0] == "get":
+    elif move[0] == "get" or move[0] == "take":
         player.get(move[1])
     elif move[0] == "inventory":
         player.show_inventory()
+    elif move[0] == "equip":
+        player.equip(move[1])
     elif move[0] == "drop":
         player.drop(move[1])
     elif move[0] == "look":
@@ -252,18 +237,14 @@ while True:
         player.place_random()
     elif move[0] == "place" and move[1] in rooms:
         player.place_room(move[1])
-    '''
-        elif move[0] == "attack":
-            print("Not yet implemented.")
-        elif move[0] == "look":
-            view_surroundings(player)
-        elif move[0] == "status":
-            player.show_stats()
-        elif move[0] == "q" or move[0] == "quit":
-            break
-        else:
-            print("I have no idea what you're trying to do.")
-    '''
+    elif move[0] == "attack":
+        print("Not yet implemented.")
+    elif move[0] == "look":
+        player.view_surroundings()
+    elif move[0] == "status":
+        player.show_stats()
+    else:
+        print("I have no idea what you're trying to do.")
 
     if move[0] == "q" or move[0] == "quit":
         break
