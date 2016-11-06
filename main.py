@@ -3,8 +3,6 @@ __author__ = 'Chris'
 import random
 import math
 import numpy
-# import curses
-
 
 
 #Globals
@@ -23,20 +21,15 @@ class Item(object):
         self.can_be_equipped = False
 
 class Weapon(Item):
-    def __init__(self):
+    """All weapons can be described with this class."""
+    def __init__(self,name,min_dmg,max_dmg,description):
         self.isweapon = True
-        self.name = "weapon"
-        self.min_dmg = 0
-        self.max_dmg = 0
+        self.name = name
+        self.min_dmg = min_dmg
+        self.max_dmg = max_dmg
         self.can_be_equipped = True
-
-class Sword(Weapon):
-    def __init__(self):
-        self.min_dmg = 1
-        self.max_dmg = 5
-        self.description = "It is a sword."
-        self.long_description = "This is a simple sword made of steel."
-        self.name = "sword"
+        self.is_equipped = True
+        self.description = description
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
@@ -146,8 +139,7 @@ class Character(object):
             for item in self.inventory:
                 if item_to_equip == item.name and item.can_be_equipped is True:
                     item.is_equipped = True
-
-
+                    print(item.name + " equipped."
 
 def showInstructions():
     """print a (temporary) "main menu", and the available commands"""
@@ -166,7 +158,7 @@ def party_add_character(character_type,n):
     """Creates a list of Character objects"""
 
 #Item initialization - item names are case sensitive for now
-sword1 = Sword()
+sword1 = Weapon("sword",1,5,"This is a simple short sword of steel.")
 item1 = Item()
 
 
