@@ -38,7 +38,7 @@ class Character(object):
         self.strength = 8
         self.vitality = 8
         self.hitPoints = int((self.vitality / 10) * random.randint(5,30))
-        self.attack = 0
+        self.attack = 1
         self.bonusPoints = random.randint(5,25)
         self.defense = 1
         self.inventory = []
@@ -70,7 +70,7 @@ class Character(object):
         #list items, none if empty
     def place_random(self):
         #start the player off in a room
-        self.currentRoom = random.randint(1,len(rooms))
+        self.currentRoom = random.randrange()
     def place_room(self, room:int):
         if room > 0 and room <= len(rooms):
             self.currentRoom = room
@@ -131,6 +131,7 @@ class Character(object):
                     self.inventory.remove(item)
         else:
             print("Drop what, again?")
+
     def equip(self,item_to_equip):
         temp_item_list = []
         for item in self.inventory:
@@ -140,6 +141,21 @@ class Character(object):
                 if item_to_equip == item.name and item.can_be_equipped is True:
                     item.is_equipped = True
                     print(item.name + " equipped."
+
+class Enemy(Character):
+    def __init__(self):
+        self.name = input("What is enemy called?\n")
+        self.strength = 3
+        self.vitality = 3
+        self.hitPoints = int((self.vitality / 10) * random.randint(5,30))
+        self.attack = 1
+        self.bonusPoints = random.randint(5,25)
+        self.defense = 1
+        self.inventory = []
+        self.currentRoom = (place_random)
+        self.add_to_room()
+        world_characters.append(self)
+        self.equipment = []
 
 def showInstructions():
     """print a (temporary) "main menu", and the available commands"""
@@ -198,12 +214,10 @@ weapons = {
 
 #create characters, list of characters
 player = Character()
+player2 = Character()
 
 #display "main menu"
 showInstructions()
-
-# list of words understood by the game paired with their respective methods.
-words = ["go", "get", ""]
 
 #loop
 while True:
