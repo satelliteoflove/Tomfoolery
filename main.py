@@ -1,6 +1,8 @@
 __author__ = 'Chris'
 
 import random
+import struct
+from pprint import pprint
 
 # Globals
 world_characters = []
@@ -155,7 +157,7 @@ class Character(object):
                     print(item.name + " equipped.")
 
 
-# TODO: Create "go" method which uses the current direction and moves char/npc there.
+#NOTE: NPCs are *NOT* monsters!
 class NonPlayerCharacter(Character):
     """Common base class for all NPCs."""
 
@@ -189,6 +191,28 @@ class NonPlayerCharacter(Character):
     #         print("You can't go that way.")
 
 
+"""
+Notes on monsters:
+Monsters will be randomly encountered - they do not "wander" the dungeon.
+Monsters will not carry items, but will "drop" items at random.
+Dropped items will be pulled from a pre-existing dictionary.
+General monster parties will be procedurally built from pre-existing classes.
+Dungeon level and average party member level will be considered in monster
+party makeup.
+"""
+
+class Monster(object):
+    def __init__(self, name, level):
+        self.name = name
+        self.baseHP = 1
+        self.HP = self.baseHP * level
+        self.baseAP = 1 #define a "base" attack power
+        self.AP = self.baseAP * level
+
+    def show_stats(self):
+        print("Stats of monster '%s':" %self.name)
+        pprint(vars(self))
+
 def showInstructions():
     """print a (temporary) "main menu", and the available commands"""
     print("WizardryClone")
@@ -206,6 +230,9 @@ def showInstructions():
 def party_add_character(character_type, n):
     """Creates a list of Character objects"""
 
+# initialize mob and print its attributes
+mob = Monster("orc", 1)
+mob.show_stats()
 
 # Item initialization - item names are case sensitive for now
 sword1 = Weapon("sword", 1, 5, "This is a simple short sword of steel.")
@@ -288,9 +315,11 @@ while True:
     if move[0] == "q" or move[0] == "quit":
         break
 
+"""  This is just functionality for "wandering" NPCs.
     for character in world_characters:
         if isinstance(character, NonPlayerCharacter):
             print(character.name + " changes direction.")
             character.change_direction()
             print(character.name + " is now pointing %s" %character.direction)
             character.go(character.direction)
+"""

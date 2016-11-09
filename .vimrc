@@ -42,21 +42,9 @@ Plugin 'gmarik/Vundle.vim'
 
 " Add other plugins here
 
-Plugin 'Valloric/YouCompleteMe'
-" closes autocomplete window after completion
-let g:ycm_autoclose_preview_window_after_completion=1
-" shortcut to goto definition. leader key is by default the backslash key
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+Plugin 'davidhalter/jedi-vim'
 
-" make vim/ycm aware of virtualenv (related to goto above)
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
-EOF
+Plugin 'ervandew/supertab'
 
 Plugin 'tmhedberg/SimpylFold'
 let g:SimpylFold_docstring_preview=1 " see docstrings for folded code
@@ -82,7 +70,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-autocmd vimenter * NERDTree "automatically open NERDtree
+" autocmd vimenter * NERDTree "automatically open NERDtree
 map <C-n> :NERDTreeToggle<CR>
 
 " Search for basically anything from vim
@@ -96,7 +84,12 @@ Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " All Vundle plugins must be added before the following line
 call vundle#end()
+
 filetype plugin indent on
+
+" enable omni completion
+" set omnifunc=syntaxcomplete#Complete
+
 
 " set format to UNIX to avoid conversion issues with github
 set fileformat=unix
