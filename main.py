@@ -2,7 +2,6 @@ __author__ = 'Chris'
 
 import random
 import struct
-from pprint import pprint
 
 # Globals
 world_characters = []
