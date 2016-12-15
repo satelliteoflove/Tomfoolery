@@ -60,7 +60,33 @@ Hit_multiplier(float)
 Bank
 ====
 The "Bank" is an in-town shop which allows the player to store items and gold outside of a character's inventory.
-The bank will not store anything for the player initially. The player will purchase an initial set of slots, and will need to purchase more slots as required. Unlike the characters' inventories, gold will not be "weightless" but will "stack" and require a slot to be stored in.  5k per slot.  Slots can be purchased in batches of 5 for 5k gold. Each item will take one slot.
+The bank will not store anything for the player initially. The player will purchase an initial set of slots, and will need to purchase more slots as required.
+Unlike the characters' inventories, gold will not be "weightless" but will "stack" and require a slot to be stored in.  5k per slot.
+Slots can be purchased in batches of 5 for 5k gold.
+Each item will take one slot.
+
+Tavern
+======
+Where the party is managed.
+Add/remove character from active party
+Divvy total party gold among party members
+
+Inn
+===
+Where characters recover hp/magic and gain levels.
+Tiered value of rooms:
+    Free - no hp recovery (only magic)
+    10g/day - 1hp/day
+    50g/day - 10hp/day
+    100g/day - 20hp/day
+    500g/day - 50hp/day
+
+Market
+======
+Buy basic items/equipment
+Sell items/equipment
+Identify unknown items
+Remove cursed items that have been equipped
 
 General
 =======
