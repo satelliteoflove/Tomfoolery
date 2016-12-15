@@ -1,22 +1,7 @@
-count = 4 
+from swampy.TurtleWorld import *
 
-def print_border():
-    print('+ - - - - ' * count + ' +')
+world = TurtleWorld()
+bob = Turtle()
+print(bob)
 
-def print_filler():
-    print('|         ' * count + ' |')
-    print('|         ' * count + ' |')
-    print('|         ' * count + ' |')
-    print('|         ' * count + ' |')
-
-
-def draw_grid():
-    i = count
-    while i > 0:
-        print_border()
-        print_filler()
-        i -= 1
-
-    print_border()
-
-draw_grid()
+wait_for_user()
