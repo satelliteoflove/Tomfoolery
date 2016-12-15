@@ -1,4 +1,6 @@
-Map design and function
+design and function
+
+Maps:
 
 1. Three arrays of objects - map_initial, and map_save (explored area), and map_in_play (current in memory copy).
 	Map_initial and map_save are both reflected in the files mapname.map and mapname.save
@@ -22,3 +24,20 @@ Values in each "tile" tuple:
 	Event_on_occupy(event_number)
 	What_is_(north/south/east/west)
 		exit, wall, door, secret door, grate (triggered), event
+
+Items:
+
+Cannot be "stored" in locations - they must be carried once acquired until they are used or destroyed.
+
+When "dropped", an item is destroyed and gone forever.
+
+All items can be used at any time, but only have an effect under specific conditions.
+    Items such as potions and scrolls are single-use. When used, they are marked as "broken". It is possible to "repair" "broken" items if certain conditions are met.
+    Conditions:
+        In battle
+        Engaged with NPC
+        In camp
+        On event trigger
+        Facing direction x
+        None of the above (implied)
+        
