@@ -1,6 +1,7 @@
-design and function
+Design and Function
 
-Maps:
+Maps
+====
 
 1. Three arrays of objects - map_initial, and map_save (explored area), and map_in_play (current in memory copy).
 	Map_initial and map_save are both reflected in the files mapname.map and mapname.save
@@ -13,27 +14,51 @@ Maps:
 		identical location value from "map_initial" into "map_in_play".
 
 3. Map_in_play is updated:
-	a. mark tuple at player location value "has_been_occupied" value true
+	a. mark tuple in map_in_play at player location value "is_occupied" value true
 	b. if event_on_occupy is not 0, play_event(event_on_occupy)
-	c. 
+	c. mark tuple in map_in_play at player location value "has_been_occupied" to true
 
 Values in each "tile" tuple:
 	Location(x,y)
 	Can_be_occupied(t/f)
+    Is_occupied(t/f)
 	Has_been_occupied(t/f)
 	Event_on_occupy(event_number)
 	What_is_(north/south/east/west)
 		exit, wall, door, secret door, grate (triggered), event
 
-Items:
+Items
+=====
+
+Item properties:
+Description         #Long description (if you investigate the item)
+Name                #Long name (if you investigate the item)
+Short_name          #Displayed in the character's inventory listing
 
 Cannot be "stored" in locations - they must be carried once acquired until they are used or destroyed.
 
 When "dropped", an item is destroyed and gone forever.
 
 All items can be used at any time, but only have an effect under specific conditions.
-    Items such as potions and scrolls are single-use. When used, they are marked as "broken". It is possible to "repair" "broken" items if certain conditions are met.
-    Conditions:
+
+Items such as potions and scrolls are single-use "portable spells" that can be used by any character class or race. When used, they are marked as "broken" and are unusable. In classic Wizardry, there is no way to repair these items - they just take up space until they are dropped (destroyed).
+
+Should it be possible to "repair" "broken" items if certain conditions are met?
+
+
+Equipment
+=========
+Weapons, Armor, Accessories are all "equipment" and of the "Equipment" class.
+
+Equipment properties:
+Is_equippable(t/f)
+Is_equipped(t/f)
+
+
+
+General
+=======
+    Party Conditions:
         In battle
         Engaged with NPC
         In camp
