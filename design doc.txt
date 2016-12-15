@@ -35,7 +35,7 @@ Description         #Long description (if you investigate the item)
 Name                #Long name (if you investigate the item)
 Short_name          #Displayed in the character's inventory listing
 
-Cannot be "stored" in locations - they must be carried once acquired until they are used or destroyed.
+Once acquired, items occupy an inventory slot until they are used or destroyed.  Items can be deposited in town at the appropriate shop (see "bank" below).
 
 When "dropped", an item is destroyed and gone forever.
 
@@ -45,16 +45,22 @@ Items such as potions and scrolls are single-use "portable spells" that can be u
 
 Should it be possible to "repair" "broken" items if certain conditions are met?
 
-
 Equipment
 =========
-Weapons, Armor, Accessories are all "equipment" and of the "Equipment" class.
+Weapons, Armor, Accessories are all "equipment" but are still instances of the "Item" class.  Equipment will have a different initialization method (__init__) which requires the appropriate input (listed below).
 
 Equipment properties:
 Is_equippable(t/f)
 Is_equipped(t/f)
+Min_dmg(int)
+Max_dmg(int)
+Hit_multiplier(float)
 
 
+Bank
+====
+The "Bank" is an in-town shop which allows the player to store items and gold outside of a character's inventory.
+The bank will not store anything for the player initially. The player will purchase an initial set of slots, and will need to purchase more slots as required. Unlike the characters' inventories, gold will not be "weightless" but will "stack" and require a slot to be stored in.  5k per slot.  Slots can be purchased in batches of 5 for 5k gold. Each item will take one slot.
 
 General
 =======
