@@ -27,6 +27,10 @@ Values in each "tile" tuple:
 	What_is_(north/south/east/west)
 		exit, wall, door, secret door, grate (triggered), event
 
+Droped items:
+    Item drops will be level-based, rather than monster-based.  Thus, each level of each tower will have a static drop list and all mobs on that level have the potential to drop items from that list.
+
+
 Items
 =====
 

@@ -1,0 +1,13 @@
+General listing of monsters
+
+Generic
+    hit_points = 10
+    attack_power = 1
+    attack_multiplier = 1
+    defense = 1
+    agility = 1
+    spells = []
+    party_weight = 1 - how many mobs this mob counts as for the purpose of assembling monster groups.
+    gold_modifier = 1 - only changed for special mobs
+    xp_modifier = 1 - only changed for special mobs
+    item_dropped = "item" - Named quest-related item. Only special mobs have an "item_dropped" value. All others drop based on the general list for each tower level.
