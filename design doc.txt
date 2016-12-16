@@ -31,9 +31,9 @@ Items
 =====
 
 Item properties:
-Description         #Long description (if you investigate the item)
-Name                #Long name (if you investigate the item)
-Short_name          #Displayed in the character's inventory listing
+Description - Long description (if you investigate the item)
+Name - Long name (if you investigate the item)
+Short_name - Displayed in the character's inventory listing
 
 Once acquired, items occupy an inventory slot until they are used or destroyed.  Items can be deposited in town at the appropriate shop (see "bank" below).
 
@@ -55,6 +55,8 @@ Is_equipped(t/f)
 Min_dmg(int)
 Max_dmg(int)
 Hit_multiplier(float)
+Equip_effect([]) - list of index numbers/keys. There will be a dictionary of "spell" effects, and this list contains a key for each effect the item needs to have when equipped.
+Use_effect(int) - key related to the spell dictionary, for waht effect the item has when used as an item
 
 
 Bank
@@ -87,6 +89,24 @@ Buy basic items/equipment
 Sell items/equipment
 Identify unknown items
 Remove cursed items that have been equipped
+
+Temple
+======
+Cure characters of status effects for a fee (status ranking based)
+Ressurect characters for a fee (level- and condition-based)
+    If a char is "dead", the ressurection fee is (level * 150)gold
+    If a char is "ashes" (failed ressurection), the fee is (level * 200)gold
+If "dead" or "ashes" characters are brought to town from a tower, they are automatically taken to the temple.
+Characters stored at the temple can be added back to the party regardless of their status.
+
+Training Grounds
+================
+Character management:
+    Create
+    Delete/destroy
+    Change name
+    Change class
+    
 
 General
 =======
