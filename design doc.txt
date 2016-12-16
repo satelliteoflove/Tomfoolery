@@ -31,47 +31,43 @@ Items
 =====
 
 Item properties:
-Description - Long description (if you investigate the item)
-Name - Long name (if you investigate the item)
-Short_name - Displayed in the character's inventory listing
-
-Once acquired, items occupy an inventory slot until they are used or destroyed.  Items can be deposited in town at the appropriate shop (see "bank" below).
-
-When "dropped", an item is destroyed and gone forever.
-
-All items can be used at any time, but only have an effect under specific conditions.
-
-Items such as potions and scrolls are single-use "portable spells" that can be used by any character class or race. When used, they are marked as "broken" and are unusable. In classic Wizardry, there is no way to repair these items - they just take up space until they are dropped (destroyed).
-
-Should it be possible to "repair" "broken" items if certain conditions are met?
+    Description - Long description (if you investigate the item)
+    Name - Long name (if you investigate the item)
+    Short_name - Displayed in the character's inventory listing
+Notes:
+    Once acquired, items occupy an inventory slot until they are used or destroyed.  Items can be deposited in town at the appropriate shop (see "bank" below).
+    When "dropped", an item is destroyed and gone forever.
+    All items can be used at any time, but only have an effect under specific conditions.
+    Items such as potions and scrolls are single-use "portable spells" that can be used by any character class or race. When used, they are marked as "broken" and are unusable. In classic Wizardry, there is no way to repair these items - they just take up space until they are dropped (destroyed).
+    Should it be possible to "repair" "broken" items if certain conditions are met?
 
 Equipment
 =========
 Weapons, Armor, Accessories are all "equipment" but are still instances of the "Item" class.  Equipment will have a different initialization method (__init__) which requires the appropriate input (listed below).
 
 Equipment properties:
-Is_equippable(t/f)
-Is_equipped(t/f)
-Min_dmg(int)
-Max_dmg(int)
-Hit_multiplier(float)
-Equip_effect([]) - list of index numbers/keys. There will be a dictionary of "spell" effects, and this list contains a key for each effect the item needs to have when equipped.
-Use_effect(int) - key related to the spell dictionary, for waht effect the item has when used as an item
+    Is_equippable(t/f)
+    Is_equipped(t/f)
+    Min_dmg(int)
+    Max_dmg(int)
+    Hit_multiplier(float)
+    Equip_effect([]) - list of index numbers/keys. There will be a dictionary of "spell" effects, and this list contains a key for each effect the item needs to have when equipped.
+    Use_effect(int) - key related to the spell dictionary, for waht effect the item has when used as an item
 
 
 Bank
 ====
 The "Bank" is an in-town shop which allows the player to store items and gold outside of a character's inventory.
-The bank will not store anything for the player initially. The player will purchase an initial set of slots, and will need to purchase more slots as required.
-Unlike the characters' inventories, gold will not be "weightless" but will "stack" and require a slot to be stored in.  5k per slot.
-Slots can be purchased in batches of 5 for 5k gold.
-Each item will take one slot.
+    The bank will not store anything for the player initially. The player will purchase an initial set of slots, and will need to purchase more slots as required.
+    Unlike the characters' inventories, gold will not be "weightless" but will "stack" and require a slot to be stored in.  5k per slot.
+    Slots can be purchased in batches of 5 for 5k gold.
+    Each item will take one slot.
 
 Tavern
 ======
 Where the party is managed.
-Add/remove character from active party
-Divvy total party gold among party members
+    Add/remove character from active party
+    Divvy total party gold among party members
 
 Inn
 ===
@@ -85,19 +81,22 @@ Tiered value of rooms:
 
 Market
 ======
-Buy basic items/equipment
-Sell items/equipment
-Identify unknown items
-Remove cursed items that have been equipped
+Item management:
+    Buy basic items/equipment
+    Sell items/equipment
+    Identify unknown items
+    Remove cursed items that have been equipped
 
 Temple
 ======
-Cure characters of status effects for a fee (status ranking based)
-Ressurect characters for a fee (level- and condition-based)
-    If a char is "dead", the ressurection fee is (level * 150)gold
-    If a char is "ashes" (failed ressurection), the fee is (level * 200)gold
-If "dead" or "ashes" characters are brought to town from a tower, they are automatically taken to the temple.
-Characters stored at the temple can be added back to the party regardless of their status.
+Manage status ailments:
+    Cure characters of status effects for a fee (status ranking based)
+    Ressurect characters for a fee (level- and condition-based)
+        If a char is "dead", the ressurection fee is (level * 150)gold
+        If a char is "ashes" (failed ressurection), the fee is (level * 200)gold
+Notes:
+    If "dead" or "ashes" characters are brought to town from a tower, they are automatically taken to the temple.
+    Characters stored at the temple can be added back to the party regardless of their status.
 
 Training Grounds
 ================
@@ -117,4 +116,16 @@ General
         On event trigger
         Facing direction x
         None of the above (implied)
-        
+
+Monsters
+========
+Notes:
+    Monsters are encountered randomly at every level of every tower.
+    Monsters are encountered in groups
+    Just like the player party, monster parties have "front" and "back" rows, with the same effects.
+    Monsters may "advance" to get to the front of the party.
+    Unlike the player party, multiple monsters of the same type may occupy a single party "slot". Thus, 5 "samurai" could be in slot 1 while 3 "mage" could be in slot 2.
+    The number of available slots in a monster party is a function of the tower level the player party is on. Thus, level 1 would might be restricted to 1-2 slots, but level 3 might have monster groups of 3-4 slots, and some levels might have monster parties with a full 6 slots.
+    Similarly, the number of monsters of the same type which can occupy a single slot increases with the tower level being played.
+    Monster types are pre-defined, and groups are semi-randomly built from level-appropriate monster types.
+    Encounter rates increase slightly as a function of tower level.
