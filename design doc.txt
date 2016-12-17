@@ -27,7 +27,7 @@ Values in each "tile" tuple:
 	What_is_(north/south/east/west)
 		exit, wall, door, secret door, grate (triggered), event
 
-Droped items:
+Item drops:
     Item drops will be level-based, rather than monster-based.  Thus, each level of each tower will have a static drop list and all mobs on that level have the potential to drop items from that list.
 
 
@@ -83,6 +83,13 @@ Tiered value of rooms:
     100g/day - 20hp/day
     500g/day - 50hp/day
 
+Gaining levels:
+    once necessary xp is reached by a character, they will "level up" when staying at the inn.
+    a level will grant a random selection of stat increases/reductions.
+    typically 1-4 stats will increase and hp will be gained
+    occasionally a stat will decrease
+    increase/decrease happens in single increments
+
 Market
 ======
 Item management:
@@ -133,3 +140,8 @@ Notes:
     Similarly, the number of monsters of the same type which can occupy a single slot increases with the tower level being played.
     Monster types are pre-defined, and groups are semi-randomly built from level-appropriate monster types.
     Encounter rates increase slightly as a function of tower level.
+
+
+TODO:
+How do monster spellcasters work?
+How do event driven encounter work?
