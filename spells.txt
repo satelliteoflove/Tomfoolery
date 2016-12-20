@@ -29,3 +29,60 @@ Increase AC of 1 group (slot) of enemies by 2
 
 Bolatu (Petrify) - During battle
 Petrify one enemy for the duration of the battle
+
+Level 3
+-------
+Morlis (Fear) - During battle
+Stop the actions of one group (slot) of enemies and increase their AC by 4.
+
+Mahalito (Flame3) - During battle
+4-24 dmg to one group (slot) of enemies (flame)
+
+Cortu (Magic Guard) - During battle
+Strengthen barriers against enemy spells and breath
+
+Kantios (Silence) - During battle
+Suppress spells, breaths, summoning actions of one group of enemies
+
+Level 4
+-------
+Tzalik (Shock) - During battle
+24 to 48 damage to a single enemy
+
+Lahalito (Flame4) - During battle
+6-36 damage (flame) to one group (slot) of enemies
+
+Litofeit (Float) - In camp
+Floats in the air to avoid traps and shoots. It gets harder to preempt (? - maybe talking about "surprising the enemy")
+
+Rokdo (Petrify2) - In battle
+Stop the action of one group (slot) of enemies (petrification)
+
+Level 5
+-------
+Socordi (Summon) - In battle
+Summon one type at random from the following monsters
+・Smoke daemon
+・Succubus
+・Seidel
+・Gargoyle
+・Flack
+・Siphon
+・Andrea Luffs
+
+Madalto (Freeze) - In battle
+8-64 damage to one group (slot) of enemies (cold)
+
+Palios (Cancel) - In battle or camp
+Cancels out magical energies - in camp, all status effects are removed. In battle, erase the effects of Bacortu (seal) and Cortu (Magic Guard).
+
+Bacortu (Silence) - Seal the spells of one group (slot) of enemies.
+
+Level 6
+-------
+Zilwan (Dispel) - In battle
+Deals 1000-10000 dmg to a single undead enemy
+
+Ladalto (Frost2) - In battle
+Deals 10-100 dmg (cold) to one group (slot) of enemies.
+
