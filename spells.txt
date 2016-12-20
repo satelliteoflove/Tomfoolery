@@ -2,6 +2,7 @@ This list is translated from http://www.pekori.jp/%7Eemonoya/faq/chara/spell_g4.
 
 MAGE SPELLS
 ===========
+
 Level 1
 -------
 Katino (Sleep) - During battle
@@ -85,4 +86,59 @@ Deals 1000-10000 dmg to a single undead enemy
 
 Ladalto (Frost2) - In battle
 Deals 10-100 dmg (cold) to one group (slot) of enemies.
+
+Lokara (Death/doom) - in battle
+Chance to inflict death on all enemies (instant).
+
+Lazalik (Shock2) - in battle
+40-80dmg (elec) to one enemy
+
+Level 7
+-------
+Malor (Teleport) - in camp or in battle
+In camp, designate coordinates to teleport to. In battle, random teleport.
+
+Mahaman (Wish) - in battle (machine translation - will need to review later)
+Three of the following effects are displayed to the player, and one can be chosen. You must be lvl 13 to cast, and the caster's level will drop by 1 upon casting.
+(1) Kenko and Difficulties (All recovery and complete resuscitation)
+(2) The dog from Mahou (invalidating enemy spells and breath)
+(3) I will give you the meaning of Junm (lose the enemy's ability to invalidate spells)
+(4) Teleport a monster (enemy annihilation)
+(5) I will give you a boat (AC-10 will last even after battle)
+(6) Scale the game (all MPs are all 9)
+(7) Papyrus of pursued level (erasing energy drain effect received)
+
+Tiltowait (Nuclear) - in battle
+Energy released to deal 10-150dmg (non-elemental) to all enemies
+
+Mawxiwtz (Astral) - in battle
+Attempts to inflict random status ailments on all enemies
+- ~30dmg
+- fear
+- sleep
+- paralysis
+- poison
+- instant death
+
+
+Priest Spells
+=============
+
+Level 1
+-------
+
+Dios (Heal) - in camp/in battle
+Heal 1-8dmg (one ally)
+
+Badios (Harm) - in battle
+Cause 1-8dmg to one enemy
+
+Milwa - in camp/in battle
+Provide light up to 3 blocks ahead for ~40 steps. Cancelled if entering dark area.
+
+Porfic - in battle
+Decrease caster's AC by 4
+
+Level 2
+-------
 
