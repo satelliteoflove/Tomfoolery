@@ -1,0 +1,31 @@
+This list is translated from http://www.pekori.jp/%7Eemonoya/faq/chara/spell_g4.html.
+
+MAGE SPELLS
+===========
+Level 1
+-------
+Katino (Sleep) - During battle
+Put one group (slot) of enemies to sleep. The damage of direct attack is doubled for sleeping enemies.
+
+Halito (Flame) - During battle
+1-8 dmg to one enemy (flame)
+
+Dumapic (Map Pic) - In Camp
+Show auto map
+
+Mogref (Shield) - During battle
+Decrease caster's AC by 2
+
+Level 2
+-------
+Melito (Flame2) - During battle
+1-8 dmg to one group (slot) of enemies (flame)
+
+Sogref (Guard) - During battle
+Decrease AC of one ally by 2
+
+Dilto (?) - During battle
+Increase AC of 1 group (slot) of enemies by 2
+
+Bolatu (Petrify) - During battle
+Petrify one enemy for the duration of the battle
