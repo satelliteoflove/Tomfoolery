@@ -2,34 +2,18 @@ This list is translated from http://www.pekori.jp/%7Eemonoya/faq/chara/spell_g4.
 
 MAGE SPELLS
 ===========
-
-Level 1
--------
-Katino (Sleep) - During battle
-Put one group (slot) of enemies to sleep. The damage of direct attack is doubled for sleeping enemies.
-
-Halito (Flame) - During battle
-1-8 dmg to one enemy (flame)
-
-Dumapic (Map Pic) - In Camp
-Show auto map
-
-Mogref (Shield) - During battle
-Decrease caster's AC by 2
-
-Level 2
--------
-Melito (Flame2) - During battle
-1-8 dmg to one group (slot) of enemies (flame)
-
-Sogref (Guard) - During battle
-Decrease AC of one ally by 2
-
-Dilto (?) - During battle
-Increase AC of 1 group (slot) of enemies by 2
-
-Bolatu (Petrify) - During battle
-Petrify one enemy for the duration of the battle
+| Lv | Name    | Common Name | Use | Description                                                    | En.Use |
++====+=========+=============+=====+================================================================+========+
+| 1  | Katino  | Sleep       | IB  | Enemy group (slot) put to sleep. Direct dmg doubled if asleep. | Y      |
+| 1  | Halito  | Flame       | IB  | 1-8 dmg to one enemy (flame)                                   | Y      |
+| 1  | Dumapic | Map Pic     | IC  | Show auto map                                                  | N      |
+| 1  | Mogref  | Shield      | IB  | Decrease caster's AC by 2                                      | Y      |
++----+---------+-------------+-----+----------------------------------------------------------------+--------+
+| 2  | Melito  | Flame2      | IB  | 1-8 dmg to one group (slot) of enemies (flame)                 | Y      |
+| 2  | Sogref  | Guard       | IB  | Decrease AC of one ally by 2                                   | Y      |
+| 2  | Dilto   | (?)         | IB  | Raise AC of 1 group (slot) of enemies by 2                     | Y      |
+| 2  | Bolatu  | Petrify     | IB  | Petrify one enemy for the duration of the battle               | N      |
++----+---------+-------------+-----+----------------------------------------------------------------+--------+
 
 Level 3
 -------
@@ -142,3 +126,7 @@ Decrease caster's AC by 4
 Level 2
 -------
 
+Matu - in battle
+Decrease AC of all allies by 2
+
+Calfo
