@@ -54,26 +54,13 @@ MAGE SPELLS
 
 Priest Spells
 =============
-
-Level 1
--------
-
-Dios (Heal) - in camp/in battle
-Heal 1-8dmg (one ally)
-
-Badios (Harm) - in battle
-Cause 1-8dmg to one enemy
-
-Milwa - in camp/in battle
-Provide light up to 3 blocks ahead for ~40 steps. Cancelled if entering dark area.
-
-Porfic - in battle
-Decrease caster's AC by 4
-
-Level 2
--------
-
-Matu - in battle
-Decrease AC of all allies by 2
+| LV | Name   | Alias  | Use | Description                                                                        | En.Use |
++====+========+========+=====+====================================================================================+========+
+| 1  | Dios   | Heal   | BC  | Heal 1-8dmg (one ally)                                                             | Y      |
+| 1  | Badios | Harm   | B   | Cause 1-8dmg to one enemy                                                          | Y      |
+| 1  | Milwa  | Light  | BC  | Provide light up to 3 blocks ahead for ~40 steps. Cancelled if entering dark area. | N      |
+| 1  | Porfic | Armor1 | B   | Decrease caster's AC by 4.                                                         | Y      |
++----+--------+--------+-----+------------------------------------------------------------------------------------+--------+
+| 2  | Matu   | Guard1 | B   | Decrease AC of all allies by 2.                                                    | Y      |
 
 Calfo
