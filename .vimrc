@@ -122,7 +122,7 @@ if has('gui_running')
     set background=dark
     colorscheme solarized
 else
-    colorscheme zenburn
+    colorscheme desert
 endif
 
 call togglebg#map("<F5>")
