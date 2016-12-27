@@ -55,18 +55,25 @@ MAGE SPELLS
 
 Priest Spells
 =============
-| LV | Name      | Alias   | Use | Description                                    | En.Use |
-+====+===========+=========+=====+================================================+========+
-| 1  | Dios      | Heal    | BC  | Heal 1-8dmg (one ally)                         | Y      |
-| 1  | Badios    | Harm    | B   | Cause 1-8dmg to one enemy                      | Y      |
-| 1  | Milwa     | Light   | BC  | Provide light up to 3 blocks ahead for ~40     | N      |
-|    |           |         |     | Cancelled upon entering "dark" area.           | Y      |
-| 1  | Porfic    | Armor1  | B   | Decrease caster's AC by 4.                     | Y      |
-+----+-----------+---------+-----+------------------------------------------------+--------+
-| 2  | Matu      | Guard1  | B   | Decrease AC of all allies by 2.                | Y      |
-| 2  | Calfo     | Detect  | CH  | ID Trap on treasure chest with 95% accuracy.   | N      |
-| 2  | Montino   | Seal    | B   | Stop spells for one group (slot) of enemies.   | Y      |
-| 2  | Kandi     | Search  | C   | Show general location of missing party member. | N      |
-+----+-----------+---------+-----+------------------------------------------------+--------+
-| 3  | Latumapic | Whois   | BC  | Confirm the identity of enemies.               | N      |
-| 3  | Dialko    | Freedom | BC  | Remove paralysis from one ally.                | N      |
+| LV | Name      | Alias   | Use | Description                                      | EU |
++====+===========+=========+=====+==================================================+====+
+| 1  | Dios      | Heal    | BC  | Heal 1-8 HP (one ally)                           | Y  |
+| 1  | Badios    | Harm    | B   | Cause 1-8dmg to one enemy                        | Y  |
+| 1  | Milwa     | Light   | BC  | Provide light up to 3 blocks ahead for ~40       | N  |
+|    |           |         |     | Cancelled upon entering "dark" area.             | Y  |
+| 1  | Porfic    | Armor1  | B   | Decrease caster's AC by 4.                       | Y  |
++----+-----------+---------+-----+--------------------------------------------------+----+
+| 2  | Matu      | Guard1  | B   | Decrease AC of all allies by 2.                  | Y  |
+| 2  | Calfo     | Detect  | CH  | ID Trap on treasure chest with 95% accuracy.     | N  |
+| 2  | Montino   | Seal    | B   | Stop spells for one group (slot) of enemies.     | Y  |
+| 2  | Kandi     | Search  | C   | Show general location of missing party member.   | N  |
++----+-----------+---------+-----+--------------------------------------------------+----+
+| 3  | Latumapic | Whois   | BC  | Confirm the identity of enemies.                 | N  |
+| 3  | Dialko    | Freedom | BC  | Remove paralysis from one ally.                  | N  |
+| 3  | Bamatu    | Prayer  | B   | Decrease AC of all allies by 3.                  | Y  |
+| 3  | Lomilwa   | Great   | BC  | Light up to 3 blocks ahead until entering "dark" | N  |
+|    |           | Light   |     | areas or town.                                   |    |
++----+-----------+---------+-----+--------------------------------------------------+----+
+| 4  | Dial      | Heal2   | BC  | Heal 2-16 HP (one ally).                         | Y  |
+| 4  | Latumofis | Detox   | BC  | Cure poison (one ally).                          | N  |
+| 4  | Maporfic  | Armor2  | BC  | Lowers AC of allies by 2. Lasts after battle.    | N  |

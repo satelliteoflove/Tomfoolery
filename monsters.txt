@@ -6,7 +6,7 @@ Generic
     attack_multiplier = 1
     defense = 1
     agility = 1
-    spells = []
+    spells = [] - list of dictionary keys. should they be strings or ints?
     party_weight = 1 - how many mobs this mob counts as for the purpose of assembling monster groups.
     gold_modifier = 1 - only changed for special mobs
     xp_modifier = 1 - only changed for special mobs
