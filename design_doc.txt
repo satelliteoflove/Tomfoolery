@@ -3,20 +3,27 @@ Design and Function
 Maps
 ====
 
-1. Three arrays of objects - map_initial, and map_save (explored area), and map_in_play (current in memory copy).
-	Map_initial and map_save are both reflected in the files mapname.map and mapname.save
+1. Three arrays of objects - map_initial, and map_save (explored area), and
+    map_in_play (current in memory copy).
+	Map_initial and map_save are both reflected in the files mapname.map and
+    mapname.save
 
 2. Map_in_play is generated:
-	a. load the user-modified "map_save" array of "room" objects from mapname.save
-	b. load the non-changing "map_initial" array of "room" objects from mapname.map
-	c. For each object in "map_save", if "has_been_occupied" value is true copy the tuple to
-		to the "map_in_play" final array, else read the location value and load tuple with
-		identical location value from "map_initial" into "map_in_play".
+	a. load the user-modified "map_save" array of "room" objects from
+    mapname.save
+	b. load the non-changing "map_initial" array of "room" objects from
+    mapname.map
+	c. For each object in "map_save", if "has_been_occupied" value is true
+    copy the tuple to the "map_in_play" final array, else read the location
+    value and load tuple with identical location value from "map_initial" into
+    "map_in_play".
 
 3. Map_in_play is updated:
-	a. mark tuple in map_in_play at player location value "is_occupied" value true
+	a. mark tuple in map_in_play at player location value "is_occupied" value
+    true
 	b. if event_on_occupy is not 0, play_event(event_on_occupy)
-	c. mark tuple in map_in_play at player location value "has_been_occupied" to true
+	c. mark tuple in map_in_play at player location value "has_been_occupied"
+    to true
 
 Values in each "tile" tuple:
 	Location(x,y)
@@ -28,7 +35,11 @@ Values in each "tile" tuple:
 		exit, wall, door, secret door, grate (triggered), event
 
 Item drops:
-    Item drops will be level-based, rather than monster-based.  Thus, each level of each tower will have a static drop list and all mobs on that level have the potential to drop items from that list.
+    a. Item drops will be level-based, rather than monster-based.  Thus, each
+    level of each tower will have a static drop list and all mobs on that
+    level have the potential to drop items from that list.
+    b. ALL items will be "unidentified" upon pickup. Items can be identified
+    either by a character with the Bishop class or by the merchant in town.
 
 
 Items
@@ -141,6 +152,17 @@ Notes:
     Monster types are pre-defined, and groups are semi-randomly built from level-appropriate monster types.
     Encounter rates increase slightly as a function of tower level.
 
+
+Spells/Spellcasting
+===================
+Spells in Wizardry have classically had a unique "Wizardry" naming scheme.
+Instead of "Heal" the spell is named "Dios".  Instead of "Heal more" the
+spell is named "Dial".  Intstead of "Great heal" the spell is named "Dialma".
+While this does give the spells a consistent naming scheme, selecting spells
+is hampered by being reqired to memorize odd names or reference a list. While
+this form of play should be an option, the player will also be provided with
+the option to play with "Anglicised" names instead to make spell
+identification easier and faster.
 
 TODO:
 How do monster spellcasters work?

@@ -30,6 +30,16 @@ set showmatch
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
 
+" highlight characters after 80 columns
+"highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
+"match OverLength /\%>80v.\+/
+
+" Add vertical bar at 80 columns
+if exists('+colorcolumn')
+      set colorcolumn=80
+  else
+        au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    endif
 
 " Vundle configuration
 " Set the runtime path to include Vundle, and
@@ -127,3 +137,5 @@ endif
 
 call togglebg#map("<F5>")
 
+" stop automatic insertion of newline character at 80 lines
+set tw=0
