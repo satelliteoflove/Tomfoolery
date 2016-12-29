@@ -9,6 +9,9 @@ syntax on
 set number
 set relativenumber
 
+" Know what you're editing
+set title
+
 " set tabs to instead insert 4 spaces
 set ts=4
 
@@ -26,6 +29,9 @@ set cursorline
 
 " show the matching part of the pair for [], {} and ()
 set showmatch
+
+" stop automatic insertion of newline character at 80 lines
+set tw=0
 
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
@@ -137,5 +143,3 @@ endif
 
 call togglebg#map("<F5>")
 
-" stop automatic insertion of newline character at 80 lines
-set tw=0
