@@ -1,12 +1,38 @@
 Design and Function
 
+Character Design and Function
+=============================
+
++------+-----------------------------------------------------------------------+
+| Stat | Description                                                           |
++======+=======================================================================+
+| AG   | Agility. Increases chance to disarm attacks, flee, and dodge. Also    |
+|      | increases a character's ability to disarm traps without misfire.      |
++------+-----------------------------------------------------------------------+
+| IQ   | Intelligence. Increases the effectiveness and success rate of         |
+|      | mage/psionic spells.                                                  |
++------+-----------------------------------------------------------------------+
+| LK   | Luck increases your resistance to status effects and chance for rare  |
+|      | items to drop from enemies. Also increases ability to disarm traps    |
+|      | without misfire.                                                      |
++------+-----------------------------------------------------------------------+
+| PI   | Piety increases the effectiveness and success rate for all priest     |
+|      | spells                                                                |
++------+-----------------------------------------------------------------------+
+| ST   | Strength increases physical damage done and the hit rate for all      |
+|      | physical attacks.                                                     |
++------+-----------------------------------------------------------------------+
+| VT   | Vitality increases the amount of hit points a character receives when |
+|      | they level up.                                                        |
++------+-----------------------------------------------------------------------+
+
+
 Maps
 ====
 
 1. Three arrays of objects - map_initial, and map_save (explored area), and
-    map_in_play (current in memory copy).
-	Map_initial and map_save are both reflected in the files mapname.map and
-    mapname.save
+    map_in_play (current in memory copy). Map_initial and map_save are both 
+    reflected in the files mapname.map and mapname.save
 
 2. Map_in_play is generated:
 	a. load the user-modified "map_save" array of "room" objects from
@@ -95,11 +121,12 @@ Tiered value of rooms:
     500g/day - 50hp/day
 
 Gaining levels:
-    once necessary xp is reached by a character, they will "level up" when staying at the inn.
-    a level will grant a random selection of stat increases/reductions.
-    typically 1-4 stats will increase and hp will be gained
-    occasionally a stat will decrease
-    increase/decrease happens in single increments
+    * Once necessary XP is reached by a character, they can "level up" by
+    staying at the inn in town.
+    * Levels grant a random selection of stat changes
+    * 1-6 stats will increase/decrease and hp will be gained based on VIT
+    * Stats decrease rarely (small chance)
+    * Increase/decrease happens in single increments
 
 Market
 ======
@@ -112,13 +139,16 @@ Item management:
 Temple
 ======
 Manage status ailments:
-    Cure characters of status effects for a fee (status ranking based)
-    Ressurect characters for a fee (level- and condition-based)
-        If a char is "dead", the ressurection fee is (level * 150)gold
-        If a char is "ashes" (failed ressurection), the fee is (level * 200)gold
+    * Cure characters of status effects for a fee (status ranking based)
+    * Ressurect characters for a fee (level- and condition-based)
+        * If a char is "dead", the ressurection fee is (level * 150)gold
+        * If a char is "ashes" (failed ressurection), the fee
+        is (level * 200)gold
 Notes:
-    If "dead" or "ashes" characters are brought to town from a tower, they are automatically taken to the temple.
-    Characters stored at the temple can be added back to the party regardless of their status.
+    * If "dead" or "ashes" characters are brought to town from a tower, they
+    are automatically taken to the temple.
+    * Characters stored at the temple can be added back to the party regardless
+    of their status.
 
 Training Grounds
 ================

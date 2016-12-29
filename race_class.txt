@@ -1,33 +1,38 @@
 Races and Classes
 
 Notes:
-- All races get a bonus depending on sex. Males get +1 STR and Females get +1 VIT.
-- Characters with 10 or fewer bonus points can be trained at the training room and start at lvl 4 but will age by 3 years.  This 10 point bonus does NOT include the 1-point sex bonus listed above.
-- The AC reduction for monks and ninjas is active regardless of equipment.  Long-range attacks are only in effect when they fight bare-handed.
+- All races get a bonus depending on sex. Males get +1 STR and Females get
++1 VIT.
+- Characters with 10 or fewer bonus points can be trained at the training room
+and start at lvl 4 but will age by 3 years.  This 10 point bonus does NOT
+include the 1-point sex bonus listed above.
+- The AC reduction for monks and ninjas is active regardless of equipment.
+Long-range attacks are only in effect when they fight bare-handed.
 
 Statistics
 ==========
-+------+----------------------------------------------------------------------------+
-| Stat | Description                                                                |
-+======+============================================================================+
-| AG   | Agility. Increases chance to disarm attacks, flee, and dodge. Also         |
-|      | increases a character's ability to disarm traps without misfire.           |
-+------+----------------------------------------------------------------------------+
-| IQ   | Intelligence. Increases the effectiveness and success rate of              |
-|      | mage/psionic spells.                                                       |
-+------+----------------------------------------------------------------------------+
-| LK   | Luck increases your resistance to status effects and chance for rare       |
-|      | items to drop from enemies. Also increases ability to disarm traps         |
-|      | without misfire.                                                           |
-+------+----------------------------------------------------------------------------+
-| PI   | Piety increases the effectiveness and success rate for all priest spells   |
-+------+----------------------------------------------------------------------------+
-| ST   | Strength increases physical damage done and the hit rate for all physical  |
-|      | attacks.                                                                   |
-+------+----------------------------------------------------------------------------+
-| VT   | Vitality increases the amount of hit points a character receives when they |
-|      | level up.                                                                  |
-+------+----------------------------------------------------------------------------+
++------+-----------------------------------------------------------------------+
+| Stat | Description                                                           |
++======+=======================================================================+
+| AG   | Agility. Increases chance to disarm attacks, flee, and dodge. Also    |
+|      | increases a character's ability to disarm traps without misfire.      |
++------+-----------------------------------------------------------------------+
+| IQ   | Intelligence. Increases the effectiveness and success rate of         |
+|      | mage/psionic spells.                                                  |
++------+-----------------------------------------------------------------------+
+| LK   | Luck increases your resistance to status effects and chance for rare  |
+|      | items to drop from enemies. Also increases ability to disarm traps    |
+|      | without misfire.                                                      |
++------+-----------------------------------------------------------------------+
+| PI   | Piety increases the effectiveness and success rate for all priest     |
+|      | spells                                                                |
++------+-----------------------------------------------------------------------+
+| ST   | Strength increases physical damage done and the hit rate for all      |
+|      | physical attacks.                                                     |
++------+-----------------------------------------------------------------------+
+| VT   | Vitality increases the amount of hit points a character receives when |
+|      | they level up.                                                        |
++------+-----------------------------------------------------------------------+
 
 Races
 =====
