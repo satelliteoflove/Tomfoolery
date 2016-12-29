@@ -1,4 +1,5 @@
-General listing of monsters
+Monster Traits
+==============
 
 Generic
     hit_points = 10
@@ -7,7 +8,21 @@ Generic
     defense = 1
     agility = 1
     spells = [] - list of dictionary keys. should they be strings or ints?
-    party_weight = 1 - how many mobs this mob counts as for the purpose of assembling monster groups.
-    gold_modifier = 1 - only changed for special mobs
-    xp_modifier = 1 - only changed for special mobs
-    item_dropped = "item" - Named quest-related item. Only special mobs have an "item_dropped" value. All others drop based on the general list for each tower level.
+    party_weight = 1 - how many mobs this mob counts as for the purpose of
+        assembling monster groups.
+    gold_drop = 1 - how much gold per enemy defeated
+    xp_drop = 1 - how much xp per enemy defeated
+    item_dropped = "item" - Named quest-related item. Only special mobs have
+        an "item_dropped" value. All others drop based on the general list for
+        each tower level.
+    
+
+Monster Appearance
+==================
+
+How to handle monster locations? I need to determine:
+* What towers/dungeons monsters appear on
+* What levels of said towers/dungeons monsters appear on
+* How frequently do monsters appear at a given level
+* How often are monsters "unknown" (gray figure)
+* How easily are monsters identified (color figure) in battle (no spell/item)
