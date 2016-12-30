@@ -172,23 +172,29 @@ General
 Monsters
 ========
 Notes:
-    *Monsters are encountered randomly at every level of every tower.
-    *Monsters are encountered in groups
-    *Just like the player party, monster parties have "front" and "back" rows,
-     with the same effects.
-    *Monsters may "advance" to get to the front of the party.
-    *Unlike the player party, multiple monsters of the same type may occupy a
-     single party "slot". Thus, 5 "samurai" could be in slot 1 while 3 "mage"
-     could be in slot 2.
-    *The number of available slots in a monster party is a function of the
-     tower level the player party is on. Thus, level 1 would might be
-     restricted to 1-2 slots, but level 3 might have monster groups of 3-4
-     slots, and some levels might have monster parties with a full 6 slots.
-    *Similarly, the number of monsters of the same type which can occupy a
-     single slot increases with the tower level being played.
-    *Monster types are pre-defined, and groups are semi-randomly built from
-     level-appropriate monster types.
-    *Encounter rates increase slightly as a function of tower level.
+    * Monsters are encountered randomly at every level of every tower.
+    * Monsters are encountered in groups
+    * Just like the player party, monster parties have "front" and "back" rows,
+      with the same effects.
+    * Monsters may "advance" to get to the front of the party.
+    * Unlike the player party, multiple monsters of the same type may occupy a
+      single party "slot". Thus, 5 "samurai" could be in slot 1 while 3 "mage"
+      could be in slot 2.
+    * The number of available slots in a monster party is a function of the
+      tower level the player party is on. Thus, level 1 would might be
+      restricted to 1-2 slots, but level 3 might have monster groups of 3-4
+      slots, and some levels might have monster parties with a full 6 slots.
+    * Similarly, the number of monsters of the same type which can occupy a
+      single slot increases with the tower level being played.
+    * Monster types are pre-defined, and groups are semi-randomly built from
+      level-appropriate monster types.
+    * Encounter rates increase slightly as a function of tower level.
+    * The following monsters are always "identified":
+        * Fixed/special monsters and their followers
+        * Encounters with only one group (slot)
+        * Summoned enemies
+    * Encounter rates rise with steps forward (no turn-n-grind).
+    * "Friendly" monster groups appear in the top/light levels of towers only.
 
 Monster Traits
 ==============
@@ -215,7 +221,8 @@ Monster Appearance
 How to handle monster locations? I need to determine:
 * What towers/dungeons monsters appear on
 * What levels of said towers/dungeons monsters appear on
-* How frequently do monsters appear at a given level
+* What is the encounter rate at a given level
+* How is the encounter rate affected by movement
 * How often are monsters "unknown" (gray figure)
 * How easily are monsters identified (color figure) in battle (no spell/item)
 
@@ -225,8 +232,12 @@ Monster Spellcasters
 * Monster spells are a subset of the existing character spells
 * How does enemy casting logic work?
     * How do they decide between physical attack/cast spell?
+        * Percentage chance of casting spells
+        * Chance increases when characters reach "critical" health
     * How do they decide which spell to cast?
+        * Group-wide spells are preferred over single-target
     * Do they have spell slots, or infinite casts?
+        * Spell slots, with MP determined on per-type basis.
     * How is the strength of their spells determined?
 
 Spells/Spellcasting
@@ -240,6 +251,8 @@ this form of play should be an option, the player will also be provided with
 the option to play with "Anglicised" names instead to make spell
 identification easier and faster.
 
+Slots vs. Magic Points
+======================
 Wizardry has typically employed a "spell slot" mechanic for casters. For
 instance, 5/4/3/2/1/0/0/0/0 would indicate that the character could cast 5
 level 1 spells, 4 level 2 spells, 3 level 3 spells, and so on. When a character
@@ -254,5 +267,4 @@ feature/wall detection?). For now, I plan to keep with the "spell slot"
 mechanic.
 
 TODO:
-How do monster spellcasters work?
 How do event driven encounter work?

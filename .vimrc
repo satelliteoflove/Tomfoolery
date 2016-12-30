@@ -36,10 +36,6 @@ set tw=0
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
 
-" highlight characters after 80 columns
-"highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
-"match OverLength /\%>80v.\+/
-
 " Add vertical bar at 80 columns
 if exists('+colorcolumn')
       set colorcolumn=80
@@ -97,6 +93,18 @@ Plugin 'tpope/vim-fugitive'
 
 " Status bar
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+" Requirements:
+" Python (obviously)
+" C compiler
+" socat
+" psutil
+" hglib
+" pygit2 or git
+" bzr (if bazaar repos are used)
+" pyuv (for filesystem watcher based on libuv)
+" i3-ipc
+" xrandr
 
 Plugin 'dhruvasagar/vim-table-mode'
 
