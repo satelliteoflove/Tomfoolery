@@ -190,6 +190,44 @@ Notes:
      level-appropriate monster types.
     *Encounter rates increase slightly as a function of tower level.
 
+Monster Traits
+==============
+
+Generic
+    hit_points = 10
+    attack_power = 1
+    attack_multiplier = 1
+    defense = 1
+    agility = 1
+    spells = [] - list of dictionary keys. should they be strings or ints?
+    party_weight = 1 - how many mobs this mob counts as for the purpose of
+        assembling monster groups.
+    gold_drop = 1 - how much gold per enemy defeated
+    xp_drop = 1 - how much xp per enemy defeated
+    item_dropped = "item" - Named quest-related item. Only special mobs have
+        an "item_dropped" value. All others drop based on the general list for
+        each tower level.
+    
+
+Monster Appearance
+==================
+
+How to handle monster locations? I need to determine:
+* What towers/dungeons monsters appear on
+* What levels of said towers/dungeons monsters appear on
+* How frequently do monsters appear at a given level
+* How often are monsters "unknown" (gray figure)
+* How easily are monsters identified (color figure) in battle (no spell/item)
+
+Monster Spellcasters
+====================
+* Some encountered monsters can cast spells
+* Monster spells are a subset of the existing character spells
+* How does enemy casting logic work?
+    * How do they decide between physical attack/cast spell?
+    * How do they decide which spell to cast?
+    * Do they have spell slots, or infinite casts?
+    * How is the strength of their spells determined?
 
 Spells/Spellcasting
 ===================

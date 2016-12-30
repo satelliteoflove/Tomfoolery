@@ -1,3 +1,12 @@
+Notes
+=====
+* The following monsters are always "identified":
+    * Fixed/special monsters and their followers
+    * Encounters with only one group (slot)
+    * Summoned enemies
+* Encounter rates rise with steps forward - turning has a low encounter rate.
+* 
+
 Monster Traits
 ==============
 
@@ -15,14 +24,8 @@ Generic
     item_dropped = "item" - Named quest-related item. Only special mobs have
         an "item_dropped" value. All others drop based on the general list for
         each tower level.
-    
 
-Monster Appearance
-==================
+Monster Listings
+================
 
-How to handle monster locations? I need to determine:
-* What towers/dungeons monsters appear on
-* What levels of said towers/dungeons monsters appear on
-* How frequently do monsters appear at a given level
-* How often are monsters "unknown" (gray figure)
-* How easily are monsters identified (color figure) in battle (no spell/item)
+
