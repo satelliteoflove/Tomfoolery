@@ -5,6 +5,7 @@ Notes
     * Encounters with only one group (slot)
     * Summoned enemies
 * Encounter rates rise with steps forward - turning has a low encounter rate.
+* "Friendly" monster groups appear in the top/light levels of towers only.
 * 
 
 Monster Traits
