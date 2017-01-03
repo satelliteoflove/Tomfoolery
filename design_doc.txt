@@ -25,6 +25,9 @@ Character Design and Function
 | VT   | Vitality increases the amount of hit points a character receives when |
 |      | they level up.                                                        |
 +------+-----------------------------------------------------------------------+
+| AC   | Armor Class.  The lower the number (into negative numbers), the       |
+|      | harder the target is to hit.                                          |
++------+-----------------------------------------------------------------------+
 
 
 Maps
@@ -76,15 +79,24 @@ Item properties:
     Name - Long name (if you investigate the item)
     Short_name - Displayed in the character's inventory listing
 Notes:
-    Once acquired, items occupy an inventory slot until they are used or destroyed.  Items can be deposited in town at the appropriate shop (see "bank" below).
+    Once acquired, items occupy an inventory slot until they are used or
+    destroyed.  Items can be deposited in town at the appropriate shop (see
+    "bank" below).
     When "dropped", an item is destroyed and gone forever.
-    All items can be used at any time, but only have an effect under specific conditions.
-    Items such as potions and scrolls are single-use "portable spells" that can be used by any character class or race. When used, they are marked as "broken" and are unusable. In classic Wizardry, there is no way to repair these items - they just take up space until they are dropped (destroyed).
-    Should it be possible to "repair" "broken" items if certain conditions are met?
+    All items can be used at any time, but only have an effect under specific
+    conditions.
+    Items such as potions and scrolls are single-use "portable spells" that can
+    be used by any character class or race. When used, they are marked as 
+    "broken" and are unusable. In classic Wizardry, there is no way to repair 
+    these items - they just take up space until they are dropped (destroyed).
+    Should it be possible to "repair" "broken" items if certain conditions are 
+    met?
 
 Equipment
 =========
-Weapons, Armor, Accessories are all "equipment" but are still instances of the "Item" class.  Equipment will have a different initialization method (__init__) which requires the appropriate input (listed below).
+Weapons, Armor, Accessories are all "equipment" but are still instances of the 
+"Item" class.  Equipment will have a different initialization method (__init__) 
+which requires the appropriate input (listed below).
 
 Equipment properties:
     Is_equippable(t/f)
@@ -92,16 +104,23 @@ Equipment properties:
     Min_dmg(int)
     Max_dmg(int)
     Hit_multiplier(float)
-    Equip_effect([]) - list of index numbers/keys. There will be a dictionary of "spell" effects, and this list contains a key for each effect the item needs to have when equipped.
-    Use_effect(int) - key related to the spell dictionary, for waht effect the item has when used as an item
+    Equip_effect([]) - list of index numbers/keys. There will be a dictionary of
+    "spell" effects, and this list contains a key for each effect the item needs
+    to have when equipped.
+    Use_effect(int) - key related to the spell dictionary, for what effect the
+    item has when used as an item
 
 
 Bank
 ====
-The "Bank" is an in-town shop which allows the player to store items and gold outside of a character's inventory.
-    The bank will not store anything for the player initially. The player will purchase an initial set of slots, and will need to purchase more slots as required.
-    Unlike the characters' inventories, gold will not be "weightless" but will "stack" and require a slot to be stored in.  5k per slot.
-    Slots can be purchased in batches of 5 for 5k gold.
+    The "Bank" is an in-town shop which allows the player to store items and
+    gold outside of a character's inventory.
+    The bank will not store anything for the player initially. The player will
+    purchase an initial set of slots, and will need to purchase more slots as
+    required.
+    Unlike gold in the characters' inventories, gold in the bank will not be
+    "weightless" but will "stack" and require a slot to be stored in.
+    Slots can be purchased in batches of 5 for 5k gold and hold 5k gold/slot.
     Each item will take one slot.
 
 Tavern
@@ -112,7 +131,8 @@ Where the party is managed.
 
 Inn
 ===
-Where characters recover hp/magic and gain levels.
+Where characters recover hp/magic and gain levels. The prices/values here will
+definitely change but these are starting values.
 Tiered value of rooms:
     Free - no hp recovery (only magic)
     10g/day - 1hp/day
