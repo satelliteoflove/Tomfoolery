@@ -5,9 +5,10 @@ filetype off     " also no idea
 syntax enable
 syntax on
 
-" show line numbers (standard and relative)
+" show line numbers (standard and relative) and add a foldcolumn
 set number
 set relativenumber
+set foldcolumn=3
 
 " Know what you're editing
 set title
@@ -30,8 +31,11 @@ set cursorline
 " show the matching part of the pair for [], {} and ()
 set showmatch
 
+" set wrap margin in # of chars from the right margin
+set wrapmargin=5
+
 " stop automatic insertion of newline character at 80 lines
-set tw=0
+" set tw=0
 
 " enable all Python syntax highlighting features
 let python_highlight_all = 1

@@ -3,9 +3,9 @@ Notes
 * the page http://www.angelfire.com/ult/ace/WZD_SotD_bestiary.html has extra
 beastiary info that will be helpful in deciphering other lists, and/or getting
 ideas for monsters. I have basically copy/pasted the below traits from that
-page, as they detail classic Wizardry monster traits. However, as a result of
-the unedited copy of information, some items will need to be tweaked to match
-the game mechanics detailed elsewhere in the documentation.
+page, as they detail "classic" (Japanese) Wizardry monster traits. However, as
+a result of the unedited copy of information, some items will need to be tweaked
+to match the game mechanics detailed elsewhere in the documentation.
 
 Monster Traits
 ==============
@@ -24,30 +24,32 @@ EXPERIENCE LEVEL: A numerical measure of how powerful a creature is. Stronger
 monsters are more dangerous, but they also yield greater rewards upon defeat.
 
 EXPERIENCE POINTS: A numerical bounty you earn for killing the creature (which
-is divided equally amongst your surviving party members). At set quotas, which
-are different for each character class, accumulated experience points can be
+is awarded to each of your surviving party members). At set quotas, which are
+different for each character class, accumulated experience points can be
 "cashed-in" at the inn to increase a player character's experience level.
 
 HIT POINTS: A numerical measure of a creature's life/health, as determined by
 the indicated die roll. Reducing it to zero kills the monster. The point spread
 represents the natural variation one would see in nature (i.e., some people are
-weaker/tougher than normal, but most are in the average range). Take note that
+weaker/tougher than normal, but most are in the average range). Note that
 some stronger monsters can regenerate (heal) a set number of hit points every
 round, which makes them more difficult to put down.
 
 ARMOR CLASS: A numerical measure of how easy/difficult it is to strike a
 target. Typically, this is a reflection of an individual's physical resistance
 to injury, but things like size, dodging ability, unusual physiology, etc. can
-also contribute to the AC rating. Unlike the other statistics, when it comes to
-AC, the lower the number, including negative values, the better (an unarmored
-human/demihuman has a natural AC of 10). Contrary to what one might expect,
-Armor Class does not actually reduce/mitigate damage, instead, it's an
-"all-or-nothing" affair--if an attack roll overcomes the player's or monster's
-AC value, then damage is successfully dealt, if it doesn't, they miss.
+also contribute to the AC rating. This operates much like the D&D mechanic
+"THAC0": when it comes to AC, the lower the number, including negative values,
+the better (an unarmored human/demihuman has a natural AC of 10). Contrary to
+what one might expect, Armor Class does not actually reduce/mitigate damage,
+instead, it's an "all-or-nothing" affair--if an attack roll overcomes the
+player's or monster's AC value, then damage is successfully dealt, if it
+doesn't, they miss. Details of how AC and hit registration work are noted in the
+main design document.
 Remember: Armor Class DOES NOT protect against breath attacks or spells, only
-physical attacks!!!
+physical attacks!
 
-NUMBER APPEARING: How many of the creatures you will encounter in a group,
+NUMBER APPEARING: How many of the creatures you will encounter in a group (slot)
 which is determined by the indicated die roll. Some powerful monsters are only
 encountered alone (which you should be thankful for), but most creatures tend
 to believe in strength in numbers.
@@ -56,18 +58,18 @@ PHYSICAL ATTACKS: A monster's "normal" offense. A creature with multiple
 physical attacks must direct them all at a single target; it can't attack
 several party members at once (i.e., a monster with three physical attacks can
 potentially hit one character up to three times, but it can't divide those
-strikes up amongst three separate characters.) There's also no guarantee that
+strikes up amongst three separate characters.). There's also no guarantee that
 all of those blows will successfully hit (i.e., a monster with four physical
 attacks may only manage to land two of them on your character, which results
 in less damage). Beware! In addition to damage, some monsters' physical attacks
 may also inflict negative status effects, permanently drain experience levels,
-or even result in the loss of your head!
+or even result in the loss of your head (ninja decapitation)!
 
 ATTACK BACK ROW: Most monsters can only physically attack the first three
 members of your party (the front row), however creatures with this ability have
 a longer reach and/or projectiles which allows them to strike any of your party
-members, regardless of their tactical position (time to die, you cowardly back
-row Mages!).
+members, regardless of their tactical position. This is similar to the player
+character's "monk" or "ninja" unarmed capability past lvl 9.
 
 DECAPITATION: Instant death! While a variety of creatures can perform this
 feat, Ninja are the most infamous. No matter how powerful your characters
@@ -95,7 +97,7 @@ can also cause negative status effects, like poisoning/petrification, or, worse
 of all, instant death. It's always a good idea to cast the Level 3 Mage spell
 Cortu if you're facing a creature(s) that has a breath attack.
 
-ALL FOR REINFORCEMENTS: When the going gets tough, the tough screams for help!
+CALL FOR REINFORCEMENTS: When the going gets tough, the tough screams for help!
 Some monsters (particularly demons/devils) can call out for an ally (of their
 own species) to join them in battle. The percentage indicates the probability
 of success. Remember: No single monster group can exceed nine members, so
