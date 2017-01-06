@@ -32,7 +32,7 @@ set cursorline
 set showmatch
 
 " set wrap margin in # of chars from the right margin
-set wrapmargin=5
+set wrapmargin=3
 
 " stop automatic insertion of newline character at 80 lines
 " set tw=0

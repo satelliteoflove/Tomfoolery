@@ -189,6 +189,24 @@ General
         Facing direction x
         None of the above (implied)
 
+Saving the game
+===============
+Saving the game should prevent "save scumming" (the use of frequent saves
+to circumvent challenges or cheat random rolls), but should be useful to
+the user.
+The game should automatically save the progress of the game for the player
+at regular intervals:
+* After a battle concludes (win, lose or retreat)
+* Upon returning to/leaving town
+* Game is closed/quit
+The player can save the game manually in a SEPARATE slot from the auto-save 
+feature. There is only ONE slot for manual saves. When the player saves the
+game again, the existing save is overwritten. The player will be allowed to
+save at the following times:
+* In camp
+* In town
+* Between battles (not during) so long as an event is not taking place
+
 Monsters
 ========
 Notes:
@@ -218,22 +236,7 @@ Notes:
 
 Monster Traits
 ==============
-
-Generic
-    hit_points = 10
-    attack_power = 1
-    attack_multiplier = 1
-    defense = 1
-    agility = 1
-    spells = [] - list of dictionary keys. should they be strings or ints?
-    party_weight = 1 - how many mobs this mob counts as for the purpose of
-        assembling monster groups.
-    gold_drop = 1 - how much gold per enemy defeated
-    xp_drop = 1 - how much xp per enemy defeated
-    item_dropped = "item" - Named quest-related item. Only special mobs have
-        an "item_dropped" value. All others drop based on the general list for
-        each tower level.
-    
+See "monsters.txt" 
 
 Monster Appearance
 ==================
