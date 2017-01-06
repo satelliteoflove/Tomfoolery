@@ -1,79 +1,105 @@
-This list is translated from http://www.pekori.jp/%7Eemonoya/faq/chara/spell_g4.html.
-Spell name suggestions found at https://namingschemes.com/Wizardry_I-V_Spells
+This list is translated from
+http://www.pekori.jp/%7Eemonoya/faq/chara/spell_g4.html.
+Spell name suggestions found at
+https://namingschemes.com/Wizardry_I-V_Spells
 
 MAGE SPELLS
 ===========
-| Lv | Name      | Alias       | Use | Description                                                                   | En.Use |
-+====+===========+=============+=====+===============================================================================+========+
-| 1  | Katino    | Bad Air     | B   | Enemy group (slot) disabled by miasma. Direct dmg doubled if hit.             | Y      |
-| 1  | Halito    | Little Fire | B   | 1-8 dmg to one enemy (flame)                                                  | Y      |
-| 1  | Dumapic   | Clarity     | C   | Show auto map                                                                 | N      |
-| 1  | Mogref    | Iron Body   | B   | Decrease caster's AC by 2                                                     | Y      |
-+----+-----------+-------------+-----+-------------------------------------------------------------------------------+--------+
-| 2  | Melito    | Flame2      | B   | 1-8 dmg to one group (slot) of enemies (flame)                                | Y      |
-| 2  | Sogref    | Guard       | B   | Decrease AC of one ally by 2                                                  | Y      |
-| 2  | Dilto     | (?)         | B   | Raise AC of 1 group (slot) of enemies by 2                                    | Y      |
-| 2  | Bolatu    | Petrify     | B   | Petrify one enemy for the duration of the battle                              | N      |
-+----+-----------+-------------+-----+-------------------------------------------------------------------------------+--------+
-| 3  | Morlis    | Fear        | B   | Stop the actions of one group (slot) of enemies and increase their AC by 4.   | Y      |
-| 3  | Mahalito  | Flame3      | B   | 4-24 dmg to one group (slot) of enemies (flame)                               | Y      |
-| 3  | Cortu     | Mage Guard  | B   | Strengthen barriers against enemy spells and breath                           | Y      |
-| 3  | Kantios   | Silence     | B   | Suppress spells/breaths/summoning actions of one group (slot) of enemies      | Y      |
-+----+-----------+-------------+-----+-------------------------------------------------------------------------------+--------+
-| 4  | Tzalik    | Shock       | B   | 24 to 48 damage to a single enemy                                             | Y      |
-| 4  | Lahalito  | Flame4      | B   | 6-36 damage (flame) to one group (slot) of enemies                            | Y      |
-| 4  | Litofeit  | Float       | C   | Floats in the air to avoid traps and shoots. Lowers chance to surprise enemy. | N      |
-| 4  | Rokdo     | Petrify2    | B   | Stop the action of one group (slot) of enemies (petrification)                | N      |
-+----+-----------+-------------+-----+-------------------------------------------------------------------------------+--------+
-| 5  | Socordi   | Summon      | B   | Summon one type at random from the following monsters                         | Y      |
-|    |           |             |     | *Smoke demon *Succubus *Seidel *Gargoyle *Flack *Siphon *Andrea Luffs         |        |
-| 5  | Madalto   | Freeze      | B   | 8-64 damage to one group (slot) of enemies (cold)                             | Y      |
-| 5  | Palios    | Dispell     | BC  | In camp - all status effects are removed.                                     | Y      |
-|    |           |             |     | In battle - Remove Bacortu (seal) and Cortu (Magic Guard).                    |        |
-| 5  | Bacortu   | Silence     | B   | Seal the spells of one group (slot) of enemies.                               | Y      |
-+----+-----------+-------------+-----+-------------------------------------------------------------------------------+--------+
-| 6  | Zilwan    | Banish      | B   | Deals 1000-10000 dmg to a single undead enemy                                 | N      |
-| 6  | Ladalto   | Frost2      | B   | Deals 10-100 dmg (cold) to one group (slot) of enemies.                       | Y      |
-| 6  | Lokara    | Death       | B   | Chance to inflict death on all enemies (instant).                             | N      |
-| 6  | Lazalik   | Shock2      | B   | 40-80dmg (elec) to one enemy                                                  | Y      |
-+----+-----------+-------------+-----+-------------------------------------------------------------------------------+--------+
-| 7  | Malor     | Teleport    | BC  | In camp - designate coordinates. In battle - random teleport.                 | N      |
-| 7  | Mahaman   | Wish        | B   | (machine trans. will review later) - Three of the following effects are       | N      |
-|    |           |             |     | displayed to the player, and one must be chosen. Caster must be lvl 13 to     |        |
-|    |           |             |     | cast, and caster's level will drop by 1 upon casting.                         |        |
-|    |           |             |     | 1)All HP recovered and complete resuscitation                                 |        |
-|    |           |             |     | 2)Invalidate enemy spells and breath attacks                                  |        |
-|    |           |             |     | 3)Enemies lose ability to invalidate spells                                   |        |
-|    |           |             |     | 4)Annihilate an enemy                                                         |        |
-|    |           |             |     | 5)-10 to AC of all party members - lasts even after battle                    |        |
-|    |           |             |     | 6)All spellcasters have 9MP on all spell slots                                |        |
-|    |           |             |     | 7)Remove energy drain effects (?)                                             |        |
-| 7  | Tiltowait | Nuclear     | B   | Energy released to deal 10-150dmg (non-elemental) to all enemies              | Y      |
-| 7  | Mawxiwtz  | Astral      | B   | Attempts to inflict random status ailments on all enemies:                    | Y      |
-|    |           |             |     | *~30dmg *fear *sleep *paralysis *poison *death                                |        |
-+----+-----------+-------------+-----+-------------------------------------------------------------------------------+--------+
+| Lv | Name      | Use | Description                                    | En. |
++====+===========+=====+================================================+=====+
+| 1  | Bad Air   | B   | Enemy group (slot) disabled by miasma.         | Y   |
+|    |           |     | Direct dmg doubled if hit.                     |     |
+| 1  | Halito    | B   | 1-8 dmg to one enemy (flame)                   | Y   |
+| 1  | Dumapic   | C   | Show auto map                                  | N   |
+| 1  | Mogref    | B   | Decrease caster's AC by 2                      | Y   |
++----+-----------+-----+------------------------------------------------+-----+
+| 2  | Melito    | B   | 1-8 dmg to one group (slot) of enemies         | Y   |
+|    |           |     | (flame)                                        |     |
+| 2  | Sogref    | B   | Decrease AC of one ally by 2                   | Y   |
+| 2  | Dilto     | B   | Raise AC of 1 group (slot) of enemies          | Y   |
+|    |           |     | by 2                                           |     |
+| 2  | Bolatu    | B   | Petrify one enemy for the duration of          | N   |
+|    |           |     | the battle                                     |     |
++----+-----------+-----+------------------------------------------------+-----+
+| 3  | Morlis    | B   | Stop the actions of one group (slot) of        | Y   |
+|    |           |     | enemies and increase their AC by 4.            |     |
+| 3  | Mahalito  | B   | 4-24 dmg to one group (slot) of enemies        | Y   |
+|    |           |     | (flame)                                        |     |
+| 3  | Cortu     | B   | Strengthen barriers against enemy spells       | Y   |
+|    |           |     | and breath                                     |     |
+| 3  | Kantios   | B   | Suppress spells/breaths/summoning              | Y   |
+|    |           |     | actions of one group (slot) of enemies         |     |
++----+-----------+-----+------------------------------------------------+-----+
+| 4  | Tzalik    | B   | 24 to 48 damage to a single enemy              | Y   |
+| 4  | Lahalito  | B   | 6-36 damage (flame) to one group (slot)        | Y   |
+|    |           |     | of enemies                                     |     |
+| 4  | Litofeit  | C   | Floats in the air to avoid traps and           | N   |
+|    |           |     | shoots. Lowers chance to surprise enemy.       |     |
+| 4  | Rokdo     | B   | Stop the action of one group (slot) of         | N   |
+|    |           |     | enemies (petrification)                        |     |
++----+-----------+-----+------------------------------------------------+-----+
+| 5  | Socordi   | B   | Summon one type at random from the             | Y   |
+|    |           |     | following monsters                             |     |
+|    |           |     | *Smoke demon *Succubus *Seidel *Gargoyle       |     |
+|    |           |     | *Flack *Siphon *Andrea Luffs                   |     |
+| 5  | Madalto   | B   | 8-64 damage to one group (slot) of             | Y   |
+|    |           |     | enemies (cold)                                 |     |
+| 5  | Palios    | BC  | In camp - all status effects are removed.      | Y   |
+|    |           |     | In battle - Remove Bacortu (seal) and          |     |
+|    |           |     | Cortu (Magic Guard).                           |     |
+| 5  | Bacortu   | B   | Seal the spells of one group (slot) of         | Y   |
+|    |           |     | enemies.                                       |     |
++----+-----------+-----+------------------------------------------------+-----+
+| 6  | Zilwan    | B   | Deals 1000-10000 dmg to a single undead enemy  | N   |
+| 6  | Ladalto   | B   | Deals 10-100 dmg (cold) to one group (slot)    | Y   |
+|    |           |     | of enemies.                                    |     |
+| 6  | Lokara    | B   | Chance to inflict death on all enemies         | N   |
+|    |           |     | (instant).                                     |     |
+| 6  | Lazalik   | B   | 40-80dmg (elec) to one enemy                   | Y   |
++----+-----------+-----+------------------------------------------------+-----+
+| 7  | Malor     | BC  | In camp - designate coordinates.               | N   |
+|    |           |     | In battle - random teleport.                   |     |
+| 7  | Mahaman   | B   | (machine trans. will review later) - Three of  | N   |
+|    |           |     | the following effects are displayed to the     |     |
+|    |           |     | player, and one must be chosen. Caster must    |     |
+|    |           |     | be lvl 13 to cast, and the caster's level      |     |
+|    |           |     | will drop by 1 upon casting.                   |     |
+|    |           |     | 1)All HP recovered and complete resuscitation  |     |
+|    |           |     | 2)Invalidate enemy spells and breath attacks   |     |
+|    |           |     | 3)Enemies lose ability to invalidate spells    |     |
+|    |           |     | 4)Annihilate an enemy                          |     |
+|    |           |     | 5)-10 to AC of all party members (semi-perm.)  |     |
+|    |           |     | 6)All spellcasters have 9MP on all spell slots |     |
+|    |           |     | 7)Remove energy drain effects (?)              |     |
+| 7  | Tiltowait | B   | Energy released to deal 10-150dmg              | Y   |
+|    |           |     | (non-elemental) to all enemies                 |     |
+| 7  | Mawxiwtz  | B   | Attempts to inflict random status              | Y   |
+|    |           |     | ailments on all enemies:                       |     |
+|    |           |     | *~30dmg *fear *sleep *paralysis *poison *death |     |
++----+-----------+-----+------------------------------------------------+-----+
 
 Priest Spells
 =============
-| LV | Name      | Alias   | Use | Description                                      | EU |
-+====+===========+=========+=====+==================================================+====+
-| 1  | Dios      | Heal    | BC  | Heal 1-8 HP (one ally)                           | Y  |
-| 1  | Badios    | Harm    | B   | Cause 1-8dmg to one enemy                        | Y  |
-| 1  | Milwa     | Light   | BC  | Provide light up to 3 blocks ahead for ~40       | N  |
-|    |           |         |     | Cancelled upon entering "dark" area.             | Y  |
-| 1  | Porfic    | Armor1  | B   | Decrease caster's AC by 4.                       | Y  |
-+----+-----------+---------+-----+--------------------------------------------------+----+
-| 2  | Matu      | Guard1  | B   | Decrease AC of all allies by 2.                  | Y  |
-| 2  | Calfo     | Detect  | CH  | ID Trap on treasure chest with 95% accuracy.     | N  |
-| 2  | Montino   | Seal    | B   | Stop spells for one group (slot) of enemies.     | Y  |
-| 2  | Kandi     | Search  | C   | Show general location of missing party member.   | N  |
-+----+-----------+---------+-----+--------------------------------------------------+----+
-| 3  | Latumapic | Whois   | BC  | Confirm the identity of enemies.                 | N  |
-| 3  | Dialko    | Freedom | BC  | Remove paralysis from one ally.                  | N  |
-| 3  | Bamatu    | Prayer  | B   | Decrease AC of all allies by 3.                  | Y  |
-| 3  | Lomilwa   | Great   | BC  | Light up to 3 blocks ahead until entering "dark" | N  |
-|    |           | Light   |     | areas or town.                                   |    |
-+----+-----------+---------+-----+--------------------------------------------------+----+
-| 4  | Dial      | Heal2   | BC  | Heal 2-16 HP (one ally).                         | Y  |
-| 4  | Latumofis | Detox   | BC  | Cure poison (one ally).                          | N  |
-| 4  | Maporfic  | Armor2  | BC  | Lowers AC of allies by 2. Lasts after battle.    | N  |
+| LV | Name      | Use | Description                                   | EU |
++====+===========+=====+===============================================+====+
+| 1  | Dios      | BC  | Heal 1-8 HP (one ally)                        | Y  |
+| 1  | Badios    | B   | Cause 1-8dmg to one enemy                     | Y  |
+| 1  | Milwa     | BC  | Provide light up to 3 blocks ahead for ~40    | N  |
+|    |           |     | steps. Cancelled upon entering "dark" area.   |    |
+| 1  | Porfic    | B   | Decrease caster's AC by 4.                    | Y  |
++----+-----------+-----+-----------------------------------------------+----+
+| 2  | Matu      | B   | Decrease AC of all allies by 2.               | Y  |
+| 2  | Calfo     | CH  | ID Trap on treasure chest with 95% accuracy.  | N  |
+| 2  | Montino   | B   | Stop spells for one group (slot) of enemies.  | Y  |
+| 2  | Kandi     | C   | Show general location of missing party        | N  |
+|    |           |     | member.                                       |    |
++----+-----------+-----+-----------------------------------------------+----+
+| 3  | Latumapic | BC  | Confirm the identity of enemies.              | N  |
+| 3  | Dialko    | BC  | Remove paralysis from one ally.               | N  |
+| 3  | Bamatu    | B   | Decrease AC of all allies by 3.               | Y  |
+| 3  | Lomilwa   | BC  | Light up to 3 blocks ahead until entering     | N  |
+|    |           |     | "dark" areas or town.                         |    |
++----+-----------+-----+-----------------------------------------------+----+
+| 4  | Dial      | BC  | Heal 2-16 HP (one ally).                      | Y  |
+| 4  | Latumofis | BC  | Cure poison (one ally).                       | N  |
+| 4  | Maporfic  | BC  | Lowers AC of allies by 2. Lasts after battle. | N  |
