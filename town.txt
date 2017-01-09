@@ -1,7 +1,7 @@
 In-Town resources
 
 Bank
-====
+----
     The "Bank" is an in-town shop which allows the player to store items and
     gold outside of a character's inventory.
     The bank will not store anything for the player initially. The player will
@@ -13,13 +13,13 @@ Bank
     Each item will take one slot.
 
 Tavern
-======
+------
 Where the party is managed.
     Add/remove character from active party
     Divvy total party gold among party members
 
 Inn
-===
+---
 Where characters recover hp/magic and gain levels. The prices/values here will
 definitely change but these are starting values.
 Tiered value of rooms:
@@ -38,7 +38,7 @@ Gaining levels:
     * Increase/decrease happens in single increments
 
 Market
-======
+------
 Item management:
     Buy basic items/equipment
     Sell items/equipment
@@ -46,21 +46,23 @@ Item management:
     Remove cursed items that have been equipped
 
 Temple
-======
+------
+(See design doc for more on death)
 Manage status ailments:
     * Cure characters of status effects for a fee (status ranking based)
     * Ressurect characters for a fee (level- and condition-based)
         * If a char is "dead", the ressurection fee is (level * 150)gold
         * If a char is "ashes" (failed ressurection), the fee
         is (level * 200)gold
-Notes:
-    * If "dead" or "ashes" characters are brought to town from a tower, they
-    are automatically taken to the temple.
-    * Characters stored at the temple can be added back to the party regardless
-    of their status.
+"gone" characters drop their equipment in the Temple, and this equipment is
+stored at the temple until retrieved by an active party.  The first chraracter
+with available inventory space will receive items until their inventory is full,
+then the next character with available space will receive remaining items. This
+continues until all items cached at the temple are in the possession of party
+characters.
 
 Training Grounds
-================
+----------------
 Character management:
     Create
     Delete/destroy

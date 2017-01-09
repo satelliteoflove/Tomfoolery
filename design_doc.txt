@@ -1,7 +1,7 @@
 Design and Function
 
 Character Design and Function
-=============================
+-----------------------------
 
 +------+-----------------------------------------------------------------------+
 | Stat | Description                                                           |
@@ -31,7 +31,7 @@ Character Design and Function
 
 
 Maps
-====
+----
 
 1. Three arrays of objects - map_initial, and map_save (explored area), and
     map_in_play (current in memory copy). Map_initial and map_save are both 
@@ -72,7 +72,7 @@ Item drops:
 
 
 Items
-=====
+-----
 
 Item properties:
     Description - Long description (if you investigate the item)
@@ -93,7 +93,7 @@ Notes:
     met?
 
 Equipment
-=========
+---------
 Weapons, Armor, Accessories are all "equipment" but are still instances of the 
 "Item" class.  Equipment will have a different initialization method (__init__) 
 which requires the appropriate input (listed below).
@@ -112,7 +112,7 @@ Equipment properties:
 
 
 General
-=======
+-------
     Party Conditions:
         In battle
         Engaged with NPC
@@ -122,7 +122,7 @@ General
         None of the above (implied)
 
 Saving the game
-===============
+---------------
 Saving the game should prevent "save scumming" (the use of frequent saves
 to circumvent challenges or cheat random rolls), but should be useful to
 the user.
@@ -139,8 +139,25 @@ save at the following times:
 * In town
 * Between battles (not during) so long as an event is not taking place
 
+Death
+-----
+"Death" is a vital game mechanic/aesthetic.  It should be common enough that the
+player fears it but not so frequent that the game seems unfair or unplayable.
+Death is a threat to all player characters - no-one is immune.
+When a player character is reduced to 0 or fewer HP, that character "dies". The
+character will remain in the current party until the party returns to town.
+Upon the party's return to town, all "dead" or "ashes" characters will be
+transferred to the Temple automatically.
+The player can attempt to revive a character a limited number of times. If the
+first revival fails, the character turns to "ashes".  If another revival is
+attempted while the character is "ashes" and this also fails, the character is
+lost forever ("gone") and they will be listed in the "hall of adventurers".
+Equipment from "gone" characters will be stored at the Temple until retrieved by
+the player.
+(see temple in town.txt)
+
 Monsters
-========
+--------
 Notes:
     * Monsters are encountered randomly at every level of every tower.
     * Monsters are encountered in groups
@@ -167,11 +184,11 @@ Notes:
     * "Friendly" monster groups appear in the top/light levels of towers only.
 
 Monster Traits
-==============
+--------------
 See "monsters.txt" 
 
 Monster Appearance
-==================
+------------------
 
 How to handle monster locations? I need to determine:
 * What towers/dungeons monsters appear on
@@ -182,7 +199,7 @@ How to handle monster locations? I need to determine:
 * How easily are monsters identified (color figure) in battle (no spell/item)
 
 Monster Spellcasters
-====================
+--------------------
 * Some encountered monsters can cast spells
 * Monster spells are a subset of the existing character spells
 * How does enemy casting logic work?
@@ -196,7 +213,7 @@ Monster Spellcasters
     * How is the strength of their spells determined?
 
 Spells/Spellcasting
-===================
+-------------------
 Spells in Wizardry have classically had a unique "Wizardry" naming scheme.
 Instead of "Heal" the spell is named "Dios".  Instead of "Heal more" the
 spell is named "Dial".  Intstead of "Great heal" the spell is named "Dialma".
@@ -207,7 +224,7 @@ the option to play with "Anglicised" names instead to make spell
 identification easier and faster.
 
 Slots vs. Magic Points
-======================
+----------------------
 Wizardry has typically employed a "spell slot" mechanic for casters. For
 instance, 5/4/3/2/1/0/0/0/0 would indicate that the character could cast 5
 level 1 spells, 4 level 2 spells, 3 level 3 spells, and so on. When a character

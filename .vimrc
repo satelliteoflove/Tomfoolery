@@ -33,6 +33,7 @@ set showmatch
 
 " set wrap margin in # of chars from the right margin
 set wrapmargin=3
+set tw=80
 
 " stop automatic insertion of newline character at 80 lines
 " set tw=0
@@ -148,7 +149,7 @@ set encoding=utf-8
 " set the color scheme
 if has('gui_running')
     set background=dark
-    colorscheme solarized
+    colorscheme darkblue
 else
     colorscheme desert
 endif
