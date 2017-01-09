@@ -1,0 +1,69 @@
+In-Town resources
+
+Bank
+====
+    The "Bank" is an in-town shop which allows the player to store items and
+    gold outside of a character's inventory.
+    The bank will not store anything for the player initially. The player will
+    purchase an initial set of slots, and will need to purchase more slots as
+    required.
+    Unlike gold in the characters' inventories, gold in the bank will not be
+    "weightless" but will "stack" and require a slot to be stored in.
+    Slots can be purchased in batches of 5 for 5k gold and hold 5k gold/slot.
+    Each item will take one slot.
+
+Tavern
+======
+Where the party is managed.
+    Add/remove character from active party
+    Divvy total party gold among party members
+
+Inn
+===
+Where characters recover hp/magic and gain levels. The prices/values here will
+definitely change but these are starting values.
+Tiered value of rooms:
+    Free - no hp recovery (only magic)
+    10g/day - 1hp/day
+    50g/day - 10hp/day
+    100g/day - 20hp/day
+    500g/day - 50hp/day
+
+Gaining levels:
+    * Once necessary XP is reached by a character, they can "level up" by
+    staying at the inn in town.
+    * Levels grant a random selection of stat changes
+    * 1-6 stats will increase/decrease and hp will be gained based on VIT
+    * Stats decrease rarely (small chance)
+    * Increase/decrease happens in single increments
+
+Market
+======
+Item management:
+    Buy basic items/equipment
+    Sell items/equipment
+    Identify unknown items
+    Remove cursed items that have been equipped
+
+Temple
+======
+Manage status ailments:
+    * Cure characters of status effects for a fee (status ranking based)
+    * Ressurect characters for a fee (level- and condition-based)
+        * If a char is "dead", the ressurection fee is (level * 150)gold
+        * If a char is "ashes" (failed ressurection), the fee
+        is (level * 200)gold
+Notes:
+    * If "dead" or "ashes" characters are brought to town from a tower, they
+    are automatically taken to the temple.
+    * Characters stored at the temple can be added back to the party regardless
+    of their status.
+
+Training Grounds
+================
+Character management:
+    Create
+    Delete/destroy
+    Change name
+    Change class
+    
