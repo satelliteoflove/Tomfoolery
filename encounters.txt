@@ -141,3 +141,37 @@ example, there's a 25% chance that said Wing Demons will be accompanied by
 ANOTHER Wing Demon group, and so forth. Thankfully, no single battle can
 consist of more than four monster groups, so there is a limit to these
 shenanigans.
+
+Treasure
+--------
+The primary way players acquire new equipment is through treasure left behind by
+monsters after an encounter has resolved itself. "Treasure chests" have a
+chance of appearing when all monsters are defeated or have fled the battle. The
+chest may be trapped, and if the trap is not disarmed before the chest is opened
+it will almost certainly deploy.
+
+Traps
+-----
+The following traps (and effects) may be found on chests in the dungeon. Some
+traps are much more dangerous than others. "S/P" denotes if the effects are for
+a single target or the party.
+|------------|-----|---------------------------------------------------------|
+| Trap Name  | S/P | Effect(s)                                               |
+|------------|-----|---------------------------------------------------------|
+| Alarm      | P   | Immediate random encounter.                             |
+|            |     |                                                         |
+|------------|-----|---------------------------------------------------------|
+| Poison     | S   | Poison until cured. Damage varies by dungeon level.     |
+| Needle     |     |                                                         |
+|------------|-----|---------------------------------------------------------|
+| Crossbow   | S   | Does 50-100dmg (more at lower levels).                  |
+|------------|-----|---------------------------------------------------------|
+| Stunner    | S   | Paralysis until cured.                                  |
+|------------|-----|---------------------------------------------------------|
+| Exploding  | P   | Random damage to entire party. Characters with high     |
+| Box        |     | agility may avoid some or all damage.                   |
+|------------|-----|---------------------------------------------------------|
+| Gas Cloud  | P   | Chance to poison all characters in party. Mid- to Deep- |
+|            |     | level.                                                  |
+|------------|-----|---------------------------------------------------------|
+| Teleporter |

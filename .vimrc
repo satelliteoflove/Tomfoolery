@@ -128,9 +128,12 @@ function! s:isAtStartOfLine(mapping)
                   \ <SID>isAtStartOfLine('__') ?
                   \ '<c-o>:silent! TableModeDisable<cr>' : '__'
 
+" Format tables for markdown
+let g:table_mode_corner="|"
+
 " Format Tables in ReST
-let g:table_mode_corner_corner="+"
-let g:table_mode_header_fillchar="="
+"let g:table_mode_corner_corner="+"
+"let g:table_mode_header_fillchar="="
 
 " All Vundle plugins must be added before the following line
 call vundle#end()
