@@ -149,7 +149,9 @@ set encoding=utf-8
 " set the color scheme
 if has('gui_running')
     set background=dark
-    colorscheme darkblue
+    colorscheme desert
+    set guifont=Monospace\ 14
+"    set guioptions-=T "remove toolbar
 else
     colorscheme desert
 endif
