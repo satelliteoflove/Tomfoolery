@@ -142,6 +142,21 @@ ANOTHER Wing Demon group, and so forth. Thankfully, no single battle can
 consist of more than four monster groups, so there is a limit to these
 shenanigans.
 
+Docile Monsters
+---------------
+Some monsters are not inherently aggressive, and may not attack on site. When
+the player party encounters a group of non-violent monsters, they will be faced
+with a choice of three options:
+* Watch/wait (give enemy the initiative)
+* Run
+* Attack (possible pre-emptive attack round)
+
+Note that this is the only time when the player can affect the alignment of the
+characters in the party. If the party waits or runs from a non-violent group,
+the alignment of all party members shifts towards "Good".  If the party attacks
+a non-violent group, the alignment of all members shifts towards "Evil".  See
+"alignment" in the main design document for more information.
+
 Treasure
 --------
 The primary way players acquire new equipment is through treasure left behind by
@@ -174,4 +189,7 @@ a single target or the party.
 | Gas Cloud  | P   | Chance to poison all characters in party. Mid- to Deep- |
 |            |     | level.                                                  |
 |------------|-----|---------------------------------------------------------|
-| Teleporter |
+| Teleporter | P   | Teleports party to a random location on the current?    |
+|            |     | level of the dungeon. Will not teleport into stone.     |
+|------------|-----|---------------------------------------------------------|
+|
