@@ -154,8 +154,9 @@ with a choice of three options:
 Note that this is the only time when the player can affect the alignment of the
 characters in the party. If the party waits or runs from a non-violent group,
 the alignment of all party members shifts towards "Good".  If the party attacks
-a non-violent group, the alignment of all members shifts towards "Evil".  See
-"alignment" in the main design document for more information.
+a non-violent group, the alignment of all members shifts towards "Evil". Note
+that characters of "Neutral" alignment shift more slowly than other alignments.
+See "alignment" in the main design document for more information.
 
 Treasure
 --------

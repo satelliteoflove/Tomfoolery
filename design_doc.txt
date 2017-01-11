@@ -29,6 +29,30 @@ Character Design and Function
 |      | harder the target is to hit.                                          |
 +------+-----------------------------------------------------------------------+
 
+Alignment
+---------
+All characters have an "alignment", which indicates their world view as follows:
+* Good - Merciful upon others who mean them no harm.
+* Neutral - Neither especially lenient or merciless.
+* Evil - Will destroy all who stand before them, even friendly monsters.
+
+Some classes have alignment requirements. For instance, Priest characters must
+be Good or Evil, but not Neutral. Thieves may be Neutral or Evil, but not Good.
+Ninjas may only be Evil, and Lords may only be Good.
+
+Some equipment is intended for characters of specific alignments. If a character
+attempts to equip an item and does not meet the alignment requirements for that
+item, he may be denied the right to equip the item or he may be cursed upon
+equipping the item.
+
+It is not easy to have Good and Evil characters in the same party. If a party
+has only Good and Neutral characters in it and the player attempts to add an
+Evil character to an avilable slot while at the Tavern in town (where parties
+are assembled), the Evil character will refuse to join.  The opposite is also
+true. However, characters can be dropped off in the dungeon and a party with
+opposing alignment can then search for them while in the dungeon and add them to
+their ranks.  The opposing character will remain in the party until removed in
+town.
 
 Maps
 ----
