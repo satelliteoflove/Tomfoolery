@@ -194,3 +194,28 @@ a single target or the party.
 |            |     | level of the dungeon. Will not teleport into stone.     |
 |------------|-----|---------------------------------------------------------|
 |
+
+Random encounters
+-----------------
+
+Monster Appearance
+------------------
+
+How to handle monster locations? I need to determine:
+* What towers/dungeons monsters appear on
+* What levels of said towers/dungeons monsters appear on
+* What is the encounter rate at a given level
+* How is the encounter rate affected by movement
+* How often are monsters "unknown" (gray figure)
+* How easily are monsters identified (color figure) in battle (no spell/item)
+
+Except for specially scripted event-driven encounters, all monster encounters
+are randomized. Each dungeon level will have a "dictionary" of monsters which
+can be encountered on that level, and the game will pull from this dictionary at
+the time of the encounter to build the monster group.
+Encounter rates are set by dungeon level, and are modified by the following 
+variables:
+* Steps walked
+* Turns/actions taken since last encounter
+* New area explored (filling out map)
+* Spells/items which affect encounter rates

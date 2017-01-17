@@ -45,14 +45,14 @@ attempts to equip an item and does not meet the alignment requirements for that
 item, he may be denied the right to equip the item or he may be cursed upon
 equipping the item.
 
-It is not easy to have Good and Evil characters in the same party. If a party
-has only Good and Neutral characters in it and the player attempts to add an
-Evil character to an avilable slot while at the Tavern in town (where parties
-are assembled), the Evil character will refuse to join.  The opposite is also
-true. However, characters can be dropped off in the dungeon and a party with
-opposing alignment can then search for them while in the dungeon and add them to
-their ranks.  The opposing character will remain in the party until removed in
-town.
+Characters of opposing alignments will not join the same party under normal
+conditions. If a party has only Good and Neutral characters in it and the player
+attempts to add an Evil character to an avilable slot while at the Tavern in 
+town (where parties are assembled), the Evil character will refuse to join.  The 
+opposite is also true. However, characters can be dropped off in the dungeon and 
+a party with opposing alignment can then search for them while in the dungeon 
+and add them to their ranks.  The opposing character will remain in the party 
+until removed in town.
 
 Maps
 ----
@@ -87,17 +87,46 @@ Values in each "tile" tuple:
 	What_is_(north/south/east/west)
 		exit, wall, door, secret door, grate (triggered), event
 
+Map generation:
+    Maps for each dungeon are procedurally generated at the start of a new game.
+    This is not frequent, as the same save game is used regardless of the party
+    members chosen.  Even if all characters in play are "gone" (dead, then ash,
+    then gone), the dungeon will not change when the player generates a new
+    party and goes back into the dungeon. The dungeons are re-generated on
+    meeting the following conditions:
+    1) The game is "beaten", with the characters defeating the final boss and
+    returning to town victorious. When this happens, the players are notified
+    that "true evil never dies", and the dungeons are re-generated, along with
+    all bosses, treasure and traps.
+    2) The player chooses to regenerate the dungeons.  This will be an option
+    within town.  Upon regeneration, all dungeons will lose their "state" and
+    all saved progress and auto-maps are reset.  Any characters which are still
+    in the dungeon will be returned to town and will be staying at the inn. The
+    player may regenerate dungeon as many times as desired, but the prior 
+    dungeon is permanently removed (no retrieval).
+    3) the player chooses a "new game" from the main screen.  This will
+    completely regenerate the dungeons and will permanently reset the game
+    state, removing all player-generated characters, loot and progress. The
+    player will be notified sufficiently of this.
+
+    Generated maps are not completely random, but are generated procedurally.
+    This is to provide the player with more interesting manual mapping (on graph
+    paper), and to provide a bit more predictability to the maps. A possible
+    method would be to first create a "section" from pre-defined rooms and
+    hallway segments, then mirror and rotate that section to create a "quadrant"
+    which is then mirrored and rotated to create the rest of the map.  This
+    should provide a "geometric pattern"-style of map.
+
+
+Items
+-----
+
 Item drops:
     a. Item drops will be level-based, rather than monster-based.  Thus, each
     level of each tower will have a static drop list and all mobs on that
     level have the potential to drop items from that list.
     b. ALL items will be "unidentified" upon pickup. Items can be identified
     either by a character with the Bishop class or by the merchant in town.
-
-
-Items
------
-
 Item properties:
     Description - Long description (if you investigate the item)
     Name - Long name (if you investigate the item)
@@ -137,17 +166,17 @@ Equipment properties:
 
 General
 -------
-    Party Conditions:
-        In battle
-        Engaged with NPC
-        In camp
-        On event trigger
-        Facing direction x
-        None of the above (implied)
+Party Conditions:
+    In battle
+    Engaged with NPC
+    In camp
+    On event trigger
+    Facing direction x
+    None of the above (implied)
 
 Saving the game
 ---------------
-Saving the game should prevent "save scumming" (the use of frequent saves
+Saving the game should mitigate "save scumming" (the use of frequent saves
 to circumvent challenges or cheat random rolls), but should be useful to
 the user.
 The game should automatically save the progress of the game for the player
@@ -162,6 +191,13 @@ save at the following times:
 * In camp
 * In town
 * Between battles (not during) so long as an event is not taking place
+
+Alternately, the game may be played in "hardcore" mode. This affects saves in
+the following ways:
+* The player-controlled manual save game is disabled
+* Automatic saving does NOT occur after battles
+* The game is saved when the party returns to town
+* The game is saved when the player quits the game
 
 Death
 -----
@@ -211,16 +247,6 @@ Monster Traits
 --------------
 See "monsters.txt" 
 
-Monster Appearance
-------------------
-
-How to handle monster locations? I need to determine:
-* What towers/dungeons monsters appear on
-* What levels of said towers/dungeons monsters appear on
-* What is the encounter rate at a given level
-* How is the encounter rate affected by movement
-* How often are monsters "unknown" (gray figure)
-* How easily are monsters identified (color figure) in battle (no spell/item)
 
 Monster Spellcasters
 --------------------
