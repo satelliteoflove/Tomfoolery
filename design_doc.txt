@@ -192,12 +192,23 @@ save at the following times:
 * In town
 * Between battles (not during) so long as an event is not taking place
 
-Alternately, the game may be played in "hardcore" mode. This affects saves in
-the following ways:
+This save behavior is different in "hardcore" mode. See "hardcore mode" section.
+
+Hardcore Mode
+-------------
+
+In hardcore mode, a number of changes make the game more challenging.
+
+Saving:
 * The player-controlled manual save game is disabled
 * Automatic saving does NOT occur after battles
 * The game is saved when the party returns to town
 * The game is saved when the player quits the game
+
+Mapping:
+* The auto-generated map is no longer available at will - something will limit
+  its use (uses a spell slot to view map or similar). The idea is to
+  encourage/force the player to maintain hand-drawn maps of the dungeon.
 
 Death
 -----
@@ -218,49 +229,8 @@ the player.
 
 Monsters
 --------
-Notes:
-    * Monsters are encountered randomly at every level of every tower.
-    * Monsters are encountered in groups
-    * Just like the player party, monster parties have "front" and "back" rows,
-      with the same effects.
-    * Monsters may "advance" to get to the front of the party.
-    * Unlike the player party, multiple monsters of the same type may occupy a
-      single party "slot". Thus, 5 "samurai" could be in slot 1 while 3 "mage"
-      could be in slot 2.
-    * The number of available slots in a monster party is a function of the
-      tower level the player party is on. Thus, level 1 would might be
-      restricted to 1-2 slots, but level 3 might have monster groups of 3-4
-      slots, and some levels might have monster parties with a full 6 slots.
-    * Similarly, the number of monsters of the same type which can occupy a
-      single slot increases with the tower level being played.
-    * Monster types are pre-defined, and groups are semi-randomly built from
-      level-appropriate monster types.
-    * Encounter rates increase slightly as a function of tower level.
-    * The following monsters are always "identified":
-        * Fixed/special monsters and their followers
-        * Encounters with only one group (slot)
-        * Summoned enemies
-    * Encounter rates rise with steps forward (no turn-n-grind).
-    * "Friendly" monster groups appear in the top/light levels of towers only.
-
-Monster Traits
---------------
 See "monsters.txt" 
 
-
-Monster Spellcasters
---------------------
-* Some encountered monsters can cast spells
-* Monster spells are a subset of the existing character spells
-* How does enemy casting logic work?
-    * How do they decide between physical attack/cast spell?
-        * Percentage chance of casting spells
-        * Chance increases when characters reach "critical" health
-    * How do they decide which spell to cast?
-        * Group-wide spells are preferred over single-target
-    * Do they have spell slots, or infinite casts?
-        * Spell slots, with MP determined on per-type basis.
-    * How is the strength of their spells determined?
 
 Spells/Spellcasting
 -------------------
@@ -289,4 +259,4 @@ feature/wall detection?). For now, I plan to keep with the "spell slot"
 mechanic.
 
 TODO:
-How do event driven encounter work?
+How do event driven encounters work?

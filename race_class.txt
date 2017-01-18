@@ -11,28 +11,34 @@ Long-range attacks are only in effect when they fight bare-handed.
 
 Statistics
 ==========
-+------+-----------------------------------------------------------------------+
-| Stat | Description                                                           |
-+======+=======================================================================+
-| AG   | Agility. Increases chance to disarm attacks, flee, and dodge. Also    |
-|      | increases a character's ability to disarm traps without misfire.      |
-+------+-----------------------------------------------------------------------+
-| IQ   | Intelligence. Increases the effectiveness and success rate of         |
-|      | mage/psionic spells.                                                  |
-+------+-----------------------------------------------------------------------+
-| LK   | Luck increases your resistance to status effects and chance for rare  |
-|      | items to drop from enemies. Also increases ability to disarm traps    |
-|      | without misfire.                                                      |
-+------+-----------------------------------------------------------------------+
-| PI   | Piety increases the effectiveness and success rate for all priest     |
-|      | spells                                                                |
-+------+-----------------------------------------------------------------------+
-| ST   | Strength increases physical damage done and the hit rate for all      |
-|      | physical attacks.                                                     |
-+------+-----------------------------------------------------------------------+
-| VT   | Vitality increases the amount of hit points a character receives when |
-|      | they level up.                                                        |
-+------+-----------------------------------------------------------------------+
+| Stat | Description                                                          |
+|------|----------------------------------------------------------------------|
+| AG   | Agility. Increases chance to disarm attacks, flee, and dodge. Also   |
+|      | increases a character's ability to disarm traps without misfire.     |
+|------|----------------------------------------------------------------------|
+| IQ   | Intelligence. Increases the effectiveness and success rate of        |
+|      | mage/psionic spells.                                                 |
+|------|----------------------------------------------------------------------|
+| LK   | Luck increases your resistance to status effects and chance for rare |
+|      | items to drop from enemies. Also increases ability to disarm traps   |
+|      | without misfire.                                                     |
+|------|----------------------------------------------------------------------|
+| PI   | Piety increases the effectiveness and success rate for all priest    |
+|      | spells                                                               |
+|------|----------------------------------------------------------------------|
+| ST   | Strength increases physical damage done and the hit rate for all     |
+|      | physical attacks.                                                    |
+|------|----------------------------------------------------------------------|
+| VT   | Vitality increases the amount of hit points a character receives     |
+|      | when they level up.                                                  |
+|------|----------------------------------------------------------------------|
+
+Notes:
+"Energy" exists in some Wizardry installments, but is poorly documented. It is
+of questionable use outside of the installments in which characters are
+automatically and immediately raised to the next level upon earning enough XP 
+to qualify for that level (as opposed to installments where XP is "cached in" at
+the Inn in exchange for gaining a level).
 
 Races
 =====
@@ -76,66 +82,76 @@ Races
 
 Classes
 =======
-+------------+-------------------+---------------------------------------------+
-| Occupation | Min. Stats/Align  | Required Bonus Points (lower row is female) |
-+============+===================+=============================================+
-| Name       | ST/IQ/PI/VT/AG/LK | HU/EL/DW/GN/HO/FA/LI/DR/RA/MO/FE            |
-+------------+-------------------+---------------------------------------------+
-| Fighter    | 12/--/--/--/--/-- | 02/04/00/01/03/06/00/01/03/01/04            |
-|            | Gd/Ne/Ev          | 03/05/01/02/04/07/00/02/04/02/05            |
-|            |                   | no special                                  |
-+------------+-------------------+---------------------------------------------+
-| Mage       | --/12/--/--/--/-- | 04/02/06/05/05/01/07/05/06/02/02            |
-|            | Gd/Ne/Ev          |                                             |
-|            |                   | Mage spells                                 |
-+------------+-------------------+---------------------------------------------+
-| Priest     | --/--/12/--/--/08 | 04/02/03/01/06/06/08/06/00/06/05            |
-|            | Gd/Ev             |                                             |
-|            |                   | Priest spells, dispell undead               |
-+------------+-------------------+---------------------------------------------+
-| Thief      | --/--/--/--/10/12 | 06/05/08/09/01/01/06/06/05/07/02            |
-|            | Ne/Ev             | Trap ID, Hiding/Ambushing, Hidden           |
-|            |                   | door detection, Door unlocking              |
-+------------+-------------------+---------------------------------------------+
-| Alchemist  | --/13/--/--/--/13 | 10/08/13/12/08/04/14/11/11/08/06            |
-|            | Gd/Ne/Ev          |                                             |
-|            |                   | Combine potions                             |
-+------------+-------------------+---------------------------------------------+
-| Bishop     | --/15/15/--/--/-8 | 14/10/15/11/17/13/21/17/12/14/13            |
-|            | Gd/Ev             | Item appraisal, mage spells, priest spells, |
-|            |                   | dispell undead                              |
-+------------+-------------------+---------------------------------------------+
-| Bard       | --/10/--/--/-8/12 | 06/04/10/10/04/01/10/07/07/05/02            |
-|            | Gd/Ne             | Use musical instruments, mage spells,       |
-|            |                   | Trap ID, Hidden door detect/unlock          |
-+------------+-------------------+---------------------------------------------+
-| Ranger     | 10/08/08/11/08/09 | 03/07/05/06/06/11/08/04/04/05/07            |
-|            | Ne/Ev             | 03/07/05/05/06/11/08/04/04/04/07            |
-|            |                   | Smoke(?),Trap ID,Hiding,Hid.Door.Det/Unlock |
-+------------+-------------------+---------------------------------------------+
-| Psionic    | 10/14/--/14/--/10 | 13/15/13/14/13/15/12/11/14/10/13            |
-|            | Ne/Ev             | 13/15/12/13/13/15/12/10/14/09/13            |
-|            |                   | Psionic spells                              |
-+------------+-------------------+---------------------------------------------+
-| Valkyrie   | 10/--/11/11/11/09 | --/--/--/--/--/--/--/--/--/--/--            |
-|            | Ne                | 09/10/07/07/09/14/10/09/05/10/10            |
-|            | Female only       | Priest spells                               |
-+------------+-------------------+---------------------------------------------+
-| Samurai    | 12/11/--/09/14/09 | 12/13/14/15/11/09/13/12/14/10/09            |
-|            | Gd/Ne             | 13/13/15/16/12/09/13/13/15/11/09            |
-|            |                   | Mage spells                                 |
-+------------+-------------------+---------------------------------------------+
-| Lord       | 15/11/14/15/11/14 | 29/28/26/26/28/29/27/28/26/28/27            |
-|            | Gd                | Priest spells, Dispell undead               |
-|            |                   |                                             |
-+------------+-------------------+---------------------------------------------+
-| Monk       | Gd/Ne             | 14/14/14/12/15/14/17/16/12/16/12            |
-|            |                   | 15/14/15/13/16/15/18/17/13/17/13            |
-|            |                   | (?)Knock out, AC (-1 per 2lvl), Psionic     |
-|            |                   | spells, [4,4]ranged attack from lvl 9, hide |
-+------------+-------------------+---------------------------------------------+
-| Ninja      | Ev                | 38/37/35/35/37/35/36/37/35/37/35            |
-|            |                   | Beheading, AC (-1 per 2 lvl), [4,4]Ranged   |
-|            |                   | attack from lvl 9, TrapID,Hide,Hidden door  |
-|            |                   | detection, unlock doors                     |
-+------------+-------------------+---------------------------------------------+
+|------------|-------------------|-------------------------------------------|
+| Occupation | Min. Stats/Align  | Required Bonus Points (lower is female)   |
+|------------|-------------------|-------------------------------------------|
+| Name       | ST/IQ/PI/VT/AG/LK | HU/EL/DW/GN/HO/FA/LI/DR/RA/MO/FE          |
+|------------|-------------------|-------------------------------------------|
+| Fighter    | 12/--/--/--/--/-- | 02/04/00/01/03/06/00/01/03/01/04          |
+|            | Gd/Ne/Ev          | 03/05/01/02/04/07/00/02/04/02/05          |
+|            |                   | no special                                |
+|------------|-------------------|-------------------------------------------|
+| Mage       | --/12/--/--/--/-- | 04/02/06/05/05/01/07/05/06/02/02          |
+|            | Gd/Ne/Ev          |                                           |
+|            |                   | Mage spells                               |
+|------------|-------------------|-------------------------------------------|
+| Priest     | --/--/12/--/--/08 | 04/02/03/01/06/06/08/06/00/06/05          |
+|            | Gd/Ev             |                                           |
+|            |                   | Priest spells, dispell undead             |
+|------------|-------------------|-------------------------------------------|
+| Thief      | --/--/--/--/10/12 | 06/05/08/09/01/01/06/06/05/07/02          |
+|            | Ne/Ev             | Trap ID, Hiding/Ambushing, Hidden         |
+|            |                   | door detection, Door unlocking            |
+|------------|-------------------|-------------------------------------------|
+| Alchemist  | --/13/--/--/--/13 | 10/08/13/12/08/04/14/11/11/08/06          |
+|            | Gd/Ne/Ev          |                                           |
+|            |                   | Combine potions                           |
+|------------|-------------------|-------------------------------------------|
+| Bishop     | --/15/15/--/--/-8 | 14/10/15/11/17/13/21/17/12/14/13          |
+|            | Gd/Ev             | Item appraisal, mage spells, priest,      |
+|            |                   | spells, dispell undead                    |
+|------------|-------------------|-------------------------------------------|
+| Bard       | --/10/--/--/-8/12 | 06/04/10/10/04/01/10/07/07/05/02          |
+|            | Gd/Ne             | Use musical instruments, mage spells,     |
+|            |                   | Trap ID, Hidden door detect/unlock        |
+|------------|-------------------|-------------------------------------------|
+| Ranger     | 10/08/08/11/08/09 | 03/07/05/06/06/11/08/04/04/05/07          |
+|            | Ne/Ev             | 03/07/05/05/06/11/08/04/04/04/07          |
+|            |                   | Smoke(?),Trap ID,Hiding,Door.Det/Unlock   |
+|------------|-------------------|-------------------------------------------|
+| Psionic    | 10/14/--/14/--/10 | 13/15/13/14/13/15/12/11/14/10/13          |
+|            | Ne/Ev             | 13/15/12/13/13/15/12/10/14/09/13          |
+|            |                   | Psionic spells                            |
+|------------|-------------------|-------------------------------------------|
+| Valkyrie   | 10/--/11/11/11/09 | --/--/--/--/--/--/--/--/--/--/--          |
+|            | Ne                | 09/10/07/07/09/14/10/09/05/10/10          |
+|            | Female only       | Priest spells                             |
+|------------|-------------------|-------------------------------------------|
+| Samurai    | 12/11/--/09/14/09 | 12/13/14/15/11/09/13/12/14/10/09          |
+|            | Gd/Ne             | 13/13/15/16/12/09/13/13/15/11/09          |
+|            |                   | Mage spells                               |
+|------------|-------------------|-------------------------------------------|
+| Lord       | 15/11/14/15/11/14 | 29/28/26/26/28/29/27/28/26/28/27          |
+|            | Gd                | Priest spells, Dispell undead             |
+|            |                   |                                           |
+|------------|-------------------|-------------------------------------------|
+| Monk       | Gd/Ne             | 14/14/14/12/15/14/17/16/12/16/12          |
+|            |                   | 15/14/15/13/16/15/18/17/13/17/13          |
+|            |                   | Stun, AC (-1 per 2lvl), Psionic spells,   |
+|            |                   | [4,4]ranged attack from lvl 9, hide       |
+|------------|-------------------|-------------------------------------------|
+| Ninja      | Ev                | 38/37/35/35/37/35/36/37/35/37/35          |
+|            |                   | Beheading, AC (-1 per 2 lvl), [4,4]Ranged |
+|            |                   | attack from lvl 9, TrapID,Hide, door      |
+|            |                   | detection, unlock doors                   |
+|------------|-------------------|-------------------------------------------|
+
+Note: The above list needs to be filled in with minimum stats for "Monk" and
+"Ninja" classes.
+
+Experience Levels
+-----------------
+The below table defines how much XP is required to reach a specific level by a
+character of a particular class.
+
+
