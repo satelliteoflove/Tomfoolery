@@ -164,16 +164,6 @@ Equipment properties:
     item has when used as an item
 
 
-General
--------
-Party Conditions:
-    In battle
-    Engaged with NPC
-    In camp
-    On event trigger
-    Facing direction x
-    None of the above (implied)
-
 Saving the game
 ---------------
 Saving the game should mitigate "save scumming" (the use of frequent saves
@@ -208,7 +198,12 @@ Saving:
 Mapping:
 * The auto-generated map is no longer available at will - something will limit
   its use (uses a spell slot to view map or similar). The idea is to
-  encourage/force the player to maintain hand-drawn maps of the dungeon.
+  encourage/force the player to maintain hand-drawn maps of the dungeon. Perhaps
+  the best idea is an item carried in the inventory which has a limited number
+  of "charges" which are replenished upon return to town. This would work well
+  in normal mode (remove the charge restriction) and hardcore mode.
+  Alternately, there could be a special skill given to a specific class (such as
+  mages) which allows map viewing, and charges could be applied to that skill.
 
 Death
 -----

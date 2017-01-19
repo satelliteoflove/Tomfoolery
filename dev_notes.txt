@@ -1,0 +1,15 @@
+Variables
+-------
+Party Conditions:
+    In battle
+    Engaged with NPC
+    In camp
+    On event trigger
+    Facing direction x
+    None of the above (implied)
+
+Note: "Party Conditions" are used to manage game state and trigger events.  For
+instance, the player cannot save the game or look at the dungeon map while "in 
+battle". When a party crosses a certain position, an event may be triggered. If
+the party is facing a certain direction in a certain location and performs the
+"search" action, a specific event may be triggered.
