@@ -13,3 +13,37 @@ instance, the player cannot save the game or look at the dungeon map while "in
 battle". When a party crosses a certain position, an event may be triggered. If
 the party is facing a certain direction in a certain location and performs the
 "search" action, a specific event may be triggered.
+
+
+Maps
+----
+
+1. Three arrays of objects - map_initial, and map_save (explored area), and
+    map_in_play (current in memory copy). Map_initial and map_save are both 
+    reflected in the files mapname.map and mapname.save
+
+2. Map_in_play is generated:
+	a. load the user-modified "map_save" array of "room" objects from
+    mapname.save
+	b. load the non-changing "map_initial" array of "room" objects from
+    mapname.map
+	c. For each object in "map_save", if "has_been_occupied" value is true
+    copy the tuple to the "map_in_play" final array, else read the location
+    value and load tuple with identical location value from "map_initial" into
+    "map_in_play".
+
+3. Map_in_play is updated:
+	a. mark tuple in map_in_play at player location value "is_occupied" value
+    true
+	b. if event_on_occupy is not 0, play_event(event_on_occupy)
+	c. mark tuple in map_in_play at player location value "has_been_occupied"
+    to true
+
+Values in each "tile" tuple:
+	Location(x,y)
+	Can_be_occupied(t/f)
+    Is_occupied(t/f)
+	Has_been_occupied(t/f)
+	Event_on_occupy(event_number)
+	What_is_(north/south/east/west)
+		exit, wall, door, secret door, grate (triggered), event
