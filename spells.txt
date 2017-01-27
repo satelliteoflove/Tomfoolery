@@ -6,13 +6,13 @@ https://namingschemes.com/Wizardry_I-V_Spells
 MAGE SPELLS
 ===========
 | Lv | Name      | Use | Description                                    | En. |
-+====+===========+=====+================================================+=====+
+|----|-----------|-----|------------------------------------------------|-----|
 | 1  | Bad Air   | B   | Enemy group (slot) disabled by miasma.         | Y   |
 |    |           |     | Direct dmg doubled if hit.                     |     |
 | 1  | Halito    | B   | 1-8 dmg to one enemy (flame)                   | Y   |
 | 1  | Dumapic   | C   | Show auto map                                  | N   |
 | 1  | Mogref    | B   | Decrease caster's AC by 2                      | Y   |
-+----+-----------+-----+------------------------------------------------+-----+
+|----|-----------|-----|------------------------------------------------|-----|
 | 2  | Melito    | B   | 1-8 dmg to one group (slot) of enemies         | Y   |
 |    |           |     | (flame)                                        |     |
 | 2  | Sogref    | B   | Decrease AC of one ally by 2                   | Y   |
@@ -20,7 +20,7 @@ MAGE SPELLS
 |    |           |     | by 2                                           |     |
 | 2  | Bolatu    | B   | Petrify one enemy for the duration of          | N   |
 |    |           |     | the battle                                     |     |
-+----+-----------+-----+------------------------------------------------+-----+
+|----|-----------|-----|------------------------------------------------|-----|
 | 3  | Morlis    | B   | Stop the actions of one group (slot) of        | Y   |
 |    |           |     | enemies and increase their AC by 4.            |     |
 | 3  | Mahalito  | B   | 4-24 dmg to one group (slot) of enemies        | Y   |
@@ -29,7 +29,7 @@ MAGE SPELLS
 |    |           |     | and breath                                     |     |
 | 3  | Kantios   | B   | Suppress spells/breaths/summoning              | Y   |
 |    |           |     | actions of one group (slot) of enemies         |     |
-+----+-----------+-----+------------------------------------------------+-----+
+|----|-----------|-----|------------------------------------------------|-----|
 | 4  | Tzalik    | B   | 24 to 48 damage to a single enemy              | Y   |
 | 4  | Lahalito  | B   | 6-36 damage (flame) to one group (slot)        | Y   |
 |    |           |     | of enemies                                     |     |
@@ -37,7 +37,7 @@ MAGE SPELLS
 |    |           |     | shoots. Lowers chance to surprise enemy.       |     |
 | 4  | Rokdo     | B   | Stop the action of one group (slot) of         | N   |
 |    |           |     | enemies (petrification)                        |     |
-+----+-----------+-----+------------------------------------------------+-----+
+|----|-----------|-----|------------------------------------------------|-----|
 | 5  | Socordi   | B   | Summon one type at random from the             | Y   |
 |    |           |     | following monsters                             |     |
 |    |           |     | *Smoke demon *Succubus *Seidel *Gargoyle       |     |
@@ -49,14 +49,14 @@ MAGE SPELLS
 |    |           |     | Cortu (Magic Guard).                           |     |
 | 5  | Bacortu   | B   | Seal the spells of one group (slot) of         | Y   |
 |    |           |     | enemies.                                       |     |
-+----+-----------+-----+------------------------------------------------+-----+
+|----|-----------|-----|------------------------------------------------|-----|
 | 6  | Zilwan    | B   | Deals 1000-10000 dmg to a single undead enemy  | N   |
 | 6  | Ladalto   | B   | Deals 10-100 dmg (cold) to one group (slot)    | Y   |
 |    |           |     | of enemies.                                    |     |
 | 6  | Lokara    | B   | Chance to inflict death on all enemies         | N   |
 |    |           |     | (instant).                                     |     |
 | 6  | Lazalik   | B   | 40-80dmg (elec) to one enemy                   | Y   |
-+----+-----------+-----+------------------------------------------------+-----+
+|----|-----------|-----|------------------------------------------------|-----|
 | 7  | Malor     | BC  | In camp - designate coordinates.               | N   |
 |    |           |     | In battle - random teleport.                   |     |
 | 7  | Mahaman   | B   | (machine trans. will review later) - Three of  | N   |
@@ -76,30 +76,68 @@ MAGE SPELLS
 | 7  | Mawxiwtz  | B   | Attempts to inflict random status              | Y   |
 |    |           |     | ailments on all enemies:                       |     |
 |    |           |     | *~30dmg *fear *sleep *paralysis *poison *death |     |
-+----+-----------+-----+------------------------------------------------+-----+
+|----|-----------|-----|------------------------------------------------|-----|
 
 Priest Spells
-=============
-| LV | Name      | Use | Description                                   | EU |
-+====+===========+=====+===============================================+====+
-| 1  | Dios      | BC  | Heal 1-8 HP (one ally)                        | Y  |
-| 1  | Badios    | B   | Cause 1-8dmg to one enemy                     | Y  |
-| 1  | Milwa     | BC  | Provide light up to 3 blocks ahead for ~40    | N  |
-|    |           |     | steps. Cancelled upon entering "dark" area.   |    |
-| 1  | Porfic    | B   | Decrease caster's AC by 4.                    | Y  |
-+----+-----------+-----+-----------------------------------------------+----+
-| 2  | Matu      | B   | Decrease AC of all allies by 2.               | Y  |
-| 2  | Calfo     | CH  | ID Trap on treasure chest with 95% accuracy.  | N  |
-| 2  | Montino   | B   | Stop spells for one group (slot) of enemies.  | Y  |
-| 2  | Kandi     | C   | Show general location of missing party        | N  |
-|    |           |     | member.                                       |    |
-+----+-----------+-----+-----------------------------------------------+----+
-| 3  | Latumapic | BC  | Confirm the identity of enemies.              | N  |
-| 3  | Dialko    | BC  | Remove paralysis from one ally.               | N  |
-| 3  | Bamatu    | B   | Decrease AC of all allies by 3.               | Y  |
-| 3  | Lomilwa   | BC  | Light up to 3 blocks ahead until entering     | N  |
-|    |           |     | "dark" areas or town.                         |    |
-+----+-----------+-----+-----------------------------------------------+----+
-| 4  | Dial      | BC  | Heal 2-16 HP (one ally).                      | Y  |
-| 4  | Latumofis | BC  | Cure poison (one ally).                       | N  |
-| 4  | Maporfic  | BC  | Lowers AC of allies by 2. Lasts after battle. | N  |
+-------------
+
+Legend:
+B = In Battle
+C = In Camp
+CH = Chest/Treasure
+
+| LV | Name      | Use | Description                                    | EU |
+|----|-----------|-----|------------------------------------------------|----|
+| 1  | Dios      | BC  | Heal 1-8 HP (one ally)                         | Y  |
+| 1  | Badios    | B   | Cause 1-8dmg to one enemy                      | Y  |
+| 1  | Milwa     | BC  | Provide light up to 3 blocks ahead for ~40     | N  |
+|    |           |     | steps. Cancelled upon entering "dark" area.    |    |
+| 1  | Porfic    | B   | Decrease caster's AC by 4.                     | Y  |
+|----|-----------|-----|------------------------------------------------|----|
+| 2  | Matu      | B   | Decrease AC of all allies by 2.                | Y  |
+| 2  | Calfo     | CH  | ID Trap on treasure chest with 95% accuracy.   | N  |
+| 2  | Montino   | B   | Stop spells for one group (slot) of enemies.   | Y  |
+| 2  | Kandi     | C   | Show general location of missing party         | N  |
+|    |           |     | member.                                        |    |
+|----|-----------|-----|------------------------------------------------|----|
+| 3  | Latumapic | BC  | Confirm the identity of enemies.               | N  |
+| 3  | Dialko    | BC  | Remove paralysis from one ally.                | N  |
+| 3  | Bamatu    | B   | Decrease AC of all allies by 3.                | Y  |
+| 3  | Lomilwa   | BC  | Light up to 3 blocks ahead until entering      | N  |
+|    |           |     | "dark" areas or town.                          |    |
+|----|-----------|-----|------------------------------------------------|----|
+| 4  | Dial      | BC  | Heal 2-16 HP (one ally).                       | Y  |
+| 4  | Latumofis | BC  | Cure poison (one ally).                        | N  |
+| 4  | Maporfic  | BC  | Lowers AC of allies by 2. Lasts after battle.  | N  |
+| 4  | Bariko    | B   | 6-15dmg to one enemy group.                    | Y  |
+|----|-----------|-----|------------------------------------------------|----|
+| 5  | Dialma    | BC  | Heal 3-24 HP (one ally).                       | Y  |
+| 5  | Badi      | B   | Death to one enemy. Not effective on immortal  | Y  |
+|    |           |     | or undead enemies.                             |    |
+| 5  | Di        | C   | Revive "dead" ally. This works exactly like    | N  |
+|    |           |     | the temple in town.                            |    |
+| 5  | Bamordi   | B   | Summon one of the following monsters (random)  | Y  |
+|    |           |     | *Oysters *Wight *Scrub *Murphy's Ghost         |    |
+|    |           |     | *Vampire Road *Khobu *Ghost                    |    |
+|----|-----------|-----|------------------------------------------------|----|
+| 6  | Madi      | BC  | Totally recover HP of one ally and treat all   | Y  |
+|    |           |     | conditions except death/ash/lost.              |    |
+| 6  | Labadi    | B   | Drains all but 1-8 HP from a monster and       | Y  |
+|    |           |     | transfers that life to the caster.             |    |
+| 6  | Loktofeit | BC  | See note #1 below.                             | N  |
+| 6  | Mogato    | B   | Banish/kill one group of demons.               | N  |
+|----|-----------|-----|------------------------------------------------|----|
+| 7  | Mabariko  | B   | 18 to 60 damage to all enemies.                | Y  |
+| 7  | Kadolto   | C   | Revive one party member from death or ash with | N  |
+|    |           |     | full HP.                                       |    |
+| 7  | Bakadi    | B   | Kills one group of enemies instantly. Not eff- | Y  |
+|    |           |     | ective on undead/immortal enemies.             |    |
+| 7  | Madial    | BC  | Recover 10-50HP for all party members.         | Y  |
+|----|-----------|-----|------------------------------------------------|----|
+
+Notes:
+1) "Loktofeit" returns the party to town immediately. In Wizardry 1-4, the party
+leaves behind all equipment and most of their gold. In Wizardry 5+, the party is
+returned to town with all equipment and gold, but the spell is forgotten by the
+caster and must be re-learned, and there is a chance that the spell won't work
+when cast.
