@@ -3,8 +3,14 @@ http://www.pekori.jp/%7Eemonoya/faq/chara/spell_g4.html.
 Spell name suggestions found at
 https://namingschemes.com/Wizardry_I-V_Spells
 
-MAGE SPELLS
-===========
+Use Legend:
+B = In Battle
+C = In Camp
+CH = Chest/Treasure
+
+Mage Spells
+-----------
+|----|-----------|-----|------------------------------------------------|-----|
 | Lv | Name      | Use | Description                                    | En. |
 |----|-----------|-----|------------------------------------------------|-----|
 | 1  | Bad Air   | B   | Enemy group (slot) disabled by miasma.         | Y   |
@@ -80,12 +86,7 @@ MAGE SPELLS
 
 Priest Spells
 -------------
-
-Legend:
-B = In Battle
-C = In Camp
-CH = Chest/Treasure
-
+|----|-----------|-----|------------------------------------------------|----|
 | LV | Name      | Use | Description                                    | EU |
 |----|-----------|-----|------------------------------------------------|----|
 | 1  | Dios      | BC  | Heal 1-8 HP (one ally)                         | Y  |
@@ -140,4 +141,8 @@ Notes:
 leaves behind all equipment and most of their gold. In Wizardry 5+, the party is
 returned to town with all equipment and gold, but the spell is forgotten by the
 caster and must be re-learned, and there is a chance that the spell won't work
-when cast.
+when cast.  I'm not sure which is worse...
+
+Alchemist Spells
+----------------
+
