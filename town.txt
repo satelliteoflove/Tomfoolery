@@ -20,18 +20,15 @@ Where the party is managed.
 
 Inn
 ---
-Where characters recover hp/magic and gain levels. The prices/values here will
-definitely change but these are starting values.
-Tiered value of rooms:
-    Free - no hp recovery (only magic)
-    10g/day - 1hp/day
-    50g/day - 10hp/day
-    100g/day - 20hp/day
-    500g/day - 50hp/day
+Where characters recover hp/magic and gain levels. There is a tiered room value
+structure.  At the lowest tier, the "stay" is free and the character only
+regains MP. At higher (and more expensive) tiers, increasing amounts of HP are
+also recovered.
 
 Gaining levels:
     * Once necessary XP is reached by a character, they can "level up" by
-    staying at the inn in town.
+      "caching in" the required XP to "purchase" the next level. Any additional
+      XP will remain. Basically a special currency for character development.
     * Levels grant a random selection of stat changes
     * 1-6 stats will increase/decrease and hp will be gained based on VIT
     * Stats decrease rarely (small chance)

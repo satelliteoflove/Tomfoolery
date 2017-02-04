@@ -38,6 +38,8 @@ class Character(object):
 
     def __init__(self):
         self.name = input("What is the player's name?\n")
+        self.current_level = 1
+        self.current_xp = 0
         self.strength = 8
         self.vitality = 8
         self.hitPoints = int((self.vitality / 10) * random.randint(5, 30))
@@ -58,12 +60,14 @@ class Character(object):
 
     def show_stats(self):
         """Displays current character stats."""
-        print("Statistics for " + self.name)
-        print("STR: " + str(self.strength))
-        print("VIT: " + str(self.vitality))
-        print("HP: " + str(self.hitPoints))
-        print("ATK: " + str(self.attack))
-        print("DEF: " + str(self.defense))
+        print(vars(self)
+
+        #print("Statistics for " + self.name)
+        #print("STR: " + str(self.strength))
+        #print("VIT: " + str(self.vitality))
+        #print("HP: " + str(self.hitPoints))
+        #print("ATK: " + str(self.attack))
+        #print("DEF: " + str(self.defense))
 
     def show_inventory(self):
         if len(self.inventory) > 0:
@@ -155,6 +159,10 @@ class Character(object):
                     item.is_equipped = True
                     print(item.name + " equipped.")
 
+    def level_up(self):
+        self.current_xp = 0
+        self.current_level += 1
+        print(self.name + " current level is: " + self.current_level)
 
 #NOTE: NPCs are *NOT* monsters!
 class NonPlayerCharacter(Character):
@@ -210,7 +218,7 @@ class Monster(object):
 
     def show_stats(self):
         print("Stats of monster '%s':" %self.name)
-        pprint(vars(self))
+        print(vars(self))
 
 def showInstructions():
     """print a (temporary) "main menu", and the available commands"""

@@ -231,6 +231,18 @@ character's class from those available.
 6) The player then chooses to "keep" the character being generated or "discard"
 and start over from step 1.
 
+What is XP?
+-----------
+XP might be a kind of "currency". It could be limited to just "purchasing
+levels" as mentioned in the "inn" section of the "town" document. However, it
+might also be used to purchase other character perks, such as additional bonus
+points or a single-use allowance to move bonus points between stats. XP might be
+used to purchase a better rate of success at the temple, to avoid permanent
+death. It could be something less powerful such as a better hit rate or
+additional MP. This allows the player to have more control over how a character
+develops, but at the expense of slower level gains. After level 20, this would 
+be a way to further develop a character.
+
 Experience Levels (TODO)
 -----------------
 The below table defines how much XP is required to reach a specific level by a
