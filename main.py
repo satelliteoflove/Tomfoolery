@@ -59,15 +59,14 @@ class Character(object):
                 rooms[self.currentRoom]["characters"].append(self)
 
     def show_stats(self):
-        """Displays current character stats."""
-        print(vars(self)
+        print(vars(self))
 
-        #print("Statistics for " + self.name)
-        #print("STR: " + str(self.strength))
-        #print("VIT: " + str(self.vitality))
-        #print("HP: " + str(self.hitPoints))
-        #print("ATK: " + str(self.attack))
-        #print("DEF: " + str(self.defense))
+       # print("Statistics for " + self.name)
+       # print("STR: " + str(self.strength))
+       # print("VIT: " + str(self.vitality))
+       # print("HP: " + str(self.hitPoints))
+       # print("ATK: " + str(self.attack))
+       # print("DEF: " + str(self.defense))
 
     def show_inventory(self):
         if len(self.inventory) > 0:
@@ -79,6 +78,11 @@ class Character(object):
         else:
             print("You aren't carrying anything.")
             # list items, none if empty
+
+    def add_xp(self, xp):
+        print(self.name + " had " + str(self.current_xp) + "xp.")
+        self.current_xp += xp
+        print(self.name + " now has " + self.current_xp + " xp.")
 
     def place_random(self):
         # start the player off in a room
@@ -162,7 +166,7 @@ class Character(object):
     def level_up(self):
         self.current_xp = 0
         self.current_level += 1
-        print(self.name + " current level is: " + self.current_level)
+        print(self.name + " current level is: " + str(self.current_level))
 
 #NOTE: NPCs are *NOT* monsters!
 class NonPlayerCharacter(Character):
@@ -316,6 +320,8 @@ while True:
         player.view_surroundings()
     elif move[0] == "status":
         player.show_stats()
+    elif move[0] == "addxp":
+        player.add_xp(int(move[1]))
     else:
         print("I have no idea what you're trying to do.")
 
