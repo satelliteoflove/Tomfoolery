@@ -8,6 +8,15 @@ world_characters = []
 MAP_WIDTH = 0
 MAP_HEIGHT = 0
 
+# Character levels (universal)
+# Note that experience required to gain a level are based on a combination of
+# character class and character race. For some races, gaining a level in
+# specific classes requires more XP.
+char_levels = {
+    1:{1:
+
+
+}
 
 class Item(object):
     def __init__(self):
@@ -18,7 +27,6 @@ class Item(object):
         self.name = "item"
         self.is_equipped = False
         self.can_be_equipped = False
-
 
 class Weapon(Item):
     """All weapons can be described with this class."""
@@ -32,7 +40,6 @@ class Weapon(Item):
         self.is_equipped = True
         self.description = description
 
-
 class Character(object):
     """Common base class for all PCs and NPCs."""
 
@@ -40,6 +47,7 @@ class Character(object):
         self.name = input("What is the player's name?\n")
         self.current_level = 1
         self.current_xp = 0
+        self.char_class = "fighter"
         self.strength = 8
         self.vitality = 8
         self.hitPoints = int((self.vitality / 10) * random.randint(5, 30))
@@ -61,13 +69,6 @@ class Character(object):
     def show_stats(self):
         print(vars(self))
 
-       # print("Statistics for " + self.name)
-       # print("STR: " + str(self.strength))
-       # print("VIT: " + str(self.vitality))
-       # print("HP: " + str(self.hitPoints))
-       # print("ATK: " + str(self.attack))
-       # print("DEF: " + str(self.defense))
-
     def show_inventory(self):
         if len(self.inventory) > 0:
             for item in self.inventory:
@@ -82,7 +83,7 @@ class Character(object):
     def add_xp(self, xp):
         print(self.name + " had " + str(self.current_xp) + "xp.")
         self.current_xp += xp
-        print(self.name + " now has " + self.current_xp + " xp.")
+        print(self.name + " now has " + str(self.current_xp) + " xp.")
 
     def place_random(self):
         # start the player off in a room
@@ -164,6 +165,7 @@ class Character(object):
                     print(item.name + " equipped.")
 
     def level_up(self):
+        
         self.current_xp = 0
         self.current_level += 1
         print(self.name + " current level is: " + str(self.current_level))
@@ -237,6 +239,11 @@ def showInstructions():
     print("'look'")
     print("'attack'")
 
+#In-town functions
+
+def level_up(character):
+    """Triggers the character's internal "level up" method."""
+    player.level_up()
 
 def party_add_character(character_type, n):
     """Creates a list of Character objects"""
@@ -322,6 +329,8 @@ while True:
         player.show_stats()
     elif move[0] == "addxp":
         player.add_xp(int(move[1]))
+    elif move[0] == "lup":
+        player.level_up()
     else:
         print("I have no idea what you're trying to do.")
 
