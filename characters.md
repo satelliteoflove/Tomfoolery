@@ -283,4 +283,5 @@ Race/Class Bias
 | Nin   | 28  | 27  | 27  | 25  | 27  | 25  | 26  | 27  | 25  | 27  | 25  |
 |-------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 
-
+The xp rates for Wizardry Gaiden IV don't follow a linear path, and the "rates"
+do not apply an incremental multiplier as far as I can tell.

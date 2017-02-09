@@ -11,34 +11,34 @@ MAP_HEIGHT = 0
 # Character levels (universal)
 # Note that experience required to gain a level are based on a combination of
 # character class and character race. For some races, gaining a level in
-# specific classes requires more XP.
-char_levels = {
-    1:{1:
+# specific classes requires more XP. In the below dictionary, XP requirements
+# are listed out by rate number from 1-28, with 1 being the fastest gains and 28
+# being the slowest. Characters start at level 1. The key value represents the
+# level to be gained or purchased and the value represents the amount of XP
+# required to gain or purchase that level. For instance, for a rate 1 character,
+# going from level 2 to level 3 requires the expenditure of 833 XP, while a rate
+# 5 character would require 853 XP to get to level 3 from level 2.
 
-
+char_level_xp_req = {
+    1:{2:750,
+       3:833,
+       4:1055,
+       5:1758,
+       6:2930,
+       7:4884,
+       8:8140,
+       9:13566,
+       10:22610,
+       11:37684,
+       12:62806,
+       13:104677,
+       14:211693
+      }
 }
 
-class Item(object):
-    def __init__(self):
-        self.weight = 1
-        self.description = ""
-        self.general_name = ""
-        self.description = "It's an item"
-        self.name = "item"
-        self.is_equipped = False
-        self.can_be_equipped = False
+# TODO: Add rates 2-28. Add functionality to "Character" class to automatically
+# provide rate based on race and class.
 
-class Weapon(Item):
-    """All weapons can be described with this class."""
-
-    def __init__(self, name, min_dmg, max_dmg, description):
-        self.isweapon = True
-        self.name = name
-        self.min_dmg = min_dmg
-        self.max_dmg = max_dmg
-        self.can_be_equipped = True
-        self.is_equipped = True
-        self.description = description
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
@@ -47,6 +47,7 @@ class Character(object):
         self.name = input("What is the player's name?\n")
         self.current_level = 1
         self.current_xp = 0
+        self.rate = 1
         self.char_class = "fighter"
         self.strength = 8
         self.vitality = 8
@@ -80,10 +81,6 @@ class Character(object):
             print("You aren't carrying anything.")
             # list items, none if empty
 
-    def add_xp(self, xp):
-        print(self.name + " had " + str(self.current_xp) + "xp.")
-        self.current_xp += xp
-        print(self.name + " now has " + str(self.current_xp) + " xp.")
 
     def place_random(self):
         # start the player off in a room
@@ -164,11 +161,20 @@ class Character(object):
                     item.is_equipped = True
                     print(item.name + " equipped.")
 
+    def add_xp(self, xp):
+        print(self.name + " had " + str(self.current_xp) + "xp.")
+        self.current_xp += xp
+        print(self.name + " now has " + str(self.current_xp) + " xp.")
+
     def level_up(self):
-        
-        self.current_xp = 0
-        self.current_level += 1
-        print(self.name + " current level is: " + str(self.current_level))
+        xp_to_lvl_up = char_level_xp_req[self.rate][self.current_level + 1]
+        if self.current_xp >= xp_to_lvl_up:
+            print(self.name + " current level is: " + str(self.current_level))
+            self.current_level += 1
+            self.current_xp -= xp_to_lvl_up
+            print(self.name + " current level is: " + str(self.current_level))
+        else:
+            print("Not enough XP to purchase the next level.")
 
 #NOTE: NPCs are *NOT* monsters!
 class NonPlayerCharacter(Character):
@@ -225,6 +231,30 @@ class Monster(object):
     def show_stats(self):
         print("Stats of monster '%s':" %self.name)
         print(vars(self))
+
+class Item(object):
+    def __init__(self):
+        self.weight = 1
+        self.description = ""
+        self.general_name = ""
+        self.description = "It's an item"
+        self.name = "item"
+        self.is_equipped = False
+        self.can_be_equipped = False
+
+class Weapon(Item):
+    """All weapons can be described with this class."""
+
+    def __init__(self, name, min_dmg, max_dmg, description):
+        self.isweapon = True
+        self.name = name
+        self.min_dmg = min_dmg
+        self.max_dmg = max_dmg
+        self.can_be_equipped = True
+        self.is_equipped = True
+        self.description = description
+
+# Procedural Methods
 
 def showInstructions():
     """print a (temporary) "main menu", and the available commands"""
@@ -329,7 +359,7 @@ while True:
         player.show_stats()
     elif move[0] == "addxp":
         player.add_xp(int(move[1]))
-    elif move[0] == "lup":
+    elif move[0] == "levelup":
         player.level_up()
     else:
         print("I have no idea what you're trying to do.")
