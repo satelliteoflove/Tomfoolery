@@ -284,4 +284,18 @@ Race/Class Bias
 |-------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 
 The xp rates for Wizardry Gaiden IV don't follow a linear path, and the "rates"
-do not apply an incremental multiplier as far as I can tell.
+do not apply an incremental multiplier as far as I can tell. To provide a more
+elegant solution, I am going to use an average of 2% increase in required xp
+per rate. Assuming a base xp requirement of 750 to get from level 1 to level 2,
+a rate "1" character would require exactly 750xp to get to level 2 but a rate
+"5" character would require 812xp. Note that the fractions are rounded to the
+nearest whole number. XP requirements per level appear to be staggered in the
+traditional chart, where levels 2 and 3 required 11% more xp, level 4 required
+26% more xp than level 3, levels 5-13 required 67% increased xp per level, and
+14 and above required a fixed value near double that required to get to 13.
+Instead of having a "tiered" approach as this, I plan to use an exponential
+function to approximate the curve. The idea is to make the early levels easy to
+gain while making it increasingly more challenging to reach higher levels.
+
+So, the equation to calculate the amount of xp required to gain the next level
+given a set base, rate and level is:

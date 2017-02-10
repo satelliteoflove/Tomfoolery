@@ -67,7 +67,7 @@ class Character(object):
         self.strength = 8
         self.vitality = 8
         self.hitPoints = int((self.vitality / 10) * random.randint(5, 30))
-        self.attack = 1
+        self.AP = 1
         self.bonusPoints = random.randint(5, 25)
         self.defense = 1
         self.inventory = []
@@ -235,13 +235,22 @@ Dungeon level and average party member level will be considered in monster
 party makeup.
 """
 
+monster_catalog = {
+    "goblin":{"name":"goblin",
+              "base_hp":5,
+              "base_ap":1
+             }
+}
+
 class Monster(object):
     def __init__(self, name, level):
-        self.name = name
-        self.baseHP = 1
-        self.HP = self.baseHP * level
+        self.name = monster_catalog[name]["name"]
+        self.HP = monster_catalog[name]["base_hp"] * level // 2
         self.baseAP = 1 #define a "base" attack power
-        self.AP = self.baseAP * level
+        if self.baseAP > 1:
+            self.AP = monster_catalog[name]["base_ap"] * level // 2
+        else:
+            self.AP = 1
 
     def show_stats(self):
         print("Stats of monster '%s':" %self.name)
@@ -286,16 +295,14 @@ def showInstructions():
 
 #In-town functions
 
-def level_up(character):
-    """Triggers the character's internal "level up" method."""
-    player.level_up()
-
 def party_add_character(character_type, n):
     """Creates a list of Character objects"""
 
 # initialize mob and print its attributes
-mob = Monster("orc", 1)
-mob.show_stats()
+mob1 = Monster("goblin", 1)
+mob1.show_stats()
+mob2 = Monster("goblin", 2)
+mob2.show_stats()
 
 # Item initialization - item names are case sensitive for now
 sword1 = Weapon("sword", 1, 5, "This is a simple short sword of steel.")
