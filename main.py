@@ -10,14 +10,11 @@ MAP_HEIGHT = 0
 
 # Character levels (universal)
 # Note that experience required to gain a level are based on a combination of
-# character class and character race. For some races, gaining a level in
-# specific classes requires more XP. In the below dictionary, XP requirements
-# are listed out by rate number from 1-28, with 1 being the fastest gains and 28
-# being the slowest. Characters start at level 1. The key value represents the
-# level to be gained or purchased and the value represents the amount of XP
-# required to gain or purchase that level. For instance, for a rate 1 character,
-# going from level 2 to level 3 requires the expenditure of 833 XP, while a rate
-# 5 character would require 853 XP to get to level 3 from level 2.
+# character class and character race. All races gain levels in different classes
+# at different rates. 28 different rates are applied, with the lowest
+# requirement at rate 1 and the highest requirement at 28.
+
+
 
 char_level_xp_req = {
     1:{2:750,
@@ -36,8 +33,24 @@ char_level_xp_req = {
       }
 }
 
-# TODO: Add rates 2-28. Add functionality to "Character" class to automatically
-# provide rate based on race and class.
+char_level_xp_rate = {
+    "human":{"fighter":4,
+             "mage":5,
+             "priest":5,
+             "thief":7,
+             "alchemist":11,
+             "bishop":15,
+             "bard":7,
+             "ranger":4,
+             "psionic":14,
+             "valkyrie":10,
+             "samurai":14,
+             "lord":24,
+             "monk":16,
+             "ninja":28}
+}
+
+# TODO: Add other races to list following table in characters.md.
 
 
 class Character(object):
@@ -49,6 +62,8 @@ class Character(object):
         self.current_xp = 0
         self.rate = 1
         self.char_class = "fighter"
+        self.race = "human"
+        self.sex = "male"
         self.strength = 8
         self.vitality = 8
         self.hitPoints = int((self.vitality / 10) * random.randint(5, 30))
