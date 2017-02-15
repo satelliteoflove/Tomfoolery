@@ -47,3 +47,5 @@ Values in each "tile" tuple:
 	Event_on_occupy(event_number)
 	What_is_(north/south/east/west)
 		exit, wall, door, secret door, grate (triggered), event
+
+

@@ -191,6 +191,18 @@ class Character(object):
         else:
             print("Not enough XP to purchase the next level.")
 
+    def attack(self, target):
+        count = 0
+        for character in world_characters:
+            if character.name == target:
+                count += 1
+                dmg = 1
+                print("I am attacking " + character.name + " for " + str(dmg) +
+                      " points of damage.")
+                break
+        if count == 0:
+            print("That didn't work.")
+
 #NOTE: NPCs are *NOT* monsters!
 class NonPlayerCharacter(Character):
     """Common base class for all NPCs."""
@@ -236,21 +248,23 @@ party makeup.
 """
 
 monster_catalog = {
-    "goblin":{"name":"goblin",
+    "goblin":{"typename":"goblin",
               "base_hp":5,
               "base_ap":1
              }
 }
 
 class Monster(object):
-    def __init__(self, name, level):
-        self.name = monster_catalog[name]["name"]
-        self.HP = monster_catalog[name]["base_hp"] * level // 2
-        self.baseAP = 1 #define a "base" attack power
+    def __init__(self, type_name, level):
+        self.type_name = monster_catalog[type_name]["typename"]
+        self.name = type_name + str(len(world_characters))
+        self.HP = monster_catalog[type_name]["base_hp"] * level // 2
+        self.baseAP = monster_catalog[type_name]["base_ap"]
         if self.baseAP > 1:
-            self.AP = monster_catalog[name]["base_ap"] * level // 2
+            self.AP = monster_catalog[type_name]["base_ap"] * level // 2
         else:
             self.AP = 1
+        world_characters.append(self)
 
     def show_stats(self):
         print("Stats of monster '%s':" %self.name)
@@ -298,11 +312,6 @@ def showInstructions():
 def party_add_character(character_type, n):
     """Creates a list of Character objects"""
 
-# initialize mob and print its attributes
-mob1 = Monster("goblin", 1)
-mob1.show_stats()
-mob2 = Monster("goblin", 2)
-mob2.show_stats()
 
 # Item initialization - item names are case sensitive for now
 sword1 = Weapon("sword", 1, 5, "This is a simple short sword of steel.")
@@ -343,8 +352,14 @@ weapons = {
 
 # create characters, list of characters
 player = Character()
-goblin = NonPlayerCharacter("goblin")
-orc = NonPlayerCharacter("orc")
+# initialize mob and print its attributes
+mob1 = Monster("goblin", 1)
+mob2 = Monster("goblin", 2)
+
+
+print("The following characters are in the world list:")
+for character in world_characters:
+    print(character.name)
 
 # display "main menu"
 showInstructions()
@@ -374,7 +389,7 @@ while True:
     elif move[0] == "place" and move[1] in rooms:
         player.place_room(move[1])
     elif move[0] == "attack":
-        print("Not yet implemented.")
+        player.attack(move[1])
     elif move[0] == "look":
         player.view_surroundings()
     elif move[0] == "status":
