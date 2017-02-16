@@ -99,11 +99,17 @@ class Character(object):
 
     def place_random(self):
         # start the player off in a room
-        self.currentRoom = random.randrange()
+        rooms[self.currentRoom]["characters"].remove(self)
+        self.currentRoom = random.randrange(1,len(rooms))
+        rooms[self.currentRoom]["characters"].append(self)
+        self.view_surroundings()
 
-    def place_room(self, room: int):
-        if room > 0 and room <= len(rooms):
-            self.currentRoom = room
+# This code isn't right. Fix "go" code first.
+#    def place_room(self, room: int):
+#        if room > 0 and room <= len(rooms):
+#            rooms[self.currentRoom]["characters"].remove(self)
+#            self.currentRoom = rooms[self.currentRoom][
+#        self.add_to_room()
 
     def view_surroundings(self):
         """print what the player can see"""
@@ -132,9 +138,9 @@ class Character(object):
             print("West")
 
     def go(self, newroom):
-        if move[1] in rooms[self.currentRoom]:
+        if newroom in rooms[self.currentRoom]:
             rooms[self.currentRoom]["characters"].remove(self)
-            self.currentRoom = rooms[self.currentRoom][move[1]]
+            self.currentRoom = rooms[self.currentRoom][newroom]
             rooms[self.currentRoom]["characters"].append(self)
             self.view_surroundings()
         else:
@@ -196,7 +202,7 @@ class Character(object):
         for character in world_characters:
             if character.name == target:
                 count += 1
-                dmg = 1
+                dmg = self.AP
                 print("I am attacking " + character.name + " for " + str(dmg) +
                       " points of damage.")
                 break
@@ -398,6 +404,9 @@ while True:
         player.add_xp(int(move[1]))
     elif move[0] == "levelup":
         player.level_up()
+    elif move[0] == "help":
+        showInstructions()
+        dir(player)
     else:
         print("I have no idea what you're trying to do.")
 

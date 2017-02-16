@@ -76,6 +76,15 @@ Equipment properties:
     Use_effect(int) - key related to the spell dictionary, for what effect the
     item has when used as an item
 
+Dealing Damage
+--------------
+Damage dealt is based on the following modifiers:
+* Unit's base AP
+* Equipment dmg/stat bonuses/modifiers
+    * Strength ("adds +1 to STR")
+    * baseAP ("1.2x AP")
+    * direct dmg bonus ("+10dmg per hit")
+    * secondary dmg bonus ("+5 fire damage")
 
 Saving the game
 ---------------
