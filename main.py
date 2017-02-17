@@ -50,6 +50,11 @@ char_level_xp_rate = {
              "ninja":28}
 }
 
+char_class_traits = {
+    "fighter":{"preferred_stat":"strength",
+               "hp_bonus":5}
+}
+
 # TODO: Add other races to list following table in characters.md.
 
 
@@ -67,7 +72,7 @@ class Character(object):
         self.strength = 8
         self.vitality = 8
         self.hitPoints = int((self.vitality / 10) * random.randint(5, 30))
-        self.AP = 1
+        self.AP = self.current_level
         self.bonusPoints = random.randint(5, 25)
         self.defense = 1
         self.inventory = []
@@ -76,6 +81,37 @@ class Character(object):
         self.direction = "north"
         world_characters.append(self)
         self.equipment = []
+
+        self.update_AP()
+
+        if self.AP < 1:
+            self.AP = 1
+
+    def class_change(self, new_class):
+        """Modifications specific to class changes.
+
+        Includes statistic changes, class variable update, etc.
+
+        Keyword arguments:
+        new_class -- class the character is changing to.
+        """
+        self.char_class = new_class
+
+    def update_AP(self):
+        """Updates stats which may change during play outside of lvl_up.
+
+        This method is ONLY for calculating updated AP for the character. This
+        method incorporates player level, class, appropriate class stat
+        (strength for fighters, agility for thieves, etc.), equipment modifiers
+        and status effects.
+        """
+        stat = getattr(self,
+                      char_class_traits[self.char_class]["preferred_stat"])
+
+        print("This character's main stat is: " +
+              char_class_traits[self.char_class]["preferred_stat"])
+        self.AP = self.current_level + stat
+        print("This character's AP is: " + str(self.AP))
 
     def add_to_room(self):
         for chamber in rooms:
