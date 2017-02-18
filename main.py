@@ -105,6 +105,7 @@ class Character(object):
         (strength for fighters, agility for thieves, etc.), equipment modifiers
         and status effects.
         """
+        # Pull value of class-specific "preferred stat".
         stat = getattr(self,
                       char_class_traits[self.char_class]["preferred_stat"])
 
