@@ -2,6 +2,7 @@ __author__ = 'Chris'
 
 import random
 import struct
+import readline
 
 # Globals
 world_characters = []
@@ -52,7 +53,9 @@ char_level_xp_rate = {
 
 char_class_traits = {
     "fighter":{"preferred_stat":"strength",
-               "hp_bonus":5}
+               "hp_bonus":5,
+               "min_str":10
+              }
 }
 
 # TODO: Add other races to list following table in characters.md.
@@ -66,8 +69,10 @@ class Character(object):
         self.current_level = 1
         self.current_xp = 0
         self.rate = 1
+        print("What race is this character?\nChoose from the following:")
+        print("Human")
+        self.race = input().lower()
         self.char_class = "fighter"
-        self.race = "human"
         self.sex = "male"
         self.strength = 8
         self.vitality = 8
@@ -87,6 +92,8 @@ class Character(object):
         if self.AP < 1:
             self.AP = 1
 
+
+
     def class_change(self, new_class):
         """Modifications specific to class changes.
 
@@ -95,6 +102,19 @@ class Character(object):
         Keyword arguments:
         new_class -- class the character is changing to.
         """
+        if "min_str" in char_class_traits[self.char_class]:
+            min_str = char_class_traits[self.char_class]["min_str"]
+        if "min_agi" in char_class_traits[self.char_class]:
+            min_agi = char_class_traits[self.char_class]["min_agi"]
+        if "min_vit" in char_class_traits[self.char_class]:
+            min_vit = char_class_traits[self.char_class]["min_vit"]
+        if "min_int" in char_class_traits[self.char_class]:
+            min_int = char_class_traits[self.char_class]["min_int"]
+        if "min_wis" in char_class_traits[self.char_class]:
+            min_wis = char_class_traits[self.char_class]["min_wis"]
+        if "min_cha" in char_class_traits[self.char_class]:
+            min_cha = char_class_traits[self.char_class]["min_cha"]
+
         self.char_class = new_class
 
     def update_AP(self):
