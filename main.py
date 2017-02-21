@@ -62,6 +62,22 @@ char_class_traits = {
            }
 }
 
+char_race_traits = {
+    "human":{"min_str":9,
+             "max_str":19,
+             "min_int":8,
+             "max_int":18,
+             "min_pie":8,
+             "max_pie":18,
+             "min_vit":9,
+             "max_vit":19,
+             "min_agi":8,
+             "max_agi":18,
+             "min_luk":8,
+             "max_luk":18
+            }
+}
+
 print("Printing list of classes:")
 for key in char_class_traits.keys():
     print(key)
@@ -73,9 +89,10 @@ class Character(object):
     """Common base class for all PCs and NPCs."""
 
     def __init__(self):
-        self.name = input("What is the player's name?\n")
+        self.name = self.set_name()
         self.current_level = 1
         self.current_xp = 0
+        self.set_race()
         self.rate = 1
         self.char_class = "fighter"
         self.sex = "male"
@@ -98,19 +115,73 @@ class Character(object):
             self.AP = 1
 
     def set_race(self):
+        """Used on character creation to set race values.
+
+        After choosing a race, the minimum stat values are set for the character
+        based on racial minimums.  In addition, any special fields such as
+        resistance values or special attacks are set.
+        """
         print("What race is this character?\nChoose from the following:")
-        for key in char_race_xp_rate.keys():
+        for key in char_race_traits.keys():
             print(key)
         self.race = input().lower()
+        self.strength = char_race_traits[self.race]["min_str"]
+        self.vitality = char_race_traits[self.race]["min_vit"]
+        self.agility = char_race_traits[self.race]["min_agi"]
+        self.intelligence = char_race_traits[self.race]["min_int"]
+        self.piety = char_race_traits[self.race]["min_pie"]
+        self.luck = char_race_traits[self.race]["min_luk"]
 
     def set_name(self):
-        try_name = input("What is the player's name?\n")
-        if len(try_name) > 12:
-            print("Name is too long. Must be 12 characters or less.")
-        else:
-            self.name = try_name
+        name_accepted = False
+        while name_accepted == False:
+            try_name = input("What is the player's name?\n")
+            if len(try_name) > 12:
+                print("Name is too long. Must be 12 characters or less.")
+            else:
+                name_accepted = True
+        return try_name
 
-    def class_change(self, new_class):
+    def validate_class(self, newclass):
+        """Validates that a class can be chosen for the character.
+
+        Given a specific class (as text string), calculate how many bonus points
+        would be required for the character to assume that class and return a
+        binary value.
+        """
+        if "min_str" in char_class_traits[newclass]:
+            min_str = char_class_traits[newclass]["min_str"]
+        if "min_agi" in char_class_traits[newclass]:
+            min_agi = char_class_traits[newclass]["min_agi"]
+        if "min_vit" in char_class_traits[newclass]:
+            min_vit = char_class_traits[newclass]["min_vit"]
+        if "min_int" in char_class_traits[newclass]:
+            min_int = char_class_traits[newclass]["min_int"]
+        if "min_pie" in char_class_traits[newclass]:
+            min_pie = char_class_traits[newclass]["min_pie"]
+        if "min_luk" in char_class_traits[newclass]:
+            min_luk = char_class_traits[newclass]["min_luk"]
+
+        points_required = 0
+        if (min_str - self.strength) > 0:
+            points_required += min_str - self.strength
+        if (min_agi - self.agility) > 0:
+            points_required += min_agi - self.agility
+        if (min_vit - self.vitality) > 0:
+            points_required += min_vit - self.vitality
+        if (min_int - self.intelligence) > 0:
+            points_required += min_int - self.intelligence
+        if (min_pie - self.piety) > 0:
+            points_required += min_pie - self.piety
+        if (min_luk - self.luck) > 0:
+            points_required += min_luk - self.luck
+
+        if points_required > self.bonusPoints:
+            return FALSE
+        else:
+            return TRUE
+
+    def set_class(self, new_class):
         """Modifications specific to class changes.
 
         Includes statistic changes, class variable update, etc.
@@ -118,18 +189,6 @@ class Character(object):
         Keyword arguments:
         new_class -- class the character is changing to.
         """
-        if "min_str" in char_class_traits[self.char_class]:
-            min_str = char_class_traits[self.char_class]["min_str"]
-        if "min_agi" in char_class_traits[self.char_class]:
-            min_agi = char_class_traits[self.char_class]["min_agi"]
-        if "min_vit" in char_class_traits[self.char_class]:
-            min_vit = char_class_traits[self.char_class]["min_vit"]
-        if "min_int" in char_class_traits[self.char_class]:
-            min_int = char_class_traits[self.char_class]["min_int"]
-        if "min_wis" in char_class_traits[self.char_class]:
-            min_wis = char_class_traits[self.char_class]["min_wis"]
-        if "min_cha" in char_class_traits[self.char_class]:
-            min_cha = char_class_traits[self.char_class]["min_cha"]
 
         self.char_class = new_class
 
