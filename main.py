@@ -34,7 +34,7 @@ char_level_xp_req = {
       }
 }
 
-char_level_xp_rate = {
+char_race_xp_rate = {
     "human":{"fighter":4,
              "mage":5,
              "priest":5,
@@ -55,8 +55,16 @@ char_class_traits = {
     "fighter":{"preferred_stat":"strength",
                "hp_bonus":5,
                "min_str":10
-              }
+              },
+    "mage":{"preferred_stat":"intelligence",
+            "hp_bonus":1,
+            "min_int":10
+           }
 }
+
+print("Printing list of classes:")
+for key in char_class_traits.keys():
+    print(key)
 
 # TODO: Add other races to list following table in characters.md.
 
@@ -69,9 +77,6 @@ class Character(object):
         self.current_level = 1
         self.current_xp = 0
         self.rate = 1
-        print("What race is this character?\nChoose from the following:")
-        print("Human")
-        self.race = input().lower()
         self.char_class = "fighter"
         self.sex = "male"
         self.strength = 8
@@ -92,7 +97,18 @@ class Character(object):
         if self.AP < 1:
             self.AP = 1
 
+    def set_race(self):
+        print("What race is this character?\nChoose from the following:")
+        for key in char_race_xp_rate.keys():
+            print(key)
+        self.race = input().lower()
 
+    def set_name(self):
+        try_name = input("What is the player's name?\n")
+        if len(try_name) > 12:
+            print("Name is too long. Must be 12 characters or less.")
+        else:
+            self.name = try_name
 
     def class_change(self, new_class):
         """Modifications specific to class changes.
