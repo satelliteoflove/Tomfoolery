@@ -54,12 +54,16 @@ char_race_xp_rate = {
 char_class_traits = {
     "fighter":{"preferred_stat":"strength",
                "hp_bonus":5,
-               "min_str":10
+               "min_str":12
               },
     "mage":{"preferred_stat":"intelligence",
             "hp_bonus":1,
-            "min_int":10
-           }
+            "min_int":12
+           },
+    "priest":{"preferred_stat":"piety",
+              "hp_bonus":3,
+              "min_pie":12
+             }
 }
 
 char_race_traits = {
@@ -151,16 +155,28 @@ class Character(object):
         """
         if "min_str" in char_class_traits[newclass]:
             min_str = char_class_traits[newclass]["min_str"]
+        else:
+            min_str = 0
         if "min_agi" in char_class_traits[newclass]:
             min_agi = char_class_traits[newclass]["min_agi"]
+        else:
+            min_agi = 0
         if "min_vit" in char_class_traits[newclass]:
             min_vit = char_class_traits[newclass]["min_vit"]
+        else:
+            min_vit = 0
         if "min_int" in char_class_traits[newclass]:
             min_int = char_class_traits[newclass]["min_int"]
+        else:
+            min_int = 0
         if "min_pie" in char_class_traits[newclass]:
             min_pie = char_class_traits[newclass]["min_pie"]
+        else:
+            min_pie = 0
         if "min_luk" in char_class_traits[newclass]:
             min_luk = char_class_traits[newclass]["min_luk"]
+        else:
+            min_luk = 0
 
         points_required = 0
         if (min_str - self.strength) > 0:
@@ -177,11 +193,11 @@ class Character(object):
             points_required += min_luk - self.luck
 
         if points_required > self.bonusPoints:
-            return FALSE
+            return False
         else:
-            return TRUE
+            return True
 
-    def set_class(self, new_class):
+    def set_class(self):
         """Modifications specific to class changes.
 
         Includes statistic changes, class variable update, etc.
@@ -189,8 +205,36 @@ class Character(object):
         Keyword arguments:
         new_class -- class the character is changing to.
         """
+        print("The following classes are available: ")
+        for classname in char_class_traits.keys():
+            if self.validate_class(classname):
+                print(classname)
+        self.char_class = input().lower()
 
-        self.char_class = new_class
+        if "min_str" in char_class_traits[self.char_class]:
+            min_str = char_class_traits[self.char_class]["min_str"]
+        else:
+            min_str = 0
+        if "min_agi" in char_class_traits[self.char_class]:
+            min_agi = char_class_traits[self.char_class]["min_agi"]
+        else:
+            min_agi = 0
+        if "min_vit" in char_class_traits[self.char_class]:
+            min_vit = char_class_traits[self.char_class]["min_vit"]
+        else:
+            min_vit = 0
+        if "min_int" in char_class_traits[self.char_class]:
+            min_int = char_class_traits[self.char_class]["min_int"]
+        else:
+            min_int = 0
+        if "min_pie" in char_class_traits[self.char_class]:
+            min_pie = char_class_traits[self.char_class]["min_pie"]
+        else:
+            min_pie = 0
+        if "min_luk" in char_class_traits[self.char_class]:
+            min_luk = char_class_traits[self.char_class]["min_luk"]
+        else:
+            min_luk = 0
 
     def update_AP(self):
         """Updates stats which may change during play outside of lvl_up.
@@ -539,6 +583,8 @@ while True:
     elif move[0] == "help":
         showInstructions()
         dir(player)
+    elif move[0] == "classchange":
+        player.set_class()
     else:
         print("I have no idea what you're trying to do.")
 
