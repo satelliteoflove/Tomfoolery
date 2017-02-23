@@ -35,6 +35,35 @@ char_level_xp_req = {
       }
 }
 
+char_race_traits = {
+    "human":{"min_str":9,
+             "max_str":19,
+             "min_int":8,
+             "max_int":18,
+             "min_pie":8,
+             "max_pie":18,
+             "min_vit":9,
+             "max_vit":19,
+             "min_agi":8,
+             "max_agi":18,
+             "min_luk":8,
+             "max_luk":18
+            },
+    "elf":{"min_str":7,
+           "max_str":17,
+           "min_int":10,
+           "max_int":20,
+           "min_pie":10,
+           "max_pie":20,
+           "min_vit":7,
+           "max_vit":17,
+           "min_agi":9,
+           "max_agi":19,
+           "min_luk":8,
+           "max_luk":18
+          }
+}
+
 char_race_xp_rate = {
     "human":{"fighter":4,
              "mage":5,
@@ -49,7 +78,23 @@ char_race_xp_rate = {
              "samurai":14,
              "lord":24,
              "monk":16,
-             "ninja":28}
+             "ninja":28
+            },
+    "elf":{"fighter":6,
+           "mage":3,
+           "priest":3,
+           "thief":6,
+           "alchemist":9,
+           "bishop":11,
+           "bard":5,
+           "ranger":8,
+           "psionic":16,
+           "valkyrie":11,
+           "samurai":14,
+           "lord":23,
+           "monk":15,
+           "ninja":27
+          }
 }
 
 char_class_traits = {
@@ -67,21 +112,6 @@ char_class_traits = {
              }
 }
 
-char_race_traits = {
-    "human":{"min_str":9,
-             "max_str":19,
-             "min_int":8,
-             "max_int":18,
-             "min_pie":8,
-             "max_pie":18,
-             "min_vit":9,
-             "max_vit":19,
-             "min_agi":8,
-             "max_agi":18,
-             "min_luk":8,
-             "max_luk":18
-            }
-}
 
 print("Printing list of classes:")
 for key in char_class_traits.keys():
@@ -98,12 +128,12 @@ class Character(object):
         self.current_level = 1
         self.current_xp = 0
         self.set_race()
-        self.rate = 1
-        self.char_class = "fighter"
         self.set_sex()
+        self.set_bonusPoints()
+        self.set_class()
+        self.set_xp_rate()
         self.hitPoints = int((self.vitality / 10) * random.randint(5, 30))
         self.AP = self.current_level
-        self.set_bonusPoints()
         self.defense = 1
         #self.inventory = []
         self.currentRoom = (0, 0)
@@ -142,7 +172,16 @@ class Character(object):
         print("What race is this character?\nChoose from the following:")
         for key in char_race_traits.keys():
             print(key)
-        self.race = input().lower()
+        self.race = ""
+        while self.race == "":
+            tryrace = input().lower()
+            if tryrace in char_race_traits:
+                self.race = tryrace
+            else:
+                print("That is not a valid race.")
+                print("What race is this character?\nChoose from the following:")
+                for key in char_race_traits.keys():
+                    print(key)
         self.strength = char_race_traits[self.race]["min_str"]
         self.vitality = char_race_traits[self.race]["min_vit"]
         self.agility = char_race_traits[self.race]["min_agi"]
@@ -249,6 +288,17 @@ class Character(object):
             min_luk = char_class_traits[self.char_class]["min_luk"]
         else:
             min_luk = 0
+
+    def set_xp_rate(self):
+        print("self.char_class = " + self.char_class)
+        print("self.race = " + self.race)
+        if self.race in char_race_xp_rate:
+            if self.char_class in char_race_xp_rate[self.race]:
+                self.rate = char_race_xp_rate[self.race][self.char_class]
+            else:
+                print("That class doesn't exist for that race.")
+        else:
+            print("That race isn't in the list of xp rates.")
 
     def update_AP(self):
         """Updates stats which may change during play outside of lvl_up.
