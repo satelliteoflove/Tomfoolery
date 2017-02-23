@@ -3,6 +3,7 @@ __author__ = 'Chris'
 import random
 import struct
 import readline
+import math
 
 # Globals
 world_characters = []
@@ -104,7 +105,7 @@ class Character(object):
         self.vitality = 8
         self.hitPoints = int((self.vitality / 10) * random.randint(5, 30))
         self.AP = self.current_level
-        self.bonusPoints = random.randint(5, 25)
+        self.set_bonusPoints()
         self.defense = 1
         self.inventory = []
         self.currentRoom = (0, 0)
@@ -117,6 +118,11 @@ class Character(object):
 
         if self.AP < 1:
             self.AP = 1
+
+    def set_bonusPoints(self):
+        self.bonusPoints = 0
+        while self.bonusPoints < 4:
+            self.bonusPoints = math.floor(random.triangular(1,25,5))
 
     def set_race(self):
         """Used on character creation to set race values.
@@ -583,6 +589,8 @@ while True:
     elif move[0] == "help":
         showInstructions()
         dir(player)
+    elif move[0] == "bonuspoints":
+        player.bonusPoints = int(move[1])
     elif move[0] == "classchange":
         player.set_class()
     else:
