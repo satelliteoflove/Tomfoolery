@@ -100,14 +100,12 @@ class Character(object):
         self.set_race()
         self.rate = 1
         self.char_class = "fighter"
-        self.sex = "male"
-        self.strength = 8
-        self.vitality = 8
+        self.set_sex()
         self.hitPoints = int((self.vitality / 10) * random.randint(5, 30))
         self.AP = self.current_level
         self.set_bonusPoints()
         self.defense = 1
-        self.inventory = []
+        #self.inventory = []
         self.currentRoom = (0, 0)
         self.add_to_room()
         self.direction = "north"
@@ -118,6 +116,16 @@ class Character(object):
 
         if self.AP < 1:
             self.AP = 1
+
+    def set_sex(self):
+        self.sex = ""
+        while self.sex != "male" and self.sex != "female":
+            print("What is the sex of the character?\n(male or female)")
+            self.sex = input().lower()
+        if self.sex == "male":
+            self.strength += 1
+        elif self.sex == "female":
+            self.vitality += 1
 
     def set_bonusPoints(self):
         self.bonusPoints = 0
