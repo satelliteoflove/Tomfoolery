@@ -297,5 +297,8 @@ Instead of having a "tiered" approach as this, I plan to use an exponential
 function to approximate the curve. The idea is to make the early levels easy to
 gain while making it increasingly more challenging to reach higher levels.
 
-So, the equation to calculate the amount of xp required to gain the next level
-given a set base, rate and level is:
+After consulting with Will, it seems that an alternate approach may be better
+(see exp.py).  Instead of having a different xp amount per level per rate, we
+could simply use the rate as an xp modifier.  Therefore, all users would gain
+levels at the same xp values for a given class, but each race would gain xp at
+different rates depending on what class they were.
