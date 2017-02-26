@@ -58,6 +58,33 @@ Notes:
     Should it be possible to "repair" "broken" items if certain conditions are 
     met?
 
+Random items:
+    If item randomization were to be included:
+    * Item catalog is built at the start of a new game, before dungeons.
+    * Item naming and effects:
+        * Item type ("potion", "short sword", "key")
+        * Affix ("healing", "nimble", "gate")
+        * Suffix ("fear", "flames", "silver")
+        * Each item type will have basic shared characteristics
+        * Thus, names such as "healing potion of fear", "nimble short sort of
+          flames" and "gate key of silver" would be derived from the above.
+          Affixes/suffixes are not always both present; "key of silver" and 
+          "nimble potion" are perfectly acceptable item names.
+        * Affixes/suffixes each have a specific effect, such as healing a
+          target (heal1), opening a door or setting a target on fire(fire3).
+    * What can be defined by an item type?
+        * Can the item be equipped
+        * How many of that type can be equipped at once
+        * What spell/effect(s) does it have (all derived from effect dict)
+        * Weight
+        * Break chance - items which have an effect when used do not have a set
+          number of uses, but a chance of breaking (as a percentage) when used.
+          Thus, potions, keys and scrolls have a break chance of 100%, equipment
+          ranges from 0-100%, and items with no effects which can be triggered
+          have a break chance of 0%.
+        * Does the item remove itself from inventory after breaking, or leave a
+          "broken" item in its place
+
 Equipment
 ---------
 Weapons, Armor, Accessories are all "equipment" but are still instances of the 

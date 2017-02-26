@@ -1,5 +1,6 @@
 __author__ = 'Chris'
 
+
 import random
 import struct
 import readline
@@ -17,6 +18,7 @@ MAP_HEIGHT = 0
 # requirement at rate 1 and the highest requirement at 28.
 
 
+EFFECTS = {"heal1":1}
 
 char_level_xp_req = {
     1:{2:750,
@@ -97,6 +99,7 @@ char_race_xp_rate = {
           }
 }
 
+# TODO: Make sure that all dictionary value sets contain all variables.
 char_class_traits = {
     "fighter":{"preferred_stat":"strength",
                "hp_bonus":5,
@@ -516,6 +519,35 @@ class Monster(object):
         print("Stats of monster '%s':" %self.name)
         print(vars(self))
 
+class ItemMaker(object):
+    def __init__(self):
+        self.weight = 1
+        self.description = ""
+        self.general_name = ""
+        self.description = "It's an item"
+        self.name = "item"
+        self.is_equipped = False
+        self.can_be_equipped = False
+
+    ITEM_TYPES = {
+        "potion":{
+            "equippable":False,
+            "total_wearable":0,
+            "usable":True,
+            "break_chance":1.0,
+            "clean_on_break":True,
+            "effect1":"heal1",
+            "effect2":"",
+            "effect3":"",
+            "targets":("self","party")
+        }
+    }
+
+    ITEM_AFFIXES = {"healing":{1:"heal1"}}
+
+    ITEM_SUFFIXES = {"silver":{1:"silver"}}
+
+
 class Item(object):
     def __init__(self):
         self.weight = 1
@@ -525,6 +557,13 @@ class Item(object):
         self.name = "item"
         self.is_equipped = False
         self.can_be_equipped = False
+
+    def effect(self,target,damage,status):
+        target = world_characters[target]
+        damage = damage
+        status_effect = status
+        target.HP += damage
+        target.status_effect += status
 
 class Weapon(Item):
     """All weapons can be described with this class."""
