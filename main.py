@@ -103,15 +103,30 @@ char_race_xp_rate = {
 char_class_traits = {
     "fighter":{"preferred_stat":"strength",
                "hp_bonus":5,
-               "min_str":12
+               "min_str":12,
+               "min_agi":0,
+               "min_int":0,
+               "min_vit":0,
+               "min_pie":0,
+               "min_luk":0
               },
     "mage":{"preferred_stat":"intelligence",
             "hp_bonus":1,
-            "min_int":12
+            "min_str":0,
+            "min_agi":0,
+            "min_int":12,
+            "min_vit":0,
+            "min_pie":0,
+            "min_luk":0
            },
     "priest":{"preferred_stat":"piety",
               "hp_bonus":3,
-              "min_pie":12
+              "min_str":0,
+              "min_agi":0,
+              "min_int":0,
+              "min_vit":0,
+              "min_pie":12,
+              "min_luk":0
              }
 }
 
@@ -135,7 +150,7 @@ class Character(object):
         self.set_bonusPoints()
         self.set_class()
         self.set_xp_rate()
-        self.hitPoints = int((self.vitality / 10) * random.randint(5, 30))
+        self.hitPoints = self.set_HP()
         self.AP = self.current_level
         self.defense = 1
         #self.inventory = []
@@ -156,10 +171,10 @@ class Character(object):
             hp_class = "fighter"
         if self.char_class == "priest":
             hp_class = "priest"
-        if self.char_class == "thief" or self.char_class == "bishop" or
-        self.char_class == "ninja":
+        if self.char_class == "thief" or self.char_class == "bishop" or self.char_class == "ninja":
             hp_class = "thief"
 #        if self.current_level == 1:
+        self.hitPoints = 5
 
     def set_sex(self):
         self.sex = ""
@@ -214,51 +229,14 @@ class Character(object):
         return try_name
 
     def validate_class(self, newclass):
-        """Validates that a class can be chosen for the character.
-
-        Given a specific class (as text string), calculate how many bonus points
-        would be required for the character to assume that class and return a
-        binary value.
+        """Validates that a class can be chosen for the character by comparing
+        total bonus opints required vs current bonus points.
         """
-        if "min_str" in char_class_traits[newclass]:
-            min_str = char_class_traits[newclass]["min_str"]
-        else:
-            min_str = 0
-        if "min_agi" in char_class_traits[newclass]:
-            min_agi = char_class_traits[newclass]["min_agi"]
-        else:
-            min_agi = 0
-        if "min_vit" in char_class_traits[newclass]:
-            min_vit = char_class_traits[newclass]["min_vit"]
-        else:
-            min_vit = 0
-        if "min_int" in char_class_traits[newclass]:
-            min_int = char_class_traits[newclass]["min_int"]
-        else:
-            min_int = 0
-        if "min_pie" in char_class_traits[newclass]:
-            min_pie = char_class_traits[newclass]["min_pie"]
-        else:
-            min_pie = 0
-        if "min_luk" in char_class_traits[newclass]:
-            min_luk = char_class_traits[newclass]["min_luk"]
-        else:
-            min_luk = 0
-
         points_required = 0
-        if (min_str - self.strength) > 0:
-            points_required += min_str - self.strength
-        if (min_agi - self.agility) > 0:
-            points_required += min_agi - self.agility
-        if (min_vit - self.vitality) > 0:
-            points_required += min_vit - self.vitality
-        if (min_int - self.intelligence) > 0:
-            points_required += min_int - self.intelligence
-        if (min_pie - self.piety) > 0:
-            points_required += min_pie - self.piety
-        if (min_luk - self.luck) > 0:
-            points_required += min_luk - self.luck
-
+        #sums all "min_stat"-type key values
+        for key, value in char_class_traits[newclass].items():
+            if key.startswith("min_"):
+                points_required += value
         if points_required > self.bonusPoints:
             return False
         else:
@@ -270,39 +248,26 @@ class Character(object):
         Includes statistic changes, class variable update, etc.
 
         Keyword arguments:
-        new_class -- class the character is changing to.
         """
-        print("The following classes are available: ")
+        classlist = []
         for classname in char_class_traits.keys():
             if self.validate_class(classname):
                 print(classname)
-        self.char_class = input().lower()
-
-        if "min_str" in char_class_traits[self.char_class]:
-            min_str = char_class_traits[self.char_class]["min_str"]
-        else:
-            min_str = 0
-        if "min_agi" in char_class_traits[self.char_class]:
-            min_agi = char_class_traits[self.char_class]["min_agi"]
-        else:
-            min_agi = 0
-        if "min_vit" in char_class_traits[self.char_class]:
-            min_vit = char_class_traits[self.char_class]["min_vit"]
-        else:
-            min_vit = 0
-        if "min_int" in char_class_traits[self.char_class]:
-            min_int = char_class_traits[self.char_class]["min_int"]
-        else:
-            min_int = 0
-        if "min_pie" in char_class_traits[self.char_class]:
-            min_pie = char_class_traits[self.char_class]["min_pie"]
-        else:
-            min_pie = 0
-        if "min_luk" in char_class_traits[self.char_class]:
-            min_luk = char_class_traits[self.char_class]["min_luk"]
-        else:
-            min_luk = 0
-
+                classlist.append(classname)
+        print("The following classes are available: ")
+        print(classlist)
+        try_class = input().lower()
+        satisfied = False
+        while satisfied == False:
+            if try_class not in classlist:
+                print("That class isn't in the list. Try again.")
+                try_class = input().lower()
+            else:
+                self.char_class = try_class
+                satisfied = True
+        if len(classlist) == 0:
+            print("Setting class to none")
+            self.char_class = "none"
     def set_xp_rate(self):
         print("self.char_class = " + self.char_class)
         print("self.race = " + self.race)
@@ -701,11 +666,11 @@ while True:
         player.bonusPoints = int(move[1])
     elif move[0] == "classchange":
         player.set_class()
+    elif move[0] == "q" or move[0] == "quit":
+        break
     else:
         print("I have no idea what you're trying to do.")
 
-    if move[0] == "q" or move[0] == "quit":
-        break
 
 """  This is just functionality for "wandering" NPCs.
     for character in world_characters:
