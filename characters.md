@@ -230,6 +230,52 @@ character's class from those available.
 6) The player then chooses to "keep" the character being generated or "discard"
 and start over from step 1.
 
+Hit Points
+----------
+Hit points are generated at character creation and are added for every level
+gained by the character.  Hit points are retained when characters change
+classes.  The class of a character has a significant impact on the HP gained
+upon reaching the next level.
+
+VIT less than 6 will impose a pentalty multiplier to HP gained per level.
+VIT 7 and greater will have a positive multipler effect on HP gained per level
+(especially at values of 18+).
+
+The following are starting hit points per class. Note that these values are
+subject to change.
+
+
+* The following are the starting hit points per class:
+- Fighter, Lord is (50% chance of (10 + Vitality Modifier)) or (50% chance of (
+  9 * (10 + Vitality Modifier) / 10 ))).
+- Priest is (50% chance of (8 + Vitality Modifier)) or (50% chance of ( 9 * (8
+  + Vitality Modifier) / 10 ))).
+- Thief, Bishop, Ninja is (50% chance of (6 + Vitality Modifier)) or (50%
+  chance of ( 9 * (6 + Vitality Modifier) / 10 ))).
+- Mage is (50% chance of (4 + Vitality Modifier)) or (50% chance of ( 9 *
+  (4 + Vitality Modifier) / 10 ))).
+- Samurai is (50% chance of (16 + Vitality Modifier)) or (50% chance of
+  ( 9 * (16 + Vitality Modifier) / 10 ))).
+In all cases the minimum is 2.
+
+Note: several classes (Monk, Alchemist, etc.) are missing from above, but will
+use one of the existing formulas.
+
+*The following are the base hit points gained per level per class, which is then
+modified by your Vitality (Minimum 1 after Vitality modifier):
+- Fighter, Lord gain 1 to 10 base hit points per level on average.
+- Priest, Samurai gain 1 to 8 base hit points per level on average.
+- Thief, Bishop, Ninja gain 1 to 6 base hit points per level on average.
+- Mage gain 1 to 4 base hit points per level on average.
+
+Character Stats and Spells
+--------------------------
+The higher your related stat (INT (for mage spells)/ PIE (for priest spells)),
+the higher your chance to learn new spells when gaining a level. Your chance to
+learn each unknown spell at the level you are allowed to learn it is if your
+stat value is greater than (random 0-29).  This random value is likely to
+change.
+
 What is XP?
 -----------
 XP might be a kind of "currency". It could be limited to just "purchasing
@@ -297,5 +343,8 @@ Instead of having a "tiered" approach as this, I plan to use an exponential
 function to approximate the curve. The idea is to make the early levels easy to
 gain while making it increasingly more challenging to reach higher levels.
 
-So, the equation to calculate the amount of xp required to gain the next level
-given a set base, rate and level is:
+After consulting with Will, it seems that an alternate approach may be better
+(see exp.py).  Instead of having a different xp amount per level per rate, we
+could simply use the rate as an xp modifier.  Therefore, all users would gain
+levels at the same xp values for a given class, but each race would gain xp at
+different rates depending on what class they were.

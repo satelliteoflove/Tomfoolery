@@ -150,6 +150,17 @@ class Character(object):
         if self.AP < 1:
             self.AP = 1
 
+    def set_HP(self):
+        new_hp = 0
+        if self.char_class == "fighter" or self.char_class == "lord":
+            hp_class = "fighter"
+        if self.char_class == "priest":
+            hp_class = "priest"
+        if self.char_class == "thief" or self.char_class == "bishop" or
+        self.char_class == "ninja":
+            hp_class = "thief"
+#        if self.current_level == 1:
+
     def set_sex(self):
         self.sex = ""
         while self.sex != "male" and self.sex != "female":
