@@ -190,7 +190,7 @@ class Character(object):
         self.bonusPoints = 0
         while self.bonusPoints < 4:
             self.bonusPoints = math.floor(random.triangular(1,25,5))
-
+        print("Bonus Points = " + str(self.bonusPoints))
     def set_race(self):
         """Used on character creation to set race values.
 
@@ -233,10 +233,30 @@ class Character(object):
         total bonus opints required vs current bonus points.
         """
         points_required = 0
+        str_req = char_class_traits[newclass]["min_str"]
+        agi_req = char_class_traits[newclass]["min_agi"]
+        vit_req = char_class_traits[newclass]["min_vit"]
+        int_req = char_class_traits[newclass]["min_int"]
+        pie_req = char_class_traits[newclass]["min_pie"]
+        luk_req = char_class_traits[newclass]["min_luk"]
+
+        if str_req > self.strength:
+            points_required += str_req - self.strength
+        if agi_req > self.agility:
+            points_required += agi_req - self.agility
+        if vit_req > self.vitality:
+            points_required += vit_req - self.vitality
+        if pie_req > self.piety:
+            points_required += pie_req - self.piety
+        if luk_req > self.luck:
+            points_required += luk_req - self.luck
+
         #sums all "min_stat"-type key values
-        for key, value in char_class_traits[newclass].items():
-            if key.startswith("min_"):
-                points_required += value
+        #for key, value in char_class_traits[newclass].items():
+        #    if key.startswith('min_'):
+        #        
+        #        points_required += value
+        #        print(str(points_required))
         if points_required > self.bonusPoints:
             return False
         else:
@@ -246,8 +266,6 @@ class Character(object):
         """Modifications specific to class changes.
 
         Includes statistic changes, class variable update, etc.
-
-        Keyword arguments:
         """
         classlist = []
         for classname in char_class_traits.keys():
@@ -265,9 +283,45 @@ class Character(object):
             else:
                 self.char_class = try_class
                 satisfied = True
-        if len(classlist) == 0:
-            print("Setting class to none")
-            self.char_class = "none"
+                str_req = char_class_traits[try_class]["min_str"]
+                agi_req = char_class_traits[try_class]["min_agi"]
+                vit_req = char_class_traits[try_class]["min_vit"]
+                int_req = char_class_traits[try_class]["min_int"]
+                pie_req = char_class_traits[try_class]["min_pie"]
+                luk_req = char_class_traits[try_class]["min_luk"]
+
+                if str_req > self.strength:
+                    self.bonusPoints -= str_req - self.strength
+                    self.strength = str_req
+                if agi_req > self.agility:
+                    self.bonusPoints -= agi_req - self.agility
+                    self.agility = agi_req
+                if vit_req > self.vitality:
+                    self.bonusPoints -= vit_req - self.vitality
+                    self.vitality = vit_req
+                if pie_req > self.piety:
+                    self.bonusPoints -= pie_req - self.piety
+                    self.piety = pie_req
+                if luk_req > self.luck:
+                    self.bonusPoints -= luk_req - self.luck
+                    self.luck = luk_req
+
+    def assign_BP(self):
+        if self.bonusPoints <= 0:
+            print("You don't have any bonus points left.")
+        else:
+            print("There are " + str(self.bonusPoints) + " remaining BP.")
+            print("Your current statistics are: ")
+            print("Strength: " + str(self.strength))
+            print("Agility: " + str(self.agility))
+            print("Vitality: " + str(self.vitality))
+            print("Intelligence: " + str(self.intelligence))
+            print("Piety: " + str(self.piety))
+            print("Luck: " + str(self.luck))
+            while self.bonusPoints > 0:
+                stat_increased = input().lower()
+                
+
     def set_xp_rate(self):
         print("self.char_class = " + self.char_class)
         print("self.race = " + self.race)
