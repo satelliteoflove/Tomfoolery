@@ -150,10 +150,10 @@ class Character(object):
         self.set_bonusPoints()
         self.set_class()
         self.set_xp_rate()
-        self.hitPoints = self.set_HP()
+        self.set_HP()
         self.AP = self.current_level
         self.defense = 1
-        #self.inventory = []
+        self.inventory = []
         self.currentRoom = (0, 0)
         self.add_to_room()
         self.direction = "north"
@@ -166,15 +166,58 @@ class Character(object):
             self.AP = 1
 
     def set_HP(self):
-        new_hp = 0
+        """Used to set *initial* HP for character.
+
+        Depending on the character's class, a different amount of starting HP
+        may be generated. A minimum of 2HP will be assigned to any starting
+        character.
+
+        TODO: Adjust vitality modifier for HP.
+        """
+        self.hitPoints = 0
+        self.max_hitPoints = 0
+        chance = random.randint(0,1)
+        if self.char_class == "samurai":
+            if chance == 0:
+                self.hitPoints = int(16 + self.vitality // 2)
+            if chance == 1:
+                self.hitPoints = (9 * (16 + self.vitality // 2) // 10)
         if self.char_class == "fighter" or self.char_class == "lord":
-            hp_class = "fighter"
+            if chance == 0:
+                self.hitPoints = 10 + self.vitality // 2
+            if chance == 1:
+                self.hitPoints = (9 * (10 + self.vitality // 2) // 10)
         if self.char_class == "priest":
-            hp_class = "priest"
-        if self.char_class == "thief" or self.char_class == "bishop" or self.char_class == "ninja":
-            hp_class = "thief"
-#        if self.current_level == 1:
-        self.hitPoints = 5
+            if chance == 0:
+                self.hitPoints = 8 + self.vitality // 2
+            if chance == 1:
+                self.hitPoints = (9 * (8 + self.vitality // 2) // 10)
+        if self.char_class == "thief" or self.char_class == "ninja":
+            if chance == 0:
+                self.hitPoints = 6 + self.vitality // 2
+            if chance == 1:
+                self.hitPoints = (9 * (6 + self.vitality // 2) // 10)
+        if self.char_class == "bishop":
+            if chance == 0:
+                self.hitPoints = 6 + self.vitality // 2
+            if chance == 1:
+                self.hitPoints = (9 * (6 + self.vitality // 2) // 10)
+        if self.char_class == "mage":
+            if chance == 0:
+                self.hitPoints = 4 + self.vitality // 2
+            if chance == 1:
+                self.hitPoints = (9 * (4 + self.vitality // 2) // 10)
+        if self.hitPoints < 2:
+            self.hitPoints = 2
+        self.max_hitPoints = self.hitPoints
+
+    def add_maxHP(self):
+        """Adds max HP when character gains a level.
+        """
+        if self.char_class == "fighter" or self.char_class == "lord":
+            self.max_hitPoints += int(random.triangular(0,10,5))
+        if self.char_class == "priest" or self.char_class == "samurai":
+            self.max_hitPoints += int(random.triangular(0,8,4))
 
     def set_sex(self):
         self.sex = ""
@@ -266,6 +309,7 @@ class Character(object):
         """Modifications specific to class changes.
 
         Includes statistic changes, class variable update, etc.
+        In addition, the rate of HP growth is defined here.
         """
         classlist = []
         for classname in char_class_traits.keys():

@@ -261,12 +261,17 @@ In all cases the minimum is 2.
 Note: several classes (Monk, Alchemist, etc.) are missing from above, but will
 use one of the existing formulas.
 
-*The following are the base hit points gained per level per class, which is then
-modified by your Vitality (Minimum 1 after Vitality modifier):
+The following are the base hit points gained per level per class, which is then
+modified by your Vitality (possibly negative after Vitality modifier):
 - Fighter, Lord gain 1 to 10 base hit points per level on average.
 - Priest, Samurai gain 1 to 8 base hit points per level on average.
 - Thief, Bishop, Ninja gain 1 to 6 base hit points per level on average.
 - Mage gain 1 to 4 base hit points per level on average.
+
+Note: Max HP is dictated by class, vitality and level. If the current max HP is 
+too high for the new class following a class change, max HP will only raise by 
+1 for each level gained. If after gaining a level the max HP is within the
+normal range for the new class, max HP can be gained normally. Confused much?
 
 Character Stats and Spells
 --------------------------
