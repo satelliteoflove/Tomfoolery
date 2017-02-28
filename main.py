@@ -11,15 +11,9 @@ world_characters = []
 MAP_WIDTH = 0
 MAP_HEIGHT = 0
 
-# Character levels (universal)
-# Note that experience required to gain a level are based on a combination of
-# character class and character race. All races gain levels in different classes
-# at different rates. 28 different rates are applied, with the lowest
-# requirement at rate 1 and the highest requirement at 28.
-
-
-EFFECTS = {"heal1":1}
-
+#This is a place-holder construct for level requirements. The new structure will
+#incorporate a per-class requirement, and the race/class combo will correlate to
+#a "rate" or multiplier which is applied to xp gained.
 char_level_xp_req = {
     1:{2:750,
        3:833,
@@ -149,9 +143,12 @@ class Character(object):
         self.set_sex()
         self.set_bonusPoints()
         self.set_class()
+        self.stat_names = ["strength", "agility", "vitality", "intelligence",
+                           "piety", "luck"]
+        self.assign_BonusPoints()
         self.set_xp_rate()
         self.set_HP()
-        self.AP = self.current_level
+        self.max_hitPoints = self.hitPoints
         self.defense = 1
         self.inventory = []
         self.currentRoom = (0, 0)
@@ -159,13 +156,8 @@ class Character(object):
         self.direction = "north"
         world_characters.append(self)
         self.equipment = []
-        self.stat_names = ["strength", "agility", "vitality", "intelligence",
-                           "piety", "luck"]
-
-        self.update_AP()
-
-        if self.AP < 1:
-            self.AP = 1
+        self.rate = 1 #Note that this MUST change when XP rate is fixed.
+        self.set_AP()
 
     def set_HP(self):
         """Used to set *initial* HP for character.
@@ -220,6 +212,12 @@ class Character(object):
             self.max_hitPoints += int(random.triangular(0,10,5))
         if self.char_class == "priest" or self.char_class == "samurai":
             self.max_hitPoints += int(random.triangular(0,8,4))
+        if self.char_class == "thief" or self.char_class == "ninja":
+            self.max_hitPoints += int(random.triangular(0,6,3))
+        if self.char_class == "bishop":
+            self.max_hitPoints += int(random.triangular(0,6,3))
+        if self.char_class == "mage":
+            self.max_hitPoints += int(random.triangular(0,4,2))
 
     def set_sex(self):
         self.sex = ""
@@ -236,6 +234,7 @@ class Character(object):
         while self.bonusPoints < 4:
             self.bonusPoints = math.floor(random.triangular(1,25,5))
         print("Bonus Points = " + str(self.bonusPoints))
+
     def set_race(self):
         """Used on character creation to set race values.
 
@@ -355,15 +354,29 @@ class Character(object):
     def assign_BonusPoints(self):
         print("There are " + str(self.bonusPoints) + " remaining BP.")
         print("Your current statistics are: ")
-        print("Strength: " + str(self.strength))
-        print("Agility: " + str(self.agility))
-        print("Vitality: " + str(self.vitality))
-        print("Intelligence: " + str(self.intelligence))
-        print("Piety: " + str(self.piety))
-        print("Luck: " + str(self.luck))
+        print("[S]trength: " + str(self.strength))
+        print("[A]gility: " + str(self.agility))
+        print("[V]itality: " + str(self.vitality))
+        print("[I]ntelligence: " + str(self.intelligence))
+        print("[P]iety: " + str(self.piety))
+        print("[L]uck: " + str(self.luck))
         while self.bonusPoints > 0:
-            stat_incrased = ""
+            stat_increased = ""
             stat_increased = input().lower()
+
+            if stat_increased == "s":
+                stat_increased = "strength"
+            elif stat_increased == "a":
+                stat_increased = "agility"
+            elif stat_increased == "v":
+                stat_increased = "vitality"
+            elif stat_increased == "i":
+                stat_increased = "intelligence"
+            elif stat_increased == "p":
+                stat_increased = "piety"
+            elif stat_increased == "l":
+                stat_increased = "luck"
+
             if stat_increased not in self.stat_names:
                 print("That isn't a stat. Try again.")
             else:
@@ -388,21 +401,28 @@ class Character(object):
         else:
             print("That race isn't in the list of xp rates.")
 
-    def update_AP(self):
-        """Updates stats which may change during play outside of lvl_up.
+    def set_AP(self):
+        """AP is a function of strength, which may change upon gaining a level.
 
-        This method is ONLY for calculating updated AP for the character. This
-        method incorporates player level, class, appropriate class stat
-        (strength for fighters, agility for thieves, etc.), equipment modifiers
-        and status effects.
+        AP is a basic per-hit damage modifier.  Characters with very low
+        strength have a damage penalty, whereas characters with very high
+        strength have a damage bonus.
         """
-        # Pull value of class-specific "preferred stat".
-        stat = getattr(self,
-                      char_class_traits[self.char_class]["preferred_stat"])
-
-        print("This character's main stat is: " +
-              char_class_traits[self.char_class]["preferred_stat"])
-        self.AP = self.current_level + stat
+        self.AP = 0
+        if self.strength == 3:
+            self.AP -= 3
+        if self.strength == 4:
+            self.AP -= 2
+        if self.strength == 5:
+            self.AP -= 1
+        if self.strength == 16:
+            self.AP += 1
+        if self.strength == 17:
+            self.AP += 2
+        if self.strength == 18:
+            self.AP += 3
+        #if self.AP < 0:
+        #    self.AP = 0
         print("This character's AP is: " + str(self.AP))
 
     def add_to_room(self):
@@ -522,6 +542,7 @@ class Character(object):
             print(self.name + " current level is: " + str(self.current_level))
             self.current_level += 1
             self.current_xp -= xp_to_lvl_up
+            self.add_maxHP()
             print(self.name + " current level is: " + str(self.current_level))
         else:
             print("Not enough XP to purchase the next level.")
@@ -614,25 +635,6 @@ class ItemMaker(object):
         self.name = "item"
         self.is_equipped = False
         self.can_be_equipped = False
-
-    ITEM_TYPES = {
-        "potion":{
-            "equippable":False,
-            "total_wearable":0,
-            "usable":True,
-            "break_chance":1.0,
-            "clean_on_break":True,
-            "effect1":"heal1",
-            "effect2":"",
-            "effect3":"",
-            "targets":("self","party")
-        }
-    }
-
-    ITEM_AFFIXES = {"healing":{1:"heal1"}}
-
-    ITEM_SUFFIXES = {"silver":{1:"silver"}}
-
 
 class Item(object):
     def __init__(self):
