@@ -159,6 +159,8 @@ class Character(object):
         self.direction = "north"
         world_characters.append(self)
         self.equipment = []
+        self.stat_names = ["strength", "agility", "vitality", "intelligence",
+                           "piety", "luck"]
 
         self.update_AP()
 
@@ -350,21 +352,30 @@ class Character(object):
                     self.bonusPoints -= luk_req - self.luck
                     self.luck = luk_req
 
-    def assign_BP(self):
-        if self.bonusPoints <= 0:
-            print("You don't have any bonus points left.")
-        else:
-            print("There are " + str(self.bonusPoints) + " remaining BP.")
-            print("Your current statistics are: ")
-            print("Strength: " + str(self.strength))
-            print("Agility: " + str(self.agility))
-            print("Vitality: " + str(self.vitality))
-            print("Intelligence: " + str(self.intelligence))
-            print("Piety: " + str(self.piety))
-            print("Luck: " + str(self.luck))
-            while self.bonusPoints > 0:
-                stat_increased = input().lower()
-                
+    def assign_BonusPoints(self):
+        print("There are " + str(self.bonusPoints) + " remaining BP.")
+        print("Your current statistics are: ")
+        print("Strength: " + str(self.strength))
+        print("Agility: " + str(self.agility))
+        print("Vitality: " + str(self.vitality))
+        print("Intelligence: " + str(self.intelligence))
+        print("Piety: " + str(self.piety))
+        print("Luck: " + str(self.luck))
+        while self.bonusPoints > 0:
+            stat_incrased = ""
+            stat_increased = input().lower()
+            if stat_increased not in self.stat_names:
+                print("That isn't a stat. Try again.")
+            else:
+                setattr(self, stat_increased, getattr(self, stat_increased) + 1)
+                self.bonusPoints -= 1
+                print("Strength: " + str(self.strength))
+                print("Agility: " + str(self.agility))
+                print("Vitality: " + str(self.vitality))
+                print("Intelligence: " + str(self.intelligence))
+                print("Piety: " + str(self.piety))
+                print("Luck: " + str(self.luck))
+        print("You don't have any bonus points left.")
 
     def set_xp_rate(self):
         print("self.char_class = " + self.char_class)
@@ -441,7 +452,8 @@ class Character(object):
                 print("In the room, you see a " + thing.name + ".")
         for room_character in rooms[self.currentRoom]["characters"]:
             current_room_character_list.append(room_character)
-        print("Nearby, you see " + str(len(current_room_character_list)) + " characters:")
+        print("Nearby, you see " + 
+              str(len(current_room_character_list)) + " characters:")
         for character in current_room_character_list:
             print(character.name)
         print("Exits:")
@@ -764,17 +776,9 @@ while True:
         player.bonusPoints = int(move[1])
     elif move[0] == "classchange":
         player.set_class()
+    elif move[0] == "abp":
+        player.assign_BonusPoints()
     elif move[0] == "q" or move[0] == "quit":
         break
     else:
         print("I have no idea what you're trying to do.")
-
-
-"""  This is just functionality for "wandering" NPCs.
-    for character in world_characters:
-        if isinstance(character, NonPlayerCharacter):
-            print(character.name + " changes direction.")
-            character.change_direction()
-            print(character.name + " is now pointing %s" %character.direction)
-            character.go(character.direction)
-"""
