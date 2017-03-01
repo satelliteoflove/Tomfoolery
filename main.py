@@ -5,31 +5,33 @@ import random
 import struct
 import readline
 import math
+import numpy as np
 
 # Globals
 world_characters = []
 MAP_WIDTH = 0
 MAP_HEIGHT = 0
 
-#This is a place-holder construct for level requirements. The new structure will
-#incorporate a per-class requirement, and the race/class combo will correlate to
-#a "rate" or multiplier which is applied to xp gained.
+#This is the xp required to gain a level. It is the same for all classes, since
+#different race/class combinations gain xp at different rates.
 char_level_xp_req = {
-    1:{2:750,
-       3:833,
-       4:1055,
-       5:1758,
-       6:2930,
-       7:4884,
-       8:8140,
-       9:13566,
-       10:22610,
-       11:37684,
-       12:62806,
-       13:104677,
-       14:211693
-      }
+    2:750,
+    3:833,
+    4:1055,
+    5:1758,
+    6:2930,
+    7:4884,
+    8:8140,
+    9:13566,
+    10:22610,
+    11:37684,
+    12:62806,
+    13:104677,
+    14:211693
 }
+
+#Generates a series of 28 multipliers to be used when calculating xp gained.
+xp_multipliers = np.linspace(1.0,0.5,num=28)
 
 char_race_traits = {
     "human":{"min_str":9,
@@ -93,7 +95,6 @@ char_race_xp_rate = {
           }
 }
 
-# TODO: Make sure that all dictionary value sets contain all variables.
 char_class_traits = {
     "fighter":{"preferred_stat":"strength",
                "hp_bonus":5,
@@ -102,7 +103,7 @@ char_class_traits = {
                "min_int":0,
                "min_vit":0,
                "min_pie":0,
-               "min_luk":0
+               "min_luk":0,
               },
     "mage":{"preferred_stat":"intelligence",
             "hp_bonus":1,
@@ -123,7 +124,6 @@ char_class_traits = {
               "min_luk":0
              }
 }
-
 
 print("Printing list of classes:")
 for key in char_class_traits.keys():
@@ -147,7 +147,7 @@ class Character(object):
                            "piety", "luck"]
         self.assign_BonusPoints()
         self.set_xp_rate()
-        self.set_HP()
+        self.set_initial_HP()
         self.max_hitPoints = self.hitPoints
         self.defense = 1
         self.inventory = []
@@ -159,14 +159,17 @@ class Character(object):
         self.rate = 1 #Note that this MUST change when XP rate is fixed.
         self.set_AP()
 
-    def set_HP(self):
+    def set_initial_HP(self):
         """Used to set *initial* HP for character.
 
         Depending on the character's class, a different amount of starting HP
         may be generated. A minimum of 2HP will be assigned to any starting
         character.
 
-        TODO: Adjust vitality modifier for HP.
+        TODO: Adjust vitality modifier for HP. There should be a "curve", where
+        characters with especially low vitality get a penalty and high vitality
+        grants a bonus, but this should be mild (not a multiplier based on
+        vitality?).
         """
         self.hitPoints = 0
         self.max_hitPoints = 0
@@ -207,16 +210,20 @@ class Character(object):
 
     def add_maxHP(self):
         """Adds max HP when character gains a level.
+
+        TODO: Ensure that vitality modifies added maximum HP.
         """
         if self.char_class == "fighter" or self.char_class == "lord":
             self.max_hitPoints += int(random.triangular(0,10,5))
-        if self.char_class == "priest" or self.char_class == "samurai":
+        elif self.char_class == "priest" or self.char_class == "samurai":
             self.max_hitPoints += int(random.triangular(0,8,4))
-        if self.char_class == "thief" or self.char_class == "ninja":
+        elif self.char_class == "monk":
+            self.max_hitPoints += int(random.triangular(0,8,5))
+        elif self.char_class == "thief" or self.char_class == "ninja":
             self.max_hitPoints += int(random.triangular(0,6,3))
-        if self.char_class == "bishop":
+        elif self.char_class == "bishop":
             self.max_hitPoints += int(random.triangular(0,6,3))
-        if self.char_class == "mage":
+        elif self.char_class == "mage":
             self.max_hitPoints += int(random.triangular(0,4,2))
 
     def set_sex(self):
@@ -531,9 +538,12 @@ class Character(object):
                     item.is_equipped = True
                     print(item.name + " equipped.")
 
+#TODO: xp should never be a float; fix that
     def add_xp(self, xp):
         print(self.name + " had " + str(self.current_xp) + "xp.")
-        self.current_xp += xp
+        x = char_race_xp_rate[self.race][self.char_class]
+        print("Your xp multiplier is: " + str(xp_multipliers[x]))
+        self.current_xp += round((xp * xp_multipliers[x]))
         print(self.name + " now has " + str(self.current_xp) + " xp.")
 
     def level_up(self):

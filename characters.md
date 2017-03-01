@@ -334,6 +334,26 @@ Race/Class Bias
 | Nin   | 28  | 27  | 27  | 25  | 27  | 25  | 26  | 27  | 25  | 27  | 25  |
 |-------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 
+Note the following averages for each class:
+Mage - 4
+Fighter, Thief, Bard - 5
+Priest - 5.5
+Ranger - 6
+Alchemist - 9
+Valkyrie - 10.5
+Samurai - 12
+Psionic - 14
+Bishop - 14.5
+Monk - 15
+Lord - 23
+Ninja - 26.5
+
+Looking at the xp tables, it appears that a rate "1" character gains levels at
+approximately twice the rate of a rate "28" character.
+The idea here is that a rate 1 class would gain xp 1:1. The monster rewards
+40xp, you get 40 xp.  A rate 28 class would gain xp at half the speed of a rate
+1 class (not 1/28th).
+
 The xp rates for Wizardry Gaiden IV don't follow a linear path, and the "rates"
 do not apply an incremental multiplier as far as I can tell. To provide a more
 elegant solution, I am going to use an average of 2% increase in required xp
