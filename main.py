@@ -569,6 +569,14 @@ class Character(object):
         if count == 0:
             print("That didn't work.")
 
+class Party(object):
+    """Class for storing characters or monsters in a group.
+    """
+    def __init__(self):
+        self.xy_pos = (0,0)
+        self.members = {}
+
+
 #NOTE: NPCs are *NOT* monsters!
 class NonPlayerCharacter(Character):
     """Common base class for all NPCs."""
