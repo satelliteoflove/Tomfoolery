@@ -6,6 +6,7 @@ import struct
 import readline
 import math
 import numpy as np
+import uuid
 
 # Globals
 world_characters = []
@@ -137,6 +138,7 @@ class Character(object):
 
     def __init__(self):
         self.name = self.set_name()
+        self.uuid = uuid.uuid4()
         self.current_level = 1
         self.current_xp = 0
         self.set_race()
@@ -457,7 +459,7 @@ class Character(object):
         rooms[self.currentRoom]["characters"].remove(self)
         self.currentRoom = random.randrange(1,len(rooms))
         rooms[self.currentRoom]["characters"].append(self)
-        self.view_surroundings()
+        #self.view_surroundings()
 
 # This code isn't right. Fix "go" code first.
 #    def place_room(self, room: int):
@@ -498,7 +500,7 @@ class Character(object):
             rooms[self.currentRoom]["characters"].remove(self)
             self.currentRoom = rooms[self.currentRoom][newroom]
             rooms[self.currentRoom]["characters"].append(self)
-            self.view_surroundings()
+            #self.view_surroundings()
         else:
             print("You can't go that way.")
 
@@ -543,11 +545,11 @@ class Character(object):
         print(self.name + " had " + str(self.current_xp) + "xp.")
         x = char_race_xp_rate[self.race][self.char_class]
         print("Your xp multiplier is: " + str(xp_multipliers[x]))
-        self.current_xp += round((xp * xp_multipliers[x]))
+        self.current_xp += int((xp * xp_multipliers[x]))
         print(self.name + " now has " + str(self.current_xp) + " xp.")
 
     def level_up(self):
-        xp_to_lvl_up = char_level_xp_req[self.rate][self.current_level + 1]
+        xp_to_lvl_up = char_level_xp_req[self.current_level + 1]
         if self.current_xp >= xp_to_lvl_up:
             print(self.name + " current level is: " + str(self.current_level))
             self.current_level += 1
@@ -574,8 +576,23 @@ class Party(object):
     """
     def __init__(self):
         self.xy_pos = (0,0)
+        self.currentRoom = []
         self.members = {}
 
+    def add_char(self, character):
+        print("Current members:")
+        print(self.members)
+        self.members[character.uuid] = character
+        print(self.members)
+
+    def move(self, direction):
+        print("moving party..." + direction)
+        for member in self.members.values():
+            print("value of member uuid: " + str(member.uuid))
+            print("member name: " + member.name)
+            member.go(direction)
+        next(iter(self.members.values())).view_surroundings()
+#        self.members[0].view_surroundings()
 
 #NOTE: NPCs are *NOT* monsters!
 class NonPlayerCharacter(Character):
@@ -700,15 +717,11 @@ def showInstructions():
 
 #In-town functions
 
-def party_add_character(character_type, n):
-    """Creates a list of Character objects"""
-
-
 # Item initialization - item names are case sensitive for now
 sword1 = Weapon("sword", 1, 5, "This is a simple short sword of steel.")
 item1 = Item()
 
-# A single "dungeon" level
+# Four rooms for testing other functions.
 rooms = {
     (0, 0): {"name": "0,0",
              "description": "0,0",
@@ -743,6 +756,9 @@ weapons = {
 
 # create characters, list of characters
 player = Character()
+party1 = Party()
+party1.add_char(player)
+
 # initialize mob and print its attributes
 mob1 = Monster("goblin", 1)
 mob2 = Monster("goblin", 2)
@@ -761,7 +777,7 @@ while True:
     move = input(">").lower().split()
 
     if move[0] == "go":
-        player.go(move[1])
+        party1.move(move[1])
     elif move[0] == "get" or move[0] == "take":
         player.get(move[1])
     elif move[0] == "inventory":
