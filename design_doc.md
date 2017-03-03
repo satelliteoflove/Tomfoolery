@@ -4,32 +4,33 @@ Map generation:
     Maps for each dungeon are procedurally generated at the start of a new game.
     This is not frequent, as the same save game is used regardless of the party
     members chosen.  Even if all characters in play are "gone" (dead, then ash,
-    then gone), the dungeon will not change when the player generates a new
-    party and goes back into the dungeon. The dungeons are re-generated on
-    meeting the following conditions:
-    1) The game is "beaten", with the characters defeating the final boss and
-    returning to town victorious. When this happens, the players are notified
-    that "true evil never dies", and the dungeons are re-generated, along with
-    all bosses, treasure and traps.
-    2) The player chooses to regenerate the dungeons.  This will be an option
+    then gone), the dungeon will not change and the player will generate new
+    characters and a new party and goes back into the dungeon. The dungeons are
+    generated/re-generated on meeting the following conditions:
+    1) The player chooses to regenerate the dungeons.  This will be an option
     within town.  Upon regeneration, all dungeons will lose their "state" and
     all saved progress and auto-maps are reset.  Any characters which are still
     in the dungeon will be returned to town and will be staying at the inn. The
     player may regenerate dungeon as many times as desired, but the prior 
     dungeon is permanently removed (no retrieval).
-    3) the player chooses a "new game" from the main screen.  This will
+    2) The player chooses a "new game" from the main screen.  This will
     completely regenerate the dungeons and will permanently reset the game
     state, removing all player-generated characters, loot and progress. The
     player will be notified sufficiently of this.
+    3) The player chooses to "add dungeon". This generates a brand new
+    multi-level dungeon and adds it as an explorable option in the town menu.
 
     Generated maps are not completely random, but are generated procedurally.
-    This is to provide the player with more interesting manual mapping (on graph
-    paper), and to provide a bit more predictability to the maps. A possible
-    method would be to first create a "section" from pre-defined rooms and
-    hallway segments, then mirror and rotate that section to create a "quadrant"
-    which is then mirrored and rotated to create the rest of the map.  This
-    should provide a "geometric pattern"-style of map.
+    This provides the players with predictable, interesting maps and limitless
+    replayability.
 
+    Each dungeon will be a self-contained entity with 9 levels.
+    Each level will be a 30x30 grid of "tiles".
+    Each tile has four faces (N,S,E,W) and each one of these faces can be a
+    wall, a door, or open.
+    The levels will be connected by stairs (one level) and elevators
+    (multi-level).
+    Walls have no "thickness" but are simply barriers to passage.
 
 Items
 -----

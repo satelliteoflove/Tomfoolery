@@ -10,8 +10,10 @@ import uuid
 
 # Globals
 world_characters = []
-MAP_WIDTH = 0
-MAP_HEIGHT = 0
+MAP_WIDTH = 4
+MAP_HEIGHT = 4
+NUM_LEVELS = 9
+
 
 #This is the xp required to gain a level. It is the same for all classes, since
 #different race/class combinations gain xp at different rates.
@@ -132,6 +134,14 @@ for key in char_class_traits.keys():
 
 # TODO: Add other races to list following table in characters.md.
 
+
+class Dungeon():
+    def __init__(self):
+        self.levels = [Level() for x in range(NUM_LEVELS)]
+
+class Level():
+    def __init__(self):
+        self.tiles = [[0 for x in range(MAP_WIDTH)] for y in range(MAP_HEIGHT)]
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
@@ -578,12 +588,13 @@ class Party(object):
         self.xy_pos = (0,0)
         self.currentRoom = []
         self.members = {}
+        self.encounter_chance = 0.0
 
     def add_char(self, character):
         print("Current members:")
-        print(self.members)
+        list(self.members)
         self.members[character.uuid] = character
-        print(self.members)
+        list(self.members)
 
     def move(self, direction):
         print("moving party..." + direction)
@@ -592,7 +603,12 @@ class Party(object):
             print("member name: " + member.name)
             member.go(direction)
         next(iter(self.members.values())).view_surroundings()
-#        self.members[0].view_surroundings()
+
+    def rem_char(self, character):
+        print("Current members:")
+        list(self.members)
+        self.members[character.uuid].remove()
+        list(self.members)
 
 #NOTE: NPCs are *NOT* monsters!
 class NonPlayerCharacter(Character):
@@ -756,8 +772,12 @@ weapons = {
 
 # create characters, list of characters
 player = Character()
+#player2 = Character()
 party1 = Party()
 party1.add_char(player)
+# Eventually new characters will go into a queue and be placed manually in the
+# "in-play" group.
+unassigned_characters = Party()
 
 # initialize mob and print its attributes
 mob1 = Monster("goblin", 1)
