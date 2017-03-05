@@ -12,7 +12,9 @@ import uuid
 world_characters = []
 MAP_WIDTH = 4
 MAP_HEIGHT = 4
+NUM_START_DUNGEONS = 1
 NUM_LEVELS = 9
+
 
 
 #This is the xp required to gain a level. It is the same for all classes, since
@@ -134,6 +136,9 @@ for key in char_class_traits.keys():
 
 # TODO: Add other races to list following table in characters.md.
 
+class World():
+    def __init__(self):
+        self.dungeons = [Dungeon for x in range(NUM_START_DUNGEONS)]
 
 class Dungeon():
     def __init__(self):
@@ -142,6 +147,7 @@ class Dungeon():
 class Level():
     def __init__(self):
         self.tiles = [[0 for x in range(MAP_WIDTH)] for y in range(MAP_HEIGHT)]
+
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
