@@ -10,11 +10,11 @@ import uuid
 
 # Globals
 world_characters = []
+#width/height of a new level being generated
 MAP_WIDTH = 4
 MAP_HEIGHT = 4
-NUM_START_DUNGEONS = 1
-NUM_LEVELS = 9
-
+NUM_START_DUNGEONS = 1#how many dungeons to create initially
+NUM_LEVELS = 1 #how many levels per dungeon
 
 
 #This is the xp required to gain a level. It is the same for all classes, since
@@ -134,20 +134,31 @@ print("Printing list of classes:")
 for key in char_class_traits.keys():
     print(key)
 
-# TODO: Add other races to list following table in characters.md.
+# TODO: Add other races to list (following table in characters.md).
 
 class World():
     def __init__(self):
-        self.dungeons = [Dungeon for x in range(NUM_START_DUNGEONS)]
+        print("Generating the world...")
+        self.dungeons = [Dungeon() for x in range(NUM_START_DUNGEONS)]
+        print("Finished world generation.")
 
 class Dungeon():
     def __init__(self):
+        print("Beginning dungeon generation...")
         self.levels = [Level() for x in range(NUM_LEVELS)]
+        print("Finished dungeon generation.")
 
 class Level():
     def __init__(self):
-        self.tiles = [[0 for x in range(MAP_WIDTH)] for y in range(MAP_HEIGHT)]
+        print("Beginning level generation...")
+        self.tiles = [[Tile() for x in range(MAP_WIDTH)] for y in range(MAP_HEIGHT)]
+        print("Finished level generation.")
 
+class Tile():
+    def __init__(self):
+        self.exits = ["north", "south", "east", "west"]
+
+world = World()
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
@@ -257,7 +268,7 @@ class Character(object):
     def set_bonusPoints(self):
         self.bonusPoints = 0
         while self.bonusPoints < 4:
-            self.bonusPoints = math.floor(random.triangular(1,25,5))
+            self.bonusPoints = math.floor(numpy.random.normal())
         print("Bonus Points = " + str(self.bonusPoints))
 
     def set_race(self):
