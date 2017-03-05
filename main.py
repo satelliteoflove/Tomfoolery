@@ -9,7 +9,7 @@ import numpy as np
 import uuid
 
 # Globals
-world_characters = []
+worldCharacters = []
 #width/height of a new level being generated
 MAP_WIDTH = 4
 MAP_HEIGHT = 4
@@ -157,6 +157,9 @@ class Level():
 class Tile():
     def __init__(self):
         self.exits = ["north", "south", "east", "west"]
+        self.isExplored = False
+        self.isPassable = True
+
 
 world = World()
 
@@ -166,24 +169,24 @@ class Character(object):
     def __init__(self):
         self.name = self.set_name()
         self.uuid = uuid.uuid4()
-        self.current_level = 1
-        self.current_xp = 0
+        self.currentLevel = 1
+        self.currentXP = 0
         self.set_race()
         self.set_sex()
         self.set_bonusPoints()
         self.set_class()
-        self.stat_names = ["strength", "agility", "vitality", "intelligence",
+        self.statNames = ["strength", "agility", "vitality", "intelligence",
                            "piety", "luck"]
         self.assign_BonusPoints()
         self.set_xp_rate()
         self.set_initial_HP()
-        self.max_hitPoints = self.hitPoints
+        self.maxHitPoints = self.hitPoints
         self.defense = 1
         self.inventory = []
         self.currentRoom = (0, 0)
         self.add_to_room()
         self.direction = "north"
-        world_characters.append(self)
+        worldCharacters.append(self)
         self.equipment = []
         self.rate = 1 #Note that this MUST change when XP rate is fixed.
         self.set_AP()
@@ -201,7 +204,7 @@ class Character(object):
         vitality?).
         """
         self.hitPoints = 0
-        self.max_hitPoints = 0
+        self.maxHitPoints = 0
         chance = random.randint(0,1)
         if self.char_class == "samurai":
             if chance == 0:
@@ -235,7 +238,7 @@ class Character(object):
                 self.hitPoints = (9 * (4 + self.vitality // 2) // 10)
         if self.hitPoints < 2:
             self.hitPoints = 2
-        self.max_hitPoints = self.hitPoints
+        self.maxHitPoints = self.hitPoints
 
     def add_maxHP(self):
         """Adds max HP when character gains a level.
@@ -243,17 +246,17 @@ class Character(object):
         TODO: Ensure that vitality modifies added maximum HP.
         """
         if self.char_class == "fighter" or self.char_class == "lord":
-            self.max_hitPoints += int(random.triangular(0,10,5))
+            self.maxHitPoints += int(random.triangular(0,10,5))
         elif self.char_class == "priest" or self.char_class == "samurai":
-            self.max_hitPoints += int(random.triangular(0,8,4))
+            self.maxHitPoints += int(random.triangular(0,8,4))
         elif self.char_class == "monk":
-            self.max_hitPoints += int(random.triangular(0,8,5))
+            self.maxHitPoints += int(random.triangular(0,8,5))
         elif self.char_class == "thief" or self.char_class == "ninja":
-            self.max_hitPoints += int(random.triangular(0,6,3))
+            self.maxHitPoints += int(random.triangular(0,6,3))
         elif self.char_class == "bishop":
-            self.max_hitPoints += int(random.triangular(0,6,3))
+            self.maxHitPoints += int(random.triangular(0,6,3))
         elif self.char_class == "mage":
-            self.max_hitPoints += int(random.triangular(0,4,2))
+            self.maxHitPoints += int(random.triangular(0,4,2))
 
     def set_sex(self):
         self.sex = ""
@@ -413,7 +416,7 @@ class Character(object):
             elif stat_increased == "l":
                 stat_increased = "luck"
 
-            if stat_increased not in self.stat_names:
+            if stat_increased not in self.statNames:
                 print("That isn't a stat. Try again.")
             else:
                 setattr(self, stat_increased, getattr(self, stat_increased) + 1)
@@ -569,26 +572,26 @@ class Character(object):
 
 #TODO: xp should never be a float; fix that
     def add_xp(self, xp):
-        print(self.name + " had " + str(self.current_xp) + "xp.")
+        print(self.name + " had " + str(self.currentXP) + "xp.")
         x = char_race_xp_rate[self.race][self.char_class]
         print("Your xp multiplier is: " + str(xp_multipliers[x]))
-        self.current_xp += int((xp * xp_multipliers[x]))
-        print(self.name + " now has " + str(self.current_xp) + " xp.")
+        self.currentXP += int((xp * xp_multipliers[x]))
+        print(self.name + " now has " + str(self.currentXP) + " xp.")
 
     def level_up(self):
-        xp_to_lvl_up = char_level_xp_req[self.current_level + 1]
-        if self.current_xp >= xp_to_lvl_up:
-            print(self.name + " current level is: " + str(self.current_level))
-            self.current_level += 1
-            self.current_xp -= xp_to_lvl_up
+        xp_to_lvl_up = char_level_xp_req[self.currentLevel + 1]
+        if self.currentXP >= xp_to_lvl_up:
+            print(self.name + " current level is: " + str(self.currentLevel))
+            self.currentLevel += 1
+            self.currentXP -= xp_to_lvl_up
             self.add_maxHP()
-            print(self.name + " current level is: " + str(self.current_level))
+            print(self.name + " current level is: " + str(self.currentLevel))
         else:
             print("Not enough XP to purchase the next level.")
 
     def attack(self, target):
         count = 0
-        for character in world_characters:
+        for character in worldCharacters:
             if character.name == target:
                 count += 1
                 dmg = self.AP
@@ -641,7 +644,7 @@ class NonPlayerCharacter(Character):
         self.inventory = []
         self.currentRoom = (0, 0)
         self.add_to_room()
-        world_characters.append(self)
+        worldCharacters.append(self)
         self.equipment = []
         self.movement = 1
         self.direction = "north"
@@ -681,14 +684,14 @@ monster_catalog = {
 class Monster(object):
     def __init__(self, type_name, level):
         self.type_name = monster_catalog[type_name]["typename"]
-        self.name = type_name + str(len(world_characters))
+        self.name = type_name + str(len(worldCharacters))
         self.HP = monster_catalog[type_name]["base_hp"] * level // 2
         self.baseAP = monster_catalog[type_name]["base_ap"]
         if self.baseAP > 1:
             self.AP = monster_catalog[type_name]["base_ap"] * level // 2
         else:
             self.AP = 1
-        world_characters.append(self)
+        worldCharacters.append(self)
 
     def show_stats(self):
         print("Stats of monster '%s':" %self.name)
@@ -715,7 +718,7 @@ class Item(object):
         self.can_be_equipped = False
 
     def effect(self,target,damage,status):
-        target = world_characters[target]
+        target = worldCharacters[target]
         damage = damage
         status_effect = status
         target.HP += damage
@@ -802,7 +805,7 @@ mob2 = Monster("goblin", 2)
 
 
 print("The following characters are in the world list:")
-for character in world_characters:
+for character in worldCharacters:
     print(character.name)
 
 # display "main menu"
@@ -826,11 +829,11 @@ while True:
     elif move[0] == "look":
         player.view_surroundings()
     elif move[0] == "list":
-        for character in world_characters:
+        for character in worldCharacters:
             print(character.name)
     elif move[0] == "placeme":
         player.place_random()
-    elif move[0] == "place" and move[1] in rooms:
+    elif move[1] == "place" and move[1] in rooms:
         player.place_room(move[1])
     elif move[0] == "attack":
         player.attack(move[1])
