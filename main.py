@@ -271,7 +271,7 @@ class Character(object):
     def set_bonusPoints(self):
         self.bonusPoints = 0
         while self.bonusPoints < 4:
-            self.bonusPoints = math.floor(numpy.random.normal())
+            self.bonusPoints = math.floor(np.random.normal())
         print("Bonus Points = " + str(self.bonusPoints))
 
     def set_race(self):
@@ -833,8 +833,8 @@ while True:
             print(character.name)
     elif move[0] == "placeme":
         player.place_random()
-    elif move[1] == "place" and move[1] in rooms:
-        player.place_room(move[1])
+    #elif move[1] == "place" and move[1] in rooms:
+    #    player.place_room(move[1])
     elif move[0] == "attack":
         player.attack(move[1])
     elif move[0] == "look":
