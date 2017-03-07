@@ -12,6 +12,12 @@ Long-range attacks are only in effect when they fight bare-handed.
 Character Design and Function
 -----------------------------
 
+Armor Class and THAC0
+---------------------
+THAC0 - AC = chance (in 20) of hitting. A roll of 1 is always a miss, and a roll
+of 20 is always a hit.
+
+
 Alignment
 ---------
 All characters have an "alignment", which indicates their world view as follows:

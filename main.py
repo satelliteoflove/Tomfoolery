@@ -109,6 +109,8 @@ char_class_traits = {
                "min_vit":0,
                "min_pie":0,
                "min_luk":0,
+               "AC":1,
+               "THAC0mult":1
               },
     "mage":{"preferred_stat":"intelligence",
             "hp_bonus":1,
@@ -117,7 +119,9 @@ char_class_traits = {
             "min_int":12,
             "min_vit":0,
             "min_pie":0,
-            "min_luk":0
+            "min_luk":0,
+            "AC":1,
+            "THAC0mult":0.5
            },
     "priest":{"preferred_stat":"piety",
               "hp_bonus":3,
@@ -126,7 +130,9 @@ char_class_traits = {
               "min_int":0,
               "min_vit":0,
               "min_pie":12,
-              "min_luk":0
+              "min_luk":0,
+              "AC":1,
+              "THAC0mult":.75
              }
 }
 
@@ -181,7 +187,8 @@ class Character(object):
         self.set_xp_rate()
         self.set_initial_HP()
         self.maxHitPoints = self.hitPoints
-        self.defense = 1
+        self.set_AC() #As in characters.md - AD&D rules for AC/THAC0.
+        self.set_THAC0()
         self.inventory = []
         self.currentRoom = (0, 0)
         self.add_to_room()
@@ -190,6 +197,13 @@ class Character(object):
         self.equipment = []
         self.rate = 1 #Note that this MUST change when XP rate is fixed.
         self.set_AP()
+
+    def set_AC(self):
+        self.AC = char_class_traits[self.char_class]["AC"]
+
+    def set_THAC0(self):
+        self.THAC0 = 20 - round((self.currentLevel *
+                           char_class_traits[self.char_class]["THAC0mult"]))
 
     def set_initial_HP(self):
         """Used to set *initial* HP for character.
@@ -640,7 +654,6 @@ class NonPlayerCharacter(Character):
         self.vitality = 3
         self.hitPoints = int((self.vitality / 10) * random.randint(5, 30))
         self.attack = 1
-        self.defense = 1
         self.inventory = []
         self.currentRoom = (0, 0)
         self.add_to_room()
