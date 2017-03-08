@@ -145,6 +145,58 @@ Races
 
 Classes
 -------
+Fighter - The classic brawler.  Per level, Fighters get the fastest HP gain of
+all classes.  Fighters' THAC0 is reduced by 1 for each level, to a minimum of 1.
+Fighters can equip most weapon and armor types.  Fighters get 1 extra attack per
+turn at levels 5, 10, 15, and 20.
+
+Mage -
+
+Priest -
+
+Thief -
+
+Alchemist -
+
+Bishop -
+
+Bard -
+
+Ranger -
+
+Psionic -
+
+Valkyrie -
+
+Samurai - Like Fighters, Samurai get one additional attack per turn at levels 
+5, 10, 15, and 20. Samurai learn some mage spells.
+
+Lord -
+
+Monk -
+
+Ninja -
+
+Fool - This most difficult of people is a champion of poor judgement and a
+bastion of sloth. The Fool his a high dodge rate, but can't (or won't) equip
+more than the basic weapons and armor available to mages. Fools can't be
+bothered with good or evil (they are always Neutral), as both require too much 
+work. Fools, outside of some rare moments of brilliance, are little more than a
+"mule" for loot to be kept at the rear of the party. However, Fools are the only 
+class with no minimum statistic requirements. For some characters with 
+sufficiently low bonus points rolls, the Fool may be their only choice. Fools 
+gain HP as a Thief and have very high natural THAC0, although they have low 
+natural AC. Besides being a loser, the Fool has two things going for him. Upon
+reaching level 10, and upon each level after that, Fools have an increasing 
+chance (up to 100% at level 14) of achieving "enlightenment" and automatically 
+changing class to that of "Sage". A Sage gets +3 automatically to every stat. 
+In addition to receiving the usual random stat adjustments upon achieving a new 
+level, Sages receive additional bonus points which can be spent at the Training 
+Hall. Sages have unarmed attack capabilities similar to a Monk's, and acquire 
+some Psionic and Alchemist spells. Sages may equip no weapons and very little 
+armor.
+
+Class Requirements:
 |------------|-------------------|-------------------------------------------|
 | Occupation | Min. Stats/Align  | Required Bonus Points (lower is female)   |
 |------------|-------------------|-------------------------------------------|
@@ -208,6 +260,9 @@ Classes
 |            |                   | attack from lvl 9, TrapID,Hide, door      |
 |            |                   | detection, unlock doors                   |
 |------------|-------------------|-------------------------------------------|
+| Fool       | --/--/--/--/--/-- | 00/00/00/00/00/00/00/00/00/00/00          |
+|            |                   | Chance for special class at lvl >9.       |
+|------------|-------------------|-------------------------------------------|
 
 Note: The above minimum requirements may be tweaked as necessary for balance.
 
@@ -222,7 +277,7 @@ normally.
 
 Generally, the character creation process is as follows:
 
-1) Choose character's name. Names may be up to 12 characters in length.
+1) Choose character's name. Names may be up to 12 (15?) characters in length.
 2) Choose character's race.
 3) Choose character's alignment.
 4) At this time, the character's "bonus points" are determined. The player is
@@ -338,6 +393,8 @@ Race/Class Bias
 | Mon   | 16  | 15  | 13  | 14  | 17  | 16  | 19  | 18  | 14  | 18  | 14  |
 |-------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | Nin   | 28  | 27  | 27  | 25  | 27  | 25  | 26  | 27  | 25  | 27  | 25  |
+|-------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| Fol   | 28  | 28  | 28  | 28  | 28  | 28  | 28  | 28  | 28  | 28  | 28  |
 |-------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 
 Note the following averages for each class:

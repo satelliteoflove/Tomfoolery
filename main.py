@@ -186,8 +186,7 @@ class Character(object):
         self.assign_BonusPoints()
         self.set_xp_rate()
         self.set_initial_HP()
-        self.maxHitPoints = self.hitPoints
-        self.set_AC() #As in characters.md - AD&D rules for AC/THAC0.
+        self.set_class_AC() #As in characters.md - AD&D rules for AC/THAC0.
         self.set_THAC0()
         self.inventory = []
         self.currentRoom = (0, 0)
@@ -198,10 +197,12 @@ class Character(object):
         self.rate = 1 #Note that this MUST change when XP rate is fixed.
         self.set_AP()
 
-    def set_AC(self):
+    def set_class_AC(self):
+        """Set character's class-based AC "base"."""
         self.AC = char_class_traits[self.char_class]["AC"]
 
     def set_THAC0(self):
+        """Set character's class-based THAC0 "base"."""
         self.THAC0 = 20 - round((self.currentLevel *
                            char_class_traits[self.char_class]["THAC0mult"]))
 
@@ -220,38 +221,41 @@ class Character(object):
         self.hitPoints = 0
         self.maxHitPoints = 0
         chance = random.randint(0,1)
+
         if self.char_class == "samurai":
             if chance == 0:
                 self.hitPoints = int(16 + self.vitality // 2)
             if chance == 1:
                 self.hitPoints = (9 * (16 + self.vitality // 2) // 10)
-        if self.char_class == "fighter" or self.char_class == "lord":
+        elif self.char_class == "fighter" or self.char_class == "lord":
             if chance == 0:
                 self.hitPoints = 10 + self.vitality // 2
             if chance == 1:
                 self.hitPoints = (9 * (10 + self.vitality // 2) // 10)
-        if self.char_class == "priest":
+        elif self.char_class == "priest":
             if chance == 0:
                 self.hitPoints = 8 + self.vitality // 2
             if chance == 1:
                 self.hitPoints = (9 * (8 + self.vitality // 2) // 10)
-        if self.char_class == "thief" or self.char_class == "ninja":
+        elif self.char_class == "thief" or self.char_class == "ninja":
             if chance == 0:
                 self.hitPoints = 6 + self.vitality // 2
             if chance == 1:
                 self.hitPoints = (9 * (6 + self.vitality // 2) // 10)
-        if self.char_class == "bishop":
+        elif self.char_class == "bishop":
             if chance == 0:
                 self.hitPoints = 6 + self.vitality // 2
             if chance == 1:
                 self.hitPoints = (9 * (6 + self.vitality // 2) // 10)
-        if self.char_class == "mage":
+        elif self.char_class == "mage":
             if chance == 0:
                 self.hitPoints = 4 + self.vitality // 2
             if chance == 1:
                 self.hitPoints = (9 * (4 + self.vitality // 2) // 10)
+
         if self.hitPoints < 2:
             self.hitPoints = 2
+
         self.maxHitPoints = self.hitPoints
 
     def add_maxHP(self):
@@ -273,6 +277,11 @@ class Character(object):
             self.maxHitPoints += int(random.triangular(0,4,2))
 
     def set_sex(self):
+        """Sets the sex of the character.
+
+        The sex of a character grants a one-time stat bonus upon character
+        creation (+1 VIT (F)/+1 STR (M)), and only women can be valkyries.
+        """
         self.sex = ""
         while self.sex != "male" and self.sex != "female":
             print("What is the sex of the character?\n(male or female)")
@@ -283,9 +292,11 @@ class Character(object):
             self.vitality += 1
 
     def set_bonusPoints(self):
+        """Assigns starting bonus points.
+        """
         self.bonusPoints = 0
         while self.bonusPoints < 4:
-            self.bonusPoints = math.floor(np.random.normal())
+            self.bonusPoints = int(np.random.normal(8, 4))
         print("Bonus Points = " + str(self.bonusPoints))
 
     def set_race(self):
@@ -435,6 +446,7 @@ class Character(object):
             else:
                 setattr(self, stat_increased, getattr(self, stat_increased) + 1)
                 self.bonusPoints -= 1
+                print("Bonus Points = " + str(self.bonusPoints))
                 print("Strength: " + str(self.strength))
                 print("Agility: " + str(self.agility))
                 print("Vitality: " + str(self.vitality))
@@ -584,7 +596,6 @@ class Character(object):
                     item.is_equipped = True
                     print(item.name + " equipped.")
 
-#TODO: xp should never be a float; fix that
     def add_xp(self, xp):
         print(self.name + " had " + str(self.currentXP) + "xp.")
         x = char_race_xp_rate[self.race][self.char_class]
@@ -648,40 +659,13 @@ class Party(object):
 class NonPlayerCharacter(Character):
     """Common base class for all NPCs."""
 
-    def __init__(self, name):
-        self.name = name
-        self.strength = 3
-        self.vitality = 3
-        self.hitPoints = int((self.vitality / 10) * random.randint(5, 30))
-        self.attack = 1
-        self.inventory = []
-        self.currentRoom = (0, 0)
-        self.add_to_room()
-        worldCharacters.append(self)
-        self.equipment = []
-        self.movement = 1
-        self.direction = "north"
-
-    def change_direction(self):
-        directions = ["north", "south", "east", "west"]
-        directions.remove(self.direction)
-        self.direction = random.choice(directions)
-
-    # def go(self, newroom):
-    #     if move[1] in rooms[self.currentRoom]:
-    #         rooms[self.currentRoom]["characters"].remove(self)
-    #         self.currentRoom = rooms[self.currentRoom][move[1]]
-    #         rooms[self.currentRoom]["characters"].append(self)
-    #         self.view_surroundings()
-    #     else:
-    #         print("You can't go that way.")
 
 
 """
 Notes on monsters:
 Monsters will be randomly encountered - they do not "wander" the dungeon.
-Monsters will not carry items, but will "drop" items at random.
-Dropped items will be pulled from a pre-existing dictionary.
+Monsters will not carry items, but will "drop" items at random - dropped items
+will be pulled from a pre-existing dictionary.
 General monster parties will be procedurally built from pre-existing classes.
 Dungeon level and average party member level will be considered in monster
 party makeup.
