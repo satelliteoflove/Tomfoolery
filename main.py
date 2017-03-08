@@ -145,19 +145,23 @@ for key in char_class_traits.keys():
 class World():
     def __init__(self):
         print("Generating the world...")
-        self.dungeons = [Dungeon() for x in range(NUM_START_DUNGEONS)]
+        self.dungeons = [Dungeon()
+                         for x in range(NUM_START_DUNGEONS)]
         print("Finished world generation.")
 
 class Dungeon():
     def __init__(self):
         print("Beginning dungeon generation...")
-        self.levels = [Level() for x in range(NUM_LEVELS)]
+        self.levels = [Level()
+                       for x in range(NUM_LEVELS)]
         print("Finished dungeon generation.")
 
 class Level():
     def __init__(self):
         print("Beginning level generation...")
-        self.tiles = [[Tile() for x in range(MAP_WIDTH)] for y in range(MAP_HEIGHT)]
+        self.tiles = [[Tile()
+                      for x in range(MAP_WIDTH)]
+                      for y in range(MAP_HEIGHT)]
         print("Finished level generation.")
 
 class Tile():
@@ -165,9 +169,9 @@ class Tile():
         self.exits = ["north", "south", "east", "west"]
         self.isExplored = False
         self.isPassable = True
+        self.characters = []
+        self.items = []
 
-
-world = World()
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
@@ -749,6 +753,9 @@ def showInstructions():
     print("'attack'")
 
 #In-town functions
+
+# World initialization
+world = World()
 
 # Item initialization - item names are case sensitive for now
 sword1 = Weapon("sword", 1, 5, "This is a simple short sword of steel.")
