@@ -142,26 +142,30 @@ for key in char_class_traits.keys():
 
 # TODO: Add other races to list (following table in characters.md).
 
-class World():
-    def __init__(self):
+#world = {}
+
+# TODO: pass all variables as parameters
+"""
+class World(dungeons,levels,width,height):
+    def __init__(self, starting_dungeons):
         print("Generating the world...")
-        self.dungeons = [Dungeon()
-                         for x in range(NUM_START_DUNGEONS)]
+        for x in range(starting_dungeons):
+            world[x:] = Dungeon(levels,width,height)
         print("Finished world generation.")
 
-class Dungeon():
+class Dungeon(levels,width,height):
     def __init__(self):
         print("Beginning dungeon generation...")
-        self.levels = [Level()
-                       for x in range(NUM_LEVELS)]
+        self.levels = [Level(MAP_WIDTH,MAP_HEIGHT)
+                       for x in range(levels)]
         print("Finished dungeon generation.")
 
-class Level():
+class Level(width, height):
     def __init__(self):
         print("Beginning level generation...")
         self.tiles = [[Tile()
-                      for x in range(MAP_WIDTH)]
-                      for y in range(MAP_HEIGHT)]
+                      for x in range(width)]
+                      for y in range(height)]
         print("Finished level generation.")
 
 class Tile():
@@ -171,7 +175,7 @@ class Tile():
         self.isPassable = True
         self.characters = []
         self.items = []
-
+"""
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
@@ -755,7 +759,7 @@ def showInstructions():
 #In-town functions
 
 # World initialization
-world = World()
+# world = World() # - broken for now (until variable/parameter work is finished)
 
 # Item initialization - item names are case sensitive for now
 sword1 = Weapon("sword", 1, 5, "This is a simple short sword of steel.")
