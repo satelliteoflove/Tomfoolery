@@ -8,14 +8,14 @@ import math
 import numpy as np
 import uuid
 
-# Globals
+# World/Dungeon/Level configuration
 worldCharacters = []
-#width/height of a new level being generated
-MAP_WIDTH = 4
-MAP_HEIGHT = 4
-NUM_START_DUNGEONS = 1#how many dungeons to create initially
-NUM_LEVELS = 1 #how many levels per dungeon
-
+WORLD_CONFIG = {
+    "dungeon_count": 1,
+    "level_count":1,
+    "level_width":4,
+    "level_height":4
+}
 
 #This is the xp required to gain a level. It is the same for all classes, since
 #different race/class combinations gain xp at different rates.
@@ -142,40 +142,40 @@ for key in char_class_traits.keys():
 
 # TODO: Add other races to list (following table in characters.md).
 
-#world = {}
-
-# TODO: pass all variables as parameters
-"""
-class World(dungeons,levels,width,height):
-    def __init__(self, starting_dungeons):
+class World(object):
+    dungeons = []
+    def __init__(self, config):
         print("Generating the world...")
-        for x in range(starting_dungeons):
-            world[x:] = Dungeon(levels,width,height)
+        self.dungeons = [
+            Dungeon(config)
+            for x in range(config["dungeon_count"])]
         print("Finished world generation.")
 
-class Dungeon(levels,width,height):
-    def __init__(self):
+class Dungeon(object):
+    levels = []
+    def __init__(self, config):
         print("Beginning dungeon generation...")
-        self.levels = [Level(MAP_WIDTH,MAP_HEIGHT)
-                       for x in range(levels)]
+        self.levels = [
+            Level(config)
+            for x in range(config["level_count"])]
         print("Finished dungeon generation.")
 
-class Level(width, height):
-    def __init__(self):
+class Level(object):
+    tiles = []
+    def __init__(self, config):
         print("Beginning level generation...")
-        self.tiles = [[Tile()
-                      for x in range(width)]
-                      for y in range(height)]
+        for x in range(config["level_width"]):
+            row = [Tile()
+                   for y in range(config["level_height"])]
+            self.tiles.append(row)
         print("Finished level generation.")
 
-class Tile():
+class Tile(object):
     def __init__(self):
-        self.exits = ["north", "south", "east", "west"]
         self.isExplored = False
         self.isPassable = True
         self.characters = []
         self.items = []
-"""
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
