@@ -142,14 +142,24 @@ ANOTHER Wing Demon group, and so forth. Thankfully, no single battle can
 consist of more than four monster groups, so there is a limit to these
 shenanigans.
 
+Monster Encounters
+------------------
+
+Monsters will be randomly encountered - they do not "wander" the dungeon.
+General monster parties will be procedurally built from pre-existing lists.
+Dungeon level and average party member level will be considered in monster
+party makeup.
 
 Treasure
 --------
+Monsters will not carry items, but will cause the level to "drop" items
+pseudo-randomly from a pre-generated list.
 The primary way players acquire new equipment is through treasure left behind by
 monsters after an encounter has resolved itself. "Treasure chests" have a
 chance of appearing when all monsters are defeated or have fled the battle. The
 chest may be trapped, and if the trap is not disarmed before the chest is opened
 it will almost certainly deploy.
+
 
 Traps
 -----

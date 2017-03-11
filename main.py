@@ -346,7 +346,7 @@ class Character(object):
 
     def validate_class(self, newclass):
         """Validates that a class can be chosen for the character by comparing
-        total bonus opints required vs current bonus points.
+        total bonus points required vs current bonus points.
         """
         points_required = 0
         str_req = char_class_traits[newclass]["min_str"]
@@ -433,20 +433,19 @@ class Character(object):
         print("[P]iety: " + str(self.piety))
         print("[L]uck: " + str(self.luck))
         while self.bonusPoints > 0:
-            stat_increased = ""
-            stat_increased = input().lower()
-
-            if stat_increased == "s":
+            stat_increased = 's'
+#            stat_increased = input().lower()
+            if stat_increased == 's':
                 stat_increased = "strength"
-            elif stat_increased == "a":
+            elif stat_increased == 'a':
                 stat_increased = "agility"
-            elif stat_increased == "v":
+            elif stat_increased == 'v':
                 stat_increased = "vitality"
-            elif stat_increased == "i":
+            elif stat_increased == 'i':
                 stat_increased = "intelligence"
-            elif stat_increased == "p":
+            elif stat_increased == 'p':
                 stat_increased = "piety"
-            elif stat_increased == "l":
+            elif stat_increased == 'l':
                 stat_increased = "luck"
 
             if stat_increased not in self.statNames:
@@ -464,6 +463,8 @@ class Character(object):
         print("You don't have any bonus points left.")
 
     def set_xp_rate(self):
+        """Sets the experience multiplier for a given race/class combination.
+        """
         print("self.char_class = " + self.char_class)
         print("self.race = " + self.race)
         if self.race in char_race_xp_rate:
@@ -488,14 +489,10 @@ class Character(object):
             self.AP -= 2
         if self.strength == 5:
             self.AP -= 1
-        if self.strength == 16:
-            self.AP += 1
-        if self.strength == 17:
-            self.AP += 2
-        if self.strength == 18:
-            self.AP += 3
-        #if self.AP < 0:
-        #    self.AP = 0
+        if self.strength > 15:
+            self.AP += 1 * (self.strength - 15)
+        if self.AP < 0:
+            self.AP = 0
         print("This character's AP is: " + str(self.AP))
 
     def add_to_room(self):
@@ -635,7 +632,7 @@ class Character(object):
             print("That didn't work.")
 
 class Party(object):
-    """Class for storing characters or monsters in a group.
+    """Class for storing characters in a group.
     """
     def __init__(self):
         self.xy_pos = (0,0)
@@ -663,21 +660,10 @@ class Party(object):
         self.members[character.uuid].remove()
         list(self.members)
 
-#NOTE: NPCs are *NOT* monsters!
-class NonPlayerCharacter(Character):
-    """Common base class for all NPCs."""
-
-
-
-"""
-Notes on monsters:
-Monsters will be randomly encountered - they do not "wander" the dungeon.
-Monsters will not carry items, but will "drop" items at random - dropped items
-will be pulled from a pre-existing dictionary.
-General monster parties will be procedurally built from pre-existing classes.
-Dungeon level and average party member level will be considered in monster
-party makeup.
-"""
+class MonsterParty(Party):
+    """Class for storing monsters. For use during combat."""
+    def __init__(self):
+        self.members = []
 
 monster_catalog = {
     "goblin":{"typename":"goblin",
