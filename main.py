@@ -7,6 +7,7 @@ import readline
 import math
 import numpy as np
 import uuid
+import mobs
 
 # World/Dungeon/Level configuration
 worldCharacters = []
@@ -620,16 +621,12 @@ class Character(object):
             print("Not enough XP to purchase the next level.")
 
     def attack(self, target):
-        count = 0
         for character in worldCharacters:
             if character.name == target:
-                count += 1
-                dmg = self.AP
+                dmg = self.AP + random.randint(0,5)
                 print("I am attacking " + character.name + " for " + str(dmg) +
                       " points of damage.")
                 break
-        if count == 0:
-            print("That didn't work.")
 
 class Party(object):
     """Class for storing characters in a group.
@@ -660,34 +657,52 @@ class Party(object):
         self.members[character.uuid].remove()
         list(self.members)
 
-class MonsterParty(Party):
-    """Class for storing monsters. For use during combat."""
-    def __init__(self):
-        self.members = []
 
+#Monsters
 monster_catalog = {
     "goblin":{"typename":"goblin",
               "base_hp":5,
-              "base_ap":1
+              "THAC0":1,
+              "base_ap":1,
+              "weapon":"claw",
+              "party_weight":1
              }
 }
 
+
+
 class Monster(object):
-    def __init__(self, type_name, level):
-        self.type_name = monster_catalog[type_name]["typename"]
-        self.name = type_name + str(len(worldCharacters))
-        self.HP = monster_catalog[type_name]["base_hp"] * level // 2
-        self.baseAP = monster_catalog[type_name]["base_ap"]
-        if self.baseAP > 1:
-            self.AP = monster_catalog[type_name]["base_ap"] * level // 2
-        else:
-            self.AP = 1
+    def __init__(self, config, type_name, level):
+        self.type_name = config[type_name]["typename"]
+        self.name = self.type_name
+        self.HP = config[type_name]["base_hp"] * level
+        self.THAC0 = monster_catalog[type_name]["THAC0"]
+        self.AP = monster_catalog[type_name]["base_ap"] * level // 2
+        self.weapon = config[type_name]["weapon"]
+        self.weight = config[type_name]["party_weight"]
         worldCharacters.append(self)
+
+    def attack(self,target):
+        pass
 
     def show_stats(self):
         print("Stats of monster '%s':" %self.name)
         print(vars(self))
 
+class MonsterParty(Party):
+    """Class for storing monsters. For use during combat."""
+    def __init__(self, party_weight):
+        self.members = []
+        self.remaining_weight = party_weight
+        while self.remaining_weight > 0:
+            monster = Monster(
+                monster_catalog,"goblin",random.randint(1,3)
+            )
+            if monster.weight <= self.remaining_weight:
+                self.remaining_weight -= monster.weight
+                self.members.append(monster)
+
+#Items
 class ItemMaker(object):
     def __init__(self):
         self.weight = 1
@@ -784,18 +799,14 @@ weapons = {
     "sword01": {"name": "Short Sword"}
 }
 
+# initialize mob party
+mob_party = MonsterParty(1)
+
 # create characters, list of characters
 player = Character()
 #player2 = Character()
 party1 = Party()
 party1.add_char(player)
-# Eventually new characters will go into a queue and be placed manually in the
-# "in-play" group.
-unassigned_characters = Party()
-
-# initialize mob and print its attributes
-mob1 = Monster("goblin", 1)
-mob2 = Monster("goblin", 2)
 
 
 print("The following characters are in the world list:")
