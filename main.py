@@ -166,6 +166,7 @@ class Level(object):
             row = [Tile()
                    for y in range(config["level_height"])]
             self.tiles.append(row)
+        mob_party = MonsterParty(1)
         print("Finished level generation.")
 
 class Tile(object):
@@ -622,13 +623,17 @@ class Character(object):
         else:
             print("Not enough XP to purchase the next level.")
 
+    def take_dmg(self, dmg):
+        self.hitPoints -= dmg
+        if self.hitPoints <= 0:
+            print(self.name + "is dead.")
+
     def attack(self, target):
-        for character in worldCharacters:
-            if character.name == target:
-                dmg = self.AP + random.randint(0,5)
-                print("I am attacking " + character.name + " for " + str(dmg) +
-                      " points of damage.")
-                break
+        dmg = self.AP + 1
+        target.take_dmg(dmg)
+        print("I am attacking " + target.name + " for " + str(dmg) +
+              " points of damage.")
+        break
 
 class Party(object):
     """Class for storing characters in a group.
@@ -681,9 +686,19 @@ class Monster(object):
         self.weapon = config[type_name]["weapon"]
         self.weight = config[type_name]["party_weight"]
         worldCharacters.append(self)
+        if self.AP < 1:
+            self.AP = 1
 
-    def attack(self,target):
-        pass
+    def attack(self, target):
+        dmg = self.AP + 1
+        target.take_dmg(dmg)
+        print("I am attacking " + target.name + " for " + str(dmg) +
+              " points of damage.")
+
+    def take_dmg(self, dmg):
+        self.hitPoints -= dmg
+        if self.hitPoints <= 0:
+            print(self.name + "is dead.")
 
     def show_stats(self):
         print("Stats of monster '%s':" %self.name)
@@ -800,7 +815,7 @@ weapons = {
 }
 
 # initialize mob party
-mob_party = MonsterParty(10)
+#mob_party = MonsterParty(1)
 
 # create characters, list of characters
 player = Character()
@@ -840,7 +855,7 @@ while True:
         player.place_random()
     #elif move[1] == "place" and move[1] in rooms:
     #    player.place_room(move[1])
-    elif move[0] == "attack":
+    elif move[0] == "attack" and move[1]:
         player.attack(move[1])
     elif move[0] == "look":
         player.view_surroundings()
@@ -857,8 +872,8 @@ while True:
         player.bonusPoints = int(move[1])
     elif move[0] == "classchange":
         player.set_class()
-    elif move[0] == "abp":
-        player.assign_BonusPoints()
+#    elif move[0] == "abp":
+#        player.assign_BonusPoints()
     elif move[0] == "q" or move[0] == "quit":
         break
     else:
