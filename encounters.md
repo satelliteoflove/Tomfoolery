@@ -142,54 +142,6 @@ ANOTHER Wing Demon group, and so forth. Thankfully, no single battle can
 consist of more than four monster groups, so there is a limit to these
 shenanigans.
 
-Monster Encounters
-------------------
-
-Monsters will be randomly encountered - they do not "wander" the dungeon.
-General monster parties will be procedurally built from pre-existing lists.
-Dungeon level and average party member level will be considered in monster
-party makeup.
-
-Treasure
---------
-Monsters will not carry items, but will cause the level to "drop" items
-pseudo-randomly from a pre-generated list.
-The primary way players acquire new equipment is through treasure left behind by
-monsters after an encounter has resolved itself. "Treasure chests" have a
-chance of appearing when all monsters are defeated or have fled the battle. The
-chest may be trapped, and if the trap is not disarmed before the chest is opened
-it will almost certainly deploy.
-
-
-Traps
------
-The following traps (and effects) may be found on chests in the dungeon. Some
-traps are much more dangerous than others. "S/P" denotes if the effects are for
-a single target or the party.
-|------------|-----|---------------------------------------------------------|
-| Trap Name  | S/P | Effect(s)                                               |
-|------------|-----|---------------------------------------------------------|
-| Alarm      | P   | Immediate random encounter.                             |
-|            |     |                                                         |
-|------------|-----|---------------------------------------------------------|
-| Poison     | S   | Poison until cured. Damage varies by dungeon level.     |
-| Needle     |     |                                                         |
-|------------|-----|---------------------------------------------------------|
-| Crossbow   | S   | Does 50-100dmg (more at lower levels).                  |
-|------------|-----|---------------------------------------------------------|
-| Stunner    | S   | Paralysis until cured.                                  |
-|------------|-----|---------------------------------------------------------|
-| Exploding  | P   | Random damage to entire party. Characters with high     |
-| Box        |     | agility may avoid some or all damage.                   |
-|------------|-----|---------------------------------------------------------|
-| Gas Cloud  | P   | Chance to poison all characters in party. Mid- to Deep- |
-|            |     | level.                                                  |
-|------------|-----|---------------------------------------------------------|
-| Teleporter | P   | Teleports party to a random location on the current?    |
-|            |     | level of the dungeon. Will not teleport into stone.     |
-|------------|-----|---------------------------------------------------------|
-|
-
 Monsters
 --------
 
@@ -197,23 +149,37 @@ Monster Appearance
 ------------------
 
 How to handle monster locations? I need to determine:
-* What towers/dungeons monsters appear on
-* What levels of said towers/dungeons monsters appear on
 * What is the encounter rate at a given level
 * How is the encounter rate affected by movement
 * How often are monsters "unknown" (gray figure)
 * How easily are monsters identified (color figure) in battle (no spell/item)
 
+Monster Encounters, Monster catalogs:
+-------------------------------------
 Except for specially scripted event-driven encounters, all monster encounters
-are randomized. Each dungeon level will have a "dictionary" of monsters which
-can be encountered on that level, and the game will pull from this dictionary at
-the time of the encounter to build the monster group.
-Encounter rates are set by dungeon level, and are modified by the following 
-variables:
-* Steps walked
-* Turns/actions taken since last encounter
-* New area explored (filling out map)
+are randomized.
+
+Encounter rates are set and/or modified by the following variables:
+* Unique turns/actions taken since last encounter (spinning in a circle doesn't
+  count, but exploring new areas or re-treading visited areas does)
 * Spells/items which affect encounter rates
+
+Each dungeon will pull from a "master list" of available monsters. Only monsters
+which exist in the dungeon-specific list will be encountered in that dungeon's
+levels. Each level will pull from this dungeon list based on the level-specific
+"monster party weight" value. For each level, all monsters in the dungeon-
+specific catalog with a "party weight" equal to or below the level's party/group
+weight limit value will be included in the level-specific catalog.
+
+When an "encounter" is triggered, the level first generates a monster group, and
+then determines if the group is "friendly" or not.
+
+Monster groups are assembled in the following way:
+1) "total party weight" is assigned as "maximum group weight" of the current
+level, minus 0.0-0.75x the "maximum group weight" value.
+2) A running sum of "party weight" is kept. As long as that value doesn't meet
+the "total party weight" in step 1, a new monster from the level-specific
+catalog will be chosen at random.
 
 Monster Spellcasters
 --------------------
@@ -269,3 +235,49 @@ Notes:
         * Summoned enemies
     * Encounter rates rise with steps forward (no turn-n-grind).
     * "Friendly" monster groups appear in the top/light levels of towers only.
+------------------
+
+Monsters will be randomly encountered - they do not "wander" the dungeon.
+General monster parties will be procedurally built from pre-existing lists.
+Dungeon level and average party member level will be considered in monster
+party makeup.
+
+Treasure
+--------
+Monsters will not carry items, but will cause the level to "drop" items
+pseudo-randomly from a pre-generated list.
+The primary way players acquire new equipment is through treasure left behind by
+monsters after an encounter has resolved itself. "Treasure chests" have a
+chance of appearing when all monsters are defeated or have fled the battle. The
+chest may be trapped, and if the trap is not disarmed before the chest is opened
+it will almost certainly deploy.
+
+Traps
+-----
+The following traps (and effects) may be found on chests in the dungeon. Some
+traps are much more dangerous than others. "S/P" denotes if the effects are for
+a single target or the party.
+|------------|-----|---------------------------------------------------------|
+| Trap Name  | S/P | Effect(s)                                               |
+|------------|-----|---------------------------------------------------------|
+| Alarm      | P   | Immediate random encounter.                             |
+|            |     |                                                         |
+|------------|-----|---------------------------------------------------------|
+| Poison     | S   | Poison until cured. Damage varies by dungeon level.     |
+| Needle     |     |                                                         |
+|------------|-----|---------------------------------------------------------|
+| Crossbow   | S   | Does 50-100dmg (more at lower levels).                  |
+|------------|-----|---------------------------------------------------------|
+| Stunner    | S   | Paralysis until cured.                                  |
+|------------|-----|---------------------------------------------------------|
+| Exploding  | P   | Random damage to entire party. Characters with high     |
+| Box        |     | agility may avoid some or all damage.                   |
+|------------|-----|---------------------------------------------------------|
+| Gas Cloud  | P   | Chance to poison all characters in party. Mid- to Deep- |
+|            |     | level.                                                  |
+|------------|-----|---------------------------------------------------------|
+| Teleporter | P   | Teleports party to a random location on the current?    |
+|            |     | level of the dungeon. Will not teleport into stone.     |
+|------------|-----|---------------------------------------------------------|
+|
+

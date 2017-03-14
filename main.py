@@ -7,7 +7,6 @@ import readline
 import math
 import numpy as np
 import uuid
-import mobs
 
 # World/Dungeon/Level configuration
 worldCharacters = []
@@ -36,8 +35,6 @@ char_level_xp_req = {
     14:211693
 }
 
-#Generates a series of 28 multipliers to be used when calculating xp gained.
-xp_multipliers = np.linspace(1.0,0.5,num=28)
 
 char_race_traits = {
     "human":{"min_str":9,
@@ -203,7 +200,6 @@ class Character(object):
         self.direction = "north"
         worldCharacters.append(self)
         self.equipment = []
-        self.rate = 1 #Note that this MUST change when XP rate is fixed.
         self.set_AP()
 
     def set_class_AC(self):
@@ -371,7 +367,7 @@ class Character(object):
         #sums all "min_stat"-type key values
         #for key, value in char_class_traits[newclass].items():
         #    if key.startswith('min_'):
-        #        
+        #
         #        points_required += value
         #        print(str(points_required))
         if points_required > self.bonusPoints:
@@ -466,8 +462,11 @@ class Character(object):
     def set_xp_rate(self):
         """Sets the experience multiplier for a given race/class combination.
         """
+        print("Setting xp rate multiplier.")
         print("self.char_class = " + self.char_class)
         print("self.race = " + self.race)
+        print("My 'rate' is: " + str(
+                            char_race_xp_rate[self.race][self.char_class]))
         if self.race in char_race_xp_rate:
             if self.char_class in char_race_xp_rate[self.race]:
                 self.rate = char_race_xp_rate[self.race][self.char_class]
@@ -543,7 +542,7 @@ class Character(object):
                 print("In the room, you see a " + thing.name + ".")
         for room_character in rooms[self.currentRoom]["characters"]:
             current_room_character_list.append(room_character)
-        print("Nearby, you see " + 
+        print("Nearby, you see " +
               str(len(current_room_character_list)) + " characters:")
         for character in current_room_character_list:
             print(character.name)
@@ -603,10 +602,13 @@ class Character(object):
                     print(item.name + " equipped.")
 
     def add_xp(self, xp):
+        #Generates a series of 28 multipliers to be used when calculating xp
+        #gained.
+        xp_multipliers = np.linspace(1.0,0.5,num=28)
         print(self.name + " had " + str(self.currentXP) + "xp.")
         x = char_race_xp_rate[self.race][self.char_class]
-        print("Your xp multiplier is: " + str(xp_multipliers[x]))
-        self.currentXP += int((xp * xp_multipliers[x]))
+        print("Your xp multiplier is: " + str(xp_multipliers[x - 1]))
+        self.currentXP += int((xp * xp_multipliers[x - 1]))
         print(self.name + " now has " + str(self.currentXP) + " xp.")
 
     def level_up(self):
@@ -668,8 +670,6 @@ monster_catalog = {
               "party_weight":1
              }
 }
-
-
 
 class Monster(object):
     def __init__(self, config, type_name, level):
@@ -800,7 +800,7 @@ weapons = {
 }
 
 # initialize mob party
-mob_party = MonsterParty(1)
+mob_party = MonsterParty(10)
 
 # create characters, list of characters
 player = Character()
