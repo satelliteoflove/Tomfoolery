@@ -176,6 +176,44 @@ class Tile(object):
         self.characters = []
         self.items = []
 
+class Item(object):
+    def __init__(self):
+        self.weight = 1
+        self.description = ""
+        self.general_name = ""
+        self.description = "It's an item"
+        self.name = "item"
+        self.is_equipped = False
+        self.can_be_equipped = False
+
+    def effect(self,target,damage,status):
+        target = worldCharacters[target]
+        damage = damage
+        status_effect = status
+        target.HP += damage
+        target.status_effect += status
+
+class Weapon(Item):
+    """All weapons can be described with this class."""
+
+    def __init__(self, list_of_weapons, weapon_index):
+        self.isweapon = True
+        self.name = list_of_weapons[weapon_index]["name"]
+        self.min_dmg = list_of_weapons[weapon_index]["min_dmg"]
+        self.max_dmg = list_of_weapons[weapon_index]["max_dmg"]
+        self.can_be_equipped = True
+        self.is_equipped = False
+        self.description = list_of_weapons[weapon_index]["description"]
+
+WEAPON_BASE_TYPES = {
+    1:{
+        "name":"claw",
+        "min_dmg":1,
+        "max_dmg":5,
+        "description":"Natural claws."
+    }
+}
+
 class Character(object):
     """Common base class for all PCs and NPCs."""
 
@@ -633,7 +671,6 @@ class Character(object):
         target.take_dmg(dmg)
         print("I am attacking " + target.name + " for " + str(dmg) +
               " points of damage.")
-        break
 
 class Party(object):
     """Class for storing characters in a group.
@@ -671,7 +708,7 @@ monster_catalog = {
               "base_hp":5,
               "THAC0":1,
               "base_ap":1,
-              "weapon":"claw",
+              "weapon":Weapon(WEAPON_BASE_TYPES,1),
               "party_weight":1
              }
 }
@@ -728,36 +765,9 @@ class ItemMaker(object):
         self.is_equipped = False
         self.can_be_equipped = False
 
-class Item(object):
-    def __init__(self):
-        self.weight = 1
-        self.description = ""
-        self.general_name = ""
-        self.description = "It's an item"
-        self.name = "item"
-        self.is_equipped = False
-        self.can_be_equipped = False
 
-    def effect(self,target,damage,status):
-        target = worldCharacters[target]
-        damage = damage
-        status_effect = status
-        target.HP += damage
-        target.status_effect += status
 
-class Weapon(Item):
-    """All weapons can be described with this class."""
-
-    def __init__(self, name, min_dmg, max_dmg, description):
-        self.isweapon = True
-        self.name = name
-        self.min_dmg = min_dmg
-        self.max_dmg = max_dmg
-        self.can_be_equipped = True
-        self.is_equipped = True
-        self.description = description
-
-# Procedural Methods
+# Begin initialization and presentation.
 
 def showInstructions():
     """print a (temporary) "main menu", and the available commands"""
@@ -778,7 +788,7 @@ def showInstructions():
 # world = World() # - broken for now (until variable/parameter work is finished)
 
 # Item initialization - item names are case sensitive for now
-sword1 = Weapon("sword", 1, 5, "This is a simple short sword of steel.")
+claws2 = Weapon(WEAPON_BASE_TYPES,1)
 item1 = Item()
 
 # Four rooms for testing other functions.
@@ -793,7 +803,7 @@ rooms = {
              "description": "0,1",
              "south": (0, 0),
              "east": (1, 1),
-             "items": [sword1, item1],
+             "items": [claws2, item1],
              "characters": []},
     (1, 0): {"name": "1,0",
              "description": "1,0",
@@ -809,20 +819,11 @@ rooms = {
              "characters": []}
 }
 
-# A list of weapons
-weapons = {
-    "sword01": {"name": "Short Sword"}
-}
-
-# initialize mob party
-#mob_party = MonsterParty(1)
-
 # create characters, list of characters
 player = Character()
 #player2 = Character()
 party1 = Party()
 party1.add_char(player)
-
 
 print("The following characters are in the world list:")
 for character in worldCharacters:
