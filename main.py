@@ -7,6 +7,7 @@ import readline
 import math
 import numpy as np
 import uuid
+import collections
 
 # World/Dungeon/Level configuration
 worldCharacters = []
@@ -540,7 +541,7 @@ class Character(object):
                 rooms[self.currentRoom]["characters"].append(self)
 
     def show_stats(self):
-        print(vars(self))
+        print(collections.OrderedDict(vars(self)))
 
     def show_inventory(self):
         if len(self.inventory) > 0:
