@@ -166,7 +166,7 @@ class Level(object):
             row = [Tile()
                    for y in range(config["level_height"])]
             self.tiles.append(row)
-        mob_party = MonsterParty(1)
+        self.mob_party = []
         print("Finished level generation.")
 
 class Tile(object):
@@ -754,6 +754,10 @@ class MonsterParty(Party):
                 self.remaining_weight -= monster.weight
                 self.members.append(monster)
 
+    def add_to_level(self, level):
+        for member in self.members:
+            level.mob_party.append(self)
+
 #Items
 class ItemMaker(object):
     def __init__(self):
@@ -785,7 +789,7 @@ def showInstructions():
 #In-town functions
 
 # World initialization
-# world = World() # - broken for now (until variable/parameter work is finished)
+world = World(WORLD_CONFIG) # - broken for now (until variable/parameter work is finished)
 
 # Item initialization - item names are case sensitive for now
 claws2 = Weapon(WEAPON_BASE_TYPES,1)
@@ -824,6 +828,8 @@ player = Character()
 #player2 = Character()
 party1 = Party()
 party1.add_char(player)
+
+mobparty = MonsterParty(1)
 
 print("The following characters are in the world list:")
 for character in worldCharacters:
