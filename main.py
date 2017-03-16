@@ -702,6 +702,12 @@ class Party(object):
         self.members[character.uuid].remove()
         list(self.members)
 
+    def monster_encounter(self, party_weight, level):
+        print("Encounter!")
+        monster_party = MonsterParty(party_weight)
+        print("You have encountered: ")
+        for monster in monster_party.members:
+            print(monster.name)
 
 #Monsters
 monster_catalog = {
@@ -846,6 +852,8 @@ while True:
 
     if move[0] == "go":
         party1.move(move[1])
+    elif move[0] == "encounter":
+        party1.monster_encounter(1,0)
     elif move[0] == "get" or move[0] == "take":
         player.get(move[1])
     elif move[0] == "inventory":
