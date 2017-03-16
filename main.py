@@ -167,7 +167,6 @@ class Level(object):
             row = [Tile()
                    for y in range(config["level_height"])]
             self.tiles.append(row)
-        self.mob_party = []
         print("Finished level generation.")
 
 class Tile(object):
@@ -241,6 +240,7 @@ class Character(object):
         worldCharacters.append(self)
         self.equipment = []
         self.set_AP()
+
 
     def set_class_AC(self):
         """Set character's class-based AC "base"."""
