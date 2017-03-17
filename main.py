@@ -6,50 +6,10 @@ import readline
 from numpy import random
 import collections
 from characters.pc import Character
-
-# World/Dungeon/Level configuration
-worldCharacters = []
-WORLD_CONFIG = {
-    "dungeon_count": 1,
-    "level_count":1,
-    "level_width":4,
-    "level_height":4
-}
-
-class World(object):
-    dungeons = []
-    def __init__(self, config):
-        print("Generating the world...")
-        self.dungeons = [
-            Dungeon(config)
-            for x in range(config["dungeon_count"])]
-        print("Finished world generation.")
-
-class Dungeon(object):
-    levels = []
-    def __init__(self, config):
-        print("Beginning dungeon generation...")
-        self.levels = [
-            Level(config)
-            for x in range(config["level_count"])]
-        print("Finished dungeon generation.")
-
-class Level(object):
-    tiles = []
-    def __init__(self, config):
-        print("Beginning level generation...")
-        for x in range(config["level_width"]):
-            row = [Tile()
-                   for y in range(config["level_height"])]
-            self.tiles.append(row)
-        print("Finished level generation.")
-
-class Tile(object):
-    def __init__(self):
-        self.isExplored = False
-        self.isPassable = True
-        self.characters = []
-        self.items = []
+from world.world import World
+from world.dungeon import Dungeon
+from world.level import Level
+from world.tile import Tile
 
 class Item(object):
     def __init__(self):
