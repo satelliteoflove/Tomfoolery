@@ -59,11 +59,11 @@ Plugin 'gmarik/Vundle.vim'
 
 " Add other plugins here
 
+Plugin 'vim-scripts/taglist.vim'
+
 Plugin 'davidhalter/jedi-vim'
 
 Plugin 'ervandew/supertab'
-
-Plugin 'Konfekt/FastFold'
 
 Plugin 'tmhedberg/SimpylFold'
 let g:SimpylFold_docstring_preview=1 " see docstrings for folded code
@@ -71,6 +71,14 @@ let g:SimpylFold_docstring_preview=1 " see docstrings for folded code
 nnoremap <space> za
 set foldmethod=indent
 set foldlevel=99
+
+" Faster folding than stock vim
+Plugin 'Konfekt/FastFold'
+
+" Save/load view (including last position and folds) automatically
+Plugin 'vim-scripts/restore_view.vim'
+set viewoptions=cursor,folds,slash,unix
+let g:skipview_files = ['*\.vim']
 
 " Better conform to PEP8 standard indentation
 Plugin 'vim-scripts/indentpython.vim'
@@ -100,18 +108,6 @@ Plugin 'tpope/vim-fugitive'
 
 " Status bar
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-
-" Requirements:
-" Python (obviously)
-" C compiler
-" socat
-" psutil
-" hglib
-" pygit2 or git
-" bzr (if bazaar repos are used)
-" pyuv (for filesystem watcher based on libuv)
-" i3-ipc
-" xrandr
 
 Plugin 'dhruvasagar/vim-table-mode'
 
@@ -158,7 +154,7 @@ if has('gui_running')
     set guifont=Monospace\ 14
 "    set guioptions-=T "remove toolbar
 else
-    colorscheme Zenburn
+    colorscheme zenburn
 endif
 
 call togglebg#map("<F5>")

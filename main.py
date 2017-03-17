@@ -544,6 +544,7 @@ class Character(object):
         print(collections.OrderedDict(vars(self)))
 
     def show_inventory(self):
+        # list items, none if empty
         if len(self.inventory) > 0:
             for item in self.inventory:
                 if item.is_equipped == True:
@@ -552,7 +553,6 @@ class Character(object):
                     print(item.name)
         else:
             print("You aren't carrying anything.")
-            # list items, none if empty
 
 
     def place_random(self):
@@ -796,7 +796,7 @@ def showInstructions():
 #In-town functions
 
 # World initialization
-world = World(WORLD_CONFIG) # - broken for now (until variable/parameter work is finished)
+world = World(WORLD_CONFIG)
 
 # Item initialization - item names are case sensitive for now
 claws2 = Weapon(WEAPON_BASE_TYPES,1)
