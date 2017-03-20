@@ -6,10 +6,10 @@ import readline
 from numpy import random
 import collections
 from characters.pc import Character
-from world import World
-from world import Dungeon
-from world import Level
-from world import Tile
+from world.world import World
+from world.dungeon import Dungeon
+from world.level import Level
+from world.tile import Tile
 
 # World/Dungeon/Level configuration
 worldCharacters = []
