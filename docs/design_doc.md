@@ -28,9 +28,19 @@ Map generation:
     Each level will be a 30x30 grid of "tiles".
     Each tile has four faces (N,S,E,W) and each one of these faces can be a
     wall, a door, or open.
-    The levels will be connected by stairs (one level) and elevators
-    (multi-level).
-    Walls have no "thickness" but are simply barriers to passage.
+    The levels will be connected by stairs (travel one level) and elevators
+    (travel multiple levels).
+    Walls have no "thickness" but are simply barriers to passage. Like this:
+    ._______. 
+    | |   | |
+    | | | | |
+    |___|___|
+
+Use of Color
+------------
+* To denote "visibility" of a hidden object, such as a when a hidden door or 
+trap has been revealed.
+* Indicate quality of identified items/equipment.
 
 Dealing Damage
 --------------
