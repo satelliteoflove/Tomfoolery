@@ -12,11 +12,18 @@ Bank
     Slots can be purchased in batches of 5 for 5k gold and hold 5k gold/slot.
     Each item will take one slot.
 
-Tavern
+Tavern/Pub
+----------
+* Add/remove character from active party
+* Divvy total party gold among party members
+* Accept new quests
+
+Quests
 ------
-Where the party is managed.
-    Add/remove character from active party
-    Divvy total party gold among party members
+Quests are occasionally picked up in the dungeon (maybe).  However, the primary
+method for acquiring quests is by accepting the ones listed on the quest/bounty
+board at the pub in town.  Quests are an optional way to earn more experience
+and greater rewards than "grinding" alone.
 
 Inn
 ---

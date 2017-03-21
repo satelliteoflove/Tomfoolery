@@ -11,15 +11,7 @@ from world import Dungeon
 from world import Level
 from world import Tile
 
-# World/Dungeon/Level configuration
 worldCharacters = []
-
-WORLD_CONFIG = {
-    "dungeon_count": 1,
-    "level_count":1,
-    "level_width":4,
-    "level_height":4
-}
 
 class Item(object):
     def __init__(self):
@@ -180,9 +172,6 @@ def showInstructions():
     print("'attack'")
 
 #In-town functions
-
-# World initialization
-world = World(WORLD_CONFIG)
 
 # Item initialization - item names are case sensitive for now
 claws2 = Weapon(WEAPON_BASE_TYPES,1)
