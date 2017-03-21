@@ -1,12 +1,5 @@
+
 class Dm(object):
-
-WORLD_CONFIG = {
-    "dungeon_count": 1,
-    "level_count":1,
-    "level_width":4,
-    "level_height":4
-}
-
 
     def __init__(self):
         self.create_world(WORLD_CONFIG)

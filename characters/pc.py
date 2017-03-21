@@ -22,10 +22,11 @@ class Character(object):
         self.set_class_AC() #As in characters.md - AD&D rules for AC/THAC0.
         self.set_THAC0()
         self.inventory = []
-        self.currentRoom = (0, 0)
-        self.add_to_room()
-        self.direction = "north"
-        worldCharacters.append(self)
+        #The below values are meaningless until movement has been revised.
+        #self.currentRoom = (0, 0)
+        #self.add_to_room()
+        #self.direction = "north"
+        #worldCharacters.append(self)
         self.equipment = []
         self.set_AP()
 

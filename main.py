@@ -10,6 +10,7 @@ from world.world import World
 from world.dungeon import Dungeon
 from world.level import Level
 from world.tile import Tile
+from world import config
 
 worldCharacters = []
 
@@ -170,6 +171,9 @@ def showInstructions():
     print("'status'")
     print("'look'")
     print("'attack'")
+
+world = World(config.WORLD_CONFIG)
+worldCharacters = config.worldCharacters
 
 #In-town functions
 
