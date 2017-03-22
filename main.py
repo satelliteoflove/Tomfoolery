@@ -1,56 +1,19 @@
-__author__ = 'Chris'
-
-
 import struct
 import readline
 from numpy import random
 import collections
-from characters.pc import Character
-from world.world import World
-from world.dungeon import Dungeon
-from world.level import Level
-from world.tile import Tile
-from world import config
+import world.world
+import world.config
+import items.weapon
+import items.config
+import characters.pc
+import characters.config
+import mobs.mobs
+import mobs.mobgroup
+import mobs.config
 
 worldCharacters = []
 
-class Item(object):
-    def __init__(self):
-        self.weight = 1
-        self.description = ""
-        self.general_name = ""
-        self.description = "It's an item"
-        self.name = "item"
-        self.is_equipped = False
-        self.can_be_equipped = False
-
-    def effect(self,target,damage,status):
-        target = worldCharacters[target]
-        damage = damage
-        status_effect = status
-        target.HP += damage
-        target.status_effect += status
-
-class Weapon(Item):
-    """All weapons can be described with this class."""
-
-    def __init__(self, list_of_weapons, weapon_index):
-        self.isweapon = True
-        self.name = list_of_weapons[weapon_index]["name"]
-        self.min_dmg = list_of_weapons[weapon_index]["min_dmg"]
-        self.max_dmg = list_of_weapons[weapon_index]["max_dmg"]
-        self.can_be_equipped = True
-        self.is_equipped = False
-        self.description = list_of_weapons[weapon_index]["description"]
-
-WEAPON_BASE_TYPES = {
-    1:{
-        "name":"claw",
-        "min_dmg":1,
-        "max_dmg":5,
-        "description":"Natural claws."
-    }
-}
 
 class Party(object):
     """Class for storing characters in a group.
@@ -88,75 +51,6 @@ class Party(object):
         for monster in monster_party.members:
             print(monster.name)
 
-#Monsters
-monster_catalog = {
-    "goblin":{"typename":"goblin",
-              "base_hp":5,
-              "THAC0":1,
-              "base_ap":1,
-              "weapon":Weapon(WEAPON_BASE_TYPES,1),
-              "party_weight":1
-             }
-}
-
-class Monster(object):
-    def __init__(self, config, type_name, level):
-        self.type_name = config[type_name]["typename"]
-        self.name = self.type_name
-        self.HP = config[type_name]["base_hp"] * level
-        self.THAC0 = monster_catalog[type_name]["THAC0"]
-        self.AP = monster_catalog[type_name]["base_ap"] * level // 2
-        self.weapon = config[type_name]["weapon"]
-        self.weight = config[type_name]["party_weight"]
-        worldCharacters.append(self)
-        if self.AP < 1:
-            self.AP = 1
-
-    def attack(self, target):
-        dmg = self.AP + 1
-        target.take_dmg(dmg)
-        print("I am attacking " + target.name + " for " + str(dmg) +
-              " points of damage.")
-
-    def take_dmg(self, dmg):
-        self.hitPoints -= dmg
-        if self.hitPoints <= 0:
-            print(self.name + "is dead.")
-
-    def show_stats(self):
-        print("Stats of monster '%s':" %self.name)
-        print(vars(self))
-
-class MonsterParty(Party):
-    """Class for storing monsters. For use during combat."""
-    def __init__(self, party_weight):
-        self.members = []
-        self.remaining_weight = party_weight
-        while self.remaining_weight > 0:
-            monster = Monster(
-                monster_catalog,"goblin",random.randint(1,3)
-            )
-            if monster.weight <= self.remaining_weight:
-                self.remaining_weight -= monster.weight
-                self.members.append(monster)
-
-    def add_to_level(self, level):
-        for member in self.members:
-            level.mob_party.append(self)
-
-#Items
-class ItemMaker(object):
-    def __init__(self):
-        self.weight = 1
-        self.description = ""
-        self.general_name = ""
-        self.description = "It's an item"
-        self.name = "item"
-        self.is_equipped = False
-        self.can_be_equipped = False
-
-
-
 # Begin initialization and presentation.
 
 def showInstructions():
@@ -172,14 +66,13 @@ def showInstructions():
     print("'look'")
     print("'attack'")
 
-world = World(config.WORLD_CONFIG)
-worldCharacters = config.worldCharacters
+world1 = world.world.World(world.config.WORLD_CONFIG)
+worldCharacters = world.config.worldCharacters
 
 #In-town functions
 
 # Item initialization - item names are case sensitive for now
-claws2 = Weapon(WEAPON_BASE_TYPES,1)
-item1 = Item()
+claws2 = items.weapon.Weapon(items.config.WEAPON_BASE_TYPES,1)
 
 # Four rooms for testing other functions.
 rooms = {
@@ -193,7 +86,7 @@ rooms = {
              "description": "0,1",
              "south": (0, 0),
              "east": (1, 1),
-             "items": [claws2, item1],
+             "items": [claws2],
              "characters": []},
     (1, 0): {"name": "1,0",
              "description": "1,0",
@@ -210,12 +103,12 @@ rooms = {
 }
 
 # create characters, list of characters
-player = Character()
+player = characters.pc.Character()
 #player2 = Character()
 party1 = Party()
 party1.add_char(player)
 
-mobparty = MonsterParty(1)
+mobparty1 = mobs.mobgroup.MobGroup(1,mobs.config.MONSTER_CATALOG)
 
 print("The following characters are in the world list:")
 for character in worldCharacters:
