@@ -1,8 +1,14 @@
 worldCharacters = []
 
 WORLD_CONFIG = {
-    "dungeon_count": 1,
-    "level_count":1,
+    "dungeon_count":1
+}
+
+DUNGEON_CONFIG = {
+    "level_count":1
+}
+
+LEVEL_CONFIG = {
     "level_width":4,
     "level_height":4
 }

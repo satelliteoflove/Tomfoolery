@@ -1,4 +1,4 @@
-from config import WALL_TYPES
+from . import config
 
 class Wall(object):
     """Mutable borders for Tiles.
@@ -6,10 +6,10 @@ class Wall(object):
     Keyword arguments:
     walltype -- The type name for the wall (str)."""
     def __init__(self, walltype):
-        self.name = WALL_TYPES[WALL_TYPES[walltype]]["name"]
-        self.visible = WALL_TYPES[walltype]["visible"]
-        self.passable = WALL_TYPES[walltype]["passable"]
-        self.opaque = WALL_TYPES[walltype]["opaque"]
-        self.closed = WALL_TYPES[walltype]["closed"]
-        self.description = WALL_TYPES[walltype]["description"]
-        self.coloring = WALL_TYPES[walltype]["coloring"]
+        self.name = config.WALL_TYPES[walltype]["name"]
+        self.visible = config.WALL_TYPES[walltype]["visible"]
+        self.passable = config.WALL_TYPES[walltype]["passable"]
+        self.opaque = config.WALL_TYPES[walltype]["opaque"]
+        self.closed = config.WALL_TYPES[walltype]["closed"]
+        self.description = config.WALL_TYPES[walltype]["description"]
+        self.coloring = config.WALL_TYPES[walltype]["coloring"]
