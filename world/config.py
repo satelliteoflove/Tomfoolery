@@ -1,4 +1,3 @@
-# World/Dungeon/Level configuration
 worldCharacters = []
 
 WORLD_CONFIG = {
@@ -8,3 +7,21 @@ WORLD_CONFIG = {
     "level_height":4
 }
 
+WALL_TYPES = {
+    "clear":{"name":"clear",
+             "visible":False,
+             "passable":True,
+             "opaque":False,
+             "closed":False,
+             "description":"",
+             "coloring":"black"
+    },
+    "solid":{"name":"solid wall",
+             "visible":True,
+             "passable":False,
+             "opaque":True,
+             "closed":False,
+             "description":"",
+             "coloring":"white"
+    }
+}
