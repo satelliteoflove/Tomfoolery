@@ -1,6 +1,7 @@
 Design and Function
 
-Map generation:
+Map generation
+--------------
     Maps for each dungeon are procedurally generated at the start of a new game.
     This is not frequent, as the same save game is used regardless of the party
     members chosen.  Even if all characters in play are "gone" (dead, then ash,
@@ -74,7 +75,6 @@ This save behavior is different in "hardcore" mode. See "hardcore mode" section.
 
 Hardcore Mode
 -------------
-
 In hardcore mode, a number of changes make the game more challenging.
 
 Saving:
