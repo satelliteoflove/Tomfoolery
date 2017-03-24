@@ -31,7 +31,9 @@ def showInstructions():
     print("'look'")
     print("'attack'")
 
-world1 = world.world.World(world.config.WORLD_CONFIG)
+world1 = world.world.World(world.config.WORLD_CONFIG,
+                           world.config.DUNGEON_CONFIG,
+                           world.config.LEVEL_CONFIG)
 worldCharacters = world.config.worldCharacters
 
 #In-town functions
