@@ -20,7 +20,8 @@ WALL_TYPES = {
              "opaque":False,
              "closed":False,
              "description":"",
-             "coloring":"black"
+             "coloring":"black",
+             "tile_char":'.'
     },
     "solid":{"name":"solid wall",
              "visible":True,
@@ -28,6 +29,7 @@ WALL_TYPES = {
              "opaque":True,
              "closed":False,
              "description":"",
-             "coloring":"white"
+             "coloring":"white",
+             "tile_char":'O'
     }
 }

@@ -1,5 +1,6 @@
 from . import tile
 from . import config
+import pprint
 
 class Level(object):
     tiles = []
@@ -10,3 +11,6 @@ class Level(object):
                    for y in range(level_config["level_height"])]
             self.tiles.append(row)
         print("Finished level generation.")
+        pprinter = pprint.PrettyPrinter(indent=4)
+
+        pprinter.pprint(self.tiles)
