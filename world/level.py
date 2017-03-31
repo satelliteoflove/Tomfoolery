@@ -13,3 +13,6 @@ class Level(object):
         print("Finished level generation.")
         #pprinter = pprint.PrettyPrinter(indent=4)
         #pprinter.pprint(self.tiles)
+
+    def set_max_mobgroup_weight(self):
+        self.max_mobgroup_weight = 10

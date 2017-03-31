@@ -1,3 +1,4 @@
+from mobs import mobs
 import mobs.mobgroup
 import yaml
 
@@ -28,7 +29,13 @@ class Dm(object):
     def create_world(config):
         world = World(config)
 
+#    def get_mob_list(self, current_level):
+
+
+#    def get_candidate_mob(self):
+#        mobs.Mob(
+
     def make_mobgroup(self):
-        count = len(self.mob_group_list)
-        mobparty = mobs.mobgroup.MobGroup(1, self.mob_list, count)
+#        count = len(self.mob_group_list)
+        mobparty = mobs.mobgroup.MobGroup(1)
         self.mob_group_list.append(mobparty)

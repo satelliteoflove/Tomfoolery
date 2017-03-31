@@ -3,10 +3,6 @@ What is the DM?
 The "Dungeon Master" is a storyteller and referee.  Triggered events, encounters
 and combat are all handled by the DM.
 
-Example interactions
---------------------
-
-
 Triggers/Events
 ---------------
 Event trigger statuses are requested by the DM. State is returned to DM as an
@@ -42,7 +38,7 @@ unique player group moves and decremented or cleared by level transition, spell,
 or random monster encounter.
 
 Creation steps:
-* dm creates mob group
+* dm creates empty mob group
 * dm queries current level for maximum possible mob group weight
 * dm sets mob group's max weight to 1.0-0.25 x current level's max group weight
 * dm queries current level for a mob type from the level's list
@@ -57,3 +53,8 @@ Creation steps:
 * if yes, dm queries player for choice (attack/wait/flee)
 * if no, or if player attacks, dm queries player and mob groups for initiative
   and combat begins
+
+Game State
+----------
+The dm is responsible for setting up, maintaining and saving/loading the game
+state.  All game assets and interactions flow through the dm.

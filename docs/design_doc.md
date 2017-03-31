@@ -21,14 +21,9 @@ Map generation
     3) The player chooses to "add dungeon". This generates a brand new
     multi-level dungeon and adds it as an explorable option in the town menu.
 
-    Generated maps are not completely random, but are generated procedurally.
-    This provides the players with predictable, interesting maps and limitless
-    replayability.
+    Maps are are generated procedurally. This provides the players 
+    with predictable, interesting maps and limitless replayability.
 
-    Each dungeon will be a self-contained entity with 9 levels.
-    Each level will be a 30x30 grid of "tiles".
-    Each tile has four faces (N,S,E,W) and each one of these faces can be a
-    wall, a door, or open.
     The levels will be connected by stairs (travel one level) and elevators
     (travel multiple levels).
     Walls have no "thickness" but are simply barriers to passage. Like this:
