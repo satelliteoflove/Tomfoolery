@@ -1,4 +1,4 @@
-import mobs.mobs
+from . import mobs
 from numpy import random
 
 class MobGroup(object):
@@ -17,6 +17,13 @@ class MobGroup(object):
         self.remaining_weight = weight
 
     def add_mob(self, mob):
+        """Adds given mob to group.
+
+        Parameters
+        ----------
+        mob : object
+           Approved mob being passed to the group.
+        """
         self.members.append(mob)
 
     def add_to_level(self, level):
