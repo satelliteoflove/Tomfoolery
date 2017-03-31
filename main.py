@@ -9,9 +9,8 @@ import items.weapon
 import items.config
 import characters.pc
 import characters.config
-import mobs.mobs
-import mobs.mobgroup
 import party.party
+from dm import dm
 
 worldCharacters = []
 
@@ -30,6 +29,8 @@ def showInstructions():
     print("'status'")
     print("'look'")
     print("'attack'")
+
+the_dm = dm.Dm()
 
 world1 = world.world.World(world.config.WORLD_CONFIG,
                            world.config.DUNGEON_CONFIG,
@@ -68,14 +69,6 @@ rooms = {
              "items": [],
              "characters": []}
 }
-
-
-mob_list_file = open("mobs/moblist.yaml","r")
-mob_list = yaml.load(mob_list_file)
-
-print(mob_list)
-
-mobparty1 = mobs.mobgroup.MobGroup(1, mob_list)
 
 # create characters, list of characters
 player = characters.pc.Character()

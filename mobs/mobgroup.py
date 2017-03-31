@@ -3,9 +3,10 @@ from numpy import random
 
 class MobGroup(object):
     """Class for storing monsters. For use during combat."""
-    def __init__(self, party_weight, mob_list):
+    def __init__(self, max_party_weight, mob_list, count):
         self.members = []
-        self.remaining_weight = party_weight
+        self.count = count
+        self.remaining_weight = max_party_weight
         while self.remaining_weight > 0:
             #TODO: pull mob from level-specific list 
             newmob = mobs.mobs.Mob(

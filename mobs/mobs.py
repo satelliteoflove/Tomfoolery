@@ -2,9 +2,10 @@ import characters
 from numpy import random
 import collections
 import items
+import yaml
 
 class Mob(object):
-    def __init__(self, config, type_name, level):
+    def __init__(self, mob_list, type_name, level):
         self.type_name = config[type_name]["typename"]
         self.name = self.type_name
         self.HP = config[type_name]["base_hp"] * level

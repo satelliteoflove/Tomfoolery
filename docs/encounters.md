@@ -171,15 +171,9 @@ levels. Each level will pull from this dungeon list based on the level-specific
 specific catalog with a "party weight" equal to or below the level's party/group
 weight limit value will be included in the level-specific catalog.
 
-When an "encounter" is triggered, the level first generates a monster group, and
-then determines if the group is "friendly" or not.
+When an "encounter" is triggered, the dm generates one or more monster groups,
+populates them with mobs, and determines if the group is "friendly" or not.
 
-Monster groups are assembled in the following way:
-1) "total party weight" is assigned as "maximum group weight" of the current
-level, minus 0.0-0.75x the "maximum group weight" value.
-2) A running sum of "party weight" is kept. As long as that value doesn't meet
-the "total party weight" in step 1, a new monster from the level-specific
-catalog will be chosen at random.
 
 Monster Spellcasters
 --------------------

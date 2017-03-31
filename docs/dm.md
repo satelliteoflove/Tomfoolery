@@ -5,14 +5,6 @@ and combat are all handled by the DM.
 
 Example interactions
 --------------------
-* New game is begun
-  1) DM sends welcome screen to screen processor
-  2) DM receives request from command processor for new world.
-  3) DM keeps a running list of all objects it creates an instance of:
-    a. world, dungeon, and level
-    b. town
-    c. player
-  4)  
 
 
 Triggers/Events
@@ -41,3 +33,27 @@ Events/values:
 * Party movement? (at least made aware by Party class)
 * Query/pass dungeon
 * Game State (Save/load/Modify/Delete)
+
+Monster Encounters
+------------------
+Probability:
+The DM keeps an encounter probability counter which is incremented based on
+unique player group moves and decremented or cleared by level transition, spell,
+or random monster encounter.
+
+Creation steps:
+* dm creates mob group
+* dm queries current level for maximum possible mob group weight
+* dm sets mob group's max weight to 1.0-0.25 x current level's max group weight
+* dm queries current level for a mob type from the level's list
+* dm creates 1-9 candidate mobs all of type x and level y in a single row
+* dm queries mob group for current group weight
+* if the group has room, dm adds the candidate row
+* if the candidate row's collective weight is too great, dm creates a new row of
+  candidates and tries again
+* once the group's max weight has been reached or the dm has tried x number of
+  unsuccessful candidate rows, the dm stops adding rows
+* dm queries mob group if it is friendly
+* if yes, dm queries player for choice (attack/wait/flee)
+* if no, or if player attacks, dm queries player and mob groups for initiative
+  and combat begins
