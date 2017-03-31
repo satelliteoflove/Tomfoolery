@@ -17,7 +17,7 @@ worldCharacters = []
 
 
 # Begin initialization and presentation.
-
+#TODO: What can be done to generate this list from available data?
 def showInstructions():
     """print a (temporary) "main menu", and the available commands"""
     print("WizardryClone")
@@ -77,10 +77,6 @@ party1.add_char(player)
 
 mobparty1 = mobs.mobgroup.MobGroup(1,mobs.config.MONSTER_CATALOG)
 
-print("The following characters are in the world list:")
-for character in worldCharacters:
-    print(character.name)
-
 # display "main menu"
 showInstructions()
 
@@ -89,6 +85,8 @@ while True:
 
     move = input(">").lower().split()
 
+# What can be done to make this input something structured and searchable, like
+# a dict?
     if move[0] == "go":
         party1.move(move[1])
     elif move[0] == "encounter":
