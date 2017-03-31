@@ -2,6 +2,7 @@ import struct
 import readline
 from numpy import random
 import collections
+import yaml
 import world.world
 import world.config
 import items.weapon
@@ -10,7 +11,6 @@ import characters.pc
 import characters.config
 import mobs.mobs
 import mobs.mobgroup
-import mobs.config
 import party.party
 
 worldCharacters = []
@@ -69,13 +69,20 @@ rooms = {
              "characters": []}
 }
 
+
+mob_list_file = open("mobs/moblist.yaml","r")
+mob_list = yaml.load(mob_list_file)
+
+print(mob_list)
+
+mobparty1 = mobs.mobgroup.MobGroup(1, mob_list)
+
 # create characters, list of characters
 player = characters.pc.Character()
 #player2 = Character()
 party1 = party.party.Party()
 party1.add_char(player)
 
-mobparty1 = mobs.mobgroup.MobGroup(1,mobs.config.MONSTER_CATALOG)
 
 # display "main menu"
 showInstructions()
