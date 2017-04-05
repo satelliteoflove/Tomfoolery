@@ -42,7 +42,7 @@ Creation steps:
 * dm queries current level for maximum possible mob group weight
 * dm sets mob group's max weight to 1.0-0.25 x current level's max group weight
 * dm queries current level for a mob type from the level's list
-* dm creates 1-9 candidate mobs all of type x and level y in a single row
+* dm instantiates 1-9 candidate mobs all of type x and level y for a single row
 * dm queries mob group for current group weight
 * if the group has room, dm adds the candidate row
 * if the candidate row's collective weight is too great, dm creates a new row of
