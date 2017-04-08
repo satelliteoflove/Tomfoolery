@@ -37,7 +37,6 @@ world1 = world.world.World(world.config.WORLD_CONFIG,
                            world.config.LEVEL_CONFIG)
 worldCharacters = world.config.worldCharacters
 
-#In-town functions
 
 # Item initialization - item names are case sensitive for now
 claws2 = items.weapon.Weapon(items.config.WEAPON_BASE_TYPES,1)
@@ -101,13 +100,6 @@ while True:
         player.drop(move[1])
     elif move[0] == "look":
         player.view_surroundings()
-    elif move[0] == "list":
-        for character in worldCharacters:
-            print(character.name)
-    elif move[0] == "placeme":
-        player.place_random()
-    #elif move[1] == "place" and move[1] in rooms:
-    #    player.place_room(move[1])
     elif move[0] == "attack" and move[1]:
         player.attack(move[1])
     elif move[0] == "look":
@@ -125,8 +117,6 @@ while True:
         player.bonusPoints = int(move[1])
     elif move[0] == "classchange":
         player.set_class()
-#    elif move[0] == "abp":
-#        player.assign_BonusPoints()
     elif move[0] == "q" or move[0] == "quit":
         break
     else:

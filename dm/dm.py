@@ -14,29 +14,26 @@ class Dm(object):
         self.make_mobgroup()
 
     def get_tile_status(tile):
-        #return getattr(tile, status)
+        return getattr(tile, status)
         pass
 
     def set_tile_status(tile):
-        #setattr(tile, status, value)
+        setattr(tile, status, value)
         pass
 
     def get_party_status(party):
-        #return getattr(party, status)
+        return getattr(party, status)
         pass
 
     def set_party_status(party):
-        #setattr(party, status, value)
+        setattr(party, status, value)
         pass
 
     def create_world(config):
         world = World(config)
 
-#    def get_mob_list(self, current_level):
-
-
-#    def get_candidate_mob(self):
-#        mobs.Mob(
+    def get_candidate_mob(self, mob_list):
+        mobs.Mob(mob_list)
 
     def make_mobgroup(self):
 #        count = len(self.mob_group_list)
