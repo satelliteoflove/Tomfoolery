@@ -1,6 +1,9 @@
-from mobs import mobs
+import mobs
 import mobs.mobgroup
 import yaml
+import pprint
+
+pp = pprint.PrettyPrinter()
 
 class Dm(object):
 
@@ -37,5 +40,9 @@ class Dm(object):
 
     def make_mobgroup(self):
 #        count = len(self.mob_group_list)
-        mobparty = mobs.mobgroup.MobGroup(1)
+        mobparty = mobs.mobgroup.MobGroup()
+        mobparty.remaining_weight = 2
+        mobparty.add_mob(mobs.mobs.Mob(
         self.mob_group_list.append(mobparty)
+        print("The following mobs exist:")
+        pp.pprint(mobparty.members)

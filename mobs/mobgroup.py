@@ -5,6 +5,7 @@ class MobGroup(object):
     """Class for storing monsters. For use during combat."""
     def __init__(self):
         self.members = []
+        self.remaining_weight = 0
         #while self.remaining_weight > 0:
         #    #TODO: pull mob from level-specific list 
         #    newmob = mobs.mobs.Mob(
@@ -13,8 +14,6 @@ class MobGroup(object):
         #    if newmob.weight <= self.remaining_weight:
         #        self.remaining_weight -= newmob.weight
         #        self.members.append(newmob)
-    def set_remaining_weight(self, weight):
-        self.remaining_weight = weight
 
     def add_mob(self, mob):
         """Adds given mob to group.
