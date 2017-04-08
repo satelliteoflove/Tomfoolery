@@ -39,7 +39,8 @@ or random monster encounter.
 
 Creation steps:
 * dm creates empty mob group
-* dm queries current level for maximum possible mob group weight
+* dm queries current Level of dungeon for maximum possible mob group weight
+    * Level sets max group weight by formula:
 * dm sets mob group's max weight to 1.0-0.25 x current level's max group weight
 * dm queries current level for a mob type from the level's list
 * dm instantiates 1-9 candidate mobs all of type x and level y for a single row

@@ -11,3 +11,9 @@ dungeon?
 * during creation dungeon will pass master list to new level as parameter.
 * dungeon will pass minimum and maximum mob weights to new level
 * level creates internal list of all mobs within min and max weights
+
+Total mob group weight formula:
+
+
+
+
