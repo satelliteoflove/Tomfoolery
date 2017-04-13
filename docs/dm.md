@@ -38,9 +38,12 @@ unique player group moves and decremented or cleared by level transition, spell,
 or random monster encounter.
 
 Creation steps:
-* dm creates empty mob group
-* dm queries current Level of dungeon for maximum possible mob group weight
+* dm "spawns" a group of enemies by feeding the MobGroup class a list of
+  possible mobs and a "max weight" which the group to be returned cannot go
+  over.
+* to get that number, dm queries current Level of dungeon
     * Level sets max group weight by formula:
+      (tbd)
 * dm sets mob group's max weight to 1.0-0.25 x current level's max group weight
 * dm queries current level for a mob type from the level's list
 * dm instantiates 1-9 candidate mobs all of type x and level y for a single row

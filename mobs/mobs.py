@@ -6,13 +6,13 @@ import yaml
 
 class Mob(object):
     def __init__(self, mob_list, type_name, level):
-        self.type_name = config[type_name]["typename"]
+        self.type_name = mob_list[type_name]["typename"]
         self.name = self.type_name
-        self.HP = config[type_name]["base_hp"] * level
-        self.THAC0 = config[type_name]["THAC0"]
-        self.AP = config[type_name]["base_ap"] * level // 2
-        #self.weapon = config[type_name]["weapon"]
-        self.weight = config[type_name]["party_weight"]
+        self.HP = mob_list[type_name]["base_hp"] * level
+        self.THAC0 = mob_list[type_name]["THAC0"]
+        self.AP = mob_list[type_name]["base_ap"] * level // 2
+        #self.weapon = mob_list[type_name]["weapon"]
+        self.weight = mob_list[type_name]["party_weight"]
         if self.AP < 1:
             self.AP = 1
 

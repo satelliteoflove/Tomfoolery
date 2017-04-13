@@ -32,9 +32,6 @@ def showInstructions():
 
 the_dm = dm.Dm()
 
-world1 = world.world.World(world.config.WORLD_CONFIG,
-                           world.config.DUNGEON_CONFIG,
-                           world.config.LEVEL_CONFIG)
 worldCharacters = world.config.worldCharacters
 
 
