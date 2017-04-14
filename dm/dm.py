@@ -17,7 +17,7 @@ class Dm(object):
         self.mob_group_list = []
         self.mob_list_raw = open(os.path.dirname(__file__) +
                              "/../mobs/moblist.yaml",'r')
-        self.mob_list = yaml.load(self.mob_list_raw)
+        self.mob_list = yaml.load(self.mob_list_raw.read())
         print(self.mob_list)
         self.make_mobgroup(self.mob_list, 3)
 
