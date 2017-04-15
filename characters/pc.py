@@ -1,6 +1,7 @@
 from numpy import random
 from uuid import uuid4
 from . import config
+import collections
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
@@ -22,11 +23,7 @@ class Character(object):
         self.set_class_AC() #As in characters.md - AD&D rules for AC/THAC0.
         self.set_THAC0()
         self.inventory = []
-        #The below values are meaningless until movement has been revised.
-        #self.currentRoom = (0, 0)
-        #self.add_to_room()
-        #self.direction = "north"
-        #worldCharacters.append(self)
+        self.position = (0, 0)
         self.equipment = []
         self.set_AP()
 

@@ -436,3 +436,18 @@ After consulting with Will, it seems that an alternate approach may be better
 could simply use the rate as an xp modifier.  Therefore, all users would gain
 levels at the same xp values for a given class, but each race would gain xp at
 different rates depending on what class they were.
+
+Dungeon Awareness
+-----------------
+Characters and must have certain basic "awareness" of the dungeon for certain 
+scenarios.  For instance, if a player party teleports into a solid rock wall, 
+all characters are marked as "dead" and will stay there until a new party comes
+to rescue them.  If a character willingly leaves the player party or is 
+dismissed while in a dungeon, that character will "wander" the dungeon and can 
+be found and re-acquired later by a player party.
+
+Each character will "know"
+* current dungeon
+* current level
+* current x,y location
+

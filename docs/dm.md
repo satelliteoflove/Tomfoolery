@@ -62,3 +62,18 @@ Game State
 ----------
 The dm is responsible for setting up, maintaining and saving/loading the game
 state.  All game assets and interactions flow through the dm.
+
+Environment Interaction
+-----------------------
+This includes but is not limited to pulling levers and looking at surroundings.
+
+Player "Looks":
+* the dm queries all environmental objects (levers, doors, walls, floors) in the 
+  tile matching the player party's current location for its associated "general 
+  description" value
+* after general description is passed to dm, dm stores the description in the
+  display buffer
+* dm triggers release/display of display buffer
+
+Player "interacts":
+* 

@@ -7,12 +7,6 @@ class Party(object):
         self.members = {}
         self.encounter_chance = 0.0
 
-    def add_char(self, character):
-        print("Current members:")
-        list(self.members)
-        self.members[character.uuid] = character
-        list(self.members)
-
     def move(self, direction):
         print("moving party..." + direction)
         for member in self.members.values():
@@ -21,11 +15,23 @@ class Party(object):
             member.go(direction)
         next(iter(self.members.values())).view_surroundings()
 
+    def add_char(self, character):
+        print("Current party members:")
+        for char in self.members:
+            print(char.name)
+        self.members[character.uuid] = character
+        print("Current party members:")
+        for char in self.members:
+            print(char.name)
+
     def rem_char(self, character):
-        print("Current members:")
-        list(self.members)
-        self.members[character.uuid].remove()
-        list(self.members)
+        print("Current party members:")
+        for char in self.members:
+            print(char.name)
+        self.members.remove(character)
+        print("Current party members:")
+        for char in self.members:
+            print(char.name)
 
     def monster_encounter(self, party_weight, level):
         print("Encounter!")

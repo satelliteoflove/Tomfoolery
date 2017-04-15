@@ -15,7 +15,7 @@ class Dm(object):
                           world.config.DUNGEON_CONFIG,
                           world.config.LEVEL_CONFIG)
         self.mob_group_list = []
-        with open(os.path.dirname(__file__) + 
+        with open(os.path.dirname(__file__) +
                   "/../mobs/moblist.yaml",'r') as self.mob_list_raw:
             self.mob_list = yaml.load(self.mob_list_raw.read())
         self.make_mobgroup(self.mob_list, 3)

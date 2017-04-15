@@ -3,6 +3,7 @@ import readline
 from numpy import random
 import collections
 import yaml
+import pprint
 import world.world
 import world.config
 import items.weapon
@@ -71,7 +72,7 @@ player = characters.pc.Character()
 #player2 = Character()
 party1 = party.party.Party()
 party1.add_char(player)
-
+party2.rem_char(player.uuid)
 
 # display "main menu"
 showInstructions()
