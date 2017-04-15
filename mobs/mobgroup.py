@@ -12,3 +12,7 @@ class MobGroup(object):
     def add_to_level(self, level):
         for member in self.members:
             level.mob_party.append(self)
+
+    def list_members(self):
+        for member in self.members:
+            print(member.name)

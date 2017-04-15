@@ -1,18 +1,20 @@
 class Item(object):
     """ Root item class.
-    Used as a parent to weapons, potions, helmets, rings, etc.
     """
     def __init__(self, config):
-        self.weight = 1
-        self.description = ""
-        self.general_name = ""
-        self.description = "It's an item"
-        self.name = "item"
-        self.is_equipped = False
-        self.can_be_equipped = False
-    def effect(self,target,damage,status):
-        target = worldCharacters[target]
-        damage = damage
-        status_effect = status
-        target.HP += damage
-        target.status_effect += status
+        self.description = config["description"]
+        self.name = config["name"]
+
+    def bind_type(self, itemtype):
+        self.generic_name = itemtype["generic_name"]
+        self.weight = itemtype["weight"]
+        self.equippable = itemtype["equippable"]
+        self.break_chance = itemtype["break_chance"]
+        #TODO: implement item repair system
+        #self.reparable = itemtype["reparable"]
+
+    def bind_affix(self, effect):
+        self.affix_effect = effect
+
+    def bind_suffix(self, effect):
+        self.suffix_effect = effect

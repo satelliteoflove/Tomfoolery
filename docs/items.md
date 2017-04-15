@@ -42,15 +42,23 @@ Random items:
     * What can be defined by an item type?
         * Can the item be equipped
         * How many of that type can be equipped at once
-        * What spell/effect(s) does it have (all derived from effect dict)
         * Weight
         * Break chance - items which have an effect when used do not have a set
           number of uses, but a chance of breaking (as a percentage) when used.
-          Thus, potions, keys and scrolls have a break chance of 100%, equipment
-          ranges from 0-100%, and items with no effects which can be triggered
-          have a break chance of 0%.
+          Thus, potions, keys and scrolls have a break chance of 80-100%, 
+          equipment ranges from 0-100%.  Items with no effects which can be 
+          triggered have a break chance of 0%.
+        * "Generic name" for unidentified items. (i.e. "blade" for long and
+          short swords, daggers, etc. or "bludgeon" for clubs, maces and
+          hammers.)
         * Does the item remove itself from inventory after breaking, or leave a
           "broken" item in its place
+    * What can be defined by an affix/suffix?
+        * One specific named effect (all derived from effect dict)
+        * Affixes are generally preceding adjectives such as "brilliant" or
+          "shuddering"
+        * Suffixes are generally nouns or trailing verbs such as 
+
 
 Equipment
 ---------
