@@ -58,6 +58,7 @@ Creation steps:
 * if no, or if player attacks, dm queries player and mob groups for initiative
   and combat begins
 
+
 Game State
 ----------
 The dm is responsible for setting up, maintaining and saving/loading the game
@@ -76,4 +77,5 @@ Player "Looks":
 * dm triggers release/display of display buffer
 
 Player "interacts":
-* 
+*
+

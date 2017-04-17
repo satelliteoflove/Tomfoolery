@@ -174,6 +174,17 @@ weight limit value will be included in the level-specific catalog.
 When an "encounter" is triggered, the dm generates one or more monster groups,
 populates them with mobs, and determines if the group is "friendly" or not.
 
+Combat Sequence
+---------------
+Once parties are formed and have not parted peacefully:
+
+* DM creates player action queue, which operates in FIFO format
+* DM queries player for actions for every member in the player party, which are 
+  added to queue
+* DM queries player to confirm queue
+* DM queries each player character and mob for "initiative" - see "initiative"
+  in encounters.md.
+
 
 Monster Spellcasters
 --------------------
