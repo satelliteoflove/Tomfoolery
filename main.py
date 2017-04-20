@@ -11,10 +11,10 @@ import items.config
 import characters.pc
 import characters.config
 import party.party
+from commpar import commpar
 from dm import dm
 
 worldCharacters = []
-
 
 # Begin initialization and presentation.
 #TODO: What can be done to generate this list from available data?
@@ -72,50 +72,19 @@ player = characters.pc.Character()
 #player2 = Character()
 party1 = party.party.Party()
 party1.add_char(player)
-party2.rem_char(player.uuid)
+party1.rem_char(player)
 
 # display "main menu"
 showInstructions()
+
+# initialize command parser
+commparser = commpar.Commpar()
 
 # loop
 while True:
 
     move = input(">").lower().split()
-
-# What can be done to make this input something structured and searchable, like
-# a dict?
-    if move[0] == "go":
-        party1.move(move[1])
-    elif move[0] == "encounter":
-        party1.monster_encounter(1,0)
-    elif move[0] == "get" or move[0] == "take":
-        player.get(move[1])
-    elif move[0] == "inventory":
-        player.show_inventory()
-    elif move[0] == "equip":
-        player.equip(move[1])
-    elif move[0] == "drop":
-        player.drop(move[1])
-    elif move[0] == "look":
-        player.view_surroundings()
-    elif move[0] == "attack" and move[1]:
-        player.attack(move[1])
-    elif move[0] == "look":
-        player.view_surroundings()
-    elif move[0] == "status":
-        player.show_stats()
-    elif move[0] == "addxp":
-        player.add_xp(int(move[1]))
-    elif move[0] == "levelup":
-        player.level_up()
-    elif move[0] == "help":
-        showInstructions()
-        dir(player)
-    elif move[0] == "bonuspoints":
-        player.bonusPoints = int(move[1])
-    elif move[0] == "classchange":
-        player.set_class()
-    elif move[0] == "q" or move[0] == "quit":
+    if move[0] == 'q' or move[0] == "quit":
         break
     else:
-        print("I have no idea what you're trying to do.")
+       commparser.parse_command(move)

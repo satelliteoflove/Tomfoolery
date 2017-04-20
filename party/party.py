@@ -4,22 +4,21 @@ class Party(object):
     def __init__(self):
         self.xy_pos = (0,0)
         self.currentRoom = []
-        self.members = {}
+        self.members = []
         self.encounter_chance = 0.0
 
     def move(self, direction):
-        print("moving party..." + direction)
-        for member in self.members.values():
-            print("value of member uuid: " + str(member.uuid))
-            print("member name: " + member.name)
+#        print("moving party..." + direction)
+        for member in self.members:
+#            print("value of member uuid: " + str(member.uuid))
+#            print("member name: " + member.name)
             member.go(direction)
-        next(iter(self.members.values())).view_surroundings()
 
     def add_char(self, character):
         print("Current party members:")
         for char in self.members:
             print(char.name)
-        self.members[character.uuid] = character
+        self.members.append(character)
         print("Current party members:")
         for char in self.members:
             print(char.name)
