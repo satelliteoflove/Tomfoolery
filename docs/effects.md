@@ -1,5 +1,19 @@
-Should effects be objects, with functions?
+Sample effect:
 
-Pros:
-* each effect stands on its own, and can be queried to return a value
-* don't have to contain every possible effect in every item object
+|---------------|-----------------|
+| Name          | Minor Heal      |
+| Help Text     | Restores 1-8 HP |
+| Affected stat | HP              |
+| Damaging      | False           |
+| Element       | Life            |
+| Scale         | 1-8             |
+| Target        | Single          |
+| Duration      |
+|
+
+
+
+Sample affix:
+
+| Name      | Heal1 |
+| Help Text |
