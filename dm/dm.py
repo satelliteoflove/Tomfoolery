@@ -15,9 +15,18 @@ class Dm(object):
                           world.config.DUNGEON_CONFIG,
                           world.config.LEVEL_CONFIG)
         self.mob_group_list = []
+
+        #Load object templates
         with open(os.path.dirname(__file__) +
                   "/../mobs/moblist.yaml",'r') as self.mob_list_raw:
             self.mob_list = yaml.load(self.mob_list_raw.read())
+
+        with open(os.path.dirname(__file__) +
+                  "/../effects/effect_list.yaml",'r') as self.effect_list_raw:
+            self.effect_list = yaml.load(self.effect_list_raw.read())
+
+        print(self.effect_list)
+        print(self.mob_list)
         self.make_mobgroup(self.mob_list, 3)
 
     def get_tile_status(self, tile):
@@ -42,7 +51,7 @@ class Dm(object):
                                    level_config)
 
     def make_mobgroup(self, mob_list, max_weight):
-#        count = len(self.mob_group_list)
+        #count = len(self.mob_group_list)
         #dm requests a mob party from a given list (pulled from current dungeon
         #level) and with a given total possible weight.
         mobparty = mobs.mobgroup.MobGroup(mob_list, max_weight)

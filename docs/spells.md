@@ -46,8 +46,8 @@ Mage Spells
 |----|-----------|-----|------------------------------------------------|-----|
 | 5  | Socordi   | B   | Summon one type at random from the             | Y   |
 |    |           |     | following monsters                             |     |
-|    |           |     | *Smoke demon *Succubus *Seidel *Gargoyle       |     |
-|    |           |     | *Flack *Siphon *Andrea Luffs                   |     |
+|    |           |     | -Smoke demon -Succubus -Seidel -Gargoyle       |     |
+|    |           |     | -Flack -Siphon -Andrea -Luffs                  |     |
 | 5  | Madalto   | B   | 8-64 damage to one group (slot) of             | Y   |
 |    |           |     | enemies (cold)                                 |     |
 | 5  | Palios    | BC  | In camp - all status effects are removed.      | Y   |
