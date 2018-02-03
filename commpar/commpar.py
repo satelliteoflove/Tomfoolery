@@ -3,6 +3,8 @@ class Commpar(object):
     def parse_command(self, move):
         if move[0] == "go":
             party1.move(move[1])
+        elif move[0] == "battle":
+            dm1.battle()
         elif move[0] == "encounter":
             party1.monster_encounter(1,0)
         elif move[0] == "get" or move[0] == "take":
