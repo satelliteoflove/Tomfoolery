@@ -3,6 +3,12 @@ from . import items
 class Weapon(items.Item):
     """All weapons can be described with this class."""
     def __init__(self, list_of_weapons, weapon_index):
+        """
+
+        Args:
+            list_of_weapons:
+            weapon_index:
+        """
         self.isweapon = True
         self.name = list_of_weapons[weapon_index]["name"]
         self.min_dmg = list_of_weapons[weapon_index]["min_dmg"]
