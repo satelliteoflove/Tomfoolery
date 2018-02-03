@@ -3,8 +3,15 @@ from . import config
 import pprint
 
 class Level(object):
+    """
+    """
     tiles = []
     def __init__(self, level_config):
+        """
+
+        Args:
+            level_config:
+        """
         print("Beginning level generation...")
         for x in range(level_config["level_width"]):
             row = [tile.Tile(config.WALL_TYPES["clear"])
@@ -15,4 +22,7 @@ class Level(object):
         #pprinter.pprint(self.tiles)
 
     def set_max_mobgroup_weight(self):
+        """
+
+        """
         self.max_mobgroup_weight = 10
