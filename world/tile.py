@@ -10,6 +10,11 @@ class Tile(object):
     #def __init__(self, north_config, east_config, south_config, west_config,
     #           coloring):
     def __init__(self, tile_config):
+        """
+
+        Args:
+            tile_config:
+        """
         self.is_explored = False
         self.is_passable = True
         self.items = []
