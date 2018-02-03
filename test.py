@@ -3,7 +3,12 @@ from random import *
 from math import *
  
 class dMap:
+   """
+   """
    def __init__(self):
+       """
+
+       """
        self.roomList=[]
        self.cList=[]
  
