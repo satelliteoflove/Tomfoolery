@@ -4,7 +4,16 @@ import collections
 import items
 
 class Mob(object):
+    """
+    """
     def __init__(self, mob_list, type_name, level):
+        """
+
+        Args:
+            mob_list:
+            type_name:
+            level:
+        """
         self.type_name = mob_list[type_name]["typename"]
         self.name = self.type_name
         self.HP = mob_list[type_name]["base_hp"] * level
@@ -16,15 +25,28 @@ class Mob(object):
             self.AP = 1
 
     def attack(self, target):
+        """
+
+        Args:
+            target:
+        """
         dmg = self.AP + 1
         target.take_dmg(dmg)
 
     def take_dmg(self, dmg):
+        """
+
+        Args:
+            dmg:
+        """
         self.hitPoints -= dmg
         if self.hitPoints <= 0:
             print(self.name + "is dead.")
 
     def show_stats(self):
+        """
+
+        """
         print("Stats of monster '%s':" %self.name)
         print(vars(self))
 
