@@ -7,6 +7,9 @@ class Character(object):
     """Common base class for all PCs and NPCs."""
 
     def __init__(self):
+        """
+
+        """
         self.name = self.set_name()
         self.uuid = uuid4()
         self.currentLevel = 1
@@ -159,6 +162,11 @@ class Character(object):
         self.luck = config.char_race_traits[self.race]["min_luk"]
 
     def set_name(self):
+        """
+
+        Returns:
+
+        """
         name_accepted = False
         while name_accepted == False:
             try_name = input("What is the player's name?\n")
@@ -248,6 +256,9 @@ class Character(object):
                     self.luck = luk_req
 
     def assign_BonusPoints(self):
+        """
+
+        """
         print("There are " + str(self.bonusPoints) + " remaining BP.")
         print("Your current statistics are: ")
         print("[S]trength: " + str(self.strength))
@@ -323,14 +334,23 @@ class Character(object):
         print("This character's AP is: " + str(self.AP))
 
     def add_to_room(self):
+        """
+
+        """
         for chamber in rooms:
             if chamber == self.currentRoom:
                 rooms[self.currentRoom]["characters"].append(self)
 
     def show_stats(self):
+        """
+
+        """
         print(collections.OrderedDict(vars(self)))
 
     def show_inventory(self):
+        """
+
+        """
         # list items, none if empty
         if len(self.inventory) > 0:
             for item in self.inventory:
@@ -343,6 +363,9 @@ class Character(object):
 
 
     def place_random(self):
+        """
+
+        """
         # start the player off in a room
         rooms[self.currentRoom]["characters"].remove(self)
         self.currentRoom = random.randrange(1,len(rooms))
@@ -384,6 +407,11 @@ class Character(object):
             print("West")
 
     def go(self, newroom):
+        """
+
+        Args:
+            newroom:
+        """
         if newroom in rooms[self.currentRoom]:
             rooms[self.currentRoom]["characters"].remove(self)
             self.currentRoom = rooms[self.currentRoom][newroom]
@@ -393,6 +421,11 @@ class Character(object):
             print("You can't go that way.")
 
     def get(self, item_to_get):
+        """
+
+        Args:
+            item_to_get:
+        """
         temp_item_list = []
         for item in rooms[self.currentRoom]["items"]:
             temp_item_list.append(item.name)
@@ -406,6 +439,11 @@ class Character(object):
             print("You can't take " + item_to_get + ".")
 
     def drop(self, item_to_drop):
+        """
+
+        Args:
+            item_to_drop:
+        """
         temp_item_list = []
         for item in self.inventory:
             temp_item_list.append(item.name)
@@ -419,6 +457,11 @@ class Character(object):
             print("Drop what, again?")
 
     def equip(self, item_to_equip):
+        """
+
+        Args:
+            item_to_equip:
+        """
         temp_item_list = []
         for item in self.inventory:
             temp_item_list.append(item.name)
@@ -429,6 +472,11 @@ class Character(object):
                     print(item.name + " equipped.")
 
     def add_xp(self, xp):
+        """
+
+        Args:
+            xp:
+        """
         #Generates a series of 28 multipliers to be used when calculating xp
         #gained.
         xp_multipliers = np.linspace(1.0,0.5,num=28)
@@ -439,6 +487,9 @@ class Character(object):
         print(self.name + " now has " + str(self.currentXP) + " xp.")
 
     def level_up(self):
+        """
+
+        """
         xp_to_lvl_up = char_level_xp_req[self.currentLevel + 1]
         if self.currentXP >= xp_to_lvl_up:
             print(self.name + " current level is: " + str(self.currentLevel))
@@ -450,11 +501,21 @@ class Character(object):
             print("Not enough XP to purchase the next level.")
 
     def take_dmg(self, dmg):
+        """
+
+        Args:
+            dmg:
+        """
         self.hitPoints -= dmg
         if self.hitPoints <= 0:
             print(self.name + "is dead.")
 
     def attack(self, target):
+        """
+
+        Args:
+            target:
+        """
         dmg = self.AP + 1
         target.take_dmg(dmg)
         print("I am attacking " + target.name + " for " + str(dmg) +
