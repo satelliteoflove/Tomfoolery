@@ -32,6 +32,7 @@ def showInstructions():
     print("'attack'")
 
 the_dm = dm.Dm()
+player = the_dm.make_pc()
 
 worldCharacters = world.config.worldCharacters
 
@@ -68,7 +69,8 @@ rooms = {
 }
 
 # create characters, list of characters
-player = characters.pc.Character()
+#player = characters.pc.Character()
+
 #player2 = Character()
 party1 = party.party.Party()
 party1.add_char(player)

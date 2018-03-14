@@ -5,6 +5,8 @@ import world.config
 import yaml
 import pprint
 import os.path
+import characters.pc
+import characters.config
 
 pp = pprint.PrettyPrinter()
 
@@ -43,6 +45,15 @@ class Dm(object):
 
     def set_party_status(self, party):
         setattr(party, status, value)
+        pass
+
+    def make_npc():
+        """Create Non-Player Character, taking input file."""
+        pass
+
+    def make_pc():
+        """Create Player Character and run through generation."""
+        
         pass
 
     def create_world(self, world_config, dungeon_config, level_config):
