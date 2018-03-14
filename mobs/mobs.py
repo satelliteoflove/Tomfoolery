@@ -10,8 +10,9 @@ class Mob(object):
         self.HP = mob_list[type_name]["base_hp"] * level
         self.THAC0 = mob_list[type_name]["THAC0"]
         self.AP = mob_list[type_name]["base_ap"] * level // 2
-        #self.weapon = mob_list[type_name]["weapon"]
         self.weight = mob_list[type_name]["party_weight"]
+        self.weapon_slots = mob_list[type_name]["wslots"]
+        self.attacks = mob_list[type_name]["attacks"]
         if self.AP < 1:
             self.AP = 1
 
