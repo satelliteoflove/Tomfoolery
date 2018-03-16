@@ -20,11 +20,11 @@ class Dm(object):
 
         #Load object templates
         with open(os.path.dirname(__file__) +
-                  "/../mobs/moblist.yaml",'r') as self.mob_list_raw:
+                  "/mobs/moblist.yaml",'r') as self.mob_list_raw:
             self.mob_list = yaml.load(self.mob_list_raw.read())
 
         with open(os.path.dirname(__file__) +
-                  "/../effects/effect_list.yaml",'r') as self.effect_list_raw:
+                  "/effects/effect_list.yaml",'r') as self.effect_list_raw:
             self.effect_list = yaml.load(self.effect_list_raw.read())
 
         print(self.effect_list)
@@ -47,19 +47,65 @@ class Dm(object):
         setattr(party, status, value)
         pass
 
-    def make_npc():
+    def make_npc(self):
         """Create Non-Player Character, taking input file."""
         pass
 
-    def make_pc():
+    def make_pc(self):
         """Create Player Character and run through generation."""
-        
-        pass
+        new_player = characters.pc.Character()
 
     def create_world(self, world_config, dungeon_config, level_config):
         world1 = world.world.World(world_config,
                                    dungeon_config,
                                    level_config)
+
+#Re-implementing command parser. commands are passed to the dm,
+#and the dm handles the actions and actors.
+    def monster_encounter(self):
+        pass
+    def give_item(self, player, item):
+        pass
+    def destroy_item(self, player, item):
+        pass
+    def show_inventory(self, player):
+        pass
+    
+
+    def parse_command(self, move):
+        if move[0] == "go":
+            self.move(move[1])
+        elif move[0] == "encounter":
+            self.monster_encounter(1,0)
+        elif move[0] == "get" or move[0] == "take":
+            player.get(move[1])
+        elif move[0] == "inventory":
+            player.show_inventory()
+        elif move[0] == "equip":
+            player.equip(move[1])
+        elif move[0] == "drop":
+            player.drop(move[1])
+        elif move[0] == "look":
+            player.view_surroundings()
+        elif move[0] == "attack" and move[1]:
+            player.attack(move[1])
+        elif move[0] == "look":
+            player.view_surroundings()
+        elif move[0] == "status":
+            player.show_stats()
+        elif move[0] == "addxp":
+            player.add_xp(int(move[1]))
+        elif move[0] == "levelup":
+            player.level_up()
+        elif move[0] == "help":
+            showInstructions()
+            dir(player)
+        elif move[0] == "bonuspoints":
+            player.bonusPoints = int(move[1])
+        elif move[0] == "classchange":
+            player.set_class()
+        else:
+            print("I have no idea what you're trying to do.")
 
     def make_mobgroup(self, mob_list, max_weight):
         #count = len(self.mob_group_list)
@@ -68,3 +114,4 @@ class Dm(object):
         mobparty = mobs.mobgroup.MobGroup(mob_list, max_weight)
         print("The following mobs appear:")
         mobparty.list_members()
+

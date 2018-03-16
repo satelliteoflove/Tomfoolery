@@ -4,15 +4,21 @@ from numpy import random
 import collections
 import yaml
 import pprint
-import world.world
-import world.config
+
+#re-enable on line 21 "worldCharacters"
+#import world.world
+#import world.config
+
 import items.weapon
 import items.config
-import characters.pc
-import characters.config
+
+#import characters.pc
+#import characters.config
+
 import party.party
 from commpar import commpar
-from dm import dm
+#from dm import dm
+import dm
 
 worldCharacters = []
 
@@ -30,11 +36,12 @@ def showInstructions():
     print("'status'")
     print("'look'")
     print("'attack'")
+    print("'encounter'")
 
 the_dm = dm.Dm()
 player = the_dm.make_pc()
 
-worldCharacters = world.config.worldCharacters
+#worldCharacters = world.config.worldCharacters
 
 
 # Item initialization - item names are case sensitive for now
@@ -72,9 +79,9 @@ rooms = {
 #player = characters.pc.Character()
 
 #player2 = Character()
-party1 = party.party.Party()
-party1.add_char(player)
-party1.rem_char(player)
+#party1 = party.party.Party()
+#party1.add_char(player)
+#party1.rem_char(player)
 
 # display "main menu"
 showInstructions()
