@@ -71,16 +71,17 @@ class Dm(object):
         print("The following mobs appear:")
         mobparty.list_members()
 
-    def is_encounter(self, party):
-        """Determine if party encounters mobs. Pass in party (which contains
-        carry_over encounter chance from last turn), return T/F."""
-        # what is the base_chance for the current level?
-        base_chance = 100.0
-        carry_over = party.carry_over
-        if base_chance + carry_over <= 100.0:
-            return
 
-        pass
+    def is_encounter(self, tile, carry_over):
+        """Determine if party encounters mobs. Return True/False."""
+        # what is the base_chance for the current level?
+        # currently, every encounter is guaranteed.
+        #base_chance = tile.base_chance
+        base_chance = 100.0
+        if base_chance + carry_over <= 100.0:
+            return False
+        elif base_chance + carry_over >= 100.0:
+            return True
 
 # Re-implementing command parser. commands are passed to the dm,
 # and the dm handles the actions and actors.

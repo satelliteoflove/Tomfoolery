@@ -18,4 +18,4 @@ class Tile(object):
         self.south = wall.Wall(tile_config)
         self.west = wall.Wall(tile_config)
         self.tile_char = tile_config["tile_char"]
-        #self.coloring = coloring
+        self.base_chance = 0.0
