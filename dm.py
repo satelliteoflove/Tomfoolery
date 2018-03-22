@@ -1,4 +1,4 @@
-import mobs.mobs
+import mobs.mobs 
 import mobs.mobgroup
 import world.world
 import world.config
@@ -18,6 +18,7 @@ class Dm(object):
                           world.config.LEVEL_CONFIG)
         self.mob_group_list = []
 
+        self.carry_over = 0
         # Load object templates
         with open(os.path.dirname(__file__) +
                   "/mobs/moblist.yaml", 'r') as self.mob_list_raw:
@@ -71,21 +72,23 @@ class Dm(object):
         print("The following mobs appear:")
         mobparty.list_members()
 
-
-    def is_encounter(self, tile, carry_over):
+    def is_encounter(self, tile):
         """Determine if party encounters mobs. Return True/False."""
         # what is the base_chance for the current level?
         # currently, every encounter is guaranteed.
-        #base_chance = tile.base_chance
+        # base_chance = tile.base_chance
+        carry_over = self.carry_over
         base_chance = 100.0
         if base_chance + carry_over <= 100.0:
+            # self.carry_over = carry_over + tile_carry_increment
             return False
         elif base_chance + carry_over >= 100.0:
+            self.carry_over = 0
             return True
 
 # Re-implementing command parser. commands are passed to the dm,
 # and the dm handles the actions and actors.
-    def monster_encounter(self, mob_list, ma):
+    def monster_encounter(self, party):
         pass
 
     def give_item(self, player, item):
