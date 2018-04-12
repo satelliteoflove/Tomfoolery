@@ -22,8 +22,9 @@ class Mob(object):
 
     def take_dmg(self, dmg):
         self.hitPoints -= dmg
-        if self.hitPoints <= 0:
-            print(self.name + "is dead.")
+# This check should be something the DM does.
+#        if self.hitPoints <= 0:
+#            print(self.name + "is dead.")
 
     def show_stats(self):
         print("Stats of monster '%s':" %self.name)

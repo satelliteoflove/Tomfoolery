@@ -133,7 +133,5 @@ class Dm(object):
 #            player.bonusPoints = int(move[1])
 #        elif move[0] == "classchange":
 #            player.set_class()
-        else:
+#        else:
            # print("I have no idea what you're trying to do.")
-#
-
