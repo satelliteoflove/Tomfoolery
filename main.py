@@ -16,7 +16,7 @@ import items.config
 #import characters.config
 
 import party.party
-from commpar import commpar
+#from commpar import commpar
 #from dm import dm
 import dm
 
@@ -87,13 +87,15 @@ rooms = {
 showInstructions()
 
 # initialize command parser
-commparser = commpar.Commpar()
+# commparser = commpar.Commpar()
 
 # loop
 while True:
 
     move = input(">").lower().split()
+    for i, word in enumerate(move):
+        print(word)
     if move[0] == 'q' or move[0] == "quit":
         break
     else:
-       commparser.parse_command(move)
+       the_dm.parse_command(move)

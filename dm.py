@@ -88,7 +88,7 @@ class Dm(object):
 
 # Re-implementing command parser. commands are passed to the dm,
 # and the dm handles the actions and actors.
-    def monster_encounter(self, party):
+    def monster_encounter(self, mobgroup):
         pass
 
     def give_item(self, player, item):
@@ -102,10 +102,8 @@ class Dm(object):
 
     def parse_command(self, move):
         """Take string of user input and parse into action."""
-        if move[0] == "go":
-            self.move(move[1])
-        elif move[0] == "encounter":
-            self.monster_encounter(1,0)
+        if move[0] == "encounter":
+            self.monster_encounter(self.make_mobgroup(self.mob_list, 3))
 #        elif move[0] == "get" or move[0] == "take":
 #            player.get(move[1])
 #        elif move[0] == "inventory":
