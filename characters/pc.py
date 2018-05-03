@@ -342,56 +342,6 @@ class Character(object):
             print("You aren't carrying anything.")
 
 
-    def place_random(self):
-        # start the player off in a room
-        rooms[self.currentRoom]["characters"].remove(self)
-        self.currentRoom = random.randrange(1,len(rooms))
-        rooms[self.currentRoom]["characters"].append(self)
-        #self.view_surroundings()
-
-# This code isn't right. Fix "go" code first.
-#    def place_room(self, room: int):
-#        if room > 0 and room <= len(rooms):
-#            rooms[self.currentRoom]["characters"].remove(self)
-#            self.currentRoom = rooms[self.currentRoom][
-#        self.add_to_room()
-
-    def view_surroundings(self):
-        """print what the player can see"""
-        currentRoom = self.currentRoom
-        current_room_character_list = []
-        print("===================")
-        print("You are in the " + rooms[currentRoom]["name"])
-        if "description" in rooms[currentRoom]:
-            print(rooms[currentRoom]["description"])
-        if "items" in rooms[currentRoom]:
-            for thing in rooms[currentRoom]["items"]:
-                print("In the room, you see a " + thing.name + ".")
-        for room_character in rooms[self.currentRoom]["characters"]:
-            current_room_character_list.append(room_character)
-        print("Nearby, you see " +
-              str(len(current_room_character_list)) + " characters:")
-        for character in current_room_character_list:
-            print(character.name)
-        print("Exits:")
-        if "north" in rooms[currentRoom]:
-            print("North")
-        if "south" in rooms[currentRoom]:
-            print("South")
-        if "east" in rooms[currentRoom]:
-            print("East")
-        if "west" in rooms[currentRoom]:
-            print("West")
-
-    def go(self, newroom):
-        if newroom in rooms[self.currentRoom]:
-            rooms[self.currentRoom]["characters"].remove(self)
-            self.currentRoom = rooms[self.currentRoom][newroom]
-            rooms[self.currentRoom]["characters"].append(self)
-            #self.view_surroundings()
-        else:
-            print("You can't go that way.")
-
     def get(self, item_to_get):
         temp_item_list = []
         for item in rooms[self.currentRoom]["items"]:
@@ -448,6 +398,9 @@ class Character(object):
             print(self.name + " current level is: " + str(self.currentLevel))
         else:
             print("Not enough XP to purchase the next level.")
+
+    def roll_init(self):
+        self.initiative = random.randint(1,100)
 
     def take_dmg(self, dmg):
         self.hitPoints -= dmg

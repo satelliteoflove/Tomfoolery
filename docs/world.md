@@ -1,7 +1,13 @@
 World Generation
 ----------------
-Only one "world" may exist per game.  The world is instantiated when the game is
-begun.  Initially, the world will be empty except for some unpopulated
-structures.
+Only one "world" may exist per game.  The world is instantiated by the DM
+object.
 
-The world stores the town and all dungeons, which are passed to it by the dm.
+Initialization
+--------------
+Each world contains:
+* Master list of all possible monsters
+* Master list of all possible items (equipment, consumables, etc.)
+* Master list of all Level environment types
+* List of all active dungeons
+* List of all playable characters

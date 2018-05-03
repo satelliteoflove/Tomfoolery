@@ -284,5 +284,4 @@ a single target or the party.
 | Teleporter | P   | Teleports party to a random location on the current?    |
 |            |     | level of the dungeon. Will not teleport into stone.     |
 |------------|-----|---------------------------------------------------------|
-|
 

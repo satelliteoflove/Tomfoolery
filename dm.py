@@ -13,9 +13,9 @@ pp = pprint.PrettyPrinter()
 
 class Dm(object):
     def __init__(self):
-        self.create_world(world.config.WORLD_CONFIG,
-                          world.config.DUNGEON_CONFIG,
-                          world.config.LEVEL_CONFIG)
+#        self.create_world(world.config.WORLD_CONFIG,
+#                          world.config.DUNGEON_CONFIG,
+#                          world.config.LEVEL_CONFIG)
         self.mob_group_list = []
 
         self.carry_over = 0
@@ -31,7 +31,6 @@ class Dm(object):
         # print(self.effect_list)
         # print(self.mob_list)
  
-        self.make_mobgroup(self.mob_list, 3)
 
     def get_tile_status(self, tile):
         # return getattr(tile, status)
@@ -65,12 +64,17 @@ class Dm(object):
     def make_mobgroup(self, mob_list, max_weight):
         """Create group of mobs from "mob_list" with a maximum party weight of
         "max_weight"."""
-        #count = len(self.mob_group_list)
-        #dm requests a mob party from a given list (pulled from current dungeon
-        #level) and with a given total possible weight.
-        mobparty = mobs.mobgroup.MobGroup(mob_list, max_weight)
-        print("The following mobs appear:")
+        mobparty = []
+        remaining_weight = max_weight
+        while remaining_weight > 0:
+            self.mobparty.append(mobs.mobs.Mob(self.mob_list,"goblin",1))
+            remaining_weight -= 1
+            print(" appears!")
         mobparty.list_members()
+
+    def check_friendly(self, mobgroup):
+        print("Nothing is friendly for now...")
+        return False
 
     def is_encounter(self, tile):
         """Determine if party encounters mobs. Return True/False."""
@@ -86,10 +90,16 @@ class Dm(object):
             self.carry_over = 0
             return True
 
+    def roll_for_initiative(self, party, mobgroup):
+        pass
+
 # Re-implementing command parser. commands are passed to the dm,
 # and the dm handles the actions and actors.
-    def monster_encounter(self, mobgroup):
-        pass
+    def monster_encounter(self):
+        #will be generated from level-specific data at some point...
+        current_mobgroup = self.make_mobgroup(self.mob_list, 3)
+        self.check_friendly(current_mobgroup)
+        #are mobs surprised? 
 
     def give_item(self, player, item):
         pass
@@ -103,33 +113,8 @@ class Dm(object):
     def parse_command(self, move):
         """Take string of user input and parse into action."""
         if move[0] == "encounter":
-            self.monster_encounter(self.make_mobgroup(self.mob_list, 3))
-#        elif move[0] == "get" or move[0] == "take":
-#            player.get(move[1])
-#        elif move[0] == "inventory":
-#            player.show_inventory()
-#        elif move[0] == "equip":
-#            player.equip(move[1])
-#        elif move[0] == "drop":
-#            player.drop(move[1])
-#        elif move[0] == "look":
-#            player.view_surroundings()
-#        elif move[0] == "attack" and move[1]:
-#            player.attack(move[1])
-#        elif move[0] == "look":
-#            player.view_surroundings()
-#        elif move[0] == "status":
-#            player.show_stats()
-#        elif move[0] == "addxp":
-#            player.add_xp(int(move[1]))
-#        elif move[0] == "levelup":
-#            player.level_up()
-#        elif move[0] == "help":
-#            showInstructions()
-#            dir(player)
-#        elif move[0] == "bonuspoints":
-#            player.bonusPoints = int(move[1])
-#        elif move[0] == "classchange":
-#            player.set_class()
+            self.monster_encounter()
+        elif move[0] == "makepc":
+            self.make_pc()
 #        else:
            # print("I have no idea what you're trying to do.")

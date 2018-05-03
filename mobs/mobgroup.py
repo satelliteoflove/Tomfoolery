@@ -8,10 +8,7 @@ class MobGroup(object):
         self.remaining_weight = max_weight
         self.mob_list = mob_list
         self.members.append(mobs.Mob(self.mob_list, "goblin", 1))
-
-    def add_to_level(self, level):
-        for member in self.members:
-            level.mob_party.append(self)
+        self.members.append(mobs.Mob(self.mob_list, "orc", 1))
 
     def list_members(self):
         for member in self.members:
