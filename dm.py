@@ -61,17 +61,6 @@ class Dm(object):
                                    dungeon_config,
                                    level_config)
 
-    def make_mobgroup(self, mob_list, max_weight):
-        """Create group of mobs from "mob_list" with a maximum party weight of
-        "max_weight"."""
-        mobparty = []
-        remaining_weight = max_weight
-        while remaining_weight > 0:
-            self.mobparty.append(mobs.mobs.Mob(self.mob_list,"goblin",1))
-            remaining_weight -= 1
-            print(" appears!")
-        mobparty.list_members()
-
     def check_friendly(self, mobgroup):
         print("Nothing is friendly for now...")
         return False
@@ -97,8 +86,9 @@ class Dm(object):
 # and the dm handles the actions and actors.
     def monster_encounter(self):
         #will be generated from level-specific data at some point...
-        current_mobgroup = self.make_mobgroup(self.mob_list, 3)
+        current_mobgroup = mobs.mobgroup.MobGroup(self.mob_list,3)
         self.check_friendly(current_mobgroup)
+        current_mobgroup.list_members()
         #are mobs surprised? 
 
     def give_item(self, player, item):

@@ -7,8 +7,11 @@ class MobGroup(object):
         self.members = []
         self.remaining_weight = max_weight
         self.mob_list = mob_list
-        self.members.append(mobs.Mob(self.mob_list, "goblin", 1))
-        self.members.append(mobs.Mob(self.mob_list, "orc", 1))
+        while self.remaining_weight > 0:
+            newmob = mobs.Mob(self.mob_list,"goblin",1)
+            self.members.append(newmob)
+            self.remaining_weight -= newmob.weight
+            print(newmob.name + " appears!")
 
     def list_members(self):
         for member in self.members:
