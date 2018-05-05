@@ -61,10 +61,6 @@ class Dm(object):
                                    dungeon_config,
                                    level_config)
 
-    def check_friendly(self, mobgroup):
-        print("Nothing is friendly for now...")
-        return False
-
     def is_encounter(self, tile):
         """Determine if party encounters mobs. Return True/False."""
         # what is the base_chance for the current level?
@@ -86,10 +82,13 @@ class Dm(object):
 # and the dm handles the actions and actors.
     def monster_encounter(self):
         #will be generated from level-specific data at some point...
-        current_mobgroup = mobs.mobgroup.MobGroup(self.mob_list,3)
-        self.check_friendly(current_mobgroup)
-        current_mobgroup.list_members()
-        #are mobs surprised? 
+        self.current_mobgroup = mobs.mobgroup.MobGroup(self.mob_list,20)
+        self.current_mobgroup.list_members()
+
+        if self.current_mobgroup.check_friendly():
+            print("They are friendly.")
+        else:
+            print("They attack!")
 
     def give_item(self, player, item):
         pass
@@ -102,7 +101,7 @@ class Dm(object):
 
     def parse_command(self, move):
         """Take string of user input and parse into action."""
-        if move[0] == "encounter":
+        if move[0] == "e":
             self.monster_encounter()
         elif move[0] == "makepc":
             self.make_pc()

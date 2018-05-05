@@ -3,7 +3,7 @@ from . import config
 import pprint
 
 class Level(object):
-    tiles = []
+    self.tiles = []
     def __init__(self, level_config):
         print("Beginning level generation...")
         for x in range(level_config["level_width"]):

@@ -1,2 +1,2 @@
-goblin: {THAC0: 1, base_ap: 1, base_hp: 5, party_weight: 1, typename: goblin, wslots: 1, attacks: 1, level_min: 1, level_max: 2, dungeon_type: 1}
-orc:    {THAC0: 1, base_ap: 1, base_hp: 8, party_weight: 1, typename: orc,    wslots: 1, attacks: 1, level_min: 1, level_max: 2, dungeon_type: 1}
+goblin: {THAC0: 1, base_ap: 1, base_hp: 5, party_weight: 1, typename: goblin, wslots: 1, attacks: 1, level_min: 1, level_max: 2, dungeon_type: 1, alignment: "neutral"}
+orc:    {THAC0: 1, base_ap: 1, base_hp: 8, party_weight: 1, typename: orc,    wslots: 1, attacks: 1, level_min: 1, level_max: 2, dungeon_type: 1, alignment: "evil"}
