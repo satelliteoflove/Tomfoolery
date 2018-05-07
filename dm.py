@@ -7,6 +7,7 @@ import pprint
 import os.path
 import characters.pc
 import characters.config
+import party
 
 pp = pprint.PrettyPrinter()
 
@@ -78,6 +79,8 @@ class Dm(object):
     def roll_for_initiative(self, party, mobgroup):
         pass
 
+
+
 # Re-implementing command parser. commands are passed to the dm,
 # and the dm handles the actions and actors.
     def monster_encounter(self):
@@ -105,5 +108,8 @@ class Dm(object):
             self.monster_encounter()
         elif move[0] == "makepc":
             self.make_pc()
+        elif move[0] == "pc":
+            #make a player character party
+            current_pc_party = party.party.Party(6)
 #        else:
            # print("I have no idea what you're trying to do.")

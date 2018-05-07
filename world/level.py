@@ -3,9 +3,9 @@ from . import config
 import pprint
 
 class Level(object):
-    self.tiles = []
     def __init__(self, level_config):
         print("Beginning level generation...")
+        self.tiles = []
         for x in range(level_config["level_width"]):
             row = [tile.Tile(config.WALL_TYPES["clear"])
                    for y in range(level_config["level_height"])]
