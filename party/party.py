@@ -1,20 +1,13 @@
 class Party(object):
     """Class for storing characters in a group.
     """
-    def __init__(self, max_size):
+    def __init__(self):
         self.xy_pos = (0,0)
         self.currentRoom = []
         self.members = []
         self.encounter_chance = 0.0
-        self.max_size = max_size
+        self.max_size = 6
         self.current_size = 0
-
-    def move(self, direction):
-#        print("moving party..." + direction)
-        for member in self.members:
-#            print("value of member uuid: " + str(member.uuid))
-#            print("member name: " + member.name)
-            member.go(direction)
 
     def add_char(self, character):
         print("Adding member:")

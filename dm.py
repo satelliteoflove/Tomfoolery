@@ -110,6 +110,6 @@ class Dm(object):
             self.make_pc()
         elif move[0] == "pc":
             #make a player character party
-            current_pc_party = party.party.Party(6)
+            current_pc_party = party.party.Party()
 #        else:
            # print("I have no idea what you're trying to do.")
