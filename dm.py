@@ -1,5 +1,7 @@
 import mobs.mobs 
 import mobs.mobgroup
+from mobs import mobs
+from mobs import mobgroup
 import world.world
 import world.config
 import yaml
@@ -84,8 +86,8 @@ class Dm(object):
 # Re-implementing command parser. commands are passed to the dm,
 # and the dm handles the actions and actors.
     def monster_encounter(self):
-        #will be generated from level-specific data at some point...
-        self.current_mobgroup = mobs.mobgroup.MobGroup(self.mob_list,20)
+        strength = len(self.current_pc_party.members) * 1.5
+        self.current_mobgroup = mobgroup.MobGroup(self.mob_list, strength)
         self.current_mobgroup.list_members()
 
         if self.current_mobgroup.check_friendly():
@@ -97,19 +99,22 @@ class Dm(object):
         pass
 
     def destroy_item(self, player, item):
+        """Drop or otherwise destroy item carried by a player."""
         pass
 
     def show_inventory(self, player):
+        """Show what a specific player is carrying, including equipped items."""
         pass
 
     def parse_command(self, move):
         """Take string of user input and parse into action."""
-        if move[0] == "e":
+        if move[0] == "enc":
             self.monster_encounter()
         elif move[0] == "makepc":
             self.make_pc()
-        elif move[0] == "pc":
-            #make a player character party
-            current_pc_party = party.party.Party()
-#        else:
-           # print("I have no idea what you're trying to do.")
+        elif move[0] == "mkparty":
+            self.current_pc_party = party.party.Party()
+        elif move[0] == "mkpc":
+            self.current_pc_party.add_char(characters.pc.Character())
+        else:
+            print("I have no idea what you're trying to do.")
