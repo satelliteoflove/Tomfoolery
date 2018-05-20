@@ -79,8 +79,14 @@ class Dm(object):
             return True
 
     def roll_for_initiative(self, party, mobgroup):
-        pass
-
+        for actor in party:
+            actor.roll_init()
+#            print("initiative for " + actor.name +
+#                  " is " + str(actor.initiative) + ".")
+        for actor in mobgroup:
+            actor.roll_init()
+#            print("initiative for " + actor.name +
+#                  " is " + str(actor.initiative) + ".") 
 
 
 # Re-implementing command parser. commands are passed to the dm,
@@ -94,6 +100,16 @@ class Dm(object):
             print("They are friendly.")
         else:
             print("They attack!")
+            self.roll_for_initiative(self.current_pc_party.members,
+                                     self.current_mobgroup.members)
+            actors = []
+            for actor in self.current_pc_party.members:
+                actors.append(actor)
+            for actor in self.current_mobgroup.members:
+                actors.append(actor)
+            print(sorted(actors))
+
+
 
     def give_item(self, player, item):
         pass
