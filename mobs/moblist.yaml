@@ -28,15 +28,27 @@ orc:    {
         }
 ant:    {
         agility: 9,
-        THAC0: 20, 
+        THAC0: 20,
+        AC: 80,
         base_ap: 1, 
-        base_hp: 4, 
+        base_hp: 1, 
         party_weight: 1,
-        type: beast, 
-        typename: ant,
+        type: Insect, 
+        unconfirmed_name: Wriggling Object,
+        unconfirmed_name_plural: Wriggling Objects,
+        typename: Ant,
         wslots: 1, 
         attacks: 1, 
         level_min: 1,
         level_max: 1,
-        alignment: neutral
+        alignment: neutral,
+        attack_a_name: bite,
+        attack_a_effect: melee,
+        attack_a_dmg: (1,1),
+        attack_b_name: strike,
+        attack_b_effect: melee,
+        attack_b_dmg: (1,2),
+        attack_s_name: none,
+        attack_s_effect: none,
+        spells: none
         }

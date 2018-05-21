@@ -114,7 +114,10 @@ class Character(object):
         The sex of a character grants a one-time stat bonus upon character
         creation (+1 VIT (F)/+1 STR (M)), and only women can be valkyries.
         """
-        self.sex = ""
+        #Quick hack
+        self.sex = "male"
+
+        #self.sex = ""
         while self.sex != "male" and self.sex != "female":
             print("What is the sex of the character?\n(male or female)")
             self.sex = input().lower()
@@ -141,7 +144,10 @@ class Character(object):
         print("What race is this character?\nChoose from the following:")
         for key in config.char_race_traits.keys():
             print(key)
-        self.race = ""
+        #Quick hack
+        self.race = "human"
+
+        #self.race = ""
         while self.race == "":
             tryrace = input().lower()
             if tryrace in config.char_race_traits:

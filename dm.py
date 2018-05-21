@@ -10,9 +10,12 @@ import os.path
 import characters.pc
 import characters.config
 import party
+from operator import attrgetter
 
 pp = pprint.PrettyPrinter()
 
+# Constants
+MOBSTRENGTH = 1.5
 
 class Dm(object):
     def __init__(self):
@@ -31,6 +34,7 @@ class Dm(object):
                   "/effects/effect_list.yaml", 'r') as self.effect_list_raw:
             self.effect_list = yaml.load(self.effect_list_raw.read())
 
+        self.current_pc_party = party.party.Party()
         # print(self.effect_list)
         # print(self.mob_list)
  
@@ -92,7 +96,7 @@ class Dm(object):
 # Re-implementing command parser. commands are passed to the dm,
 # and the dm handles the actions and actors.
     def monster_encounter(self):
-        strength = len(self.current_pc_party.members) * 1.5
+        strength = len(self.current_pc_party.members) * MOBSTRENGTH
         self.current_mobgroup = mobgroup.MobGroup(self.mob_list, strength)
         self.current_mobgroup.list_members()
 
@@ -102,12 +106,15 @@ class Dm(object):
             print("They attack!")
             self.roll_for_initiative(self.current_pc_party.members,
                                      self.current_mobgroup.members)
+            #create a list of actors, sort by initiative.
             actors = []
             for actor in self.current_pc_party.members:
                 actors.append(actor)
             for actor in self.current_mobgroup.members:
                 actors.append(actor)
-            print(sorted(actors))
+            actors.sort(key = attrgetter('initiative'))
+            for actor in actors:
+                print(actor.name + " init = " + str(actor.initiative) + ".")
 
 
 
@@ -126,8 +133,6 @@ class Dm(object):
         """Take string of user input and parse into action."""
         if move[0] == "enc":
             self.monster_encounter()
-        elif move[0] == "makepc":
-            self.make_pc()
         elif move[0] == "mkparty":
             self.current_pc_party = party.party.Party()
         elif move[0] == "mkpc":
