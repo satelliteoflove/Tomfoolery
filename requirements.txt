@@ -1,0 +1,4 @@
+Fabulous for Python3
+PIL
+https://pillow.readthedocs.io/en/latest/installation.html
+pip3 install curses-menu

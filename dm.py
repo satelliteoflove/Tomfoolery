@@ -133,8 +133,6 @@ class Dm(object):
         """Take string of user input and parse into action."""
         if move[0] == "enc":
             self.monster_encounter()
-        elif move[0] == "mkparty":
-            self.current_pc_party = party.party.Party()
         elif move[0] == "mkpc":
             self.current_pc_party.add_char(characters.pc.Character())
         else:
