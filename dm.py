@@ -114,6 +114,9 @@ class Dm(object):
             actors.sort(key = attrgetter('initiative'))
             for actor in actors:
                 print(actor.name + " init = " + str(actor.initiative) + ".")
+            action_list = actors
+            for actor in action_list:
+                print(actor.action_list.__str__())
 
 
 

@@ -26,6 +26,7 @@ class Character(object):
         self.position = (0, 0)
         self.equipment = []
         self.set_AP()
+        self.action_list = []
 
 
     def set_class_AC(self):
