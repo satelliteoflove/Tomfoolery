@@ -1,4 +1,4 @@
-import mobs.mobs 
+import mobs.mobs
 import mobs.mobgroup
 from mobs import mobs
 from mobs import mobgroup
@@ -37,7 +37,6 @@ class Dm(object):
         self.current_pc_party = party.party.Party()
         # print(self.effect_list)
         # print(self.mob_list)
- 
 
     def get_tile_status(self, tile):
         # return getattr(tile, status)
