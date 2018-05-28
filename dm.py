@@ -114,10 +114,8 @@ class Dm(object):
             actors.sort(key = attrgetter('initiative'))
             for actor in actors:
                 print(actor.name + " init = " + str(actor.initiative) + ".")
+                print(actor.name + " chooses to " )
             action_list = actors
-            for actor in action_list:
-                print(actor.action_list.__str__())
-
 
 
     def give_item(self, player, item):
