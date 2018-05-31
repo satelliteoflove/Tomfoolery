@@ -28,3 +28,12 @@ class Mob(object):
         print("Stats of monster '%s':" %self.name)
         print(vars(self))
 
+    def take_dmg(self, damage):
+        self.HP -= damage
+        print("I, " + self.name + ", took " + str(damage) + " damage."
+
+    def attack(self, target):
+        dmg = self.AP + 1
+        target.take_dmg(dmg)
+        print("I am attacking " + target.name + " for " + str(dmg) +
+              " points of damage.")

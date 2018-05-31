@@ -412,10 +412,11 @@ class Character(object):
     def take_dmg(self, dmg):
         self.hitPoints -= dmg
         if self.hitPoints <= 0:
-            print(self.name + "is dead.")
+            print(self.name + " should be dead.")
 
     def attack(self, target):
         dmg = self.AP + 1
         target.take_dmg(dmg)
         print("I am attacking " + target.name + " for " + str(dmg) +
               " points of damage.")
+

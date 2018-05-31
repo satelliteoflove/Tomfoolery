@@ -91,9 +91,6 @@ class Dm(object):
 #            print("initiative for " + actor.name +
 #                  " is " + str(actor.initiative) + ".") 
 
-
-# Re-implementing command parser. commands are passed to the dm,
-# and the dm handles the actions and actors.
     def monster_encounter(self):
         strength = len(self.current_pc_party.members) * MOBSTRENGTH
         self.current_mobgroup = mobgroup.MobGroup(self.mob_list, strength)
@@ -114,7 +111,8 @@ class Dm(object):
             actors.sort(key = attrgetter('initiative'))
             for actor in actors:
                 print(actor.name + " init = " + str(actor.initiative) + ".")
-                print(actor.name + " chooses to " )
+                if actor.type:
+                    actor.attack(self.current_pc_party[ran
             action_list = actors
 
 
