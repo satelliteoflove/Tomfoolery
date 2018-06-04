@@ -17,9 +17,9 @@ class Mob(object):
         self.weapon_slots = mob_list[type_name]["wslots"]
         self.attacks = mob_list[type_name]["attacks"]
         self.alignment = mob_list[type_name]["alignment"]
-        self.action_list = []
         if self.AP < 1:
             self.AP = 1
+        self.show_stats()
 
     def roll_init(self):
         self.initiative = random.randint(1,100)
@@ -30,7 +30,7 @@ class Mob(object):
 
     def take_dmg(self, damage):
         self.HP -= damage
-        print("I, " + self.name + ", took " + str(damage) + " damage."
+        print("I, " + self.name + ", took " + str(damage) + " damage.")
 
     def attack(self, target):
         dmg = self.AP + 1

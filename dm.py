@@ -112,8 +112,7 @@ class Dm(object):
             for actor in actors:
                 print(actor.name + " init = " + str(actor.initiative) + ".")
                 if actor.type:
-                    actor.attack(self.current_pc_party[ran
-            action_list = actors
+                    pass
 
 
     def give_item(self, player, item):
