@@ -2,6 +2,7 @@ from numpy import random
 from uuid import uuid4
 from . import config
 import collections
+from ..effects import effect
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
@@ -15,8 +16,17 @@ class Character(object):
         self.set_sex()
         self.set_bonusPoints()
         self.set_class()
+        # statNames is only used in a helper function to determine if a named
+        # stat is legitimate. This will likely be unnecessary after input is
+        # driven by something other than the command interpreter.
         self.statNames = ["strength", "agility", "vitality", "intelligence",
                            "piety", "luck"]
+        self.strength = 0
+        self.agility = 0
+        self.vitality = 0
+        self.intelligence = 0
+        self.piety = 0
+        self.luck = 0
         self.assign_BonusPoints()
         self.set_xp_rate()
         self.set_initial_HP()
@@ -26,8 +36,21 @@ class Character(object):
         self.position = (0, 0)
         self.equipment = []
         self.set_AP()
-        self.action_list = []
+        self.action_list = {}
 
+
+    def build_action(self, action_data):
+        """Create "action" object from a given effect and "append" it to the
+        self.action_list dictionary.
+
+        :action_data: input config. element, duration, etc.
+        :returns: Effect object.
+
+        """
+        action = effect.Effect(action_data["scope"], action_data["scope"],
+                action_data["duration"], action_data["element"],
+                action_data["atk_range"])
+        return action
 
     def set_class_AC(self):
         """Set character's class-based AC "base"."""

@@ -7,13 +7,33 @@ melee:
     stat: HP,
     element: physical
     }
-fire:
+kanito:
     {
-    effect_name: fire,
-    affname: hot,
-    suffname: heat,
-    htext: a heat-based attack,
+    effect_name: miasma,
+    affname: stinking,
+    suffname: stench,
+    htext: Enemy group (slot) disabled by miasma. Direct dmg doubled if hit.,
     stat: HP,
-    element: fire
+    element: poison,
+    scope: group,
+    mindmg: 0,
+    maxdmg: 0,
+    duration: 5,
+    eff_range: 0,
+    status: dblphysical
     }
-    
+halito:
+    {
+    effect_name: flame,
+    affname: hot,
+    suffname: flame,
+    htext: 1-8 dmg to one enemy.,
+    stat: HP,
+    element: fire,
+    scope: onemob,
+    mindmg: 1,
+    maxdmg: 8,
+    duration: 5,
+    eff_range: 0,
+    status: None
+    }

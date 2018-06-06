@@ -13,7 +13,7 @@ Mage Spells
 |----|-----------|-----|------------------------------------------------|-----|
 | Lv | Name      | Use | Description                                    | En. |
 |----|-----------|-----|------------------------------------------------|-----|
-| 1  | Bad Air   | B   | Enemy group (slot) disabled by miasma.         | Y   |
+| 1  | Kanito    | B   | Enemy group (slot) disabled by miasma.         | Y   |
 |    |           |     | Direct dmg doubled if hit.                     |     |
 | 1  | Halito    | B   | 1-8 dmg to one enemy (flame)                   | Y   |
 | 1  | Dumapic   | C   | Show auto map                                  | N   |
