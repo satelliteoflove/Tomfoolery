@@ -9,7 +9,7 @@ melee:
     }
 kanito:
     {
-    effect_name: miasma,
+    effect_name: Kanito,
     affname: stinking,
     suffname: stench,
     htext: Enemy group (slot) disabled by miasma. Direct dmg doubled if hit.,
@@ -24,7 +24,7 @@ kanito:
     }
 halito:
     {
-    effect_name: flame,
+    effect_name: Halito,
     affname: hot,
     suffname: flame,
     htext: 1-8 dmg to one enemy.,
@@ -34,6 +34,36 @@ halito:
     mindmg: 1,
     maxdmg: 8,
     duration: 5,
+    eff_range: 0,
+    status: None
+    }
+dumapic:
+    {
+    effect_name: Dumapic,
+    affname: seeing,
+    suffname: seen,
+    htext: Displays explored portion of current level to player.,
+    stat: None,
+    element: physical,
+    scope: notarget,
+    mindmg: 0,
+    maxdmg: 0,
+    duration: 1,
+    eff_range: 0,
+    status: None
+    }
+mogref:
+    {
+    effect_name: Mogref,
+    affname: seeing,
+    suffname: seen,
+    htext: Displays explored portion of current level to player.,
+    stat: None,
+    element: physical,
+    scope: notarget,
+    mindmg: 0,
+    maxdmg: 0,
+    duration: 1,
     eff_range: 0,
     status: None
     }

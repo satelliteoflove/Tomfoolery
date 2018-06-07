@@ -7,7 +7,7 @@ class Effect(object):
             eff_range, status):
         """Define function of an Effect object.
 
-        :scope: onemob, onegroup, onerow, allmobs
+        :scope: onemob, onegroup, onerow, allmobs, notarget
         :strength: base effect strength
         :duration: base effect duration in turns
         :element: physical, fire, water, earth, air, poison, life

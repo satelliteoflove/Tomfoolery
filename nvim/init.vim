@@ -50,9 +50,6 @@ if exists('+colorcolumn')
 
 filetype plugin indent on
 
-" enable omni completion
-" set omnifunc=syntaxcomplete#Complete
-
 
 " set format to UNIX to avoid conversion issues with github
 set fileformat=unix
@@ -71,17 +68,39 @@ function! TwiddleCase(str)
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
+" Always show status bar
+set laststatus=2
 
+" Let plugins show effects after 500ms, not 4s
+set updatetime=500
+
+" Doesn't seem to work in nvim?
 "call togglebg#map("<F5>")
+
+" Change autocomplete behavior
+set completeopt=menuone,preview,noinsert
 
 call plug#begin()
 Plug 'roxma/nvim-completion-manager'
+" Code snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+" Tab completion
 Plug 'ervandew/supertab'
+" Color themes
 Plug 'flazz/vim-colorschemes'
+" Like a TOC for code
 Plug 'vim-scripts/taglist.vim'
+" Cross-file search and replace
+Plug 'brooth/far.vim'
+" Status bar mods
+Plug 'bling/vim-airline'
+Plug 'airblade/vim-gitgutter'
+Plug 'python-mode/python-mode', {'branch': 'develop'}
 call plug#end()
+
+" Let vim-gitgutter work better with large files
+let g:gitgutter_max_signs=10000
 
 " set the color scheme
 if has('gui_running')
