@@ -11,7 +11,6 @@ import characters.pc
 import characters.config
 import party
 from operator import attrgetter
-from effects import effect
 
 pp = pprint.PrettyPrinter()
 

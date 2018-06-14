@@ -2,7 +2,7 @@ from numpy import random
 from uuid import uuid4
 from . import config
 import collections
-from ..effects import effect
+from ...effect import effect
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
@@ -39,17 +39,21 @@ class Character(object):
         self.action_list = {}
 
 
-    def build_action(self, action_data):
+    def build_action(self):
         """Create "action" object from a given effect and "append" it to the
         self.action_list dictionary.
 
-        :action_data: input config. element, duration, etc.
+        :self.effect_list: input config. element, duration, etc.
         :returns: Effect object.
 
         """
-        action = effect.Effect(action_data["scope"], action_data["scope"],
-                action_data["duration"], action_data["element"],
-                action_data["atk_range"])
+
+        with open(os.path.dirname(__file__) +
+                  "../effects/effect_list.yaml", 'r') as effect_list_raw:
+            effect_list = yaml.load(effect_list_raw.read())
+
+        action = effect.Effect(effect_list["melee"]["scope"],effect_list["melee"]["duration"],
+        effect_list["melee"]["element"],effect_list["melee"]["atk_range"])
         return action
 
     def set_class_AC(self):
