@@ -1,7 +1,6 @@
-import characters
 from numpy import random
 import collections
-import items
+import actors.items
 
 class Mob(object):
     def __init__(self, mob_list, type_name, level):

@@ -1,3 +1,0 @@
-miasma: { spellname: Miasma, affname: miasma, suffname: miasma, htext: Chance to render unconscious, stat: alertness }
-fire: { spellname: Fire, affname: hot, suffname: heat, htext: Burn one enemy for 1-8dmg., stat: HP, minval: 1, maxval: 8, duration: 1, element: fire }
-    

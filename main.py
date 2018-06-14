@@ -1,12 +1,6 @@
 import struct
 import readline
-from numpy import random
 import collections
-import yaml
-import pprint
-import items.weapon
-import items.config
-import party.party
 import dm
 
 

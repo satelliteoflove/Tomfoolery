@@ -2,7 +2,7 @@ from numpy import random
 from uuid import uuid4
 from . import config
 import collections
-from ...effect import effect
+from actors.items.effects import effect
 
 class Character(object):
     """Common base class for all PCs and NPCs."""

@@ -1,15 +1,15 @@
-import mobs.mobs
-import mobs.mobgroup
-from mobs import mobs
-from mobs import mobgroup
+import actors.mobs
+import actors.mobgroup
+#from mobs import mobs
+#from mobs import mobgroup
 import world.world
 import world.config
 import yaml
 import pprint
 import os.path
-import characters.pc
-import characters.config
-import party
+import actors.pc
+import actors.config
+import party.party
 from operator import attrgetter
 
 pp = pprint.PrettyPrinter()
@@ -27,11 +27,11 @@ class Dm(object):
         self.carry_over = 0
         # Load object templates
         with open(os.path.dirname(__file__) +
-                  "/mobs/moblist.yaml", 'r') as self.mob_list_raw:
+                  "/actors/moblist.yaml", 'r') as self.mob_list_raw:
             self.mob_list = yaml.load(self.mob_list_raw.read())
 
         with open(os.path.dirname(__file__) +
-                  "/effects/effect_list.yaml", 'r') as self.effect_list_raw:
+                  "/actors/items/effects/effect_list.yaml", 'r') as self.effect_list_raw:
             self.effect_list = yaml.load(self.effect_list_raw.read())
 
         self.current_pc_party = party.party.Party()
@@ -60,7 +60,7 @@ class Dm(object):
 
     def make_pc(self):
         """Create Player Character and run through generation."""
-        new_player = characters.pc.Character()
+        new_player = actors.pc.Character()
 
     def create_world(self, world_config, dungeon_config, level_config):
         world1 = world.world.World(world_config,
@@ -93,7 +93,8 @@ class Dm(object):
 
     def monster_encounter(self):
         strength = len(self.current_pc_party.members) * MOBSTRENGTH
-        self.current_mobgroup = mobgroup.MobGroup(self.mob_list, strength)
+        self.current_mobgroup = actors.mobgroup.MobGroup(self.mob_list,
+                strength)
         self.current_mobgroup.list_members()
 
         if self.current_mobgroup.check_friendly():
@@ -103,13 +104,13 @@ class Dm(object):
             self.roll_for_initiative(self.current_pc_party.members,
                                      self.current_mobgroup.members)
             #create a list of actors, sort by initiative.
-            actors = []
+            combatants = []
             for actor in self.current_pc_party.members:
-                actors.append(actor)
+                combatants.append(actor)
             for actor in self.current_mobgroup.members:
-                actors.append(actor)
-            actors.sort(key = attrgetter('initiative'))
-            for actor in actors:
+                combatants.append(actor)
+            combatants.sort(key = attrgetter('initiative'))
+            for actor in combatants:
                 print(actor.name + " init = " + str(actor.initiative) + ".")
                 if actor.type:
                     pass
@@ -131,6 +132,6 @@ class Dm(object):
         if move[0] == "enc":
             self.monster_encounter()
         elif move[0] == "mkpc":
-            self.current_pc_party.add_char(characters.pc.Character())
+            self.current_pc_party.add_char(actors.pc.Character())
         else:
             print("I have no idea what you're trying to do.")
