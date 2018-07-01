@@ -1,2 +1,21 @@
-* create "dagger" item with "stab" action which pulls in "melee" effect.
+TODO:
+Ant must have and equip a "pincer" item and attack the character.
+
+ITEM PROPERTIES
+* common name:
+    potion/trinket/breastplate/robe/wand/sword/bow
+* weight (n)
+
+
+equipment:
+* equippable (true/false)
+* equip slot (head, hand, chest, foot)
+* cursed (true/false)
+* curse condition (alignment
+
+weapon:
+* dmg type (blunt, cutting, piercing, )
+* dmg amount (1-2)
+
+armor:
 * 

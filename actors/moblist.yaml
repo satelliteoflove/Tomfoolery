@@ -42,16 +42,6 @@ ant:    {
         level_min: 1,
         level_max: 1,
         alignment: neutral,
-        attack_a_name: bite,
-        attack_a_effect: melee,
-        attack_a_dmg: (1,1),
-        attack_a_scope: 1,
-        attack_a_duration: 1,
-        attack_a_range: 1,
-        attack_b_name: strike,
-        attack_b_effect: melee,
-        attack_b_dmg: (1,2),
-        attack_s_name: none,
-        attack_s_effect: none,
+        attack_a: pincer,
         spells: none
         }

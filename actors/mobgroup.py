@@ -8,7 +8,7 @@ class MobGroup(object):
         self.remaining_weight = max_weight
         self.mob_list = mob_list
         while self.remaining_weight > 0:
-            newmob = mobs.Mob(self.mob_list,"goblin",random.randint(1,3))
+            newmob = mobs.Mob(self.mob_list,"ant",random.randint(1,3))
             self.members.append(newmob)
             self.remaining_weight -= newmob.weight
 

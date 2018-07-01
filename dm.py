@@ -1,7 +1,5 @@
 import actors.mobs
 import actors.mobgroup
-#from mobs import mobs
-#from mobs import mobgroup
 import world.world
 import world.config
 import yaml
@@ -31,8 +29,8 @@ class Dm(object):
             self.mob_list = yaml.load(self.mob_list_raw.read())
 
         with open(os.path.dirname(__file__) +
-                  "/actors/items/effects/effect_list.yaml", 'r') as self.effect_list_raw:
-            self.effect_list = yaml.load(self.effect_list_raw.read())
+                "/actors/items/item_list.yaml", 'r') as self.item_config_raw:
+            self.item_config = yaml.load(self.item_config_raw.read())
 
         self.current_pc_party = party.party.Party()
         # print(self.effect_list)
@@ -95,7 +93,7 @@ class Dm(object):
         strength = len(self.current_pc_party.members) * MOBSTRENGTH
         self.current_mobgroup = actors.mobgroup.MobGroup(self.mob_list,
                 strength)
-        self.current_mobgroup.list_members()
+#        self.current_mobgroup.list_members()
 
         if self.current_mobgroup.check_friendly():
             print("They are friendly.")
@@ -113,8 +111,16 @@ class Dm(object):
             for actor in combatants:
                 print(actor.name + " init = " + str(actor.initiative) + ".")
                 if actor.type:
-                    pass
+                    print(actor.name + " has a type of: " + actor.type + ".")
 
+    def make_item(self, config):
+        """Make an item from the list.
+
+        :config: TODO
+        :returns: TODO
+
+        """
+        pass
 
     def give_item(self, player, item):
         pass

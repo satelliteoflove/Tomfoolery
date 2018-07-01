@@ -13,6 +13,9 @@ class Item(object):
         self.equippable = itemtype["equippable"]
         self.break_chance = itemtype["break_chance"]
 
+    def bind_effect(self, effect):
+        pass
+
     def bind_affix(self, effect):
         self.affix_effect = effect
 

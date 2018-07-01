@@ -33,10 +33,18 @@ class Character(object):
         self.set_class_AC() #As in characters.md - AD&D rules for AC/THAC0.
         self.set_THAC0()
         self.inventory = []
+        self.head_item = None
+        self.body_main_item = None #Torso or main body
+        self.body_limbs_item = None #Arms/Legs/Limbs
+        self.body1_item = None #Tails/Hands/Horns
+        self.body2_item = None
+        self.body3_item = None
+        self.body4_item = None
+        self.body5_item = None
         self.position = (0, 0)
-        self.equipment = []
         self.set_AP()
         self.action_list = {}
+        self.type = False
 
 
     def build_action(self):
@@ -55,6 +63,16 @@ class Character(object):
         action = effect.Effect(effect_list["melee"]["scope"],effect_list["melee"]["duration"],
         effect_list["melee"]["element"],effect_list["melee"]["atk_range"])
         return action
+
+    def set_body_main_item(self, item):
+        """TODO: Docstring for set_body_main_item.
+
+        :item: TODO
+        :returns: TODO
+
+        """
+        if item["slot"] == "main":
+            self.body_main_item = item
 
     def set_class_AC(self):
         """Set character's class-based AC "base"."""
@@ -376,18 +394,20 @@ class Character(object):
             print("You aren't carrying anything.")
 
 
-    def get(self, item_to_get):
-        temp_item_list = []
-        for item in rooms[self.currentRoom]["items"]:
-            temp_item_list.append(item.name)
-        if "items" in rooms[self.currentRoom] and item_to_get in temp_item_list:
-            for item in rooms[self.currentRoom]["items"]:
-                if item_to_get == item.name:
-                    self.inventory.append(item)
-                    print(item.name + " taken.")
-                    rooms[self.currentRoom]["items"].remove(item)
+    def get_item(self, items_to_get):
+        """PC gets an item
+
+        :items_to_get: list of items passed to PC
+        :returns: None
+
+        """
+        for item in items_to_get:
+            if item == item.name:
+                self.inventory.append(item)
+                print(item.name + " taken.")
+                rooms[self.currentRoom]["items"].remove(item)
         else:
-            print("You can't take " + item_to_get + ".")
+            print("You can't take " + item + ".")
 
     def drop(self, item_to_drop):
         temp_item_list = []

@@ -1,0 +1,14 @@
+dagger: {
+        generic_name: dagger,
+        weight: 1,
+        equippable: True,
+        break_chance: 0.0,
+        effect: melee
+        }
+pincer: {
+        generic_name: bite,
+        weight: 0,
+        equippable: True,
+        break_chance: 0.0,
+        effect: melee
+        }

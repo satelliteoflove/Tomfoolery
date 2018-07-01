@@ -18,7 +18,7 @@ class Mob(object):
         self.alignment = mob_list[type_name]["alignment"]
         if self.AP < 1:
             self.AP = 1
-        self.show_stats()
+#        self.show_stats()
 
     def roll_init(self):
         self.initiative = random.randint(1,100)
