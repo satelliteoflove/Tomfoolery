@@ -5,12 +5,18 @@ Item drops:
     a. Item drops will be level-based, rather than monster-based.  Thus, each
     level of each tower will have a static drop list and all mobs on that
     level have the potential to drop items from that list.
-    b. ALL items will be "unidentified" upon pickup. Items can be identified
-    either by a character with the Bishop class or by the merchant in town.
+    b. All lootable items will initially be "unidentified". Items can be
+    identified either by a character with the Bishop class or by the merchant
+    in town.
+
 Item properties:
-    Description - Long description (if you investigate the item)
-    Name - Long name (if you investigate the item)
-    Short_name - Displayed in the character's inventory listing
+    * Description - Long description.
+    * Name - Item name displayed if item is identified.  "Potion of Healing"
+    vs. "Potion".
+    * Generic Name - Name displayed if item specifics are unknown.  I.E.,
+    "sword" instead of "short sword" or "sword of ice".
+    * Weight - integer value
+
 Notes:
     Once acquired, items occupy an inventory slot until they are used or
     destroyed.  Items can be deposited in town at the appropriate shop (see

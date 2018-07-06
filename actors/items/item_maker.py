@@ -1,12 +1,25 @@
-def make_new_item():
-    import yaml
+import yaml
 
-    item = {}
-    item['generic_name'] = input("Generic Item Name:")
-    item['weight'] = input("Item weight:")
-    item['equip_slot'] = input("What slot can it be equipped in?")
-    item['break_chance'] = input("What is the chance of breaking on use?")
+def menu():
 
-    for k,v in item.items():
-        print(k + " = " + v)
+    print("Please select a trait to edit: \n\n 
+    (1) Generic Item Traits\n
+    (2) Wearable Item Traits\n
+    (3) Weapon Item Traits\n
+    (4) Usable Item Traits\n
+    (5) Special Item Traits"
+    choice = input()
 
+def generic_traits():
+    """Set generic item traits, such as weight or alignment, 
+    :returns: TODO
+
+    """
+    pass
+
+def wearable_traits():
+    """Set wearable item traits, such as equipment slot.
+    :returns: TODO
+
+    """
+    pass
