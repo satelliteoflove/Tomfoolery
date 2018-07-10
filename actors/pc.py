@@ -33,14 +33,14 @@ class Character(object):
         self.set_class_AC() #As in characters.md - AD&D rules for AC/THAC0.
         self.set_THAC0()
         self.inventory = []
-        self.head_item = None
-        self.body_main_item = None #Torso or main body
-        self.body_limbs_item = None #Arms/Legs/Limbs
-        self.body1_item = None #Tails/Hands/Horns
-        self.body2_item = None
-        self.body3_item = None
-        self.body4_item = None
-        self.body5_item = None
+        self.slots = 6 #Eventually equipment will go to a specific slot.
+        #self.head_item = None
+        #self.torso_item = None #Torso or main body
+        #self.limb1_item = None #Arms/Legs
+        #self.limb2_item = None
+        #self.limb3_item = None
+        #self.limb4_item = None
+        #self.body5_item = None
         self.position = (0, 0)
         self.set_AP()
         self.action_list = {}

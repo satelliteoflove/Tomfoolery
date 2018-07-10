@@ -1,14 +1,13 @@
 dagger: {
+        description: "This is just a dagger.",
+        name: dagger,
         generic_name: dagger,
         weight: 1,
-        equippable: True,
-        break_chance: 0.0,
-        effect: melee
-        }
-pincer: {
-        generic_name: bite,
-        weight: 0,
-        equippable: True,
-        break_chance: 0.0,
-        effect: melee
+        slot: 1,
+        min_dmg: 1,
+        max_dmg: 3,
+        element: physical,
+        attacks: 1,
+        range: 1,
+        scope: single
         }
