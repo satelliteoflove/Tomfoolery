@@ -133,9 +133,12 @@ class Dm(object):
     def give_item(self):
 
         while len(self.item_queue) > 0:
-            print("Who should receive the item?")
-            for actor in self.current_pc_party.members:
-                print(actor.name)
+            if len(self.current_pc_party.members) > 0:
+                print("Who should receive the item?")
+                for actor in self.current_pc_party.members:
+                    print(actor.name)
+            else:
+                break
             choice = input()
 
             for actor in self.current_pc_party.members:
@@ -169,7 +172,10 @@ class Dm(object):
         """Lists active player characters and views information about selected
         player character.
         """
-        pass
+        print("Please choose a player to view.")
+        if len(self.current_pc_party.members) > 0:
+            for actor in self.current_pc_party.members:
+                print(actor.name)
 
 
     def destroy_item(self, player, item):
