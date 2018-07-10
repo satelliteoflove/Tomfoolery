@@ -96,11 +96,14 @@ Plug 'brooth/far.vim'
 " Status bar mods
 Plug 'bling/vim-airline'
 Plug 'airblade/vim-gitgutter'
-Plug 'python-mode/python-mode', {'branch': 'develop'}
+" Plug 'python-mode/python-mode', {'branch': 'develop'}
 call plug#end()
 
 " Let vim-gitgutter work better with large files
 let g:gitgutter_max_signs=10000
+
+" Use Python 3 syntax checking for python mode
+let g:pymode_python = 'python3'
 
 " set the color scheme
 if has('gui_running')
