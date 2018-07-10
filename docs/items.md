@@ -5,7 +5,8 @@ Item drops:
     a. Item drops will be level-based, rather than monster-based.  Thus, each
     level of each tower will have a static drop list and all mobs on that
     level have the potential to drop items from that list.
-    b. All lootable items will initially be "unidentified". Items can be
+    b. Some specific efents will drop specific items.
+    c. All lootable items will initially be "unidentified". Items can be
     identified either by a character with the Bishop class or by the merchant
     in town.
 
@@ -16,6 +17,13 @@ Item properties:
     * Generic Name - Name displayed if item specifics are unknown.  I.E.,
     "sword" instead of "short sword" or "sword of ice".
     * Weight - integer value
+    * Minimum/Maximum Damage
+    * Slot which item can be equipped in.
+    * Element (fire/water/physical, etc.)
+    * Number of attacks
+    * Range (front row, back row, both)
+    * Scope (one mob, one mob group, one row, all mobs)
+
 
 Notes:
     Once acquired, items occupy an inventory slot until they are used or
