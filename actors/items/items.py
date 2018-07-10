@@ -8,7 +8,7 @@ class Item(object):
         self.name = config["name"]
         self.generic_name = config["generic_name"]
         self.weight = config["weight"]
-        self.slot = config["slot"]
+        self.allowed_slots = config["allowed_slots"]
         self.min_dmg = config["min_dmg"]
         self.max_dmg = config["max_dmg"]
         self.element = config["element"]

@@ -33,46 +33,27 @@ class Character(object):
         self.set_class_AC() #As in characters.md - AD&D rules for AC/THAC0.
         self.set_THAC0()
         self.inventory = []
-        self.slots = 6 #Eventually equipment will go to a specific slot.
-        #self.head_item = None
-        #self.torso_item = None #Torso or main body
-        #self.limb1_item = None #Arms/Legs
-        #self.limb2_item = None
-        #self.limb3_item = None
-        #self.limb4_item = None
-        #self.body5_item = None
+        self.equipment = {"arm_head":0, "arm_body":0, "arm_legs":0,
+                "arm_arms":0, "arm_hands":0, "arm_feet":0, "arm_accessory":0,
+                "lhand": 0, "rhand": 0}
         self.position = (0, 0)
         self.set_AP()
         self.action_list = {}
         self.type = False
 
 
-    def build_action(self):
-        """Create "action" object from a given effect and "append" it to the
-        self.action_list dictionary.
-
-        :self.effect_list: input config. element, duration, etc.
-        :returns: Effect object.
-
+    def equip_item(self):
+        """Equip item from inventory.
         """
+        print("Choose a slot to equip.")
+        for k in self.equipment.keys():
+            print(k)
+        choice = input()
 
-        with open(os.path.dirname(__file__) +
-                  "../effects/effect_list.yaml", 'r') as effect_list_raw:
-            effect_list = yaml.load(effect_list_raw.read())
-
-        action = effect.Effect(effect_list["melee"]["scope"],effect_list["melee"]["duration"],
-        effect_list["melee"]["element"],effect_list["melee"]["atk_range"])
-        return action
-
-    def set_body_main_item(self, item):
-        """TODO: Docstring for set_body_main_item.
-
-        :item: TODO
-        :returns: TODO
-
-        """
-        if item["slot"] == "main":
-            self.body_main_item = item
+        if self.equipment[choice]:
+            print("Equip which item?")
+            #TODO: change self.inventory to a dictionary
+#            for item in self.inventory
 
     def set_class_AC(self):
         """Set character's class-based AC "base"."""

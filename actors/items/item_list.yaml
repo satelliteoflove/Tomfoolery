@@ -3,7 +3,7 @@ dagger: {
         name: dagger,
         generic_name: dagger,
         weight: 1,
-        slot: 1,
+        allowed_slots: ["lhand", "rhand"],
         min_dmg: 1,
         max_dmg: 3,
         element: physical,
