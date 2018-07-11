@@ -32,7 +32,7 @@ class Character(object):
         self.set_initial_HP()
         self.set_class_AC() #As in characters.md - AD&D rules for AC/THAC0.
         self.set_THAC0()
-        self.inventory = []
+        self.inventory = {}
         self.equipment = {"arm_head":0, "arm_body":0, "arm_legs":0,
                 "arm_arms":0, "arm_hands":0, "arm_feet":0, "arm_accessory":0,
                 "lhand": 0, "rhand": 0}
@@ -41,6 +41,16 @@ class Character(object):
         self.action_list = {}
         self.type = False
 
+    def show_inventory(self):
+        # list items, none if empty
+        if len(self.inventory) > 0:
+            for item in self.inventory.values():
+                if item.is_equipped == True:
+                    print("#" + item.name)
+                else:
+                    print(item.name)
+        else:
+            print("You aren't carrying anything.")
 
     def equip_item(self):
         """Equip item from inventory.
@@ -52,8 +62,9 @@ class Character(object):
 
         if self.equipment[choice]:
             print("Equip which item?")
-            #TODO: change self.inventory to a dictionary
-#            for item in self.inventory
+            for item in self.inventory.values():
+                for slot in item.allowed_slots:
+                    if slot 
 
     def set_class_AC(self):
         """Set character's class-based AC "base"."""
@@ -362,18 +373,6 @@ class Character(object):
 
     def show_stats(self):
         print(collections.OrderedDict(vars(self)))
-
-    def show_inventory(self):
-        # list items, none if empty
-        if len(self.inventory) > 0:
-            for item in self.inventory:
-                if item.is_equipped == True:
-                    print("#" + item.name)
-                else:
-                    print(item.name)
-        else:
-            print("You aren't carrying anything.")
-
 
     def get_item(self, items_to_get):
         """PC gets an item

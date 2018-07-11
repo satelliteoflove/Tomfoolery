@@ -15,3 +15,4 @@ class Item(object):
         self.attacks = config["attacks"]
         self.range = config["range"]
         self.scope = config["scope"]
+        self.is_equipped = False
