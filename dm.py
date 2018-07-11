@@ -97,17 +97,16 @@ class Dm(object):
         strength = len(self.current_pc_party.members) * MOBSTRENGTH
         self.current_mobgroup = actors.mobgroup.MobGroup(self.mob_list,
                 strength)
-#        self.current_mobgroup.list_members()
 
         if self.current_mobgroup.check_friendly():
             print("They are friendly.")
         else:
             print("They attack!")
-            self.roll_for_initiative(self.current_pc_party.members,
+            self.roll_for_initiative(self.current_pc_party.members.values(),
                                      self.current_mobgroup.members)
             #create a list of actors, sort by initiative.
             combatants = []
-            for actor in self.current_pc_party.members:
+            for actor in self.current_pc_party.members.values():
                 combatants.append(actor)
             for actor in self.current_mobgroup.members:
                 combatants.append(actor)
@@ -135,13 +134,13 @@ class Dm(object):
         while len(self.item_queue) > 0:
             if len(self.current_pc_party.members) > 0:
                 print("Who should receive the item?")
-                for actor in self.current_pc_party.members:
+                for actor in self.current_pc_party.members.values():
                     print(actor.name)
             else:
                 break
             choice = input()
 
-            for actor in self.current_pc_party.members:
+            for actor in self.current_pc_party.members.values():
                 if choice == actor.name:
                     recipient = actor
                     print(recipient.name + " will get the item.")
@@ -154,7 +153,8 @@ class Dm(object):
             choice = input()
 
             if self.item_queue[choice]:
-                recipient.inventory.append(self.item_queue[choice])
+                k = self.item_queue[choice]
+                recipient.get_item(k)
                 self.item_queue.__delitem__(choice)
             else:
                 print("That item doesn't exist.")
@@ -168,20 +168,6 @@ class Dm(object):
                     print("Clearing the queue.")
                     self.item_queue.clear()
 
-    def view_player(self):
-        """Lists active player characters and views information about selected
-        player character.
-        """
-        print("Please choose a player to view.")
-        if len(self.current_pc_party.members) > 0:
-            for actor in self.current_pc_party.members:
-                print(actor.name)
-
-
-    def destroy_item(self, player, item):
-        """Drop or otherwise destroy item carried by a player."""
-        pass
-
     def show_inventory(self):
         """Show what a specific player is carrying, including equipped items.
         :player: Must be from the dm's current_pc_party.
@@ -192,6 +178,21 @@ class Dm(object):
         print(player.name + " is carrying the following:")
         for item in player.inventory:
             print(item.name)
+
+    def view_player(self):
+        """Lists active player characters and views information about selected
+        player character.
+        """
+        print("Please choose a player to view.")
+        if len(self.current_pc_party.members) > 0:
+            for actor in self.current_pc_party.members.values():
+                print(actor.name)
+            choice = input()
+            current_player = self.current_pc_party.members[choice]
+
+    def destroy_item(self, player, item):
+        """Drop or otherwise destroy item carried by a player."""
+        pass
 
     def parse_command(self, move):
         """Take string of user input and parse into action."""

@@ -33,8 +33,8 @@ class Character(object):
         self.set_class_AC() #As in characters.md - AD&D rules for AC/THAC0.
         self.set_THAC0()
         self.inventory = {}
-        self.equipment = {"arm_head":0, "arm_body":0, "arm_legs":0,
-                "arm_arms":0, "arm_hands":0, "arm_feet":0, "arm_accessory":0,
+        self.equipment = {"head":0, "body":0, "legs":0,
+                "arms":0, "hands":0, "feet":0, "accessory":0,
                 "lhand": 0, "rhand": 0}
         self.position = (0, 0)
         self.set_AP()
@@ -62,9 +62,7 @@ class Character(object):
 
         if self.equipment[choice]:
             print("Equip which item?")
-            for item in self.inventory.values():
-                for slot in item.allowed_slots:
-                    if slot 
+#            for item in self.inventory.
 
     def set_class_AC(self):
         """Set character's class-based AC "base"."""
@@ -374,20 +372,25 @@ class Character(object):
     def show_stats(self):
         print(collections.OrderedDict(vars(self)))
 
-    def get_item(self, items_to_get):
+    def get_item(self, item):
         """PC gets an item
-
-        :items_to_get: list of items passed to PC
-        :returns: None
-
         """
-        for item in items_to_get:
-            if item == item.name:
-                self.inventory.append(item)
-                print(item.name + " taken.")
-                rooms[self.currentRoom]["items"].remove(item)
+        print("inside get_item")
+        print("item given is " + item.name)
+        print("counting similar items")
+
+        carried = 0
+        for i in self.inventory.values():
+            if i.name == item.name:
+                carried += 1
+        print("already carried = ", carried)
+
+        if item.name in self.inventory.keys():
+            self.inventory[item.name + str((carried + 1))] = item
+            print(item.name + " taken.")
         else:
-            print("You can't take " + item + ".")
+            self.inventory[item.name] = item
+            print(item.name + " taken.")
 
     def drop(self, item_to_drop):
         temp_item_list = []
