@@ -3,7 +3,16 @@ import collections
 import actors.items
 
 class Mob(object):
+    """
+    """
     def __init__(self, mob_list, type_name, level):
+        """
+
+        Args:
+            mob_list:
+            type_name:
+            level:
+        """
         self.type_name = mob_list[type_name]["typename"]
         self.type = mob_list[type_name]["type"]
         self.name = self.type_name
@@ -21,17 +30,33 @@ class Mob(object):
 #        self.show_stats()
 
     def roll_init(self):
+        """
+
+        """
         self.initiative = random.randint(1,100)
 
     def show_stats(self):
+        """
+
+        """
         print("Stats of monster '%s':" %self.name)
         print(vars(self))
 
     def take_dmg(self, damage):
+        """
+
+        Args:
+            damage:
+        """
         self.HP -= damage
         print("I, " + self.name + ", took " + str(damage) + " damage.")
 
     def attack(self, target):
+        """
+
+        Args:
+            target:
+        """
         dmg = self.AP + 1
         target.take_dmg(dmg)
         print("I am attacking " + target.name + " for " + str(dmg) +
