@@ -148,6 +148,17 @@ class Dm(object):
                     print("Clearing the queue.")
                     self.item_queue.clear()
 
+    def player_equip(self):
+        """Picks equipment for specific player character."""
+        print("Which character do you want to equip?")
+        for actor in self.current_pc_party.members.values():
+            print(actor.name)
+        choice = input()
+        if self.current_pc_party.members[choice]:
+            self.current_pc_party.members[choice].equip()
+        else:
+            print("That character doesn't exist.")
+
     def view_player(self):
         """Lists active player characters and views information about selected
         player character.
@@ -176,5 +187,7 @@ class Dm(object):
             self.give_item()
         elif move[0] == "view":
             self.view_player()
+        elif move[0] == "equip":
+            self.player_equip()
         else:
             print("I have no idea what you're trying to do.")
