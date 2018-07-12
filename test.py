@@ -1,4 +1,7 @@
 def menu():
+    """
+
+    """
     print("Dungeon! \n 1. Create PC \n 2. Encounter Mobs")
     choice = input()
 
