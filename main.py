@@ -7,8 +7,8 @@ the_dm = dm.Dm()
 def main():
     """Main loop.
 
-    :returns: None
-
+    Returns:
+        None
     """
 
     while True:
