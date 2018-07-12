@@ -40,22 +40,6 @@ class Dm(object):
         # print(self.effect_list)
         # print(self.mob_list)
 
-    def get_tile_status(self, tile):
-        # return getattr(tile, status)
-        pass
-
-    def set_tile_status(self, tile):
-        # setattr(tile, status, value)
-        pass
-
-    def get_party_status(self, party):
-        # return getattr(party, status)
-        pass
-
-    def set_party_status(self, party):
-        # setattr(party, status, value)
-        pass
-
     def make_npc(self):
         """Create Non-Player Character, taking input file."""
         pass
@@ -111,13 +95,9 @@ class Dm(object):
             for actor in self.current_mobgroup.members:
                 combatants.append(actor)
             combatants.sort(key = attrgetter('initiative'))
-#            for actor in combatants:
-#                print(actor.name + " init = " + str(actor.initiative) + ".")
-#                if actor.type:
-#                    print(actor.name + " has a type of: " + actor.type + ".")
-#                    pass
 
     def make_item(self, name):
+        """Create item from named template and place in dm's temporary queue."""
         if self.item_config[name]:
             new_item = items.Item(self.item_config[name])
             self.item_queue[new_item.name +
@@ -168,17 +148,6 @@ class Dm(object):
                     print("Clearing the queue.")
                     self.item_queue.clear()
 
-    def show_inventory(self):
-        """Show what a specific player is carrying, including equipped items.
-        :player: Must be from the dm's current_pc_party.
-        """
-        print("Which player's inventory do you want to see?")
-        for actor in current_pc_party.members:
-            print(actor.name)
-        print(player.name + " is carrying the following:")
-        for item in player.inventory:
-            print(item.name)
-
     def view_player(self):
         """Lists active player characters and views information about selected
         player character.
@@ -189,6 +158,7 @@ class Dm(object):
                 print(actor.name)
             choice = input()
             current_player = self.current_pc_party.members[choice]
+            choice.
 
     def destroy_item(self, player, item):
         """Drop or otherwise destroy item carried by a player."""
