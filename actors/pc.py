@@ -412,6 +412,8 @@ class Character(object):
             print("Equip where?")
             print(self.equipment.keys())
             choice2 = input()
+#TODO: verify that item can be equipped in selected slot, then "equip" it.
+#            if item_to_equip.
 
     def add_xp(self, xp):
         #Generates a series of 28 multipliers to be used when calculating xp
