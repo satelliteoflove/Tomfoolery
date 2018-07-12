@@ -51,8 +51,7 @@ class Character(object):
             print("You aren't carrying anything.")
 
     def equip_item(self):
-        """Equip item from inventory.
-        """
+        """Equip item from inventory."""
         print("Choose a slot to equip.")
         for k in self.equipment.keys():
             print(k)
@@ -409,6 +408,7 @@ class Character(object):
             print(i.name)
         choice = input()
         if choice in self.inventory.keys():
+            item_to_equip = self.inventory[choice]
             print("Equip where?")
             print(self.equipment.keys())
             choice2 = input()
