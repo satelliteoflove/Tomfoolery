@@ -63,8 +63,21 @@ RACE_MODIFIERS = {
 }
 
 class CharacterClass(object):
+    """
+    """
     def __init__(self, name, strength=1, intelligence=1, wisdom=1, charisma=1,
         constitution=1, dexterity=1):
+        """
+
+        Args:
+            name:
+            strength:
+            intelligence:
+            wisdom:
+            charisma:
+            constitution:
+            dexterity:
+        """
         self.name = name
         self.strength = strength
         self.intelligence = intelligence
@@ -76,9 +89,19 @@ class CharacterClass(object):
         self.level = 0
 
     def add_experience(self, exp):
+        """
+
+        Args:
+            exp:
+        """
         self.experience += (exp * self.intelligence)
 
     def __str__(self):
+        """
+
+        Returns:
+
+        """
         return (
             'name: {:<14} '.format(self.name) +
             'str: {:<5} int: {:<5} wis: {:<5} chr: {:<5} con: {:<5} dex: {:<5}'.format(
@@ -92,6 +115,11 @@ class CharacterClass(object):
         )
 
 def generate_character_classes():
+    """
+
+    Returns:
+
+    """
     classes = []
     for race_name in RACE_MODIFIERS.keys():
         for class_name in CLASS_MODIFIERS.keys():
