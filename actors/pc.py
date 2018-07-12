@@ -405,15 +405,17 @@ class Character(object):
         else:
             print("Drop what, again?")
 
-    def equip(self, item_to_equip):
-        temp_item_list = []
-        for item in self.inventory:
-            temp_item_list.append(item.name)
-        if item_to_equip in temp_item_list:
-            for item in self.inventory:
-                if item_to_equip == item.name and item.can_be_equipped is True:
-                    item.is_equipped = True
-                    print(item.name + " equipped.")
+    def equip(self):
+        print("Which item do you want to equip?")
+        for i in self.inventory.values():
+            print(i.name)
+        choice = input()
+        if choice in self.inventory.keys():
+            print("Equip where?")
+            for key in self.equipment.keys():
+                print key
+            choice2 = input()
+            if choice2 in i.
 
     def add_xp(self, xp):
         #Generates a series of 28 multipliers to be used when calculating xp
