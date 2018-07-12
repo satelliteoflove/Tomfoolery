@@ -1,8 +1,17 @@
 from . import dungeon
 
 class World(object):
+    """
+    """
     dungeons = []
     def __init__(self, world_config, dungeon_config, level_config):
+        """
+
+        Args:
+            world_config:
+            dungeon_config:
+            level_config:
+        """
         print("Generating the world...")
         self.dungeons = [
             dungeon.Dungeon(dungeon_config, level_config)
