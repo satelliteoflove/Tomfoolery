@@ -18,7 +18,12 @@ pp = pprint.PrettyPrinter()
 MOBSTRENGTH = 1.5
 
 class Dm(object):
+    """
+    """
     def __init__(self):
+        """
+
+        """
 #        self.create_world(world.config.WORLD_CONFIG,
 #                          world.config.DUNGEON_CONFIG,
 #                          world.config.LEVEL_CONFIG)
@@ -49,6 +54,13 @@ class Dm(object):
         new_player = actors.pc.Character()
 
     def create_world(self, world_config, dungeon_config, level_config):
+        """
+
+        Args:
+            world_config:
+            dungeon_config:
+            level_config:
+        """
         world1 = world.world.World(world_config,
                                    dungeon_config,
                                    level_config)
@@ -68,6 +80,12 @@ class Dm(object):
             return True
 
     def roll_for_initiative(self, party, mobgroup):
+        """
+
+        Args:
+            party:
+            mobgroup:
+        """
         for actor in party:
             actor.roll_init()
 #            print("initiative for " + actor.name +
@@ -78,6 +96,9 @@ class Dm(object):
 #                  " is " + str(actor.initiative) + ".") 
 
     def monster_encounter(self):
+        """
+
+        """
         strength = len(self.current_pc_party.members) * MOBSTRENGTH
         self.current_mobgroup = actors.mobgroup.MobGroup(self.mob_list,
                 strength)
@@ -110,6 +131,9 @@ class Dm(object):
             print("No item pattern matching that name exists.")
 
     def give_item(self):
+        """
+
+        """
 
         while len(self.item_queue) > 0:
             if len(self.current_pc_party.members) > 0:
