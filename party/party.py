@@ -2,6 +2,9 @@ class Party(object):
     """Class for storing characters in a group.
     """
     def __init__(self):
+        """
+
+        """
         self.xy_pos = (0,0)
         self.currentRoom = []
         self.members = {}
@@ -10,6 +13,11 @@ class Party(object):
         self.current_size = 0
 
     def add_char(self, character):
+        """
+
+        Args:
+            character:
+        """
         print("Adding member:" + character.name)
         self.members[character.name] = character
         print("Current party members:")
@@ -17,6 +25,11 @@ class Party(object):
             print(char.name)
 
     def rem_char(self, character):
+        """
+
+        Args:
+            character:
+        """
         print("Removing member:")
         for char in self.members:
             print(char.name)
