@@ -4,6 +4,12 @@ from numpy import random
 class MobGroup(object):
     """Class for storing monsters. For use during combat."""
     def __init__(self, mob_list, max_weight):
+        """
+
+        Args:
+            mob_list:
+            max_weight:
+        """
         self.members = []
         self.remaining_weight = max_weight
         self.mob_list = mob_list
@@ -13,11 +19,19 @@ class MobGroup(object):
             self.remaining_weight -= newmob.weight
 
     def list_members(self):
+        """
+
+        """
         for member in self.members:
             print("a level " + str(member.level) + " " + member.name +
                  " appears!")
 
     def check_friendly(self):
+        """
+
+        Returns:
+
+        """
         chance = 0
         for mob in self.members:
             if mob.alignment == "evil":
