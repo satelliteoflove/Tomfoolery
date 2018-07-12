@@ -158,7 +158,7 @@ class Dm(object):
                 print(actor.name)
             choice = input()
             current_player = self.current_pc_party.members[choice]
-            choice.
+            pp.pprint(current_player.return_stats())
 
     def destroy_item(self, player, item):
         """Drop or otherwise destroy item carried by a player."""

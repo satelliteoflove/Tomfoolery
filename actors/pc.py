@@ -369,8 +369,8 @@ class Character(object):
             if chamber == self.currentRoom:
                 rooms[self.currentRoom]["characters"].append(self)
 
-    def show_stats(self):
-        print(collections.OrderedDict(vars(self)))
+    def return_stats(self):
+        return collections.OrderedDict(vars(self))
 
     def get_item(self, item):
         """PC gets an item
