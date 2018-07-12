@@ -8,6 +8,7 @@ class Character(object):
     """Common base class for all PCs and NPCs."""
 
     def __init__(self):
+        """Creates a playable character."""
         self.name = self.set_name()
         self.uuid = uuid4()
         self.currentLevel = 1
@@ -44,11 +45,8 @@ class Character(object):
     def show_inventory(self):
         # list items, none if empty
         if len(self.inventory) > 0:
-            for item in self.inventory.values():
-                if item.is_equipped == True:
-                    print("#" + item.name)
-                else:
-                    print(item.name)
+            for k in self.inventory.keys():
+                print(k)
         else:
             print("You aren't carrying anything.")
 
@@ -62,7 +60,7 @@ class Character(object):
 
         if self.equipment[choice]:
             print("Equip which item?")
-#            for item in self.inventory.
+            self.show_inventory()
 
     def set_class_AC(self):
         """Set character's class-based AC "base"."""
@@ -412,10 +410,9 @@ class Character(object):
         choice = input()
         if choice in self.inventory.keys():
             print("Equip where?")
-            for key in self.equipment.keys():
-                print key
+            print(self.equipment.keys())
             choice2 = input()
-            if choice2 in i.
+            break
 
     def add_xp(self, xp):
         #Generates a series of 28 multipliers to be used when calculating xp
