@@ -1,5 +1,25 @@
-set nocompatible " no idea what this does?
-filetype off     " also no idea
+"Start plugin system.
+call plug#begin()
+Plug 'roxma/nvim-completion-manager'
+" Code snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" Tab completion
+Plug 'ervandew/supertab'
+" Color themes
+Plug 'flazz/vim-colorschemes'
+" Like a TOC for code
+Plug 'vim-scripts/taglist.vim'
+" Cross-file search and replace
+Plug 'brooth/far.vim'
+" Status bar mods
+Plug 'bling/vim-airline'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-syntastic/syntastic'
+Plug 'tmhedberg/SimpylFold'
+call plug#end()
+
+set nocompatible " Disregards backwards compatibility with vi.
 
 " enable syntax highlighting
 syntax enable
@@ -9,6 +29,9 @@ syntax on
 set number
 set relativenumber
 set foldcolumn=3
+
+" Define SimpylFold behavior.
+let g:SimpylFold_docstring_preview = 1
 
 " Know what you're editing
 set title
@@ -32,14 +55,8 @@ set cursorline
 set showmatch
 
 " set wrap margin in # of chars from the right margin
-set wrapmargin=3
+set wrapmargin=1
 set tw=80
-
-" stop automatic insertion of newline character at 80 lines
-" set tw=0
-
-" enable all Python syntax highlighting features
-let python_highlight_all = 1
 
 " Add vertical bar at 80 columns
 if exists('+colorcolumn')
@@ -49,7 +66,6 @@ if exists('+colorcolumn')
     endif
 
 filetype plugin indent on
-
 
 " set format to UNIX to avoid conversion issues with github
 set fileformat=unix
@@ -74,43 +90,33 @@ set laststatus=2
 " Let plugins show effects after 500ms, not 4s
 set updatetime=500
 
-" Doesn't seem to work in nvim?
-"call togglebg#map("<F5>")
-
 " Change autocomplete behavior
 set completeopt=menuone,preview,noinsert
 
-call plug#begin()
-Plug 'roxma/nvim-completion-manager'
-" Code snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-" Tab completion
-Plug 'ervandew/supertab'
-" Color themes
-Plug 'flazz/vim-colorschemes'
-" Like a TOC for code
-Plug 'vim-scripts/taglist.vim'
-" Cross-file search and replace
-Plug 'brooth/far.vim'
-" Status bar mods
-Plug 'bling/vim-airline'
-Plug 'airblade/vim-gitgutter'
-" Plug 'python-mode/python-mode', {'branch': 'develop'}
-call plug#end()
 
 " Let vim-gitgutter work better with large files
 let g:gitgutter_max_signs=10000
 
-" Use Python 3 syntax checking for python mode
-let g:pymode_python = 'python3'
+colorscheme zenburn
 
-" set the color scheme
-if has('gui_running')
-    set background=dark
-    colorscheme desert
-    set guifont=Monospace\ 14
-    set guioptions-=T "remove toolbar
-else
-    colorscheme zenburn
-endif
+" Turn off sounds and enable a 'visual' bell.
+set visualbell t_vb=
+au GuiEnter * set visualbell t_vb=
+
+" Clear search buffer (clears the last search highlights)
+nnoremap <F10> :let @/=""<CR>
+
+" Highlight keywords in comments like TODO, FIXME, WARNING, NOTE
+augroup highlight_keyword
+    autocmd!
+    autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO\|FIXME\|WARNING\|NOTE\|Plugin:', -1)
+augroup END
+
+" Use 'true color' in terminal
+set termguicolors
+
+" The guicursor functionality in Neovim causes problems in some terminal
+" emulators.
+set guicursor=
+" Workaround some broken plugins which set guicursor indiscriminately.
+autocmd OptionSet guicursor noautocmd set guicursor=
