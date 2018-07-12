@@ -1,6 +1,13 @@
 class Commpar(object):
+    """
+    """
 
     def parse_command(self, move):
+        """
+
+        Args:
+            move:
+        """
         if move[0] == "go":
             party1.move(move[1])
         elif move[0] == "encounter":
