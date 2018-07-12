@@ -13,10 +13,6 @@ class Character(object):
         self.uuid = uuid4()
         self.currentLevel = 1
         self.currentXP = 0
-        self.set_race()
-        self.set_sex()
-        self.set_bonusPoints()
-        self.set_class()
         # statNames is only used in a helper function to determine if a named
         # stat is legitimate. This will likely be unnecessary after input is
         # driven by something other than the command interpreter.
@@ -28,6 +24,10 @@ class Character(object):
         self.intelligence = 0
         self.piety = 0
         self.luck = 0
+        self.set_race()
+        self.set_sex()
+        self.set_bonusPoints()
+        self.set_class()
         self.assign_BonusPoints()
         self.set_xp_rate()
         self.set_initial_HP()
@@ -412,7 +412,6 @@ class Character(object):
             print("Equip where?")
             print(self.equipment.keys())
             choice2 = input()
-            break
 
     def add_xp(self, xp):
         #Generates a series of 28 multipliers to be used when calculating xp
