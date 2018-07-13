@@ -407,8 +407,9 @@ class Character(object):
         for i in self.inventory.values():
             print(i.name)
         choice = input()
-        item_to_equip = self.inventory[choice]
-        if any(item_to_equip.equip_slots.values()):
+        if choice in self.inventory.keys():
+            item_to_equip = self.inventory[choice]
+        if any(item_to_equip.equip_slots.values() == True):
             print("Equip where?")
 
             print(item_to_equip.equip_slots.keys())
