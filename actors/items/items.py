@@ -15,13 +15,14 @@ class Item(object):
         self.range = config["range"]
         self.scope = config["scope"]
         self.is_equipped = False
-        self.equip_slots = {}
-        self.head = config["head"]
-        self.body = config["body"]
-        self.legs = config["legs"]
-        self.arms = config["arms"]
-        self.hands = config["hands"]
-        self.feet = config["feet"]
-        self.accessory = config["accessory"]
-        self.lhand = config["lhand"]
-        self.rhand = config["rhand"]
+        self.equip_slots = {
+                "head": config["head"],
+                "body": config["body"],
+                "legs": config["legs"],
+                "arms": config["arms"],
+                "hands": config["hands"],
+                "feet": config["feet"],
+                "accessory": config["accessory"],
+                "lhand": config["lhand"],
+                "rhand": config["rhand"]
+                }
