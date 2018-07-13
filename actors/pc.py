@@ -410,9 +410,8 @@ class Character(object):
         if choice in self.inventory.keys():
             item_to_equip = self.inventory[choice]
             print("Equip where?")
-            print(self.equipment.keys())
+            print(item_to_equip.)
             choice2 = input()
-
 
 #TODO: verify that item can be equipped in selected slot, then "equip" it.
 #            if item_to_equip.
