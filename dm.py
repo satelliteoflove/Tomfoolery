@@ -37,6 +37,7 @@ class Dm(object):
         # Initialize temporary item queue.
         self.item_queue = {}
         self.current_pc_party = party.party.Party()
+        self.current_pc_party.add_char(actors.pc.Character())
         # print(self.effect_list)
         # print(self.mob_list)
 

@@ -395,7 +395,7 @@ class Character(object):
                     print(k)
             choice2 = input()
             self.equipment[choice2] = item_to_equip
-            self.inventory[choice]
+            self.inventory[choice].is_equipped = True
 
 
     def add_xp(self, xp):
