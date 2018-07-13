@@ -1,7 +1,7 @@
 class Item(object):
 
     def __init__(self, config):
-        """
+        """Create an interactive "item".
         :config: Item configuration data provided as dictionary.
         """
         self.description = config["description"]
@@ -15,6 +15,7 @@ class Item(object):
         self.range = config["range"]
         self.scope = config["scope"]
         self.is_equipped = False
+        self.equip_slots = {}
         self.head = config["head"]
         self.body = config["body"]
         self.legs = config["legs"]
