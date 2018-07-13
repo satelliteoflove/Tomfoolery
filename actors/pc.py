@@ -50,17 +50,6 @@ class Character(object):
         else:
             print("You aren't carrying anything.")
 
-    def equip_item(self):
-        """Equip item from inventory."""
-        print("Choose a slot to equip.")
-        for k in self.equipment.keys():
-            print(k)
-        choice = input()
-
-        if self.equipment[choice]:
-            print("Equip which item?")
-            self.show_inventory()
-
     def set_class_AC(self):
         """Set character's class-based AC "base"."""
         self.AC = config.char_class_traits[self.char_class]["AC"]
@@ -390,17 +379,7 @@ class Character(object):
             print(item.name + " taken.")
 
     def drop(self, item_to_drop):
-        temp_item_list = []
-        for item in self.inventory:
-            temp_item_list.append(item.name)
-        if item_to_drop in temp_item_list:
-            for item in self.inventory:
-                if item_to_drop == item.name:
-                    rooms[self.currentRoom]["items"].append(item)
-                    print(item.name + " dropped.")
-                    self.inventory.remove(item)
-        else:
-            print("Drop what, again?")
+        pass
 
     def equip(self):
         print("Which item do you want to equip?")
@@ -416,7 +395,7 @@ class Character(object):
                     print(k)
             choice2 = input()
             self.equipment[choice2] = item_to_equip
-
+            self.inventory[choice]
 
 
     def add_xp(self, xp):
