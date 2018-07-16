@@ -151,10 +151,6 @@ class Dm(object):
 
     def player_equip(self):
         """Picks equipment for specific player character."""
-        #TODO: Currently, no checks are made for equipping one item in multiple
-        #slots, or for over-writing what is equipped in a slot, or for selecting
-        #two items with the same key name separately. To replicate, give
-        #character two items and try to equip them.
         print("Which character do you want to equip?")
         for actor in self.current_pc_party.members.values():
             print(actor.name)
