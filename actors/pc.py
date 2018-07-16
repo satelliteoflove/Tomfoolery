@@ -388,11 +388,14 @@ class Character(object):
         #two items with the same key name separately. To replicate, give
         #character two items and try to equip them.
         print("Which item do you want to equip?")
-        for i in self.inventory.values():
-            print(i.name)
+        for i in self.inventory.keys():
+            print(i)
         choice = input()
         if choice in self.inventory.keys():
-            item_to_equip = self.inventory[choice]
+            if self.inventory[choice].is_equipped == False:
+                item_to_equip = self.inventory[choice]
+            else:
+                print("That item is already equipped.")
         if any(item_to_equip.equip_slots.values()):
             print("Equip where?")
             for k, v in item_to_equip.equip_slots.items():
