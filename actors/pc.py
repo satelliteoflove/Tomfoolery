@@ -384,8 +384,7 @@ class Character(object):
     def equip(self):
         """Equip the character with an item from that character's inventory."""
         #TODO: Currently, no checks are made for equipping one item in multiple
-        #slots, or for over-writing what is equipped in a slot, or for selecting
-        #two items with the same key name separately. To replicate, give
+        #slots, or for over-writing what is equipped in a slot. To replicate, give
         #character two items and try to equip them.
         print("Which item do you want to equip?")
         for i in self.inventory.keys():
@@ -396,6 +395,7 @@ class Character(object):
                 item_to_equip = self.inventory[choice]
             else:
                 print("That item is already equipped.")
+                self.equip()
         if any(item_to_equip.equip_slots.values()):
             print("Equip where?")
             for k, v in item_to_equip.equip_slots.items():
