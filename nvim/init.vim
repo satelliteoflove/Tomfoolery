@@ -1,6 +1,8 @@
 "Start plugin system.
 call plug#begin()
+"Autocompletion
 Plug 'roxma/nvim-completion-manager'
+"Plug 'davidhalter/jedi-vim'
 " Code snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -32,6 +34,10 @@ set foldcolumn=3
 
 " Define SimpylFold behavior.
 let g:SimpylFold_docstring_preview = 1
+
+" Automatically save and load views (save folds).
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
 
 " Know what you're editing
 set title
