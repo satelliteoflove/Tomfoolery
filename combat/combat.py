@@ -1,6 +1,4 @@
 #Module for combat helper methods
-from numpy import random
-import collections
 
 def roll_for_initiative(self, party, mob_group):
     a = party
