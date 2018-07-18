@@ -11,6 +11,7 @@ from actors.items import items
 import party.party
 from operator import attrgetter
 import collections
+from combat import combat
 
 pp = pprint.PrettyPrinter()
 
@@ -68,16 +69,6 @@ class Dm(object):
             self.carry_over = 0
             return True
 
-    def roll_for_initiative(self, party, mobgroup):
-        for actor in party:
-            actor.roll_init()
-#            print("initiative for " + actor.name +
-#                  " is " + str(actor.initiative) + ".")
-        for actor in mobgroup:
-            actor.roll_init()
-#            print("initiative for " + actor.name +
-#                  " is " + str(actor.initiative) + ".") 
-
     def monster_encounter(self):
         strength = len(self.current_pc_party.members) * MOBSTRENGTH
         self.current_mobgroup = actors.mobgroup.MobGroup(self.mob_list,
@@ -87,8 +78,7 @@ class Dm(object):
             print("They are friendly.")
         else:
             print("They attack!")
-            self.roll_for_initiative(self.current_pc_party.members.values(),
-                                     self.current_mobgroup.members)
+            combat.roll_for_initiative(self.current_pc_party.members.values(), self.current_mobgroup.members)
             #create a list of actors, sort by initiative.
             combatants = []
             for actor in self.current_pc_party.members.values():
