@@ -73,17 +73,19 @@ class Dm(object):
         strength = len(self.current_pc_party.members) * MOBSTRENGTH
         self.current_mobgroup = actors.mobgroup.MobGroup(self.mob_list,
                 strength)
+        a = self.current_pc_party.members.values()
+        b = self.current_mobgroup.members
 
         if self.current_mobgroup.check_friendly():
             print("They are friendly.")
         else:
             print("They attack!")
-            combat.roll_for_initiative(self.current_pc_party.members.values(), self.current_mobgroup.members)
+            combat.roll_for_initiative(a, b)
             #create a list of actors, sort by initiative.
             combatants = []
-            for actor in self.current_pc_party.members.values():
+            for actor in a:
                 combatants.append(actor)
-            for actor in self.current_mobgroup.members:
+            for actor in b:
                 combatants.append(actor)
             combatants.sort(key = attrgetter('initiative'))
 
