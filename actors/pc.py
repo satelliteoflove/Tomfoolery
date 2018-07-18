@@ -350,11 +350,6 @@ class Character(object):
             self.AP = 0
         print("This character's AP is: " + str(self.AP))
 
-    def add_to_room(self):
-        for chamber in rooms:
-            if chamber == self.currentRoom:
-                rooms[self.currentRoom]["characters"].append(self)
-
     def return_stats(self):
         return collections.OrderedDict(vars(self))
 
