@@ -36,8 +36,8 @@ set foldcolumn=3
 let g:SimpylFold_docstring_preview = 1
 
 " Automatically save and load views (save folds).
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+autocmd BufWinLeave * mkview
+autocmd BufWinEnter * silent! loadview
 
 " Know what you're editing
 set title
