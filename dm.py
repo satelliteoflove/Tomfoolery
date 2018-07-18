@@ -111,7 +111,7 @@ class Dm(object):
             print("No item pattern matching that name exists.")
 
     def give_item(self):
-
+        """Give a PC an item from the active temporary item list."""
         while len(self.item_queue) > 0:
             if len(self.current_pc_party.members) > 0:
                 print("Who should receive the item?")

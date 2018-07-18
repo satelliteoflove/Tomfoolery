@@ -351,10 +351,11 @@ class Character(object):
         print("This character's AP is: " + str(self.AP))
 
     def return_stats(self):
+        """Used to view full, raw information about a specific character."""
         return collections.OrderedDict(vars(self))
 
     def get_item(self, item):
-        """PC gets an item
+        """PC gets an item.
         """
         print("inside get_item")
         print("item given is " + item.name)
