@@ -70,12 +70,18 @@ class Dm(object):
             return True
 
     def monster_encounter(self):
+        """Initiates a monster encounter."""
+        #Setting mob party strength.
         strength = len(self.current_pc_party.members) * MOBSTRENGTH
+        #Creating a 'current_mobgroup'.
         self.current_mobgroup = actors.mobgroup.MobGroup(self.mob_list,
                 strength)
+        #Populating 'a' with party members.
         a = self.current_pc_party.members.values()
+        #Populating 'b' with mob members.
         b = self.current_mobgroup.members
 
+        #print("Are they friendly?")
         if self.current_mobgroup.check_friendly():
             print("They are friendly.")
         else:

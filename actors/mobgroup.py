@@ -29,7 +29,7 @@ class MobGroup(object):
         if chance > 0:
             chance = chance / len(self.members)
         a = random.randint(1,99)
-        print(str(chance) + "% friendly vs roll of " + str(a) + ".")
+#        print(str(chance) + "% friendly vs roll of " + str(a) + ".")
         if chance > a:
             return True
         else:
