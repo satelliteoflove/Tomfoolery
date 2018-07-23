@@ -9,7 +9,6 @@ import actors.mobgroup
 import actors.config
 from actors.items import items
 import party.party
-from operator import attrgetter
 import collections
 from combat import combat
 
@@ -88,12 +87,7 @@ class Dm(object):
             print("They attack!")
             combat.roll_for_initiative(a, b)
             #create a list of actors, sort by initiative.
-            combatants = []
-            for actor in a:
-                combatants.append(actor)
-            for actor in b:
-                combatants.append(actor)
-            combatants.sort(key = attrgetter('initiative'))
+            combatants = combat.build_combat_group(a, b)
 
     def make_item(self, name):
         """Create item from named template and place in dm's temporary queue."""

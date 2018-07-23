@@ -37,7 +37,6 @@ class Character(object):
         self.equipment = {"head":0, "body":0, "legs":0,
                 "arms":0, "hands":0, "feet":0, "accessory":0,
                 "lhand": 0, "rhand": 0}
-        self.position = (0, 0)
         self.set_AP()
         self.action_list = {}
         self.type = False
