@@ -3,6 +3,7 @@ from uuid import uuid4
 from . import config
 import collections
 from actors.items.effects import effect
+from numpy import linspace
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
@@ -400,11 +401,14 @@ class Character(object):
             self.equipment[choice2] = item_to_equip
             self.inventory[choice].is_equipped = True
 
+    def new_equip(self):
+        """Equip items from inventory."""
+        pass
 
     def add_xp(self, xp):
-        #Generates a series of 28 multipliers to be used when calculating xp
-        #gained.
-        xp_multipliers = np.linspace(1.0,0.5,num=28)
+        # Generates a series of 28 multipliers to be used when calculating xp
+        # gained.
+        xp_multipliers = linspace(1.0, 0.5, num=28)
         print(self.name + " had " + str(self.currentXP) + "xp.")
         x = config.char_race_xp_rate[self.race][self.char_class]
         print("Your xp multiplier is: " + str(xp_multipliers[x - 1]))
