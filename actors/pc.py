@@ -403,6 +403,22 @@ class Character(object):
 
     def new_equip(self):
         """Equip items from inventory."""
+        # first, enumerate equipment slots
+        # for each slot, determine which items from inventory can be equipped.
+        # list those items and allow player to select.
+        # for each selection, allow an item or "none".
+        print("Please choose an item to equip, or choose 'None'.")
+        for slot, value in self.equipment.items():
+            print(slot)
+            if value == 0:
+                print("Currently equipped: Empty")
+            else:
+                print("Currently equipped: " + value.name)
+            print("The following items can be equipped here:")
+            for item in self.inventory.values():
+                if slot in item.equip_slots.keys():
+                    print(item.name)
+            
         pass
 
     def add_xp(self, xp):
