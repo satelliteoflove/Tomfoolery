@@ -148,13 +148,13 @@ class Dm(object):
             print(actor.name)
         choice = input()
         if self.current_pc_party.members[choice]:
-            self.current_pc_party.members[choice].equip()
+            self.current_pc_party.members[choice].new_equip()
         else:
             print("That character doesn't exist.")
 
     def view_player(self):
         """Lists active player characters and views information about selected
-        player character.
+        player character. Allows interaction with individual characters.
         """
         print("Please choose a player to view.")
         if len(self.current_pc_party.members) > 0:
@@ -163,6 +163,8 @@ class Dm(object):
             choice = input()
             current_player = self.current_pc_party.members[choice]
             pp.pprint(current_player.return_stats())
+        else:
+            print("There are no active player characters.")
 
     def destroy_item(self, player, item):
         """Drop or otherwise destroy item carried by a player."""
