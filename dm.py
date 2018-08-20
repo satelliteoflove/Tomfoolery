@@ -11,6 +11,7 @@ from actors.items import items
 import party.party
 import collections
 from combat import combat
+import curses
 
 pp = pprint.PrettyPrinter()
 
@@ -170,19 +171,21 @@ class Dm(object):
         """Drop or otherwise destroy item carried by a player."""
         pass
 
-    def parse_command(self, move):
+    def parse_command(self, key):
         """Take string of user input and parse into action."""
-        if move[0] == "enc":
+        if key == curses.KEY_DOWN:
+            cursor_y = cursor_y + 1
+        elif key == ord('e'):
             self.monster_encounter()
-        elif move[0] == "mkpc":
+        elif key == ord('p'):
             self.current_pc_party.add_char(actors.pc.Character())
-        elif move[0] == "mkitem":
-            self.make_item("dagger")
-        elif move[0] == "gvitem":
-            self.give_item()
-        elif move[0] == "view":
-            self.view_player()
-        elif move[0] == "equip":
-            self.player_equip()
+        #elif move[0] == "mkitem":
+        #    self.make_item("dagger")
+        #elif move[0] == "gvitem":
+        #    self.give_item()
+        #elif move[0] == "view":
+        #    self.view_player()
+        #elif move[0] == "equip":
+        #    self.player_equip()
         else:
-            print("I have no idea what you're trying to do.")
+            return "I have no idea what you're trying to do."

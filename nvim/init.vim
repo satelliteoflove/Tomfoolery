@@ -1,9 +1,7 @@
 "Start plugin system.
 call plug#begin()
-" Autocompletion
-Plug 'ncm2/ncm2'
-" Required plugin for ncm2
-Plug 'roxma/nvim-yarp'
+"Autocompletion
+Plug 'roxma/nvim-completion-manager'
 "Plug 'davidhalter/jedi-vim'
 " Code snippets
 Plug 'SirVer/ultisnips'
@@ -14,10 +12,6 @@ Plug 'ervandew/supertab'
 Plug 'flazz/vim-colorschemes'
 " Like a TOC for code
 Plug 'vim-scripts/taglist.vim'
-" More ctag goodness
-Plug 'xolox/vim-easytags'
-" easytags requires vim-misc
-Plug 'xolox/vim-misc'
 " Cross-file search and replace
 Plug 'brooth/far.vim'
 " Status bar mods
@@ -125,7 +119,7 @@ augroup highlight_keyword
 augroup END
 
 " Use 'true color' in terminal
-set termguicolors
+"set termguicolors
 
 " The guicursor functionality in Neovim causes problems in some terminal
 " emulators.
