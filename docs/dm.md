@@ -1,7 +1,6 @@
 What is the DM?
 ---------------
-The "Dungeon Master" is a storyteller and referee.  Triggered events, encounters
-and combat are all handled by the DM.
+"Decision Maker" or "Dungeon Manager. A state manager for the game.
 
 Triggers/Events
 ---------------
