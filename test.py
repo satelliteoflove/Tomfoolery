@@ -53,8 +53,8 @@ def draw_menu(stdscr):
         start_y = int((height // 2) - 2)
 
         # testing commands
-        debug_commands = "e) Monster encounter\n p) Make PC"
-        stdscr.addstr(0, 0, debug_commands, curses.color_pair(1)
+        debug_commands = "e) Monster encounter\np) Make PC"
+        stdscr.addstr(0, 0, debug_commands, curses.color_pair(1))
 
         # Render status bar
         stdscr.attron(curses.color_pair(3))

@@ -18,6 +18,7 @@ pp = pprint.PrettyPrinter()
 # Constants
 MOBSTRENGTH = 1.5
 
+
 class Dm(object):
     def __init__(self):
 #        self.create_world(world.config.WORLD_CONFIG,
@@ -38,7 +39,7 @@ class Dm(object):
         # Initialize temporary item queue.
         self.item_queue = {}
         self.current_pc_party = party.party.Party()
-        self.current_pc_party.add_char(actors.pc.Character())
+#        self.current_pc_party.add_char(actors.pc.Character())
         # print(self.effect_list)
         # print(self.mob_list)
 
