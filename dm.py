@@ -172,21 +172,29 @@ class Dm(object):
         """Drop or otherwise destroy item carried by a player."""
         pass
 
+    def menu(self):
+        print("Enter one of the following:")
+        print("(m)ake an item.")
+        print("(g)ive an item.")
+        print("(v)iew a player.")
+        print("(e)quip a player.")
+
     def parse_command(self, key):
         """Take string of user input and parse into action."""
-        if key == curses.KEY_DOWN:
-            cursor_y = cursor_y + 1
-        elif key == ord('e'):
-            self.monster_encounter()
-        elif key == ord('p'):
-            self.current_pc_party.add_char(actors.pc.Character())
-        #elif move[0] == "mkitem":
-        #    self.make_item("dagger")
-        #elif move[0] == "gvitem":
-        #    self.give_item()
-        #elif move[0] == "view":
-        #    self.view_player()
-        #elif move[0] == "equip":
-        #    self.player_equip()
+        self.menu()
+        #if key == curses.KEY_DOWN:
+        #    cursor_y = cursor_y + 1
+        #elif key == ord('e'):
+        #    self.monster_encounter()
+        #elif key == ord('p'):
+        #    self.current_pc_party.add_char(actors.pc.Character())
+        if move[0] == "mkitem":
+            self.make_item("dagger")
+        elif move[0] == "gvitem":
+            self.give_item()
+        elif move[0] == "view":
+            self.view_player()
+        elif move[0] == "equip":
+            self.player_equip()
         else:
             return "I have no idea what you're trying to do."

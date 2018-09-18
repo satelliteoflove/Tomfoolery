@@ -1,6 +1,6 @@
 from numpy import random
 from uuid import uuid4
-from . import config
+from actors import config
 import collections
 from actors.items.effects import effect
 from numpy import linspace
