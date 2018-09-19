@@ -11,5 +11,11 @@ class Store(object):
         self.inventory[item.uuid] = item
         return item.sell_value
 
-    def sell_item(self, item):
-        self.inventory[item.uuid]
+    def sell_item(self, item, char_money):
+        funds = char_money
+        if funds >= item.sell_price:
+            self.inventory[item.uuid].__delitem__()
+            return item.sell_price
+        else
+            print("Not enough funds.")
+            return 0
