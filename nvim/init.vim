@@ -45,6 +45,9 @@ let g:deoplete#sources#jedi#show_docstring = 1
 " Force it to use Python 3 instead of 2
 let g:deoplete#sources#jedi#python_path = "/usr/bin/python3"
 
+" Dismiss preview window after autocomplete selection is made
+let g:SuperTabClosePreviewOnPopupClose = 1
+
 " Define SimpylFold behavior.
 let g:SimpylFold_docstring_preview = 1
 
@@ -111,7 +114,6 @@ set updatetime=500
 
 " Change autocomplete behavior
 set completeopt=menuone,preview,noinsert
-
 
 " Let vim-gitgutter work better with large files
 let g:gitgutter_max_signs=10000
