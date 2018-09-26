@@ -1,10 +1,9 @@
 "Start plugin system.
 call plug#begin()
 " Autocompletion
-Plug 'ncm2/ncm2'
-" Required plugin for ncm2
-Plug 'roxma/nvim-yarp'
-"Plug 'davidhalter/jedi-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Autocompletion of Python
+Plug 'zchee/deoplete-jedi'
 " Code snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -37,6 +36,14 @@ syntax on
 set number
 set relativenumber
 set foldcolumn=3
+
+" Deoplete enable
+let g:deoplete#enable_at_startup = 1
+
+" Deoplete-jedi enable docstring preview
+let g:deoplete#sources#jedi#show_docstring = 1
+" Force it to use Python 3 instead of 2
+let g:deoplete#sources#jedi#python_path = "/usr/bin/python3"
 
 " Define SimpylFold behavior.
 let g:SimpylFold_docstring_preview = 1
