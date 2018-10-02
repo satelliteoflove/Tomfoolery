@@ -54,11 +54,7 @@ def draw_menu(stdscr):
         start_y = int((height // 2) - 2)
 
         # testing commands
-<<<<<<< HEAD:test.py
         debug_commands = "e) Monster encounter\np) Make PC"
-=======
-        debug_commands = "e) Monster encounter\n p) Make PC"
->>>>>>> a08ca8c0f657419d07ae28e73d93b0f7f46113fe:pync_test.py
         stdscr.addstr(0, 0, debug_commands, curses.color_pair(1))
 
         # Render status bar

@@ -188,7 +188,7 @@ class Dm(object):
         #    self.monster_encounter()
         #elif key == ord('p'):
         #    self.current_pc_party.add_char(actors.pc.Character())
-        if move[0] == "mkitem":
+        if move[0] == "m":
             self.make_item("dagger")
         elif move[0] == "gvitem":
             self.give_item()
