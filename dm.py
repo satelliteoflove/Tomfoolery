@@ -6,6 +6,7 @@ import os.path
 import actors.pc
 import actors.mobs
 import actors.mobgroup
+import actors.mobgroup as mg
 import actors.config
 from actors.items import items
 import party.party
@@ -72,24 +73,31 @@ class Dm(object):
 
     def monster_encounter(self):
         """Initiates a monster encounter."""
-        #Setting mob party strength.
-        strength = len(self.current_pc_party.members) * MOBSTRENGTH
-        #Creating a 'current_mobgroup'.
-        self.current_mobgroup = actors.mobgroup.MobGroup(self.mob_list,
-                strength)
-        #Populating 'a' with party members.
-        a = self.current_pc_party.members.values()
-        #Populating 'b' with mob members.
-        b = self.current_mobgroup.members
 
-        #print("Are they friendly?")
+        # Setting mob party strength.
+        strength = len(self.current_pc_party.members) * MOBSTRENGTH
+        # Creating a group of mobs from the current list of available mob
+        # templates.
+        self.current_mobgroup = mg.MobGroup(self.mob_list, strength)
+
+        # These are simply to shorten the variable (list) names in code.
+        player_party = self.current_pc_party.members.values()
+        mob_group = self.current_mobgroup.members
+
         if self.current_mobgroup.check_friendly():
             print("They are friendly.")
+            print("Do you still attack? (y/n)")
+            choice = input()
+            if choice == 'y':
+                combat.roll_for_initiative(player_party, mob_group)
+                battle_grid = combat.build_combat_group(player_party,
+                        mob_group)
         else:
             print("They attack!")
-            combat.roll_for_initiative(a, b)
-            #create a list of actors, sort by initiative.
-            combatants = combat.build_combat_group(a, b)
+            combat.roll_for_initiative(player_party, mob_group)
+            # create a list of actors, sort by initiative. Don't over-complicate
+            # this! KISS.
+            battle_grid = combat.build_combat_group(player_party, mob_group)
 
     def make_item(self, name):
         """Create item from named template and place in dm's temporary queue."""

@@ -276,6 +276,10 @@ class Character(object):
                     self.luck = luk_req
 
     def assign_BonusPoints(self):
+        """Assigns attribute points during character creation."""
+        # Save this for later
+        initial_bonuspoints = self.bonusPoints
+
         print("There are " + str(self.bonusPoints) + " remaining BP.")
         print("Your current statistics are: ")
         print("[S]trength: " + str(self.strength))
