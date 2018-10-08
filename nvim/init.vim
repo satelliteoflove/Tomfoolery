@@ -7,8 +7,8 @@ Plug 'zchee/deoplete-jedi'
 " Code snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" Tab completion
-Plug 'ervandew/supertab'
+" Tab completion - probably not needed any more with deoplete
+" Plug 'ervandew/supertab'
 " Color themes
 Plug 'flazz/vim-colorschemes'
 " Like a TOC for code
@@ -24,6 +24,9 @@ Plug 'bling/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-syntastic/syntastic'
 Plug 'tmhedberg/SimpylFold'
+" Debugger frontend for vim
+Plug 'idanarye/vim-vebugger'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 call plug#end()
 
 set nocompatible " Disregards backwards compatibility with vi.
@@ -40,13 +43,22 @@ set foldcolumn=3
 " Deoplete enable
 let g:deoplete#enable_at_startup = 1
 
+if !exists('g:deoplete#omni#input_patterns')
+    let g:deoplete#omni#input_patterns = {}
+endif
+" Close preview window after complete
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" Deoplete tab-completion
+inoremap <expr><tab> pumvisible() ? "\<c-n" : "\<tab>"
+
 " Deoplete-jedi enable docstring preview
 let g:deoplete#sources#jedi#show_docstring = 1
 " Force it to use Python 3 instead of 2
 let g:deoplete#sources#jedi#python_path = "/usr/bin/python3"
 
+"old - remove if deoplete tab completion works
 " Dismiss preview window after autocomplete selection is made
-let g:SuperTabClosePreviewOnPopupClose = 1
+"let g:SuperTabClosePreviewOnPopupClose = 1
 
 " Define SimpylFold behavior.
 let g:SimpylFold_docstring_preview = 1
@@ -109,11 +121,11 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 " Always show status bar
 set laststatus=2
 
-" Let plugins show effects after 500ms, not 4s
-set updatetime=500
+" Let plugins show effects after 250ms, not 4s
+set updatetime=250
 
 " Change autocomplete behavior
-set completeopt=menuone,preview,noinsert
+set completeopt=menuone,preview
 
 " Let vim-gitgutter work better with large files
 let g:gitgutter_max_signs=10000
