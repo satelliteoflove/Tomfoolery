@@ -1,5 +1,4 @@
 # Module for combat helper methods
-from operator import attrgetter
 
 
 def roll_for_initiative(player_party, mob_group):
@@ -45,27 +44,31 @@ def build_combat_group(player_party, mob_group):
     pfr = battle_grid['players']['front'].values
     pbr = battle_grid['players']['back'].values
 
-    while len(mob_stack) > 0 and len(mfr) > 0:
+    for position in mfr:
         if len(mob_stack) > 0:
-        for actor in mfr:
-            actor = mob_stack.pop()
-    while len(mob_stack) > 0 and len(mbr) > 0:
-        for actor in mbr:
-            actor = mob_stack.pop()
-    while len(mob_stack) > 0 and len(mrr) > 0:
-        for actor in mrr:
-            actor = mob_stack.pop()
-    while len(player_stack) > 0 and len(pfr) > 0:
-        for actor in pfr:
-            actor = 
-            
+            if mfr[0] is None:
+                mfr[0] = mob_stack.pop()
+        if len(mob_stack) > 0:
+            if mfr[1] is None:
+                mfr[1] = mob_stack.pop()
+        if len(mob_stack) > 0:
+            if mfr[2] is None:
+                mfr[2] = mob_stack.pop()
 
+    # Add entries for mbr and mrr
 
-    for actor in player_party:
-        combatants.append(actor)
-    for actor in mob_group:
-        combatants.append(actor)
-    combatants.sort(key=attrgetter('initiative'))
+    for position in pfr:
+        if len(player_stack) > 0:
+            if pfr[0] is None:
+                pfr[0] = player_stack.pop()
+        if len(player_stack) > 0:
+            if pfr[1] is None:
+                pfr[1] = player_stack.pop()
+        if len(player_stack) > 0:
+            if pfr[2] is None:
+                pfr[2] = player_stack.pop()
+
+    # Add entries for pbr
 
     return battle_grid
 
