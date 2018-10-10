@@ -8,7 +8,7 @@ Plug 'zchee/deoplete-jedi'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Tab completion - probably not needed any more with deoplete
-" Plug 'ervandew/supertab'
+ Plug 'ervandew/supertab'
 " Color themes
 Plug 'flazz/vim-colorschemes'
 " Like a TOC for code
@@ -58,7 +58,7 @@ let g:deoplete#sources#jedi#python_path = "/usr/bin/python3"
 
 "old - remove if deoplete tab completion works
 " Dismiss preview window after autocomplete selection is made
-"let g:SuperTabClosePreviewOnPopupClose = 1
+let g:SuperTabClosePreviewOnPopupClose = 1
 
 " Define SimpylFold behavior.
 let g:SimpylFold_docstring_preview = 1
@@ -89,15 +89,15 @@ set cursorline
 set showmatch
 
 " set wrap margin in # of chars from the right margin
-set wrapmargin=1
-set tw=80
+"set wrapmargin=1
+set tw=79
 
 " Add vertical bar at 80 columns
-if exists('+colorcolumn')
-      set colorcolumn=80
-  else
-        au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-    endif
+"if exists('+colorcolumn')
+"      set colorcolumn=79
+"  else
+"        au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+"    endif
 
 filetype plugin indent on
 

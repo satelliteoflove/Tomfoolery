@@ -100,10 +100,11 @@ class Dm(object):
             battle_grid = combat.build_combat_group(player_party, mob_group)
 
     def make_item(self, name):
-        """Create item from named template and place in dm's temporary queue."""
+        """Create item from named template and place in dm's temporary
+        queue."""
         if self.item_config[name]:
             new_item = items.Item(self.item_config[name])
-            self.item_queue[new_item.name +
+            self.item_queue[new_item.name + 
                     str(len(self.item_queue) + 1)] = new_item
             for k in self.item_queue.keys():
                 print(k)
@@ -181,28 +182,31 @@ class Dm(object):
         pass
 
     def menu(self):
-        print("Enter one of the following:")
-        print("(m)ake an item.")
+        """Prints a list of command options."""
+        print("Display this (m)enu.")
+        print("Make an (i)tem.")
         print("(g)ive an item.")
         print("(v)iew a player.")
         print("(e)quip a player.")
+        print("(c)reate a player.")
+        print("e(n)counter mobs.")
+        print("(q)uit.")
 
     def parse_command(self, key):
         """Take string of user input and parse into action."""
-        self.menu()
-        #if key == curses.KEY_DOWN:
-        #    cursor_y = cursor_y + 1
-        #elif key == ord('e'):
-        #    self.monster_encounter()
-        #elif key == ord('p'):
-        #    self.current_pc_party.add_char(actors.pc.Character())
-        if move[0] == "m":
+        if key == 'i':
             self.make_item("dagger")
-        elif move[0] == "gvitem":
+        elif key == 'm':
+            self.menu()
+        elif key == 'g':
             self.give_item()
-        elif move[0] == "view":
+        elif key == 'c':
+            self.current_pc_party.add_char(actors.pc.Character())
+        elif key == 'v':
             self.view_player()
-        elif move[0] == "equip":
+        elif key == 'e':
             self.player_equip()
+        elif key == 'n':
+            self.monster_encounter()
         else:
             return "I have no idea what you're trying to do."
