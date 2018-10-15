@@ -81,7 +81,11 @@ class Dm(object):
         self.current_mobgroup = mg.MobGroup(self.mob_list, strength)
 
         # These are simply to shorten the variable (list) names in code.
-        player_party = self.current_pc_party.members.values()
+        player_party = []
+        for actor in self.current_pc_party.members.values():
+            newtup = (actor, actor.position)
+            player_party.append(newtup)
+
         mob_group = self.current_mobgroup.members
 
         if self.current_mobgroup.check_friendly():

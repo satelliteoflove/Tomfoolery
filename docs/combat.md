@@ -1,6 +1,11 @@
-_Combat Mechanics and Flow_
+_How does this module function_
 
-* Monster party is generated
+* DM object has current pc party and generated mob party.
+* DM requests a battle grid dict from Combat, sends it pc party and mob party
+  as _lists_.
+* lists are used to  
+
+
 * Chance for peaceful encounter
 * Hostile mobs - two windows:
     * Names/stats of mobs
