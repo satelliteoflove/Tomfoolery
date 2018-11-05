@@ -1,9 +1,6 @@
 # Module for combat helper methods
-import collections
-import pprint
+# Imports
 
-
-pp = pprint.PrettyPrinter()
 
 def roll_for_initiative(player_party, mob_group):
     a = player_party
@@ -12,6 +9,26 @@ def roll_for_initiative(player_party, mob_group):
         actor.roll_init()
     for actor in b:
         actor.roll_init()
+
+
+def set_formation(party):
+    """For given party, set battle position of each actor.
+
+    :party: TODO
+    :returns: TODO
+
+    """
+    pass
+
+
+def get_formation(party):
+    """For given party, return battle position of each actor.
+
+    :party: TODO
+    :returns: TODO
+
+    """
+    pass
 
 
 def build_combat_group(player_party, mob_group):

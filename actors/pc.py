@@ -2,8 +2,8 @@ from numpy import random
 from uuid import uuid4
 from actors import config
 import collections
-from actors.items.effects import effect
 from numpy import linspace
+
 
 class Character(object):
     """Common base class for all PCs and NPCs."""
@@ -18,7 +18,7 @@ class Character(object):
         # stat is legitimate. This will likely be unnecessary after input is
         # driven by something other than the command interpreter.
         self.statNames = ["strength", "agility", "vitality", "intelligence",
-                           "piety", "luck"]
+                          "piety", "luck"]
         self.strength = 0
         self.agility = 0
         self.vitality = 0
@@ -32,15 +32,16 @@ class Character(object):
         self.assign_BonusPoints()
         self.set_xp_rate()
         self.set_initial_HP()
-        self.set_class_AC() #As in characters.md - AD&D rules for AC/THAC0.
+        self.set_class_AC()  # As in characters.md - AD&D rules for AC/THAC0.
         self.set_THAC0()
         self.inventory = {}
-        self.equipment = {"head":0, "body":0, "legs":0,
-                "arms":0, "hands":0, "feet":0, "accessory":0,
-                "lhand": 0, "rhand": 0}
+        self.equipment = {"head": 0, "body": 0, "legs": 0, "arms": 0,
+                          "hands": 0, "feet": 0, "accessory": 0, "lhand": 0,
+                          "rhand": 0}
         self.set_AP()
         self.action_list = {}
         self.type = False
+        self.position = None
 
     def show_inventory(self):
         # list items, none if empty
@@ -57,8 +58,7 @@ class Character(object):
     def set_THAC0(self):
         """Set character's class-based THAC0 "base"."""
         self.THAC0 = 20 - round((self.currentLevel *
-                           config.char_class_traits[self.char_class]
-                                 ["THAC0mult"]))
+            config.char_class_traits[self.char_class]["THAC0mult"]))
 
     def set_initial_HP(self):
         """Used to set *initial* HP for character.
@@ -74,7 +74,7 @@ class Character(object):
         """
         self.hitPoints = 0
         self.maxHitPoints = 0
-        chance = random.randint(0,1)
+        chance = random.randint(0, 1)
 
         if self.char_class == "samurai":
             if chance == 0:
@@ -118,17 +118,17 @@ class Character(object):
         TODO: Ensure that vitality modifies added maximum HP.
         """
         if self.char_class == "fighter" or self.char_class == "lord":
-            self.maxHitPoints += int(random.triangular(0,10,5))
+            self.maxHitPoints += int(random.triangular(0, 10, 5))
         elif self.char_class == "priest" or self.char_class == "samurai":
-            self.maxHitPoints += int(random.triangular(0,8,4))
+            self.maxHitPoints += int(random.triangular(0, 8, 4))
         elif self.char_class == "monk":
-            self.maxHitPoints += int(random.triangular(0,8,5))
+            self.maxHitPoints += int(random.triangular(0, 8, 5))
         elif self.char_class == "thief" or self.char_class == "ninja":
-            self.maxHitPoints += int(random.triangular(0,6,3))
+            self.maxHitPoints += int(random.triangular(0, 6, 3))
         elif self.char_class == "bishop":
-            self.maxHitPoints += int(random.triangular(0,6,3))
+            self.maxHitPoints += int(random.triangular(0, 6, 3))
         elif self.char_class == "mage":
-            self.maxHitPoints += int(random.triangular(0,4,2))
+            self.maxHitPoints += int(random.triangular(0, 4, 2))
 
     def set_sex(self):
         """Sets the sex of the character.
@@ -136,10 +136,10 @@ class Character(object):
         The sex of a character grants a one-time stat bonus upon character
         creation (+1 VIT (F)/+1 STR (M)), and only women can be valkyries.
         """
-        #Quick hack
+        # Quick hack
         self.sex = "male"
 
-        #self.sex = ""
+        # self.sex = ""
         while self.sex != "male" and self.sex != "female":
             print("What is the sex of the character?\n(male or female)")
             self.sex = input().lower()
@@ -166,10 +166,10 @@ class Character(object):
         print("What race is this character?\nChoose from the following:")
         for key in config.char_race_traits.keys():
             print(key)
-        #Quick hack
+        # Quick hack
         self.race = "human"
 
-        #self.race = ""
+        # self.race = ""
         while self.race == "":
             tryrace = input().lower()
             if tryrace in config.char_race_traits:
@@ -188,7 +188,7 @@ class Character(object):
 
     def set_name(self):
         name_accepted = False
-        while name_accepted == False:
+        while name_accepted is False:
             try_name = input("What is the player's name?\n")
             if len(try_name) > 12:
                 print("Name is too long. Must be 12 characters or less.")
