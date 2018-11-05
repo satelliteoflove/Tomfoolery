@@ -51,6 +51,15 @@ class Character(object):
         else:
             print("You aren't carrying anything.")
 
+    def set_position(self, arg1):
+        """TODO: Docstring for set_position.
+
+        :arg1: TODO
+        :returns: TODO
+
+        """
+        pass
+
     def set_class_AC(self):
         """Set character's class-based AC "base"."""
         self.AC = config.char_class_traits[self.char_class]["AC"]
