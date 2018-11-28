@@ -22,11 +22,15 @@ Plug 'brooth/far.vim'
 " Status bar mods
 Plug 'bling/vim-airline'
 Plug 'airblade/vim-gitgutter'
+" Syntax checking
 Plug 'vim-syntastic/syntastic'
+" Code folding
 Plug 'tmhedberg/SimpylFold'
 " Debugger frontend for vim
 Plug 'idanarye/vim-vebugger'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" Vim Wiki
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 set nocompatible " Disregards backwards compatibility with vi.
