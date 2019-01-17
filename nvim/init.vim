@@ -35,6 +35,13 @@ call plug#end()
 
 set nocompatible " Disregards backwards compatibility with vi.
 
+" Allow for persistent undo - requires presence of undo directory.
+set undodir=~/.vim/undodir
+set undofile
+
+" Switch to using system clipboard instead of register.
+set clipboard=unnamed
+
 " enable syntax highlighting
 syntax enable
 syntax on
