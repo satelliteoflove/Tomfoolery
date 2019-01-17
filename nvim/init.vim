@@ -42,6 +42,13 @@ set undofile
 " Switch to using system clipboard instead of register.
 set clipboard=unnamed
 
+" switch tabs with Ctrl left and right
+nnoremap <C-right> :tabnext<CR>
+nnoremap <C-left> :tabprevious<CR>
+" and whilst in insert mode
+inoremap <C-right> <Esc>:tabnext<CR>
+inoremap <C-left> <Esc>:tabprevious<CR>
+
 " enable syntax highlighting
 syntax enable
 syntax on
