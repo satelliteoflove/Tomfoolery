@@ -142,6 +142,7 @@ set laststatus=2
 
 " Configure airline status bar
 let g:airline_powerline_fonts = 1
+let g:airline_theme='wombat'
 
 " Let plugins show effects after 250ms, not 4s
 set updatetime=250
