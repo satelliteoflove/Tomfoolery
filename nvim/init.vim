@@ -20,7 +20,8 @@ Plug 'xolox/vim-misc'
 " Cross-file search and replace
 Plug 'brooth/far.vim'
 " Status bar mods
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 " Syntax checking
 Plug 'vim-syntastic/syntastic'
@@ -138,6 +139,9 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
 " Always show status bar
 set laststatus=2
+
+" Configure airline status bar
+let g:airline_powerline_fonts = 1
 
 " Let plugins show effects after 250ms, not 4s
 set updatetime=250
