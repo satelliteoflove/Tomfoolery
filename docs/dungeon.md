@@ -1,12 +1,13 @@
 Dungeon Generation
 ------------------
-A dungeon contains the following:
-* list of possible Level-specific environment types (2-3 per dungeon)
-* list of all Levels contained in the dungeon (user-modifiable; avg 6-10)
-* master list of all possible mobs for the dungeon
+Each dungeon may contain one or more levels which can be explored by the
+player party.
 
-Build Master Mob List
----------------------
+Data Types
+----------
+Each dungeon contains:
+* list of possible Level-specific environment types (1-3 per dungeon)
+* list of all Levels contained in the dungeon (user-modifiable; avg 6-10)
 
 Instantiate New Level
 ---------------------
