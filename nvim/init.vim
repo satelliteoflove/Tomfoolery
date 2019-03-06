@@ -47,6 +47,10 @@ set nocompatible
 set fileformat=unix
 set encoding=utf-8
 
+" Set split defaults to right and bottom
+set splitbelow
+set splitright
+
 " Syntax highlighting
 syntax enable
 syntax on
@@ -78,7 +82,8 @@ set ruler
 set showmatch
 
 " Text wrap column
-set tw=78
+set tw=79
+set cc=+1
 
 " Persistent undo
 set undodir=~/.vim/undodir
