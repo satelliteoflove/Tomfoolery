@@ -10,9 +10,8 @@ import actors.mobgroup as mg
 import actors.config
 from actors.items import items
 import party.party
-import collections
 from combat import combat
-import curses
+
 
 pp = pprint.PrettyPrinter()
 
@@ -43,6 +42,7 @@ class Dm(object):
 #        self.current_pc_party.add_char(actors.pc.Character())
         # print(self.effect_list)
         # print(self.mob_list)
+        self.menu()
 
     def make_npc(self):
         """Create Non-Player Character, taking input file."""
