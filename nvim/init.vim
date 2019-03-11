@@ -92,6 +92,9 @@ set undofile
 " Set autocomplete behavior
 set completeopt=menuone,preview
 
+" Key remappings
+nnoremap <esc> :noh<return><esc>
+
 " Plugin Configurations
 
 " Let plugins show effects after 250ms, not 4s
@@ -128,3 +131,16 @@ let g:airline_theme='wombat'
 
 " Let vim-gitgutter work better with large files
 let g:gitgutter_max_signs=10000
+
+" Syntastic general settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Syntastic checker selection
+let g:syntastic_python_checkers = ['flake8']
