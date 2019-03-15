@@ -1,3 +1,6 @@
+" Helps plugins load correctly
+filetype plugin indent on
+
 "Start plugin system.
 call plug#begin()
 
@@ -6,6 +9,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Autocompletion of Python
 Plug 'zchee/deoplete-jedi'
+
+" Use jedi-vim instead of deoplete
+Plug 'davidhalter/jedi-vim'
 
 " Code snippets
 Plug 'SirVer/ultisnips'
@@ -32,6 +38,8 @@ Plug 'brooth/far.vim'
 " Status bar mods
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Display git differences
 Plug 'airblade/vim-gitgutter'
 
 " Syntax checking
@@ -63,11 +71,8 @@ set relativenumber
 set foldcolumn=3
 
 " Save view when file is saved, load view when file is loaded.
-augroup AutoSaveFolds
-    autocmd!
-    autocmd BufWinLeave * mkview
-    autocmd BufWinEnter * silent loadview
-augroup END
+autocmd BufWinLeave * mkview
+autocmd BufWinEnter * silent loadview
 
 set title
 
@@ -89,8 +94,8 @@ set cc=+1
 set undodir=~/.vim/undodir
 set undofile
 
-" Set autocomplete behavior
-set completeopt=menuone,preview
+" Set autocomplete behavior. Commented out for jedi-vim
+"set completeopt=menuone,preview
 
 " Key remappings
 nnoremap <esc> :noh<return><esc>
@@ -105,13 +110,20 @@ colorscheme zenburn
 
 " Deoplete enable
 let g:deoplete#enable_at_startup = 1
+" Disable Jedi auto-complete
+let g:jedi#completions_enabled = 0
+
+" Enable Deoplete logging
+"let g:deoplete#enable_profile = 1
+"call deoplete#enable_logging('DEBUG', 'deoplete.log')
+"call deoplete#custom#set('jedi', 'debug_enabled', 1)
 
 if !exists('g:deoplete#omni#input_patterns')
     let g:deoplete#omni#input_patterns = {}
 endif
 
 " Close preview window after complete
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+"autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Deoplete tab-completion
 inoremap <expr><tab> pumvisible() ? "\<c-n" : "\<tab>"
@@ -120,7 +132,9 @@ inoremap <expr><tab> pumvisible() ? "\<c-n" : "\<tab>"
 let g:deoplete#sources#jedi#show_docstring = 1
 
 " Force it to use Python 3 instead of 2
-let g:deoplete#sources#jedi#python_path = "/usr/bin/python3"
+" This was commented out so that whatever python exists in a virtualenv would
+" be the one used by deoplete.
+" let g:deoplete#sources#jedi#python_path = "/usr/bin/python3"
 
 " Define SimpylFold behavior.
 let g:SimpylFold_docstring_preview = 1
