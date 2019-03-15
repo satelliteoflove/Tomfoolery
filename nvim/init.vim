@@ -73,6 +73,9 @@ set foldcolumn=3
 " Save view when file is saved, load view when file is loaded.
 autocmd BufWinLeave * mkview
 autocmd BufWinEnter * silent loadview
+" the following line keeps the current working directory from being saved (and
+" then loaded) in the view.
+set viewoptions-=options
 
 set title
 
