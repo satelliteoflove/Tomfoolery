@@ -4,18 +4,19 @@ filetype plugin indent on
 "Start plugin system.
 call plug#begin()
 
-" Autocompletion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Autocompletion - Switching from deoplete to CoC
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 " Autocompletion of Python
-Plug 'zchee/deoplete-jedi'
+"Plug 'zchee/deoplete-jedi'
 
 " Use jedi-vim instead of deoplete
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 
 " Code snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 
 " Tab completion - probably not needed any more with deoplete
 Plug 'ervandew/supertab'
@@ -55,6 +56,12 @@ set nocompatible
 set fileformat=unix
 set encoding=utf-8
 
+" if hidden is not set, TextEdit might fail
+set hidden
+
+" better display for messages
+set cmdheight=2
+
 " Set split defaults to right and bottom
 set splitbelow
 set splitright
@@ -93,15 +100,62 @@ set showmatch
 set tw=79
 set cc=+1
 
+" don't give |ins-completion-menu| messages
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
 " Persistent undo
 set undodir=~/.vim/undodir
 set undofile
 
-" Set autocomplete behavior. Commented out for jedi-vim
-"set completeopt=menuone,preview
-
 " Key remappings
 nnoremap <esc> :noh<return><esc>
+
+"" Use tab for trigger completion with characters ahead and navigate.
+"" Use command ':verbose imap <tab>' to make sure tab is not mapped by other
+"" plugin.
+"inoremap <silent><expr> <TAB>
+"    \ pumvisible() ? "\<C-n>" :
+"    \ <SID>check_back_space() ? "\<TAB>" :
+"    \ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"
+"function! s:check_back_space() abort
+"    let col = col('.') - 1
+"    return !col || getline('.')[col - 1] =~# '\s'
+"endfunction
+"
+"" Use <c-space> for trigger completion.
+"inoremap <silent><expr> <c-space> coc#refresh()
+"
+"" Use <cr> for confirming completion, `<C-g>u` means break undo chain at
+"" current position. Coc only does snippet and additional edit on confirm.
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+    if &filetype == 'vim'
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+
+" don't give |ins-completion-menu| messages
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
 
 " Plugin Configurations
 
@@ -158,6 +212,11 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" Syntastic PHP settings
+let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_php_phpcs_exec = '/usr/bin/phpcs'
+let g:syntastic_php_phpcs_args = '--standard=psr2 --error-severity=1 --warning-severity=0'
 
 " Syntastic checker selection
 let g:syntastic_python_checkers = ['flake8']
