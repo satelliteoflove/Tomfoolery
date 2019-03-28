@@ -1,0 +1,32 @@
+# Playable and non-playable race traits. XP modifiers for
+# playable races are stored in "char_race_xp_rate.yaml".
+char_race_traits: {
+    human: {
+        min_str: 9,
+        max_str: 19,
+        min_int: 8,
+        max_int: 18,
+        min_pie: 8,
+        max_pie: 18,
+        min_vit: 9,
+        max_vit: 19,
+        min_agi: 8,
+        max_agi: 18,
+        min_luk: 8,
+        max_luk: 18
+    },
+    elf:{
+        min_str: 7,
+        max_str: 17,
+        min_int: 10,
+        max_int: 20,
+        min_pie: 10,
+        max_pie: 20,
+        min_vit: 7,
+        max_vit: 17,
+        min_agi: 9,
+        max_agi: 19,
+        min_luk: 8,
+        max_luk: 18
+    }
+}

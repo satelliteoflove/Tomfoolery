@@ -1,0 +1,36 @@
+# XP rate modifiers for all playable character races.
+
+char_race_xp_rate: {
+    human:{
+        fighter: 4,
+        mage: 5,
+        priest: 5,
+        thief: 7,
+        alchemist: 11,
+        bishop: 15,
+        bard: 7,
+        ranger: 4,
+        psionic: 14,
+        valkyrie: 10,
+        samurai: 14,
+        lord: 24,
+        monk: 16,
+        ninja: 28
+    },
+    elf:{
+        fighter: 6,
+        mage: 3,
+        priest: 3,
+        thief: 6,
+        alchemist: 9,
+        bishop: 11,
+        bard: 5,
+        ranger: 8,
+        psionic: 16,
+        valkyrie: 11,
+        samurai: 14,
+        lord: 23,
+        monk: 15,
+        ninja: 27
+    }
+}
