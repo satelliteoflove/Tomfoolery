@@ -1,8 +1,4 @@
 goblin: {
-        agility: 8,
-        THAC0: 20,
-        base_ap: 1,
-        base_hp: 5, 
         party_weight: 1.25,
         type: humanoid, 
         typename: goblin,

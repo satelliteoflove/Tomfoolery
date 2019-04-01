@@ -1,19 +1,21 @@
 # Playable and non-playable race traits. XP modifiers for
 # playable races are stored in "char_race_xp_rate.yaml".
 char_race_traits: {
-    human: {
-        min_str: 9,
-        max_str: 19,
-        min_int: 8,
-        max_int: 18,
-        min_pie: 8,
-        max_pie: 18,
-        min_vit: 9,
-        max_vit: 19,
-        min_agi: 8,
-        max_agi: 18,
+    ant:{
+        min_str: 3,
+        max_str: 13,
+        min_int: 1,
+        max_int: 2,
+        min_pie: 1,
+        max_pie: 2,
+        min_vit: 5,
+        max_vit: 15,
+        min_agi: 9,
+        max_agi: 19,
         min_luk: 8,
-        max_luk: 18
+        max_luk: 18,
+        type: insectoid,
+        wpn_slots: 2
     },
     elf:{
         min_str: 7,
@@ -27,6 +29,56 @@ char_race_traits: {
         min_agi: 9,
         max_agi: 19,
         min_luk: 8,
-        max_luk: 18
+        max_luk: 18,
+        type: humanoid,
+        wpn_slots: 2
+    },
+    goblin:{
+        min_str: 6,
+        max_str: 16,
+        min_int: 6,
+        max_int: 12,
+        min_pie: 7,
+        max_pie: 17,
+        min_vit: 7,
+        max_vit: 17,
+        min_agi: 9,
+        max_agi: 19,
+        min_luk: 8,
+        max_luk: 18,
+        type: humanoid,
+        wpn_slots: 2
+    },
+    human: {
+        min_str: 9,
+        max_str: 19,
+        min_int: 8,
+        max_int: 18,
+        min_pie: 8,
+        max_pie: 18,
+        min_vit: 9,
+        max_vit: 19,
+        min_agi: 8,
+        max_agi: 18,
+        min_luk: 8,
+        max_luk: 18,
+        type: humanoid,
+        wpn_slots: 2
+    },
+    orc: {
+        min_str: 9,
+        max_str: 19,
+        min_int: 7,
+        max_int: 17,
+        min_pie: 7,
+        max_pie: 17,
+        min_vit: 9,
+        max_vit: 19,
+        min_agi: 8,
+        max_agi: 18,
+        min_luk: 7,
+        max_luk: 17,
+        type: humanoid,
+        wpn_slots: 2
     }
 }

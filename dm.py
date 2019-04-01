@@ -33,7 +33,7 @@ class Dm(object):
             self.mob_list = yaml.load(self.mob_list_raw.read())
 
         with open(os.path.dirname(__file__) +
-                "/actors/items/item_list.yaml", 'r') as self.item_config_raw:
+                  "/actors/items/item_list.yaml", 'r') as self.item_config_raw:
             self.item_config = yaml.load(self.item_config_raw.read())
 
         # Initialize temporary item queue.
