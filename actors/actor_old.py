@@ -1,17 +1,15 @@
 from numpy import random
-from uuid import uuid4
 from actors import config
 import collections
 from numpy import linspace
 
 
-class Character(object):
+class Actor(object):
     """Common base class for all PCs and NPCs."""
 
     def __init__(self):
         """Creates a playable character."""
         self.name = self.set_name()
-        self.uuid = uuid4()
         self.currentLevel = 1
         self.currentXP = 0
         # statNames is only used in a helper function to determine if a named
@@ -50,15 +48,6 @@ class Character(object):
                 print(k)
         else:
             print("You aren't carrying anything.")
-
-    def set_position(self, arg1):
-        """TODO: Docstring for set_position.
-
-        :arg1: TODO
-        :returns: TODO
-
-        """
-        pass
 
     def set_class_AC(self):
         """Set character's class-based AC "base"."""
@@ -472,3 +461,38 @@ class Character(object):
         print("I am attacking " + target.name + " for " + str(dmg) +
               " points of damage.")
 
+
+class Mob(Actor):
+    def __init__(self, mob_list, type_name, level):
+        self.type_name = mob_list[type_name]["typename"]
+        self.type = mob_list[type_name]["type"]
+        self.name = self.type_name
+        self.level = level
+        self.agility = mob_list[type_name]["agility"]
+        self.HP = mob_list[type_name]["base_hp"] * self.level
+        self.THAC0 = mob_list[type_name]["THAC0"]
+        self.AP = mob_list[type_name]["base_ap"] * self.level // 2
+        self.weight = round(mob_list[type_name]["party_weight"] * self.level, 1)
+        self.weapon_slots = mob_list[type_name]["wslots"]
+        self.attacks = mob_list[type_name]["attacks"]
+        self.alignment = mob_list[type_name]["alignment"]
+        if self.AP < 1:
+            self.AP = 1
+#        self.show_stats()
+
+    def roll_init(self):
+        self.initiative = random.randint(1,100)
+
+    def show_stats(self):
+        print("Stats of monster '%s':" %self.name)
+        print(vars(self))
+
+    def take_dmg(self, damage):
+        self.HP -= damage
+        print("I, " + self.name + ", took " + str(damage) + " damage.")
+
+    def attack(self, target):
+        dmg = self.AP + 1
+        target.take_dmg(dmg)
+        print("I am attacking " + target.name + " for " + str(dmg) +
+              " points of damage.")
