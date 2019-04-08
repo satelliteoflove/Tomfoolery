@@ -1,6 +1,6 @@
 #This is the xp required to gain a level. It is the same for all classes since
 #different race/class combinations gain xp at different rates.
-char_level_xp_req:
+xp_req:
     2: 750
     3: 833
     4: 1055

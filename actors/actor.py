@@ -23,3 +23,5 @@ class Actor(object):
     def __init__(self):
         """Initialize all base characteristics. """
         pass
+
+    def 

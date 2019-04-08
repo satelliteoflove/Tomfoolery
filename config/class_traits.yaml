@@ -1,35 +1,36 @@
 # Character class traits, including minimum attributes, preferred attribute(s),
 # and other statistical/attribute modifiers.
-fighter:
-    preferred_stat: strength
-    hp_bonus: 5
-    min_str: 12
-    min_agi: 0
-    min_int: 0
-    min_vit: 0
-    min_pie: 0
-    min_luk: 0
-    AC: 1
-    THAC0mult: 1
-mage:
-    preferred_stat: intelligence
-    hp_bonus: 1
-    min_str: 0
-    min_agi: 0
-    min_int: 12
-    min_vit: 0
-    min_pie: 0
-    min_luk: 0
-    AC: 1
-    THAC0mult: 0.5
-priest:
-    preferred_stat: piety
-    hp_bonus: 3
-    min_str: 0
-    min_agi: 0
-    min_int: 0
-    min_vit: 0
-    min_pie: 12
-    min_luk: 0
-    AC: 1
-    THAC0mult: 0.75
+class_traits:
+    fighter:
+        preferred_stat: strength
+        hp_bonus: 5
+        min_str: 12
+        min_agi: 0
+        min_int: 0
+        min_vit: 0
+        min_pie: 0
+        min_luk: 0
+        AC: 1
+        THAC0mult: 1
+    mage:
+        preferred_stat: intelligence
+        hp_bonus: 1
+        min_str: 0
+        min_agi: 0
+        min_int: 12
+        min_vit: 0
+        min_pie: 0
+        min_luk: 0
+        AC: 1
+        THAC0mult: 0.5
+    priest:
+        preferred_stat: piety
+        hp_bonus: 3
+        min_str: 0
+        min_agi: 0
+        min_int: 0
+        min_vit: 0
+        min_pie: 12
+        min_luk: 0
+        AC: 1
+        THAC0mult: 0.75

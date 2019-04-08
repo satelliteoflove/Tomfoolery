@@ -8,9 +8,12 @@ objects.
 import yaml
 
 
-class LoadConfig():
+class ConfigLoader():
 
-    """Load YAML config file and return a "config" object."""
+    """Load YAML config file and return multiple named configuration dicts."""
 
     def __init__(self):
-        """Load all configuration content."""
+        """Load all configuration content into separate data objects."""
+        pass
+
+

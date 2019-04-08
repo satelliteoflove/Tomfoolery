@@ -1,40 +1,53 @@
-goblin: 
-        party_weight: 1.25
-        type: humanoid 
-        typename: goblin
-        wslots: 1
-        attacks: 1
-        level_min: 1
-        level_max: 2
-        alignment: neutral
-orc:    
-        agility: 9
-        THAC0: 19
-        base_ap: 1
-        base_hp: 8
-        party_weight: 1.5
-        type: humanoid
-        typename: orc
-        wslots: 1
-        attacks: 1
-        level_min: 1
-        level_max: 2
-        alignment: evil
-ant:    
-        agility: 9
-        THAC0: 20
-        AC: 80
-        base_ap: 1 
-        base_hp: 1 
-        party_weight: 1
-        type: Insect 
-        unconfirmed_name: Wriggling Object
-        unconfirmed_name_plural: Wriggling Objects
-        typename: Ant
-        wslots: 1 
-        attacks: 1 
-        level_min: 1
-        level_max: 1
-        alignment: neutral
-        attack_a: pincer
-        spells: none
+# All monster data for combat.
+
+ant:
+    unconfirmed_name: Wriggling Object
+    unconfirmed_name_plural: Wriggling Objects
+    level: 1
+    type: Insectoid
+    typename: Ant
+    hp: [1, 1]
+    ac: 80
+    attacks:
+        bite:
+            dmg: [1, 1]
+    s_attacks: None
+    spells: None
+    breath: None
+    specials:
+        call:
+            chance: 50
+    resists: None
+    weaknesses:
+        - Sleep
+        - Silence
+        - Charm
+    friendly: 0
+    xp_win: 40
+    group_total: [3, 9]
+toad:
+    unconfirmed_name: Wriggling Object
+    unconfirmed_name_plural: Wriggling Objects
+    level: 1
+    type: Amphibious
+    typename: Toad
+    hp: [2, 4]
+    ac: 50
+    attacks:
+        lick:
+            dmg: [1, 1]
+        kick:
+            dmg: [1, 1]
+    s_attacks: None
+    spells: None
+    breath: None
+    specials:
+        escape:
+            chance: 10
+    resists: None
+    weaknesses:
+        - Sleep
+        - Silence
+    friendly: 0
+    xp_win: 120
+    group_total: [2, 8]
