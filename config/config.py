@@ -8,12 +8,10 @@ objects.
 import yaml
 
 
-class ConfigLoader():
-
-    """Load YAML config file and return multiple named configuration dicts."""
-
-    def __init__(self):
-        """Load all configuration content into separate data objects."""
-        pass
-
-
+def load_config(config_file):
+    try:
+        with open(config_file, 'r') as conf:
+            cfg = yaml.safe_load(conf)
+            return cfg
+    except FileNotFoundError as fnf_error:
+        print(fnf_error)
