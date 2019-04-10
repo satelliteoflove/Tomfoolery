@@ -1,29 +1,28 @@
-from numpy import random
-from actors import config
-import collections
-from numpy import linspace
+#!/usr/bin/env python3
+
+from numpy import random, linspace
 
 
 class Actor(object):
     """Common base class for all PCs and NPCs."""
 
-    def __init__(self):
+    def __init__(self, class_config, race_config):
         """Creates a playable character."""
-        self.name = self.set_name()
-        self.currentLevel = 1
-        self.currentXP = 0
-        # statNames is only used in a helper function to determine if a named
+        self._name = self.set_name()
+        self._current_level = 1
+        self._current_xp = 0
+        # _stat_names is only used in a helper function to determine if a named
         # stat is legitimate. This will likely be unnecessary after input is
         # driven by something other than the command interpreter.
-        self.statNames = ["strength", "agility", "vitality", "intelligence",
-                          "piety", "luck"]
-        self.strength = 0
-        self.agility = 0
-        self.vitality = 0
-        self.intelligence = 0
-        self.piety = 0
-        self.luck = 0
-        self.set_race()
+        self._stat_names = ["strength", "agility", "vitality", "intelligence",
+                            "piety", "luck"]
+        self._strength = 0
+        self._agility = 0
+        self._vitality = 0
+        self._intelligence = 0
+        self._piety = 0
+        self._luck = 0
+        self._race = self.set_race(race_config)
         self.set_sex()
         self.set_bonusPoints()
         self.set_class()
@@ -55,7 +54,7 @@ class Actor(object):
 
     def set_THAC0(self):
         """Set character's class-based THAC0 "base"."""
-        self.THAC0 = 20 - round((self.currentLevel *
+        self.THAC0 = 20 - round((self._current_level *
             config.char_class_traits[self.char_class]["THAC0mult"]))
 
     def set_initial_HP(self):
@@ -76,34 +75,34 @@ class Actor(object):
 
         if self.char_class == "samurai":
             if chance == 0:
-                self.hitPoints = int(16 + self.vitality // 2)
+                self.hitPoints = int(16 + self._vitality // 2)
             if chance == 1:
-                self.hitPoints = (9 * (16 + self.vitality // 2) // 10)
+                self.hitPoints = (9 * (16 + self._vitality // 2) // 10)
         elif self.char_class == "fighter" or self.char_class == "lord":
             if chance == 0:
-                self.hitPoints = 10 + self.vitality // 2
+                self.hitPoints = 10 + self._vitality // 2
             if chance == 1:
-                self.hitPoints = (9 * (10 + self.vitality // 2) // 10)
+                self.hitPoints = (9 * (10 + self._vitality // 2) // 10)
         elif self.char_class == "priest":
             if chance == 0:
-                self.hitPoints = 8 + self.vitality // 2
+                self.hitPoints = 8 + self._vitality // 2
             if chance == 1:
-                self.hitPoints = (9 * (8 + self.vitality // 2) // 10)
+                self.hitPoints = (9 * (8 + self._vitality // 2) // 10)
         elif self.char_class == "thief" or self.char_class == "ninja":
             if chance == 0:
-                self.hitPoints = 6 + self.vitality // 2
+                self.hitPoints = 6 + self._vitality // 2
             if chance == 1:
-                self.hitPoints = (9 * (6 + self.vitality // 2) // 10)
+                self.hitPoints = (9 * (6 + self._vitality // 2) // 10)
         elif self.char_class == "bishop":
             if chance == 0:
-                self.hitPoints = 6 + self.vitality // 2
+                self.hitPoints = 6 + self._vitality // 2
             if chance == 1:
-                self.hitPoints = (9 * (6 + self.vitality // 2) // 10)
+                self.hitPoints = (9 * (6 + self._vitality // 2) // 10)
         elif self.char_class == "mage":
             if chance == 0:
-                self.hitPoints = 4 + self.vitality // 2
+                self.hitPoints = 4 + self._vitality // 2
             if chance == 1:
-                self.hitPoints = (9 * (4 + self.vitality // 2) // 10)
+                self.hitPoints = (9 * (4 + self._vitality // 2) // 10)
 
         if self.hitPoints < 2:
             self.hitPoints = 2
@@ -142,9 +141,9 @@ class Actor(object):
             print("What is the sex of the character?\n(male or female)")
             self.sex = input().lower()
         if self.sex == "male":
-            self.strength += 1
+            self._strength += 1
         elif self.sex == "female":
-            self.vitality += 1
+            self._vitality += 1
 
     def set_bonusPoints(self):
         """Assigns starting bonus points.
@@ -154,35 +153,34 @@ class Actor(object):
             self.bonusPoints = int(random.normal(8, 4))
         print("Bonus Points = " + str(self.bonusPoints))
 
-    def set_race(self):
+    def set_race(self, config):
         """Used on character creation to set race values.
 
-        After choosing a race, the minimum stat values are set for the character
-        based on racial minimums.  In addition, any special fields such as
-        resistance values or special attacks are set.
-        """
-        print("What race is this character?\nChoose from the following:")
-        for key in config.char_race_traits.keys():
-            print(key)
-        # Quick hack
-        self.race = "human"
+        After choosing a race, the minimum stat values are set for the
+        character based on racial minimums.  In addition, any special fields
+        such as resistance values or special attacks are set.
 
-        # self.race = ""
-        while self.race == "":
+        :config: dictionary of available races and their attributes
+        """
+        print("What race is this character?\n")
+        for key in config.race_traits.keys():
+            print(key)
+
+        while self._race == "":
             tryrace = input().lower()
             if tryrace in config.char_race_traits:
-                self.race = tryrace
+                return tryrace
             else:
                 print("That is not a valid race.")
-                print("What race is this character?\nChoose from the following:")
+                print("What race is this character?\n")
                 for key in config.char_race_traits.keys():
                     print(key)
-        self.strength = config.char_race_traits[self.race]["min_str"]
-        self.vitality = config.char_race_traits[self.race]["min_vit"]
-        self.agility = config.char_race_traits[self.race]["min_agi"]
-        self.intelligence = config.char_race_traits[self.race]["min_int"]
-        self.piety = config.char_race_traits[self.race]["min_pie"]
-        self.luck = config.char_race_traits[self.race]["min_luk"]
+        self._strength = config.char_race_traits[self._race]["min_str"]
+        self._vitality = config.char_race_traits[self._race]["min_vit"]
+        self._agility = config.char_race_traits[self._race]["min_agi"]
+        self._intelligence = config.char_race_traits[self._race]["min_int"]
+        self._piety = config.char_race_traits[self._race]["min_pie"]
+        self._luck = config.char_race_traits[self._race]["min_luk"]
 
     def set_name(self):
         name_accepted = False
@@ -206,16 +204,16 @@ class Actor(object):
         pie_req = config.char_class_traits[newclass]["min_pie"]
         luk_req = config.char_class_traits[newclass]["min_luk"]
 
-        if str_req > self.strength:
-            points_required += str_req - self.strength
-        if agi_req > self.agility:
-            points_required += agi_req - self.agility
-        if vit_req > self.vitality:
-            points_required += vit_req - self.vitality
-        if pie_req > self.piety:
-            points_required += pie_req - self.piety
-        if luk_req > self.luck:
-            points_required += luk_req - self.luck
+        if str_req > self._strength:
+            points_required += str_req - self._strength
+        if agi_req > self._agility:
+            points_required += agi_req - self._agility
+        if vit_req > self._vitality:
+            points_required += vit_req - self._vitality
+        if pie_req > self._piety:
+            points_required += pie_req - self._piety
+        if luk_req > self._luck:
+            points_required += luk_req - self._luck
 
         #sums all "min_stat"-type key values
         #for key, value in config.char_class_traits[newclass].items():
@@ -257,21 +255,21 @@ class Actor(object):
                 pie_req = config.char_class_traits[try_class]["min_pie"]
                 luk_req = config.char_class_traits[try_class]["min_luk"]
 
-                if str_req > self.strength:
-                    self.bonusPoints -= str_req - self.strength
-                    self.strength = str_req
-                if agi_req > self.agility:
-                    self.bonusPoints -= agi_req - self.agility
-                    self.agility = agi_req
-                if vit_req > self.vitality:
-                    self.bonusPoints -= vit_req - self.vitality
-                    self.vitality = vit_req
-                if pie_req > self.piety:
-                    self.bonusPoints -= pie_req - self.piety
-                    self.piety = pie_req
-                if luk_req > self.luck:
-                    self.bonusPoints -= luk_req - self.luck
-                    self.luck = luk_req
+                if str_req > self._strength:
+                    self.bonusPoints -= str_req - self._strength
+                    self._strength = str_req
+                if agi_req > self._agility:
+                    self.bonusPoints -= agi_req - self._agility
+                    self._agility = agi_req
+                if vit_req > self._vitality:
+                    self.bonusPoints -= vit_req - self._vitality
+                    self._vitality = vit_req
+                if pie_req > self._piety:
+                    self.bonusPoints -= pie_req - self._piety
+                    self._piety = pie_req
+                if luk_req > self._luck:
+                    self.bonusPoints -= luk_req - self._luck
+                    self._luck = luk_req
 
     def assign_BonusPoints(self):
         """Assigns attribute points during character creation."""
@@ -280,12 +278,12 @@ class Actor(object):
 
         print("There are " + str(self.bonusPoints) + " remaining BP.")
         print("Your current statistics are: ")
-        print("[S]trength: " + str(self.strength))
-        print("[A]gility: " + str(self.agility))
-        print("[V]itality: " + str(self.vitality))
-        print("[I]ntelligence: " + str(self.intelligence))
-        print("[P]iety: " + str(self.piety))
-        print("[L]uck: " + str(self.luck))
+        print("[S]trength: " + str(self._strength))
+        print("[A]gility: " + str(self._agility))
+        print("[V]itality: " + str(self._vitality))
+        print("[I]ntelligence: " + str(self._intelligence))
+        print("[P]iety: " + str(self._piety))
+        print("[L]uck: " + str(self._luck))
         while self.bonusPoints > 0:
             stat_increased = 's'
 #            stat_increased = input().lower()
@@ -302,18 +300,18 @@ class Actor(object):
             elif stat_increased == 'l':
                 stat_increased = "luck"
 
-            if stat_increased not in self.statNames:
+            if stat_increased not in self._stat_names:
                 print("That isn't a stat. Try again.")
             else:
                 setattr(self, stat_increased, getattr(self, stat_increased) + 1)
                 self.bonusPoints -= 1
                 print("Bonus Points = " + str(self.bonusPoints))
-                print("Strength: " + str(self.strength))
-                print("Agility: " + str(self.agility))
-                print("Vitality: " + str(self.vitality))
-                print("Intelligence: " + str(self.intelligence))
-                print("Piety: " + str(self.piety))
-                print("Luck: " + str(self.luck))
+                print("Strength: " + str(self._strength))
+                print("Agility: " + str(self._agility))
+                print("Vitality: " + str(self._vitality))
+                print("Intelligence: " + str(self._intelligence))
+                print("Piety: " + str(self._piety))
+                print("Luck: " + str(self._luck))
         print("You don't have any bonus points left.")
 
     def set_xp_rate(self):
@@ -321,12 +319,12 @@ class Actor(object):
         """
         print("Setting xp rate multiplier.")
         print("self.char_class = " + self.char_class)
-        print("self.race = " + self.race)
+        print("self._race = " + self._race)
         print("My 'rate' is: " + str(
-                            config.char_race_xp_rate[self.race][self.char_class]))
-        if self.race in config.char_race_xp_rate:
-            if self.char_class in config.char_race_xp_rate[self.race]:
-                self.rate = config.char_race_xp_rate[self.race][self.char_class]
+                            config.char_race_xp_rate[self._race][self.char_class]))
+        if self._race in config.char_race_xp_rate:
+            if self.char_class in config.char_race_xp_rate[self._race]:
+                self.rate = config.char_race_xp_rate[self._race][self.char_class]
             else:
                 print("That class doesn't exist for that race.")
         else:
@@ -340,14 +338,14 @@ class Actor(object):
         strength have a damage bonus.
         """
         self.AP = 0
-        if self.strength == 3:
+        if self._strength == 3:
             self.AP -= 3
-        if self.strength == 4:
+        if self._strength == 4:
             self.AP -= 2
-        if self.strength == 5:
+        if self._strength == 5:
             self.AP -= 1
-        if self.strength > 15:
-            self.AP += 1 * (self.strength - 15)
+        if self._strength > 15:
+            self.AP += 1 * (self._strength - 15)
         if self.AP < 0:
             self.AP = 0
         print("This character's AP is: " + str(self.AP))
@@ -430,20 +428,20 @@ class Actor(object):
         # Generates a series of 28 multipliers to be used when calculating xp
         # gained.
         xp_multipliers = linspace(1.0, 0.5, num=28)
-        print(self.name + " had " + str(self.currentXP) + "xp.")
-        x = config.char_race_xp_rate[self.race][self.char_class]
+        print(self.name + " had " + str(self._current_xp) + "xp.")
+        x = config.char_race_xp_rate[self._race][self.char_class]
         print("Your xp multiplier is: " + str(xp_multipliers[x - 1]))
-        self.currentXP += int((xp * xp_multipliers[x - 1]))
-        print(self.name + " now has " + str(self.currentXP) + " xp.")
+        self._current_xp += int((xp * xp_multipliers[x - 1]))
+        print(self.name + " now has " + str(self._current_xp) + " xp.")
 
     def level_up(self):
-        xp_to_lvl_up = char_level_xp_req[self.currentLevel + 1]
-        if self.currentXP >= xp_to_lvl_up:
-            print(self.name + " current level is: " + str(self.currentLevel))
-            self.currentLevel += 1
-            self.currentXP -= xp_to_lvl_up
+        xp_to_lvl_up = char_level_xp_req[self._current_level + 1]
+        if self._current_xp >= xp_to_lvl_up:
+            print(self.name + " current level is: " + str(self._current_level))
+            self._current_level += 1
+            self._current_xp -= xp_to_lvl_up
             self.add_maxHP()
-            print(self.name + " current level is: " + str(self.currentLevel))
+            print(self.name + " current level is: " + str(self._current_level))
         else:
             print("Not enough XP to purchase the next level.")
 
@@ -468,7 +466,7 @@ class Mob(Actor):
         self.type = mob_list[type_name]["type"]
         self.name = self.type_name
         self.level = level
-        self.agility = mob_list[type_name]["agility"]
+        self._agility = mob_list[type_name]["agility"]
         self.HP = mob_list[type_name]["base_hp"] * self.level
         self.THAC0 = mob_list[type_name]["THAC0"]
         self.AP = mob_list[type_name]["base_ap"] * self.level // 2
