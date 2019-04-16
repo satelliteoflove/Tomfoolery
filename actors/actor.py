@@ -6,56 +6,68 @@ from numpy import random, linspace
 class Actor(object):
     """Common base class for all PCs and NPCs."""
 
-    def __init__(self, class_config, race_config):
-        """Creates a playable character."""
-        self._name = self.set_name()
-        self._current_level = 1
+    def __init__(self):
+        self._name = ""
+        self._current_level = 0
         self._current_xp = 0
-        # _stat_names is only used in a helper function to determine if a named
-        # stat is legitimate. This will likely be unnecessary after input is
-        # driven by something other than the command interpreter.
-        self._stat_names = ["strength", "agility", "vitality", "intelligence",
-                            "piety", "luck"]
-        self._strength = 0
         self._agility = 0
-        self._vitality = 0
         self._intelligence = 0
-        self._piety = 0
         self._luck = 0
-        self._race = self.set_race(race_config)
-        self.set_sex()
-        self.set_bonusPoints()
-        self.set_class()
-        self.assign_BonusPoints()
-        self.set_xp_rate()
-        self.set_initial_HP()
-        self.set_class_AC()  # As in characters.md - AD&D rules for AC/THAC0.
-        self.set_THAC0()
-        self.inventory = {}
-        self.equipment = {"head": 0, "body": 0, "legs": 0, "arms": 0,
-                          "hands": 0, "feet": 0, "accessory": 0, "lhand": 0,
-                          "rhand": 0}
-        self.set_AP()
-        self.action_list = {}
-        self.type = False
-        self.position = None
+        self._piety = 0
+        self._strength = 0
+        self._vitality = 0
+        self._inventory = {}
+
+#    def __init__(self, class_config, race_config):
+#        """Creates a playable character."""
+#        #self._name = self.set_name()
+#        #self._current_level = 1
+#        #self._current_xp = 0
+#        # _stat_names is only used in a helper function to determine if a named
+#        # stat is legitimate. This will likely be unnecessary after input is
+#        # driven by something other than the command interpreter.
+#        self._stat_names = ["strength", "agility", "vitality", "intelligence",
+#                            "piety", "luck"]
+#        #self._strength = 0
+#        #self._agility = 0
+#        #self._vitality = 0
+#        #self._intelligence = 0
+#        #self._piety = 0
+#        #self._luck = 0
+#        self._race = self.set_race(race_config)
+#        self.set_sex()
+#        self.set_bonusPoints()
+#        self.set_class(class_config)
+#        self.assign_BonusPoints()
+#        self.set_xp_rate()
+#        self.set_initial_HP()
+#        self.set_class_AC()  # As in characters.md - AD&D rules for AC/THAC0.
+#        self.set_THAC0()
+#        #self._inventory = {}
+#        self.equipment = {"head": 0, "body": 0, "legs": 0, "arms": 0,
+#                          "hands": 0, "feet": 0, "accessory": 0, "lhand": 0,
+#                          "rhand": 0}
+#        self.set_AP()
+#        self.action_list = {}
+#        self.type = False
+#        self.position = None
 
     def show_inventory(self):
         # list items, none if empty
-        if len(self.inventory) > 0:
-            for k in self.inventory.keys():
+        if len(self._inventory) > 0:
+            for k in self._inventory.keys():
                 print(k)
         else:
             print("You aren't carrying anything.")
 
     def set_class_AC(self):
         """Set character's class-based AC "base"."""
-        self.AC = config.char_class_traits[self.char_class]["AC"]
+        self.AC = config[self.char_class]["AC"]
 
     def set_THAC0(self):
         """Set character's class-based THAC0 "base"."""
         self.THAC0 = 20 - round((self._current_level *
-            config.char_class_traits[self.char_class]["THAC0mult"]))
+            config[self.char_class]["THAC0mult"]))
 
     def set_initial_HP(self):
         """Used to set *initial* HP for character.
@@ -163,24 +175,25 @@ class Actor(object):
         :config: dictionary of available races and their attributes
         """
         print("What race is this character?\n")
-        for key in config.race_traits.keys():
+        for key in config.keys():
             print(key)
 
-        while self._race == "":
+        self._race = None
+        while self._race is None:
             tryrace = input().lower()
-            if tryrace in config.char_race_traits:
+            if tryrace in config.keys():
                 return tryrace
             else:
                 print("That is not a valid race.")
                 print("What race is this character?\n")
-                for key in config.char_race_traits.keys():
+                for key in config.keys():
                     print(key)
-        self._strength = config.char_race_traits[self._race]["min_str"]
-        self._vitality = config.char_race_traits[self._race]["min_vit"]
-        self._agility = config.char_race_traits[self._race]["min_agi"]
-        self._intelligence = config.char_race_traits[self._race]["min_int"]
-        self._piety = config.char_race_traits[self._race]["min_pie"]
-        self._luck = config.char_race_traits[self._race]["min_luk"]
+        self._strength = config[self._race]["min_str"]
+        self._vitality = config[self._race]["min_vit"]
+        self._agility = config[self._race]["min_agi"]
+        self._intelligence = config[self._race]["min_int"]
+        self._piety = config[self._race]["min_pie"]
+        self._luck = config[self._race]["min_luk"]
 
     def set_name(self):
         name_accepted = False
@@ -192,17 +205,18 @@ class Actor(object):
                 name_accepted = True
         return try_name
 
-    def validate_class(self, newclass):
+    def validate_class(self, class_config, newclass):
         """Validates that a class can be chosen for the character by comparing
         total bonus points required vs current bonus points.
         """
+        config = class_config
         points_required = 0
-        str_req = config.char_class_traits[newclass]["min_str"]
-        agi_req = config.char_class_traits[newclass]["min_agi"]
-        vit_req = config.char_class_traits[newclass]["min_vit"]
-        int_req = config.char_class_traits[newclass]["min_int"]
-        pie_req = config.char_class_traits[newclass]["min_pie"]
-        luk_req = config.char_class_traits[newclass]["min_luk"]
+        str_req = config[newclass]["min_str"]
+        agi_req = config[newclass]["min_agi"]
+        vit_req = config[newclass]["min_vit"]
+        int_req = config[newclass]["min_int"]
+        pie_req = config[newclass]["min_pie"]
+        luk_req = config[newclass]["min_luk"]
 
         if str_req > self._strength:
             points_required += str_req - self._strength
@@ -226,15 +240,15 @@ class Actor(object):
         else:
             return True
 
-    def set_class(self):
+    def set_class(self, config):
         """Modifications specific to class changes.
 
         Includes statistic changes, class variable update, etc.
         In addition, the rate of HP growth is defined here.
         """
         classlist = []
-        for classname in config.char_class_traits.keys():
-            if self.validate_class(classname):
+        for classname in config.keys():
+            if self.validate_class(config, classname):
                 print(classname)
                 classlist.append(classname)
         print("The following classes are available: ")
@@ -248,12 +262,12 @@ class Actor(object):
             else:
                 self.char_class = try_class
                 satisfied = True
-                str_req = config.char_class_traits[try_class]["min_str"]
-                agi_req = config.char_class_traits[try_class]["min_agi"]
-                vit_req = config.char_class_traits[try_class]["min_vit"]
-                int_req = config.char_class_traits[try_class]["min_int"]
-                pie_req = config.char_class_traits[try_class]["min_pie"]
-                luk_req = config.char_class_traits[try_class]["min_luk"]
+                str_req = config[try_class]["min_str"]
+                agi_req = config[try_class]["min_agi"]
+                vit_req = config[try_class]["min_vit"]
+                int_req = config[try_class]["min_int"]
+                pie_req = config[try_class]["min_pie"]
+                luk_req = config[try_class]["min_luk"]
 
                 if str_req > self._strength:
                     self.bonusPoints -= str_req - self._strength
@@ -276,7 +290,7 @@ class Actor(object):
         # Save this for later
         initial_bonuspoints = self.bonusPoints
 
-        print("There are " + str(self.bonusPoints) + " remaining BP.")
+        print("There are " + str(self.bonusPoints) + " remaining bonus points.")
         print("Your current statistics are: ")
         print("[S]trength: " + str(self._strength))
         print("[A]gility: " + str(self._agility))
@@ -285,20 +299,20 @@ class Actor(object):
         print("[P]iety: " + str(self._piety))
         print("[L]uck: " + str(self._luck))
         while self.bonusPoints > 0:
-            stat_increased = 's'
-#            stat_increased = input().lower()
+#            stat_increased = 's'
+            stat_increased = input().lower()
             if stat_increased == 's':
-                stat_increased = "strength"
+                stat_increased = "_strength"
             elif stat_increased == 'a':
-                stat_increased = "agility"
+                stat_increased = "_agility"
             elif stat_increased == 'v':
-                stat_increased = "vitality"
+                stat_increased = "_vitality"
             elif stat_increased == 'i':
-                stat_increased = "intelligence"
+                stat_increased = "_intelligence"
             elif stat_increased == 'p':
-                stat_increased = "piety"
+                stat_increased = "_piety"
             elif stat_increased == 'l':
-                stat_increased = "luck"
+                stat_increased = "_luck"
 
             if stat_increased not in self._stat_names:
                 print("That isn't a stat. Try again.")
@@ -362,16 +376,16 @@ class Actor(object):
         print("counting similar items")
 
         carried = 0
-        for i in self.inventory.values():
+        for i in self._inventory.values():
             if i.name == item.name:
                 carried += 1
         print("already carried = ", carried)
 
-        if item.name in self.inventory.keys():
-            self.inventory[item.name + str((carried + 1))] = item
+        if item.name in self._inventory.keys():
+            self._inventory[item.name + str((carried + 1))] = item
             print(item.name + " taken.")
         else:
-            self.inventory[item.name] = item
+            self._inventory[item.name] = item
             print(item.name + " taken.")
 
     def drop(self, item_to_drop):
@@ -383,12 +397,12 @@ class Actor(object):
         #slots, or for over-writing what is equipped in a slot. To replicate, give
         #character two items and try to equip them.
         print("Which item do you want to equip?")
-        for i in self.inventory.keys():
+        for i in self._inventory.keys():
             print(i)
         choice = input()
-        if choice in self.inventory.keys():
-            if self.inventory[choice].is_equipped == False:
-                item_to_equip = self.inventory[choice]
+        if choice in self._inventory.keys():
+            if self._inventory[choice].is_equipped == False:
+                item_to_equip = self._inventory[choice]
             else:
                 print("That item is already equipped.")
                 self.equip()
@@ -399,7 +413,7 @@ class Actor(object):
                     print(k)
             choice2 = input()
             self.equipment[choice2] = item_to_equip
-            self.inventory[choice].is_equipped = True
+            self._inventory[choice].is_equipped = True
 
     def new_equip(self):
         """Equip items from inventory."""

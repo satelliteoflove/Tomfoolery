@@ -4,6 +4,12 @@
 
 from config.config import load_config
 from actors.actor import Actor
+from pprint import pprint as pp
 
-test_character = Actor(load_config("config/class_traits.yaml"),
-                       load_config("config/race_traits.yaml"))
+print("classes: ")
+pp(load_config("config/class_traits.yaml")["class_traits"].keys())
+print("races: ")
+pp(load_config("config/race_traits.yaml")["race_traits"].keys())
+
+test_actor = Actor()
+pp(dir(test_actor))
